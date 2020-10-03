@@ -34,11 +34,11 @@ class _LoginState extends State<Login> {
               SizedBox(
                 height: AppSizes.height*0.02,
               ),
-              _loginComponents.getLoginButton(Assets.google_login),
+              _loginComponents.getLoginButton(Assets.google_login, "Sign up with Google"),
               SizedBox(
                 height: AppSizes.height*0.02,
               ),
-              _loginComponents.getLoginButton(Assets.facebook_login),
+              _loginComponents.getLoginButton(Assets.facebook_login, "Sign up with Facebook"),
               SizedBox(
                 height: AppSizes.height*0.02,
               ),

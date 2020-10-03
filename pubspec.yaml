@@ -49,7 +49,10 @@ flutter:
     - assets/png/
     - assets/svg/
     - assets/jpg/
-
+  fonts:
+    - family: Multi-Regular
+      fonts:
+        - asset: assets/fonts/Muli-Regular.ttf
 
 
   # To add assets to your application, add an assets section, like this:

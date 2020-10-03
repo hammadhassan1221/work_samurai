@@ -4,15 +4,13 @@ import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 
-class LoginComponents{
-
-  Widget getImageContainer(String imagePath, double height ,double width){
-    return  Container(
-        child: Image.asset(imagePath, width:width,  height: height)
-    );
+class LoginComponents {
+  Widget getImageContainer(String imagePath, double height, double width) {
+    return Container(
+        child: Image.asset(imagePath, width: width, height: height));
   }
 
-  Widget getRichText({@required String text1, @required String text2}){
+  Widget getRichText({@required String text1, @required String text2}) {
     return Container(
         width: AppSizes.width * 0.85,
         child: RichText(
@@ -22,27 +20,33 @@ class LoginComponents{
             style: TextStyle(
               fontSize: 15,
               color: AppColors.clr_bg_black,
+              fontFamily: Assets.muliRegular,
             ),
             children: <TextSpan>[
               TextSpan(
-                  text: text2,
-                  style: TextStyle(
-                      color: AppColors.clr_red,
-                    decoration: TextDecoration.underline,),
-              )],
+                text: text2,
+                style: TextStyle(
+                  color: AppColors.clr_red,
+                  fontFamily: Assets.muliRegular,
+                  decoration: TextDecoration.underline,
+                ),
+              )
+            ],
           ),
         ));
   }
 
-  Widget getLoginButton(@required String imagePath){
+  Widget getLoginButton(@required String imagePath, @required String text) {
     return Container(
-      height: AppSizes.height*0.08,
-      width: AppSizes.width*0.85,
+      height: AppSizes.height * 0.08,
+      width: AppSizes.width * 0.85,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(
           5,
         ),
-        border: Border.all(color: AppColors.clr_bg_grey,),
+        border: Border.all(
+          color: AppColors.clr_bg_grey,
+        ),
         color: AppColors.transparentColor,
       ),
       child: FlatButton(
@@ -54,13 +58,14 @@ class LoginComponents{
           children: [
             getImageContainer(imagePath, 50, 50),
             SizedBox(
-              width: AppSizes.width*0.05,
+              width: AppSizes.width * 0.05,
             ),
             Container(
               child: Text(
-                "Sign up with Google",
+                text,
                 style: TextStyle(
                   fontSize: 18,
+                  fontFamily: Assets.muliRegular,
                 ),
               ),
             )
@@ -70,15 +75,17 @@ class LoginComponents{
     );
   }
 
-  Widget getSignUpButton(){
+  Widget getSignUpButton() {
     return Container(
-      height: AppSizes.height*0.08,
-      width: AppSizes.width*0.85,
+      height: AppSizes.height * 0.08,
+      width: AppSizes.width * 0.85,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(
           5,
         ),
-        border: Border.all(color: AppColors.clr_bg_black,),
+        border: Border.all(
+          color: AppColors.clr_bg_black,
+        ),
         color: AppColors.clr_bg_black,
       ),
       child: FlatButton(
@@ -88,7 +95,10 @@ class LoginComponents{
         onPressed: () {},
         child: Text(
           "Login with email",
-          style: TextStyle(fontSize: 20.0),
+          style: TextStyle(
+            fontSize: 20.0,
+            fontFamily: Assets.muliRegular,
+          ),
         ),
       ),
     );
