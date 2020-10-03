@@ -26,6 +26,7 @@ class LoginComponents {
               TextSpan(
                 text: text2,
                 style: TextStyle(
+                  fontSize: 15,
                   color: AppColors.clr_red,
                   fontFamily: Assets.muliRegular,
                   decoration: TextDecoration.underline,
@@ -64,7 +65,7 @@ class LoginComponents {
               child: Text(
                 text,
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 16,
                   fontFamily: Assets.muliRegular,
                 ),
               ),
@@ -91,12 +92,11 @@ class LoginComponents {
       child: FlatButton(
         color: AppColors.clr_bg_black,
         textColor: Colors.white,
-        padding: EdgeInsets.all(8.0),
         onPressed: () {},
         child: Text(
           "Login with email",
           style: TextStyle(
-            fontSize: 20.0,
+            fontSize: 16.0,
             fontFamily: Assets.muliRegular,
           ),
         ),
