@@ -22,6 +22,7 @@ class _WorkerState extends State<Worker> {
   }
   @override
   Widget build(BuildContext context) {
+    AppSizes.initializeSize(context);
     Provider.of<WorkerProvider>(context, listen: true);
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -57,6 +58,8 @@ class _WorkerState extends State<Worker> {
                 onTap: () {},
                 child: Image.asset(
                   Assets.gigs,
+                  height: 20,
+                  width: 20,
                   color: _currentIndex == 0
                       ? AppColors.clr_bg_black
                       : AppColors.clr_bg_grey,
@@ -74,6 +77,8 @@ class _WorkerState extends State<Worker> {
             BottomNavigationBarItem(
               icon: Image.asset(
                 Assets.schedule,
+                height: 20,
+                width: 20,
                 color: _currentIndex == 1
                     ? AppColors.clr_bg_black
                     : AppColors.clr_bg_grey,
@@ -90,6 +95,8 @@ class _WorkerState extends State<Worker> {
             BottomNavigationBarItem(
               icon: Image.asset(
                 Assets.msgs,
+                height: 20,
+                width: 20,
                 color: _currentIndex == 2
                     ? AppColors.clr_bg_black
                     : AppColors.clr_bg_grey,
@@ -106,6 +113,8 @@ class _WorkerState extends State<Worker> {
             BottomNavigationBarItem(
               icon: Image.asset(
                 Assets.profile,
+                height: 20,
+                width: 20,
                 color: _currentIndex == 3
                     ? AppColors.clr_bg_black
                     : AppColors.clr_bg_grey,
@@ -122,6 +131,8 @@ class _WorkerState extends State<Worker> {
             BottomNavigationBarItem(
               icon: Image.asset(
                 Assets.alerts,
+                height: 20,
+                width: 20,
                 color: _currentIndex == 4
                     ? AppColors.clr_bg_black
                     : AppColors.clr_bg_grey,
@@ -149,7 +160,7 @@ class _WorkerState extends State<Worker> {
       return Container();
     }
     else if (_currentIndex == 2) {
-      return Container;
+      return Container();
     }
     else if (_currentIndex == 3){
       return Container();
