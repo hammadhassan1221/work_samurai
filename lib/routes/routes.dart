@@ -4,8 +4,8 @@ import 'package:work_samurai/screens/worker/worker.dart';
 
 class Routes {
   static const String splash = '/';
-  static const String login = 'login';
-  static const String worker = 'worker';
+  static const String login = '/login';
+  static const String worker = '/worker';
 
   static final routes = {
     splash: (context) => Splash(),
