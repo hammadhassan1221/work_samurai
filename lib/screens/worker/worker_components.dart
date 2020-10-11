@@ -7,10 +7,10 @@ import 'package:work_samurai/res/sizes.dart';
 class WorkerCmoponents{
   Widget getProfile(){
     return Container(
-        height: AppSizes.height*0.95,
-        width: AppSizes.width,
+        height: AppSizes.height*0.9,
+        width: AppSizes.width*0.9,
         color: AppColors.clr_bg,
-        child: Column(
+        child: ListView(
           children: [
             Container(
                 child: Row(
@@ -48,7 +48,6 @@ class WorkerCmoponents{
               height: AppSizes.height*0.01,
             ),
             Container(
-                width: AppSizes.width*0.85,
                 child: Column(
                   children: [
                     Row(
@@ -324,6 +323,9 @@ class WorkerCmoponents{
             SizedBox(
               height: AppSizes.height*0.01,
             ),
+            SizedBox(
+              height: AppSizes.height*0.01,
+            ),
             Divider(
               indent: 20,
               endIndent: 30,
@@ -461,6 +463,175 @@ class WorkerCmoponents{
             ),
           ],
         )
+    );
+  }
+
+  Widget getMessages(){
+    return SafeArea(
+      child: Container(
+        height: AppSizes.height*0.8,
+        width: AppSizes.width,
+        color: AppColors.clr_bg,
+        child: Column(
+            children: [
+              Container(
+                  width: AppSizes.width,
+                  height: AppSizes.height*0.1,
+                  padding: EdgeInsets.only(left: 15.0, top: 20.0),
+                  color: AppColors.clr_white,
+                  child: Text(
+                    "Messages",
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontFamily: Assets.muliBold,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  )
+              ),
+              SizedBox(
+                height: AppSizes.height*0.02,
+              ),
+              Container(
+                  width: AppSizes.width*0.9,
+                  height: AppSizes.height*0.65,
+                  color: AppColors.clr_bg,
+                  child: Column(
+                    children: [
+                      Container(
+                        height: AppSizes.height*0.1,
+                        width: AppSizes.width*0.9,
+                        padding: EdgeInsets.all(8.0),
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                              color: AppColors.clr_bg_grey,
+                            )
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Image.asset(
+                                  Assets.support,
+                                  width: AppSizes.width * 0.08,
+                                  height: AppSizes.height * 0.04,
+                                  fit: BoxFit.fill,
+                                ),
+                                SizedBox(
+                                  width: AppSizes.width*0.01,
+                                ),
+                                Text(
+                                  "Work Sumarai Support",
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontFamily: Assets.muliBold,
+                                      fontWeight: FontWeight.bold
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.arrow_forward_ios,
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: AppSizes.height*0.02,
+                      ),
+                      Container(
+                        height: AppSizes.height*0.1,
+                        padding: EdgeInsets.all(10.0),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            boxShadow: [
+                              BoxShadow(
+                                color: AppColors.clr_bg_grey,
+                                spreadRadius: 0.5,
+                                blurRadius: 1,
+                                offset: Offset(0,0),
+                              )
+                            ],
+                            border: Border.all(color: AppColors.clr_bg_grey),
+                            color: AppColors.clr_white
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Image.asset(Assets.support),
+                            SizedBox(
+                              width: AppSizes.width*0.02,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Text(
+                                        "Crown Hotel",
+                                        textAlign: TextAlign.left,
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontFamily: Assets.muliBold,
+                                          fontWeight: FontWeight.bold,
+                                        )
+                                    ),
+                                    SizedBox(
+                                      width: AppSizes.width*0.01,
+                                    ),
+                                    Container(
+                                        padding: EdgeInsets.all(2.0),
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(10.0),
+                                            border: Border.all(
+                                              color: AppColors.clr_bg_grey,
+                                            )
+                                        ),
+                                        child: Row(
+                                          children: [
+                                            Image.asset(
+                                                Assets.star,
+                                                width: 10,
+                                                height: 10),
+                                            Text(
+                                                "4.5",
+                                                style: TextStyle(
+                                                  fontSize: 12,
+                                                  fontFamily: Assets.muliRegular,
+                                                  color: AppColors.clr_bg_grey,
+                                                )
+                                            )
+                                          ],
+                                        )
+
+
+                                    )
+                                  ],
+                                ),
+                                Text(
+                                    "Waiter . Wed, Sep 23",
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      color: AppColors.clr_bg_grey,
+                                      fontFamily: Assets.muliRegular,
+                                    )
+                                )
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
+                  )
+              )
+            ]),
+      ),
     );
   }
 }

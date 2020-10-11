@@ -15,6 +15,7 @@ class Assets{
   static const String icon_driving_license = "assets/png/icon_driving_license.png";
   static const String icon_international_passport = "assets/png/icon_international_passport.png";
   static const String icon_voters_card = "assets/png/icon_voters_card.png";
+  static const String start_gig = "assets/png/start_gig.png";
 
   //fonts
   static const String muliRegular = "assets/fonts/Muli-Regular.tff";
