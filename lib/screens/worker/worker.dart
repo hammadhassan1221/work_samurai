@@ -220,9 +220,9 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
                 child: TabBarView(
                   controller: _tabController,
                   children: <Widget>[
-                    workerComponents.getOffers(),
-                    workerComponents.getInProgress(),
-                    workerComponents.getConfirmed(),
+                    workerComponents.getOffersContainer(context),
+                    workerComponents.getInProgressContainer(),
+                   workerComponents.getConfirmedContainer(),
                   ],
                 ),
               ),
@@ -723,7 +723,7 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
 
   _tabBar(String tabName) {
     return Container(
-      width: AppSizes.width * 0.2,
+      width: AppSizes.width * 0.21,
       child: Tab(
         text: tabName,
       ),
