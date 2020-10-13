@@ -18,13 +18,13 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
   RangeValues _currentRangeValues = const RangeValues(0, 80);
   int _currentIndex = 0;
   WorkerProvider workerProvider;
-  WorkerCmoponents workerComponents;
+  WorkerComponents workerComponents;
 
   @override
   void initState() {
     super.initState();
     workerProvider = Provider.of<WorkerProvider>(context, listen: false);
-    workerComponents = WorkerCmoponents();
+    workerComponents = WorkerComponents();
     _tabController = new TabController(length: 3, vsync: this);
   }
 
@@ -717,7 +717,285 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
       return workerComponents.getProfile();
     }
     else {
-      return Container();
+      return Container(
+        color: AppColors.clr_bg,
+        margin: EdgeInsets.only(top: 40),
+        child: ListView(
+          children: [
+            Container(
+                child: Column(
+                  children: [
+                    Container(
+                      child: Image.asset(
+                        Assets.support,
+                        height: 150,
+                        width: 150,
+                      ),
+                    ),
+                    Container(
+                        child: Text(
+                            "Crown Hotel",
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            )
+                        )
+                    ),
+                    SizedBox(
+                      height: AppSizes.height*0.01,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(left: 80),
+                      child: Row(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.all(5,),
+                            child: Image.asset(
+                              Assets.star,
+                              height: 30,
+                              width: 30,
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(5,),
+                            child: Image.asset(
+                              Assets.star,
+                              height: 30,
+                              width: 30,
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(5,),
+                            child: Image.asset(
+                              Assets.star,
+                              height: 30,
+                              width: 30,
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(5,),
+                            child: Image.asset(
+                              Assets.star,
+                              height: 30,
+                              width: 30,
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(5,),
+                            child: Image.asset(
+                              Assets.grey_star,
+                              height: 30,
+                              width: 30,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Divider(),
+                    Container(
+                        width: AppSizes.width*0.9,
+                        padding: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: AppColors.clr_bg_black,
+                          ),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: Row(
+                          children: [
+                            Image.asset(
+                              Assets.greeting,
+                              height: 50,
+                              width: 50,
+                            ),
+                            SizedBox(
+                              width: AppSizes.width*0.03,
+                            ),
+                            Container(
+                                child: Text(
+                                  "Greeting",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 15,
+                                  ),
+                                )
+                            ),
+                            SizedBox(
+                              width: AppSizes.width*0.4,
+                            ),
+                            Icon(
+                              Icons.check,
+                            )
+                          ],
+                        )
+                    ),
+                    SizedBox(
+                      height: AppSizes.height*0.01,
+                    ),
+                    Container(
+                        width: AppSizes.width*0.9,
+                        padding: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: AppColors.clr_bg_grey,
+                          ),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: Row(
+                          children: [
+                            Image.asset(
+                              Assets.venue_safety,
+                              height: 50,
+                              width: 50,
+                            ),
+                            SizedBox(
+                              width: AppSizes.width*0.03,
+                            ),
+                            Container(
+                                child: Text(
+                                  "Venue Safety",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 15,
+                                  ),
+                                )
+                            ),
+                          ],
+                        )
+                    ),
+                    SizedBox(
+                      height: AppSizes.height*0.01,
+                    ),
+                    Container(
+                        width: AppSizes.width*0.9,
+                        padding: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: AppColors.clr_bg_grey,
+                          ),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: Row(
+                          children: [
+                            Image.asset(
+                              Assets.work_atmosphere,
+                              height: 50,
+                              width: 50,
+                            ),
+                            SizedBox(
+                              width: AppSizes.width*0.03,
+                            ),
+                            Container(
+                                child: Text(
+                                  "Work Atmosphere",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 15,
+                                  ),
+                                )
+                            ),
+                          ],
+                        )
+                    ),
+                    SizedBox(
+                      height: AppSizes.height*0.01,
+                    ),
+                    Container(
+                        width: AppSizes.width*0.9,
+                        padding: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: AppColors.clr_bg_grey,
+                          ),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: Row(
+                          children: [
+                            Image.asset(
+                              Assets.team_work,
+                              height: 50,
+                              width: 50,
+                            ),
+                            SizedBox(
+                              width: AppSizes.width*0.03,
+                            ),
+                            Container(
+                                child: Text(
+                                  "Team Work",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 15,
+                                  ),
+                                )
+                            ),
+                          ],
+                        )
+                    ),
+                    SizedBox(
+                      height: AppSizes.height*0.01,
+                    ),
+                    Container(
+                        width: AppSizes.width*0.9,
+                        padding: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: AppColors.clr_bg_grey,
+                          ),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: Row(
+                          children: [
+                            Image.asset(
+                              Assets.management,
+                              height: 50,
+                              width: 50,
+                            ),
+                            SizedBox(
+                              width: AppSizes.width*0.03,
+                            ),
+                            Container(
+                                child: Text(
+                                  "Management",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 15,
+                                  ),
+                                )
+                            ),
+                          ],
+                        )
+                    ),
+                    SizedBox(
+                      height: AppSizes.height*0.01,
+                    ),
+                    Container(
+                        width: AppSizes.width*0.9,
+                        height: AppSizes.height*0.1,
+                        padding: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          color: AppColors.clr_bg_black,
+                          border: Border.all(
+                            color: AppColors.clr_bg_grey,
+                          ),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Submit Rating",
+                            style: TextStyle(
+                              color: AppColors.clr_white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                            ),
+                          ),
+                        )
+                    ),
+                  ],
+                )
+            )
+          ],
+        )
+      );
     }
   }
 

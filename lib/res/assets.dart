@@ -16,6 +16,13 @@ class Assets{
   static const String icon_international_passport = "assets/png/icon_international_passport.png";
   static const String icon_voters_card = "assets/png/icon_voters_card.png";
   static const String start_gig = "assets/png/start_gig.png";
+  static const String grey_star = "assets/png/grey_star.png";
+  static const String work_atmosphere = "assets/png/work_atmosphere.png";
+  static const String greeting = "assets/png/greeting.png";
+  static const String management = "assets/png/management.png";
+  static const String team_work = "assets/png/team_work.png";
+  static const String venue_safety = "assets/png/venue_safety.png";
+
 
   //fonts
   static const String muliRegular = "assets/fonts/Muli-Regular.tff";
