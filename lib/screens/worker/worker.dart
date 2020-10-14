@@ -1,24 +1,27 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/screens/worker/worker_components.dart';
 import 'package:work_samurai/screens/worker/worker_provider.dart';
+import 'package:work_samurai/widgets/widgets.dart';
 
 class Worker extends StatefulWidget {
   @override
   _WorkerState createState() => _WorkerState();
 }
 
-class _WorkerState extends State<Worker> with TickerProviderStateMixin{
+class _WorkerState extends State<Worker> with TickerProviderStateMixin {
   TabController _tabController;
   RangeValues _currentRangeValues = const RangeValues(0, 80);
   int _currentIndex = 0;
   WorkerProvider workerProvider;
   WorkerCmoponents workerComponents;
+  var pickedTime;
 
   @override
   void initState() {
@@ -43,12 +46,10 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
               children: [
                 Align(
                     alignment: Alignment.bottomCenter,
-                    child: Flexible(
-                      child: Container(
-                        height: AppSizes.height * 0.85,
-                        color: AppColors.transparentColor,
-                        child: _bottomNavigationContainer(),
-                      ),
+                    child: Container(
+                      height: AppSizes.height * 0.85,
+                      color: AppColors.transparentColor,
+                      child: _bottomNavigationContainer(),
                     ))
               ],
             )),
@@ -176,7 +177,7 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
                 width: AppSizes.width,
                 height: AppSizes.height * 0.08,
                 padding: EdgeInsets.only(left: 10.0, top: 20.0),
-                margin: EdgeInsets.only(left:10.0),
+                margin: EdgeInsets.only(left: 10.0),
                 color: AppColors.clr_white,
                 child: Text(
                   "Gigs",
@@ -196,14 +197,12 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
                 labelColor: AppColors.clr_bg_black,
                 unselectedLabelColor: AppColors.clr_bg_grey,
                 indicator: BoxDecoration(
-                  color: AppColors.clr_white,
-                  border: Border(
-                    bottom: BorderSide(
+                    color: AppColors.clr_white,
+                    border: Border(
+                        bottom: BorderSide(
                       color: AppColors.clr_bg_black,
-                      width:3.0,
-                    )
-                  )
-                ),
+                      width: 3.0,
+                    ))),
                 isScrollable: true,
                 tabs: <Widget>[
                   _tabBar("Offers"),
@@ -213,7 +212,7 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
               ),
             ),
             SizedBox(
-              height: AppSizes.height*0.01,
+              height: AppSizes.height * 0.01,
             ),
             Container(
               child: Expanded(
@@ -221,8 +220,10 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
                   controller: _tabController,
                   children: <Widget>[
                     workerComponents.getOffersContainer(context),
-                    workerComponents.getInProgressContainer(),
-                   workerComponents.getConfirmedContainer(),
+                    workerComponents.getInProgressContainer((){
+                      _alertBreakContainer();
+                    }),
+                    workerComponents.getConfirmedContainer(),
                   ],
                 ),
               ),
@@ -358,150 +359,176 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
                     Expanded(
                       child: ListView(
                         children: [
-                          Container(
-                            height: AppSizes.height * 0.1,
-                            padding: EdgeInsets.all(10.0),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: AppColors.clr_bg_grey,
-                                    spreadRadius: 0.5,
-                                    blurRadius: 1,
-                                    offset: Offset(0, 0),
-                                  )
-                                ],
-                                border:
-                                    Border.all(color: AppColors.clr_bg_grey),
-                                color: AppColors.clr_white),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Mon",
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                        fontFamily: Assets.muliBold,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Text(
-                                      "10:00 am - 5:00 pm",
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                        fontFamily: Assets.muliRegular,
-                                      ),
+                          GestureDetector(
+                            onTap: () {
+                              _bottomSheetContainer();
+                            },
+                            child: Container(
+                              height: AppSizes.height * 0.1,
+                              padding: EdgeInsets.all(10.0),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: AppColors.clr_bg_grey,
+                                      spreadRadius: 0.5,
+                                      blurRadius: 1,
+                                      offset: Offset(0, 0),
                                     )
                                   ],
-                                )
-                              ],
+                                  border:
+                                      Border.all(color: AppColors.clr_bg_grey),
+                                  color: AppColors.clr_white),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Mon",
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          fontFamily: Assets.muliBold,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        "10:00 am - 5:00 pm",
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          fontFamily: Assets.muliRegular,
+                                        ),
+                                      )
+                                    ],
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                           SizedBox(
                             height: AppSizes.height * 0.02,
                           ),
-                          Container(
-                            height: AppSizes.height * 0.1,
-                            padding: EdgeInsets.all(10.0),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: AppColors.clr_bg_grey,
-                                    spreadRadius: 0.5,
-                                    blurRadius: 1,
-                                    offset: Offset(0, 0),
-                                  )
-                                ],
-                                border:
-                                    Border.all(color: AppColors.clr_bg_grey),
-                                color: AppColors.clr_white),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Tues",
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                        fontFamily: Assets.muliBold,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Text(
-                                      "10:00 am - 5:00 pm",
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                        fontFamily: Assets.muliRegular,
-                                      ),
+                          GestureDetector(
+                            onTap: () {
+                              DatePicker.showTime12hPicker(context,
+                                  showTitleActions: true,
+                                  currentTime: DateTime.now(),
+                                  onConfirm: (time) {
+                                setState(() {
+                                  pickedTime =
+                                      "Picked time is : ${time.hour} : ${time.minute} : ${time.second}";
+                                });
+                              });
+                            },
+                            child: Container(
+                              height: AppSizes.height * 0.1,
+                              padding: EdgeInsets.all(10.0),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: AppColors.clr_bg_grey,
+                                      spreadRadius: 0.5,
+                                      blurRadius: 1,
+                                      offset: Offset(0, 0),
                                     )
                                   ],
-                                )
-                              ],
+                                  border:
+                                      Border.all(color: AppColors.clr_bg_grey),
+                                  color: AppColors.clr_white),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Tues",
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          fontFamily: Assets.muliBold,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        "10:00 am - 5:00 pm",
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          fontFamily: Assets.muliRegular,
+                                        ),
+                                      )
+                                    ],
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                           SizedBox(
                             height: AppSizes.height * 0.02,
                           ),
-                          Container(
-                            height: AppSizes.height * 0.1,
-                            padding: EdgeInsets.all(10.0),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: AppColors.clr_bg_grey,
-                                    spreadRadius: 0.5,
-                                    blurRadius: 1,
-                                    offset: Offset(0, 0),
-                                  )
-                                ],
-                                border:
-                                    Border.all(color: AppColors.clr_bg_grey),
-                                color: AppColors.clr_white),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Wed",
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                        fontFamily: Assets.muliBold,
-                                        fontWeight: FontWeight.bold,
-                                        color: AppColors.clr_bg_grey,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Text(
-                                      "Not Available",
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                        fontFamily: Assets.muliRegular,
-                                        color: AppColors.clr_bg_grey,
-                                      ),
+                          GestureDetector(
+                            onTap: () {
+                              _alertDialogueContainer();
+                            },
+                            child: Container(
+                              height: AppSizes.height * 0.1,
+                              padding: EdgeInsets.all(10.0),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: AppColors.clr_bg_grey,
+                                      spreadRadius: 0.5,
+                                      blurRadius: 1,
+                                      offset: Offset(0, 0),
                                     )
                                   ],
-                                )
-                              ],
+                                  border:
+                                      Border.all(color: AppColors.clr_bg_grey),
+                                  color: AppColors.clr_white),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Wed",
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          fontFamily: Assets.muliBold,
+                                          fontWeight: FontWeight.bold,
+                                          color: AppColors.clr_bg_grey,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        "Not Available",
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          fontFamily: Assets.muliRegular,
+                                          color: AppColors.clr_bg_grey,
+                                        ),
+                                      )
+                                    ],
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                           SizedBox(
@@ -709,14 +736,11 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
           ]),
         ),
       );
-    }
-    else if (_currentIndex == 2) {
+    } else if (_currentIndex == 2) {
       return workerComponents.getMessages();
-    }
-    else if (_currentIndex == 3) {
+    } else if (_currentIndex == 3) {
       return workerComponents.getProfile();
-    }
-    else {
+    } else {
       return Container();
     }
   }
@@ -729,4 +753,293 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
       ),
     );
   }
+
+  _bottomSheetContainer() {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext bc) {
+        return Container(
+          height: AppSizes.height * 0.80,
+          margin: EdgeInsets.all(20),
+          child: Column(
+            children: [
+              Expanded(
+                child: ListView(
+                  children: [
+                    CommonWidgets.getRow("Monday", false, () {}),
+                    CommonWidgets.getAvailability("Available From"),
+                    CommonWidgets.getAvailability2("Available To"),
+                    /* Container(width: AppSizes.width,
+                   height: AppSizes.height*0.4,
+                   color: AppColors.clr_white,
+                   child: _dateTime(),),*/
+
+                    SizedBox(
+                      height: AppSizes.height * 0.02,
+                    ),
+                    GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        alignment: Alignment.center,
+                        height: AppSizes.height * 0.07,
+                        width: AppSizes.width,
+                        decoration: BoxDecoration(
+                            color: AppColors.clr_bg_black,
+                            borderRadius: BorderRadius.circular(6)),
+                        child: _alignContainer(),
+                      ),
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  _alignContainer() {
+    return Container(
+      child: Text(
+        "Save Availability",
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 16,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+    );
+  }
+
+  _dateTime() {
+    DatePicker.showTime12hPicker(context,
+        showTitleActions: true, currentTime: DateTime.now(), onConfirm: (time) {
+      setState(() {
+        pickedTime =
+            "Picked time is : ${time.hour} : ${time.minute} : ${time.second}";
+      });
+    });
+  }
+
+  _alertDialogueContainer() {
+    return {
+      {
+        showDialog(
+          context: context,
+          builder: (_) {
+            return Material(
+              color: Colors.black.withOpacity(0.5),
+              child: Stack(
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(
+                        left: AppSizes.width * 0.08,
+                        right: AppSizes.width * 0.08),
+                    height: AppSizes.height * 0.25,
+                    width: AppSizes.width,
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    child: Container(
+                      height: AppSizes.height * 0.70,
+                      width: AppSizes.width,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        border:
+                            Border.all(color: Color.fromRGBO(233, 233, 211, 0)),
+                        borderRadius: BorderRadius.circular(
+                          10,
+                        ),
+                      ),
+                      child: Container(
+                        margin: EdgeInsets.only(
+                          left: AppSizes.width * 0.05,
+                          right: AppSizes.width * 0.05,
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              child: ListView(
+                                children: [
+                                  CommonWidgets.getRow("Monday", false, () {}),
+                                  GestureDetector(
+                                    onTap: () {
+                                      DatePicker.showTime12hPicker(context,
+                                          showTitleActions: true,
+                                          currentTime: DateTime.now(),
+                                          onConfirm: (time) {
+                                        setState(() {});
+                                      });
+                                    },
+                                    child: CommonWidgets.getAvailability(
+                                        "Available From"),
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      DatePicker.showTime12hPicker(context,
+                                          showTitleActions: true,
+                                          currentTime: DateTime.now(),
+                                          onConfirm: (time) {
+                                        setState(() {});
+                                      });
+                                    },
+                                    child: CommonWidgets.getAvailability2(
+                                        "Available To"),
+                                  ),
+                                  SizedBox(
+                                    height: AppSizes.height * 0.02,
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      hideLoader(context);
+                                    },
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      height: AppSizes.height * 0.07,
+                                      width: AppSizes.width,
+                                      decoration: BoxDecoration(
+                                          color: AppColors.clr_bg_black,
+                                          borderRadius:
+                                          BorderRadius.circular(6)),
+                                      child: _alignContainer(),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        )
+      },
+    };
+  }
+  hideLoader(BuildContext context) {
+    Navigator.of(context).pop();
+  }
+
+  _alertBreakContainer() {
+    return {
+      {
+        showDialog(
+          context: context,
+          builder: (_) {
+            return Material(
+              color: Colors.black.withOpacity(0.5),
+              child: Stack(
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(
+                        left: AppSizes.width * 0.08,
+                        right: AppSizes.width * 0.08),
+                    height: AppSizes.height * 0.25,
+                    width: AppSizes.width,
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    child: Container(
+                      height: AppSizes.height * 0.70,
+                      width: AppSizes.width,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        border:
+                        Border.all(color: Color.fromRGBO(233, 233, 211, 0)),
+                        borderRadius: BorderRadius.circular(
+                          10,
+                        ),
+                      ),
+                      child: Container(
+                        margin: EdgeInsets.only(
+                          left: AppSizes.width * 0.05,
+                          right: AppSizes.width * 0.05,
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              child: ListView(
+                                children: [
+                                  CommonWidgets.getRow("Break Duration", false, () {}),
+                                  GestureDetector(
+                                    onTap: () {
+                                      DatePicker.showTime12hPicker(context,
+                                          showTitleActions: true,
+                                          currentTime: DateTime.now(),
+                                          onConfirm: (time) {
+                                            setState(() {});
+                                          });
+                                    },
+                                    child: CommonWidgets.getAvailability(
+                                        "Available From"),
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      DatePicker.showTime12hPicker(context,
+                                          showTitleActions: true,
+                                          currentTime: DateTime.now(),
+                                          onConfirm: (time) {
+                                            setState(() {});
+                                          });
+                                    },
+                                    child: CommonWidgets.getAvailability2(
+                                        "Available To"),
+                                  ),
+                                  SizedBox(
+                                    height: AppSizes.height * 0.02,
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      hideLoader(context);
+                                    },
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      height: AppSizes.height * 0.07,
+                                      width: AppSizes.width,
+                                      decoration: BoxDecoration(
+                                          color: AppColors.clr_bg_black,
+                                          borderRadius:
+                                          BorderRadius.circular(6)),
+                                      child: _breakContainer(),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        )
+      },
+    };
+  }
+  _breakContainer() {
+    return Container(
+      child: Text(
+        "Request Break",
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 16,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+    );
+  }
+
+
 }

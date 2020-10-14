@@ -269,7 +269,7 @@ class WorkerCmoponents{
                           color: AppColors.clr_bg_grey,
                         ),
                         child: Text(
-                            "Bartender",
+                            "Waiter",
                             style: TextStyle(
                               fontSize: 15,
                               color: AppColors.clr_bg_black,
@@ -1132,28 +1132,6 @@ class WorkerCmoponents{
     );
   }
 
-  void _newTaskModalBottomSheet(BuildContext context) {
-    showModalBottomSheet(
-        context: context,
-        builder: (BuildContext context) {
-          return Container(
-            height: 100,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                topRight: Radius.circular(15),
-                topLeft: Radius.circular(15),
-              )
-            ),
-            child: ListView(
-              children: [
-                
-              ],
-            )
-          );
-        }
-    );
-  }
-
   Widget getInProgress(){
     return Container(
         child: Column(
@@ -1700,7 +1678,7 @@ class WorkerCmoponents{
                             color: AppColors.clr_white),
                         child: Column(
                           children: [
-                            Container(
+                           /* Container(
                               height: AppSizes.height*0.18,
                               padding: EdgeInsets.all(15.0),
                               child: Row(
@@ -1828,6 +1806,160 @@ class WorkerCmoponents{
                                                 "Accept",
                                                 style: TextStyle(
                                                   color: AppColors.clr_green,
+                                                )
+                                            ),
+                                          ],
+                                        )
+                                    ),
+                                  ],
+                                )
+                            ),*/
+
+                            Container(
+                                width: AppSizes.width*0.9,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: AppColors.clr_bg_grey,
+                                        spreadRadius: 0.5,
+                                        blurRadius: 1,
+                                        offset: Offset(0, 0),
+                                      )
+                                    ],
+                                    border: Border.all(color: AppColors.clr_bg_grey),
+                                    color: AppColors.clr_white),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      height: AppSizes.height*0.18,
+                                      padding: EdgeInsets.all(15.0),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            children: [
+                                              Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    "Waiter",
+                                                    style: TextStyle(
+                                                      fontSize: 15,
+                                                      fontFamily: Assets.muliBold,
+                                                      fontWeight: FontWeight.bold,
+                                                      color: AppColors.clr_bg_black,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    "Wed, Sep 23",
+                                                    style: TextStyle(
+                                                      fontSize: 15,
+                                                      color: AppColors.clr_bg_grey,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    "11:00 am - 1:00 pm",
+                                                    style: TextStyle(
+                                                      fontSize: 15,
+                                                      color: AppColors.clr_bg_grey,
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    height: AppSizes.height*0.01,
+                                                  ),
+                                                  Text(
+                                                    "Crown Hotel, New York",
+                                                    style: TextStyle(
+                                                      fontSize: 15,
+                                                      color: AppColors.clr_bg_grey,
+                                                    ),
+                                                  ),
+                                                ],
+                                              )
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Column(
+                                                children: [
+                                                  Icon(
+                                                    Icons.arrow_forward_ios,
+                                                    color: AppColors.clr_bg_grey,
+                                                  ),
+                                                  Text(
+                                                    "140",
+                                                    style: TextStyle(
+                                                      fontSize: 22,
+                                                      fontFamily: Assets.muliRegular,
+                                                      fontWeight: FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    "20/h",
+                                                    style: TextStyle(
+                                                      fontSize: 16,
+                                                      fontFamily: Assets.muliRegular,
+                                                    ),
+                                                  )
+                                                ],
+                                              )
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    Container(
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                                decoration: BoxDecoration(
+                                                  border: Border(
+                                                    top: BorderSide(width: 2.0, color: AppColors.clr_bg_grey),
+                                                    right: BorderSide(width: 2.0, color: AppColors.clr_bg_grey),
+                                                  ),
+                                                  color: Colors.white,
+                                                ),
+                                                padding: EdgeInsets.only(left:50.0, right:10.0, top:10.0,bottom:10.0),
+                                                width: AppSizes.width*0.44,
+                                                child: Row(
+                                                  children: [
+                                                    Icon(
+                                                      Icons.clear,
+                                                      color:AppColors.clr_bg_black,
+                                                    ),
+                                                    Text(
+                                                        "Skip",
+                                                        style: TextStyle(
+                                                          color: AppColors.clr_bg_black,
+                                                        )
+                                                    ),
+                                                  ],
+                                                )
+                                            ),
+                                            Container(
+                                                padding: EdgeInsets.only(left:50.0, right:10.0, top:10.0,bottom:10.0),
+                                                decoration: BoxDecoration(
+                                                  border: Border(
+                                                    top: BorderSide(width: 2.0, color: AppColors.clr_bg_grey),
+                                                  ),
+                                                  color: Colors.white,
+                                                ),
+                                                width: AppSizes.width*0.44,
+                                                child: Row(
+                                                  children: [
+                                                    Icon(
+                                                      Icons.check,
+                                                      color:AppColors.clr_green,
+                                                    ),
+                                                    Text(
+                                                        "Accept",
+                                                        style: TextStyle(
+                                                          color: AppColors.clr_green,
+                                                        )
+                                                    ),
+                                                  ],
                                                 )
                                             ),
                                           ],
@@ -2178,7 +2310,7 @@ class WorkerCmoponents{
     );
   }
 
-  Widget getInProgressContainer(){
+  Widget getInProgressContainer(Function onPress){
     return Container(
         child: Column(
           children: [
@@ -2342,7 +2474,7 @@ class WorkerCmoponents{
                 color: AppColors.transparentColor,
               ),
               child: FlatButton(
-                onPressed: () {},
+                onPressed: () => onPress(),
                 child: Text(
                   "Request Break",
                   style: TextStyle(
