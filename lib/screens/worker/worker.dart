@@ -220,7 +220,7 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin {
                   controller: _tabController,
                   children: <Widget>[
                     workerComponents.getOffersContainer(context),
-                    workerComponents.getInProgressContainer((){
+                    workerComponents.getInProgressContainer(() {
                       _alertBreakContainer();
                     }),
                     workerComponents.getConfirmedContainer(),
@@ -361,7 +361,7 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin {
                         children: [
                           GestureDetector(
                             onTap: () {
-                              _bottomSheetContainer();
+                              _alertDialogueContainer();
                             },
                             child: Container(
                               height: AppSizes.height * 0.1,
@@ -415,16 +415,8 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin {
                             height: AppSizes.height * 0.02,
                           ),
                           GestureDetector(
-                            onTap: () {
-                              DatePicker.showTime12hPicker(context,
-                                  showTitleActions: true,
-                                  currentTime: DateTime.now(),
-                                  onConfirm: (time) {
-                                setState(() {
-                                  pickedTime =
-                                      "Picked time is : ${time.hour} : ${time.minute} : ${time.second}";
-                                });
-                              });
+                            onTap: (){
+                              _alertDialogueContainer();
                             },
                             child: Container(
                               height: AppSizes.height * 0.1,
@@ -737,7 +729,7 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin {
         ),
       );
     } else if (_currentIndex == 2) {
-      return workerComponents.getMessages();
+      return workerComponents.getMessages(context);
     } else if (_currentIndex == 3) {
       return workerComponents.getProfile();
     } else {
@@ -814,7 +806,11 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin {
 
   _dateTime() {
     DatePicker.showTime12hPicker(context,
-        showTitleActions: true, currentTime: DateTime.now(), onConfirm: (time) {
+        theme: DatePickerTheme(
+            containerHeight: AppSizes.height*0.50,
+            cancelStyle: TextStyle(color: AppColors.transparentColor)),
+        showTitleActions: true,
+        currentTime: DateTime.now(), onConfirm: (time) {
       setState(() {
         pickedTime =
             "Picked time is : ${time.hour} : ${time.minute} : ${time.second}";
@@ -842,7 +838,7 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin {
                   Positioned(
                     bottom: 0,
                     child: Container(
-                      height: AppSizes.height * 0.70,
+                      height: AppSizes.height * 0.30,
                       width: AppSizes.width,
                       decoration: BoxDecoration(
                         color: Colors.white,
@@ -903,7 +899,7 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin {
                                       decoration: BoxDecoration(
                                           color: AppColors.clr_bg_black,
                                           borderRadius:
-                                          BorderRadius.circular(6)),
+                                              BorderRadius.circular(6)),
                                       child: _alignContainer(),
                                     ),
                                   )
@@ -947,12 +943,12 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin {
                   Positioned(
                     bottom: 0,
                     child: Container(
-                      height: AppSizes.height * 0.70,
+                      height: AppSizes.height * 0.35,
                       width: AppSizes.width,
                       decoration: BoxDecoration(
                         color: Colors.white,
                         border:
-                        Border.all(color: Color.fromRGBO(233, 233, 211, 0)),
+                            Border.all(color: Color.fromRGBO(233, 233, 211, 0)),
                         borderRadius: BorderRadius.circular(
                           10,
                         ),
@@ -969,30 +965,49 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin {
                             Expanded(
                               child: ListView(
                                 children: [
-                                  CommonWidgets.getRow("Break Duration", false, () {}),
-                                  GestureDetector(
-                                    onTap: () {
-                                      DatePicker.showTime12hPicker(context,
-                                          showTitleActions: true,
-                                          currentTime: DateTime.now(),
-                                          onConfirm: (time) {
-                                            setState(() {});
-                                          });
-                                    },
-                                    child: CommonWidgets.getAvailability(
-                                        "Available From"),
-                                  ),
-                                  GestureDetector(
-                                    onTap: () {
-                                      DatePicker.showTime12hPicker(context,
-                                          showTitleActions: true,
-                                          currentTime: DateTime.now(),
-                                          onConfirm: (time) {
-                                            setState(() {});
-                                          });
-                                    },
-                                    child: CommonWidgets.getAvailability2(
-                                        "Available To"),
+                                  Container(
+                                    margin: EdgeInsets.only(
+                                        top: AppSizes.height * 0.03),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "Break Duration",
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w600,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: [
+                                            GestureDetector(
+                                              onTap:(){
+                                                DatePicker.showTime12hPicker(context,
+                                                    theme: DatePickerTheme(
+                                                        containerHeight: 100,
+                                                        cancelStyle: TextStyle(color: AppColors.transparentColor)),
+                                                    showTitleActions: true,
+                                                    currentTime: DateTime.now(), onConfirm: (time) {
+                                                      setState(() {
+                                                        pickedTime =
+                                                        "Picked time is : ${time.hour} : ${time.minute} : ${time.second}";
+                                                      });
+                                                    });
+                                              },
+                                              child: Text("15 mins",
+                                                  style: TextStyle(
+                                                    color: AppColors.clr_bg_black,
+                                                    fontSize: 14,
+                                                  )),
+                                            ),
+                                          ],
+                                        )
+                                      ],
+                                    ),
                                   ),
                                   SizedBox(
                                     height: AppSizes.height * 0.02,
@@ -1008,7 +1023,7 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin {
                                       decoration: BoxDecoration(
                                           color: AppColors.clr_bg_black,
                                           borderRadius:
-                                          BorderRadius.circular(6)),
+                                              BorderRadius.circular(6)),
                                       child: _breakContainer(),
                                     ),
                                   )
@@ -1040,6 +1055,4 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin {
       ),
     );
   }
-
-
 }
