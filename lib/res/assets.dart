@@ -19,6 +19,13 @@ class Assets{
   static const String muscle = "assets/png/great.png";
   static const String diamond = "assets/png/diamond.png";
   static const String communicate = "assets/png/communication.png";
+  static const String grey_star = "assets/png/grey_star.png";
+  static const String work_atmosphere = "assets/png/work_atmosphere.png";
+  static const String greeting = "assets/png/greeting.png";
+  static const String management = "assets/png/management.png";
+  static const String team_work = "assets/png/team_work.png";
+  static const String venue_safety = "assets/png/venue_safety.png";
+
 
   //fonts
   static const String muliRegular = "assets/fonts/Muli-Regular.tff";
