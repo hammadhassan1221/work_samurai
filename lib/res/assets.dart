@@ -16,6 +16,9 @@ class Assets{
   static const String icon_international_passport = "assets/png/icon_international_passport.png";
   static const String icon_voters_card = "assets/png/icon_voters_card.png";
   static const String start_gig = "assets/png/start_gig.png";
+  static const String muscle = "assets/png/great.png";
+  static const String diamond = "assets/png/diamond.png";
+  static const String communicate = "assets/png/communication.png";
 
   //fonts
   static const String muliRegular = "assets/fonts/Muli-Regular.tff";

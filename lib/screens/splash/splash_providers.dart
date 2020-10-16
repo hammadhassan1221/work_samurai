@@ -21,6 +21,6 @@ class SplashProvider extends ChangeNotifier {
     await Future.delayed(Duration(
       seconds: 4,
     ));
-    Navigator.pushReplacement(context, SlideRightRoute(page: Worker()));
+    Navigator.pushReplacement(context, SlideRightRoute(page: Login()));
   }
 }

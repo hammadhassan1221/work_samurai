@@ -7,6 +7,7 @@ import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/screens/chat/chat_screen.dart';
 
 class WorkerCmoponents{
+
   Widget getProfile(){
     return Container(
         height: AppSizes.height*0.9,
@@ -18,29 +19,32 @@ class WorkerCmoponents{
                 child: Row(
                   children: [
                     Row(
+                      mainAxisAlignment:MainAxisAlignment.start,
                       children: [
                         Container(
-                          padding: EdgeInsets.only(left: 20.0,top:10.0),
+                          padding: EdgeInsets.only(top:10.0),
                           child: Image.asset(
                             Assets.support,
                             height: 100,
                             width: 100,
                           ),
                         ),
-                        Align(
-                          alignment: Alignment.topRight,
-                          child: Container(
-                              width: AppSizes.width*0.55,
-                              child: Text(
-                                  "Edit",
-                                  textAlign: TextAlign.right,
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                  )
-                              )
-                          ),
-                        )
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Container(
+                            width: AppSizes.width*0.55,
+                            child: Text(
+                                "Edit",
+                                textAlign: TextAlign.right,
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                )
+                            )
+                        ),
                       ],
                     )
                   ],
@@ -51,6 +55,7 @@ class WorkerCmoponents{
             ),
             Container(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
                       children: [
@@ -64,7 +69,7 @@ class WorkerCmoponents{
                             )
                         ),
                         SizedBox(
-                          width: AppSizes.width*0.01,
+                          width: AppSizes.width*0.02,
                         ),
                         Container(
                             padding: EdgeInsets.all(2.0),
@@ -241,97 +246,95 @@ class WorkerCmoponents{
                 )
             ),
             SizedBox(
-              height: AppSizes.height*0.01,
+              height: AppSizes.height*0.03,
             ),
-            Container(
-                width: AppSizes.width*0.85,
-                child: Row(
-                  children: [
-                    Container(
-                        padding: EdgeInsets.all(12.0,),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20.0),
-                          color: AppColors.clr_bg_grey,
-                        ),
-                        child: Text(
-                            "Waiter",
-                            style: TextStyle(
-                              fontSize: 15,
-                              color: AppColors.clr_bg_black,
-                            )
+            Wrap(
+              children:[
+                Container(
+                    padding: EdgeInsets.all(10.0,),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      color: AppColors.clr_bg_grey,
+                    ),
+                    child: Text(
+                        "Waiter",
+                        style: TextStyle(
+                          fontSize: 15,
+                          color: AppColors.clr_bg_black,
                         )
+                    )
+                ),
+                SizedBox(
+                  width: AppSizes.width*0.05,
+                ),
+                Container(
+                    padding: EdgeInsets.all(10.0,),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      color: AppColors.clr_bg_grey,
                     ),
-                    SizedBox(
-                      width: AppSizes.width*0.05,
-                    ),
-                    Container(
-                        padding: EdgeInsets.all(12.0,),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20.0),
-                          color: AppColors.clr_bg_grey,
-                        ),
-                        child: Text(
-                            "Waiter",
-                            style: TextStyle(
-                              fontSize: 15,
-                              color: AppColors.clr_bg_black,
-                            )
+                    child: Text(
+                        "Bartender",
+                        style: TextStyle(
+                          fontSize: 15,
+                          color: AppColors.clr_bg_black,
                         )
+                    )
+                ),
+                SizedBox(
+                  width: AppSizes.width*0.05,
+                ),
+                Container(
+                    padding: EdgeInsets.all(10.0,),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      color: AppColors.clr_bg_grey,
                     ),
-                    SizedBox(
-                      width: AppSizes.width*0.05,
-                    ),
-                    Container(
-                        padding: EdgeInsets.all(12.0,),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20.0),
-                          color: AppColors.clr_bg_grey,
-                        ),
-                        child: Text(
-                            "Barista",
-                            style: TextStyle(
-                              fontSize: 15,
-                              color: AppColors.clr_bg_black,
-                            )
+                    child: Text(
+                        "Barista",
+                        style: TextStyle(
+                          fontSize: 15,
+                          color: AppColors.clr_bg_black,
                         )
-                    ),
-                  ],
-                )
+                    )
+                ),
+
+                SizedBox(
+                    height: AppSizes.height*0.08,
+                ),
+                Container(
+                    width: AppSizes.width*0.85,
+                    child: Row(
+                      children: [
+                        Container(
+                            padding: EdgeInsets.all(12.0,),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20.0),
+                              color: AppColors.clr_bg_grey,
+                            ),
+                            child: Text(
+                                "Receptionist",
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: AppColors.clr_bg_black,
+                                )
+                            )
+                        ),
+                      ],
+                    )
+                ),
+              ]
             ),
+
             SizedBox(
-              height: AppSizes.height*0.01,
+              height: AppSizes.height*0.03,
             ),
-            Container(
-                width: AppSizes.width*0.85,
-                child: Row(
-                  children: [
-                    Container(
-                        padding: EdgeInsets.all(12.0,),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20.0),
-                          color: AppColors.clr_bg_grey,
-                        ),
-                        child: Text(
-                            "Receptionist",
-                            style: TextStyle(
-                              fontSize: 15,
-                              color: AppColors.clr_bg_black,
-                            )
-                        )
-                    ),
-                  ],
-                )
-            ),
-            SizedBox(
-              height: AppSizes.height*0.01,
-            ),
-            SizedBox(
-              height: AppSizes.height*0.01,
-            ),
+
             Divider(
               indent: 20,
               endIndent: 30,
             ),
+
             Container(
                 width: AppSizes.width*0.85,
                 child: Text(
@@ -343,18 +346,19 @@ class WorkerCmoponents{
                     )
                 )
             ),
+
             SizedBox(
-              height: AppSizes.height*0.01,
+              height: AppSizes.height*0.03,
             ),
             Container(
                 width: AppSizes.width*0.85,
                 child: Row(
                   children: [
-                    Image.asset(Assets.icon_voters_card,
+                    Image.asset(Assets.diamond,
                         height: 30,
                         width: 30),
                     SizedBox(
-                      width: AppSizes.width*0.01,
+                      width: AppSizes.width*0.03,
                     ),
                     Text(
                       "Perfect Service",
@@ -363,7 +367,7 @@ class WorkerCmoponents{
                       ),
                     ),
                     SizedBox(
-                      width: AppSizes.width*0.01,
+                      width: AppSizes.width*0.03,
                     ),
                     Container(
                         padding: EdgeInsets.only(left: 5.0, right: 5.0),
@@ -385,15 +389,19 @@ class WorkerCmoponents{
                   ],
                 )
             ),
+
+            SizedBox(
+              height: AppSizes.height*0.02,
+            ),
             Container(
                 width: AppSizes.width*0.85,
                 child: Row(
                   children: [
-                    Image.asset(Assets.icon_voters_card,
+                    Image.asset(Assets.communicate,
                         height: 30,
                         width: 30),
                     SizedBox(
-                      width: AppSizes.width*0.01,
+                      width: AppSizes.width*0.03,
                     ),
                     Text(
                       "Good Communication",
@@ -402,7 +410,7 @@ class WorkerCmoponents{
                       ),
                     ),
                     SizedBox(
-                      width: AppSizes.width*0.01,
+                      width: AppSizes.width*0.03,
                     ),
                     Container(
                         padding: EdgeInsets.only(left: 5.0, right: 5.0),
@@ -424,15 +432,19 @@ class WorkerCmoponents{
                   ],
                 )
             ),
+
+            SizedBox(
+              height: AppSizes.height*0.02,
+            ),
             Container(
                 width: AppSizes.width*0.85,
                 child: Row(
                   children: [
-                    Image.asset(Assets.icon_voters_card,
+                    Image.asset(Assets.muscle,
                         height: 30,
                         width: 30),
                     SizedBox(
-                      width: AppSizes.width*0.01,
+                      width: AppSizes.width*0.03,
                     ),
                     Text(
                       "Hard Worker",
@@ -441,7 +453,7 @@ class WorkerCmoponents{
                       ),
                     ),
                     SizedBox(
-                      width: AppSizes.width*0.01,
+                      width: AppSizes.width*0.03,
                     ),
                     Container(
                         padding: EdgeInsets.only(left: 5.0, right: 5.0),

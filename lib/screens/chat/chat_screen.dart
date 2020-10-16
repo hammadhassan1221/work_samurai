@@ -15,7 +15,7 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: true,
         body: Container(
           color: AppColors.clr_bg,
           height: AppSizes.height,
@@ -182,6 +182,10 @@ class _ChatScreenState extends State<ChatScreen> {
                             ]
                         ),
 
+                        SizedBox(
+                          height: AppSizes.height*0.15,
+                        ),
+
                       ],
                     ),
                   ),
@@ -190,8 +194,14 @@ class _ChatScreenState extends State<ChatScreen> {
               Positioned(
                 bottom: 0,
                 child: _textFieldContainer(),
-                )
-              ])
+                ),
+              Positioned(
+                right: 0,
+                bottom: 0,
+                child: _enterButton(),
+              ),
+              ],
+          ),
         )
       )
     );
@@ -200,7 +210,7 @@ class _ChatScreenState extends State<ChatScreen> {
   _textFieldContainer(){
     return Container(
       height: AppSizes.height*0.07,
-      width: AppSizes.width/1.1,
+      width: AppSizes.width/1.4,
       margin: EdgeInsets.all(12),
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
@@ -214,5 +224,24 @@ class _ChatScreenState extends State<ChatScreen> {
           hintStyle: TextStyle(fontSize: 14)
     ),
     ),);
+  }
+
+  _enterButton(){
+    return GestureDetector(
+      onTap: (){},
+      child: Container(
+        height: AppSizes.height*0.07,
+        width: AppSizes.width/6,
+        margin: EdgeInsets.all(12),
+        padding: EdgeInsets.all(10),
+        decoration: BoxDecoration(
+            color: AppColors.clr_field,
+            borderRadius: BorderRadius.circular(6)
+        ),
+        child: Icon(
+          Icons.send,
+          color: AppColors.clr_bg_black,
+        )),
+    );
   }
 }

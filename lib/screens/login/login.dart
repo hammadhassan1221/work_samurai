@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:work_samurai/animations/slide_right.dart';
 import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/screens/login/login_components.dart';
+import 'package:work_samurai/screens/worker/worker.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -30,7 +32,7 @@ class _LoginState extends State<Login> {
           child: Column(
             children: [
               _loginComponents.getImageContainer(Assets.logo, 400, 400),
-              _loginComponents.getSignUpButton(),
+              _loginComponents.getSignUpButton(context),
               SizedBox(
                 height: AppSizes.height*0.02,
               ),

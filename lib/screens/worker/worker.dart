@@ -390,8 +390,9 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin {
                                         "Mon",
                                         style: TextStyle(
                                           fontSize: 15,
-                                          fontFamily: Assets.muliBold,
-                                          fontWeight: FontWeight.bold,
+                                          fontFamily: Assets.muliSemiBold,
+                                          fontWeight: FontWeight.w200
+
                                         ),
                                       ),
                                     ],
@@ -445,8 +446,8 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin {
                                         "Tues",
                                         style: TextStyle(
                                           fontSize: 15,
-                                          fontFamily: Assets.muliBold,
-                                          fontWeight: FontWeight.bold,
+                                          fontFamily: Assets.muliSemiBold,
+                                          fontWeight: FontWeight.w200,
                                         ),
                                       ),
                                     ],
@@ -500,8 +501,8 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin {
                                         "Wed",
                                         style: TextStyle(
                                           fontSize: 15,
-                                          fontFamily: Assets.muliBold,
-                                          fontWeight: FontWeight.bold,
+                                          fontFamily: Assets.muliSemiBold,
+
                                           color: AppColors.clr_bg_grey,
                                         ),
                                       ),
@@ -552,8 +553,8 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin {
                                       "Thurs",
                                       style: TextStyle(
                                         fontSize: 15,
-                                        fontFamily: Assets.muliBold,
-                                        fontWeight: FontWeight.bold,
+                                        fontFamily: Assets.muliSemiBold,
+
                                       ),
                                     ),
                                   ],
@@ -602,8 +603,8 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin {
                                       "Fri",
                                       style: TextStyle(
                                         fontSize: 15,
-                                        fontFamily: Assets.muliBold,
-                                        fontWeight: FontWeight.bold,
+                                        fontFamily: Assets.muliSemiBold,
+
                                       ),
                                     ),
                                   ],
@@ -651,8 +652,8 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin {
                                       "Sat",
                                       style: TextStyle(
                                         fontSize: 15,
-                                        fontFamily: Assets.muliBold,
-                                        fontWeight: FontWeight.bold,
+                                        fontFamily: Assets.muliSemiBold,
+
                                       ),
                                     ),
                                   ],
@@ -700,8 +701,7 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin {
                                       "Sun",
                                       style: TextStyle(
                                         fontSize: 15,
-                                        fontFamily: Assets.muliBold,
-                                        fontWeight: FontWeight.bold,
+                                        fontFamily: Assets.muliSemiBold,
                                       ),
                                     ),
                                   ],

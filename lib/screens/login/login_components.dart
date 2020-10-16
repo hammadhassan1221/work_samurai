@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:work_samurai/animations/slide_right.dart';
 import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
+import 'package:work_samurai/screens/worker/worker.dart';
 
 class LoginComponents {
   Widget getImageContainer(String imagePath, double height, double width) {
@@ -76,7 +78,7 @@ class LoginComponents {
     );
   }
 
-  Widget getSignUpButton() {
+  Widget getSignUpButton(BuildContext context) {
     return Container(
       height: AppSizes.height * 0.08,
       width: AppSizes.width * 0.85,
@@ -92,7 +94,9 @@ class LoginComponents {
       child: FlatButton(
         color: AppColors.clr_bg_black,
         textColor: Colors.white,
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(context, SlideRightRoute(page: Worker()));
+        },
         child: Text(
           "Login with email",
           style: TextStyle(
