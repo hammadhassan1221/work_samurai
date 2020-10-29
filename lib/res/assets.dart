@@ -50,7 +50,7 @@ class Assets{
 
 
   //fonts
-  static const String muliRegular = "Muli-Regular";
-  static const String muliBold = "Muli-Bold";
-  static const String muliSemiBold = "Muli-SemiBold";
+  static const String muliRegular = 'MuliRegular';
+  static const String muliBold = 'MuliBold';
+  static const String muliSemiBold = 'MuliSemiBold';
 }

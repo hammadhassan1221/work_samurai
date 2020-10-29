@@ -28,6 +28,7 @@ dependencies:
   http: ^0.12.2
   flutter_datetime_picker: ^1.4.0
   get_version: ^0.2.2
+  google_fonts: ^1.1.1
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -52,13 +53,13 @@ flutter:
     - assets/png/
     - assets/jpg/
   fonts:
-    - family: Multi-Regular
+    - family: MultiRegular
       fonts:
         - asset: assets/fonts/Muli-Regular.ttf
-    - family: Multi-Bold
+    - family: MultiBold
       fonts:
         - asset: assets/fonts/Muli-Bold.ttf
-    - family: Multi-SemiBold
+    - family: MultiSemiBold
       fonts:
         - asset: assets/fonts/Muli-SemiBold.ttf
 

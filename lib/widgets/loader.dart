@@ -1,7 +1,10 @@
+
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:work_samurai/res/colors.dart';
-import 'package:work_samurai/res/sizes.dart';
+
+import '../res/colors.dart';
+import '../res/sizes.dart';
 
 class Loader {
   showLoader({
@@ -11,94 +14,37 @@ class Loader {
       context: context,
       builder: (_) {
         return Material(
-          color: Colors.black.withOpacity(0.5),
+          color: AppColors.clr_bg_grey.withOpacity(0.5),
           child: Center(
-            child: Stack(
-              children: [
-                Container(
-                  margin: EdgeInsets.only(
-                      left: AppSizes.width * 0.08,
-                      right: AppSizes.width * 0.08),
-                  height: AppSizes.height * 0.25,
-                  width: AppSizes.width,
+            child: Container(
+              decoration: BoxDecoration(
+                color: AppColors.transparentColor.withOpacity(0.9),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(4.0),
                 ),
-                Container(
-                  margin: EdgeInsets.only(
-                    left: AppSizes.width * 0.12,
-                    right: AppSizes.width * 0.12,
-                    top: AppSizes.width * 0.07,
-                  ),
-                  padding: EdgeInsets.only(top: AppSizes.height*0.08,),
-                  height: AppSizes.height * 0.23,
-                  width: AppSizes.width,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(color: Color.fromRGBO(233, 233, 211, 0)),
-                    borderRadius: BorderRadius.circular(
-                      10,
+              ),
+              padding: EdgeInsets.all(
+                AppSizes.width * 0.01,
+              ),
+              margin: EdgeInsets.all(
+                AppSizes.width * 0.40,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  SizedBox(
+                    width: AppSizes.width * 0.07,
+                    height: AppSizes.width * 0.07,
+                    child: CircularProgressIndicator(
+                      backgroundColor: AppColors.clr_white.withOpacity(0.9),
+                      strokeWidth: 2,
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                          AppColors.clr_bg_grey,
+                      ),
                     ),
                   ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        "You Sign up successfully",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          decoration: TextDecoration.none,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      Text(
-                        "Done",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          decoration: TextDecoration.none,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      GestureDetector(
-                        onTap: (){
-                          hideLoader(context);
-                        },
-                        child: Text(
-                          "Click & Continue",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            decoration: TextDecoration.none,
-                            fontSize: 16,
-                            color: AppColors.clr_green,
-                            fontWeight: FontWeight.w300,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(left: AppSizes.width * 0.45),
-                  height: AppSizes.width * 0.15,
-                  width: AppSizes.width * 0.15,
-                  decoration: BoxDecoration(
-                    color: AppColors.clr_green,
-                    border: Border.all(color: Color.fromRGBO(233, 233, 211, 0)),
-                    borderRadius: BorderRadius.circular(
-                      10,
-                    ),
-                  ),
-                  child: Icon(
-                    Icons.check,
-                    color: Colors.white,
-                    size: 40,
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         );

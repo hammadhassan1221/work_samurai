@@ -17,33 +17,42 @@ class LoginComponents {
         child: Image.asset(imagePath, width: width, height: height));
   }
 
-  Widget getRichText({@required String text1, @required String text2,@required BuildContext context}) {
+  Widget getRichText(
+      {@required String text1,
+      @required String text2,
+      @required BuildContext context}) {
     return Container(
-      alignment: Alignment.bottomCenter,
-        margin: EdgeInsets.only(bottom:AppSizes.height*0.06),
-
+        alignment: Alignment.bottomCenter,
+        margin: EdgeInsets.only(bottom: AppSizes.height * 0.06),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(text1,style: TextStyle(
-              fontSize: 15,
-              color: AppColors.clr_bg_black,
-              fontFamily: Assets.muliRegular,
-            ),),
-            SizedBox(width: AppSizes.width*0.02,),
-            Text("Sign Up",   style: TextStyle(
-              fontSize: 15,
-              color: AppColors.clr_red,
-              fontFamily: Assets.muliRegular,
-              decoration: TextDecoration.underline,
-            ),)
+            Text(
+              text1,
+              style: TextStyle(
+                fontSize: 15,
+                color: AppColors.clr_bg_black,
+                fontFamily: 'MultiRegular',
+              ),
+            ),
+            SizedBox(
+              width: AppSizes.width * 0.02,
+            ),
+            Text(
+              "Sign Up",
+              style: TextStyle(
+                fontSize: 15,
+                color: AppColors.clr_red,
+                fontFamily: 'MultiRegular',
+                decoration: TextDecoration.underline,
+              ),
+            )
           ],
         ));
   }
 
   Widget getLoginButton(@required String imagePath, @required String text) {
     return Container(
-
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(
           5,
@@ -71,11 +80,8 @@ class LoginComponents {
                 style: TextStyle(
                   fontSize: 16,
                   fontFamily: Assets.muliRegular,
-
                 ),
-
               ),
-
             )
           ],
         ),
@@ -83,35 +89,36 @@ class LoginComponents {
     );
   }
 
-  Widget getSignUpButton(BuildContext context) {
+  Widget getSignUpButton(BuildContext context, Function onPress) {
     return Positioned(
-      top: AppSizes.height*0.55,
+      top: AppSizes.height * 0.55,
       child: GestureDetector(
-        onTap: (){
+        onTap: () {
           Navigator.push(context, SlideRightRoute(page: Home()));
         },
-        child: Container(
-          margin: EdgeInsets.only(left: AppSizes.width*0.05),
-          alignment: Alignment.center,
-          height: AppSizes.height * 0.08,
-          width: AppSizes.width/1.1 ,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(
-              5,
-            ),
-            border: Border.all(
+        child: GestureDetector(
+          onTap: () =>onPress(),
+          child: Container(
+            margin: EdgeInsets.only(left: AppSizes.width * 0.05),
+            alignment: Alignment.center,
+            height: AppSizes.height * 0.08,
+            width: AppSizes.width / 1.1,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(
+                5,
+              ),
+              border: Border.all(
+                color: AppColors.clr_bg_black,
+              ),
               color: AppColors.clr_bg_black,
             ),
-            color: AppColors.clr_bg_black,
-          ),
-          child: Text(
-            "Login with email",
-            style: TextStyle(
-              fontSize: 16.0,
-              fontFamily: Assets.muliRegular,
-              color: AppColors.clr_white
+            child: Text(
+              "Login with email",
+              style: TextStyle(
+                  fontSize: 16.0,
+                  fontFamily: Assets.muliRegular,
+                  color: AppColors.clr_white),
             ),
-
           ),
         ),
       ),
