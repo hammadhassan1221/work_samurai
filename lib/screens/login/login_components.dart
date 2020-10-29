@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:work_samurai/animations/slide_right.dart';
 import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
+import 'package:work_samurai/screens/Business/home/pages/book/book.dart';
+import 'package:work_samurai/screens/business/application/application.dart';
 import 'package:work_samurai/screens/business/home/home.dart';
 import 'package:work_samurai/screens/signup/sign_up.dart';
 import 'package:work_samurai/screens/worker/worker.dart';
@@ -14,29 +17,35 @@ class LoginComponents {
         child: Image.asset(imagePath, width: width, height: height));
   }
 
-  Widget getRichText({@required BuildContext context,@required String text1, @required String text2}) {
+  Widget getRichText(
+      {@required String text1,
+      @required String text2,
+      @required BuildContext context}) {
     return Container(
-      alignment: Alignment.bottomCenter,
-        margin: EdgeInsets.only(bottom:AppSizes.height*0.06),
+        alignment: Alignment.bottomCenter,
+        margin: EdgeInsets.only(bottom: AppSizes.height * 0.06),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(text1,style: TextStyle(
-              fontSize: 15,
-              color: AppColors.clr_bg_black,
-              fontFamily: 'MuliRegular',
-            ),),
-            SizedBox(width: AppSizes.width*0.02,),
-            GestureDetector(
-              onTap: (){
-                Navigator.pushReplacement(context, SlideRightRoute(page: SignUp()));
-              },
-              child: Text("Sign Up",   style: TextStyle(
+            Text(
+              text1,
+              style: TextStyle(
+                fontSize: 15,
+                color: AppColors.clr_bg_black,
+                fontFamily: 'MultiRegular',
+              ),
+            ),
+            SizedBox(
+              width: AppSizes.width * 0.02,
+            ),
+            Text(
+              "Sign Up",
+              style: TextStyle(
                 fontSize: 15,
                 color: AppColors.clr_red,
-                fontFamily: Assets.muliRegular,
+                fontFamily: 'MultiRegular',
                 decoration: TextDecoration.underline,
-              ),),
+              ),
             )
           ],
         ));
@@ -44,7 +53,6 @@ class LoginComponents {
 
   Widget getLoginButton(@required String imagePath, @required String text) {
     return Container(
-
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(
           5,
@@ -72,11 +80,8 @@ class LoginComponents {
                 style: TextStyle(
                   fontSize: 16,
                   fontFamily: Assets.muliRegular,
-
                 ),
-
               ),
-
             )
           ],
         ),
@@ -84,35 +89,36 @@ class LoginComponents {
     );
   }
 
-  Widget getSignUpButton(BuildContext context) {
+  Widget getSignUpButton(BuildContext context, Function onPress) {
     return Positioned(
-      top: AppSizes.height*0.55,
+      top: AppSizes.height * 0.55,
       child: GestureDetector(
-        onTap: (){
-          Navigator.push(context, SlideRightRoute(page: Worker()));
+        onTap: () {
+          Navigator.push(context, SlideRightRoute(page: Home()));
         },
-        child: Container(
-          margin: EdgeInsets.only(left: AppSizes.width*0.05),
-          alignment: Alignment.center,
-          height: AppSizes.height * 0.08,
-          width: AppSizes.width/1.1 ,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(
-              5,
-            ),
-            border: Border.all(
+        child: GestureDetector(
+          onTap: () =>onPress(),
+          child: Container(
+            margin: EdgeInsets.only(left: AppSizes.width * 0.05),
+            alignment: Alignment.center,
+            height: AppSizes.height * 0.08,
+            width: AppSizes.width / 1.1,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(
+                5,
+              ),
+              border: Border.all(
+                color: AppColors.clr_bg_black,
+              ),
               color: AppColors.clr_bg_black,
             ),
-            color: AppColors.clr_bg_black,
-          ),
-          child: Text(
-            "Login with email",
-            style: TextStyle(
-              fontSize: 16.0,
-              fontFamily: 'MuliRegular',
-              color: AppColors.clr_white
+            child: Text(
+              "Login with email",
+              style: TextStyle(
+                  fontSize: 16.0,
+                  fontFamily: Assets.muliRegular,
+                  color: AppColors.clr_white),
             ),
-
           ),
         ),
       ),
