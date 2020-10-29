@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:work_samurai/providers/multi_providers.dart';
+import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/routes/routes.dart';
 
 void main() {
@@ -17,10 +18,11 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
+          fontFamily: Assets.muliRegular,
         ),
         debugShowCheckedModeBanner: false,
         routes: Routes.routes,
-        initialRoute: Routes.worker,
+        initialRoute: Routes.splash,
       ),
     );
   }

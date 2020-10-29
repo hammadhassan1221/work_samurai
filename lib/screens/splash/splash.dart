@@ -21,6 +21,7 @@ class _SplashState extends State<Splash> {
     _provider = Provider.of<SplashProvider>(context, listen: false);
     _provider.init(context: context);
     _provider.navigateToNextRoute(context);
+    _provider.getVersionNumber();
     _components = SplashComponents();
   }
 
@@ -32,6 +33,10 @@ class _SplashState extends State<Splash> {
       body: Stack(
         children: [
           _components.getMainContainer(Assets.logo, 400, 400),
+          Align(
+            alignment: Alignment.bottomCenter,
+//            child: Text(_provider.versionNumber),
+          ),
         ],
       ),
     );
