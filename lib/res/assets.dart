@@ -42,6 +42,7 @@ class Assets{
   static const String payment = "assets/png/payment-method@3x.png";
   static const String sign = "assets/png/Signature@3x.png";
   static const String barArrow = "assets/png/Break@3x.png";
+  static const String cancelgig = "assets/png/cancel_gig@3x.png";
 
 
 

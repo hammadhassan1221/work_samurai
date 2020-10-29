@@ -171,14 +171,14 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
         child: Column(children: [
           Container(
               width: AppSizes.width,
-              height: AppSizes.height * 0.08,
+              height: AppSizes.height * 0.09,
               padding: EdgeInsets.only(left: AppSizes.width*0.04, top: AppSizes.width*0.07),
               color: AppColors.clr_white,
               child: Text(
                 "Gigs",
                 style: TextStyle(
                   fontSize: 22,
-                  fontFamily: Assets.muliBold,
+                  fontFamily: 'MuliBold',
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -242,7 +242,7 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
                 "Your Schedule",
                 style: TextStyle(
                   fontSize: 22,
-                  fontFamily: Assets.muliBold,
+                  fontFamily: 'MuliBold',
 
                 ),
               )),

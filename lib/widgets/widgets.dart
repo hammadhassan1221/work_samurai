@@ -119,9 +119,8 @@ class CommonWidgets{
     return GestureDetector(
       onTap: () => onPress(),
       child: Container(
-        width: AppSizes.width * 0.8,
         height: AppSizes.height * 0.07,
-        margin: EdgeInsets.only(left: AppSizes.width*0.08, bottom: AppSizes.height*0.04),
+        margin: EdgeInsets.only(left: AppSizes.width*0.08,  right: AppSizes.width*0.08),
         alignment: Alignment.center,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(

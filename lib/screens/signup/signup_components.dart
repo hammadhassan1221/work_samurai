@@ -81,7 +81,7 @@ class SignUpComponents{
                   hintText: text,
                   hintStyle: TextStyle(
                     fontSize: 12,
-                    fontFamily: Assets.muliRegular,
+                    fontFamily: "Muli-Regular",
                     decoration: TextDecoration.none,
                   )),
             ),

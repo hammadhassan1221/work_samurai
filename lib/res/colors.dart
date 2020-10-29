@@ -20,6 +20,7 @@ class AppColors{
   static const clr_bg = Color.fromRGBO(250, 250, 250, 1);
   static const transparentColor = Color.fromRGBO(255, 255, 255, 0);
   static const clr_bg_black = Color.fromRGBO(0, 16, 32, 1);
+  static const clr_bg_black2 = Color.fromRGBO(0, 16, 32, 0.55);
   static const clr_bg_grey = Color.fromRGBO(206, 209, 212, 1);
   static const clr_white = Color.fromRGBO(255, 255, 255, 1);
   static const clr_red = Color.fromRGBO(211, 63, 63, 1);

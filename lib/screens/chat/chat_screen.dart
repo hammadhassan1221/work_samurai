@@ -44,8 +44,8 @@ class _ChatScreenState extends State<ChatScreen> {
                           decoration: TextDecoration.none,
                           color: AppColors.clr_bg_black,
                           //fontWeight: FontWeight.w600,
-                          fontFamily: Assets.muliBold,
-                          fontSize: 20),
+                          fontFamily: 'MuliBold',
+                          fontSize: 22),
                     )
                   ],
                 ),
@@ -55,48 +55,40 @@ class _ChatScreenState extends State<ChatScreen> {
                   children: [
                     Container(
                       height: AppSizes.height * 0.1,
-                      padding: EdgeInsets.all(10.0),
-                      margin: EdgeInsets.all(12),
+                      padding: EdgeInsets.all(AppSizes.width*0.013),
+                      margin: EdgeInsets.only(left:AppSizes.width*0.05,right:AppSizes.width*0.05,),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
-                          boxShadow: [
-                            BoxShadow(
-                              color: AppColors.clr_bg_grey,
-                              spreadRadius: 0.5,
-                              blurRadius: 1,
-                              offset: Offset(0, 0),
-                            )
-                          ],
                           border: Border.all(color: AppColors.clr_bg_grey),
-                          color: AppColors.clr_white),
+                          color: AppColors.clr_bg),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Image.asset(Assets.support),
                           SizedBox(
-                            width: AppSizes.width * 0.02,
+                            width: AppSizes.width * 0.015,
                           ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Row(
                                 children: [
-                                  Text("Crown Hotel",
+                                  Text("Waiter",
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
                                         fontSize: 16,
-                                        fontFamily: Assets.muliBold,
+                                        fontFamily: 'MuliBold',
                                         fontWeight: FontWeight.bold,
                                       )),
                                 ],
                               ),
                               SizedBox(height: AppSizes.height*0.01,),
-                              Text("Waiter . Wed, Sep 23 11:00am - 1:00pm",
+                              Text("Wed, Sep 23 11:00am - 1:00pm",
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
-                                    fontSize: 12,
-                                    color: AppColors.clr_bg_grey,
-                                    fontFamily: Assets.muliRegular,
+                                    fontSize: 15,
+                                    color: AppColors.clr_bg_black2,
+                                    fontFamily: 'MuliRegular',
                                   ))
                             ],
                           )
@@ -119,7 +111,9 @@ class _ChatScreenState extends State<ChatScreen> {
                             child: Text(
                               "Morbi pretium, massa non ornare fringilla, odio eros euismod nibh, venenatis commodo orci diam in sapien. Curabitur ut massa odio.",
                               style: TextStyle(
-                                letterSpacing: 0.25,
+                                letterSpacing: 0.15,
+                                fontSize: 15,
+                                fontFamily: 'MuliRegular'
                               ),),
                           ),
                         ]
@@ -139,7 +133,9 @@ class _ChatScreenState extends State<ChatScreen> {
                             ),
                             child: Text("Aliquam!",
                               style: TextStyle(
+                                fontSize: 15,
                                 letterSpacing: 0.25,
+                                  fontFamily: 'MuliRegular'
                               ),),
                           ),
                         ]
@@ -160,6 +156,8 @@ class _ChatScreenState extends State<ChatScreen> {
                             child: Text("11:03am",
                               style: TextStyle(
                                 letterSpacing: 0.25,
+                                  fontFamily: 'MuliRegular',
+                                fontSize: 14
                               ),),
                           ),
                         ]
@@ -181,6 +179,8 @@ class _ChatScreenState extends State<ChatScreen> {
                               style: TextStyle(
                                 color: AppColors.clr_white,
                                 letterSpacing: 0.25,
+                                  fontFamily: 'MuliRegular',
+                                fontSize: 14,
                               ),),
                           ),
                         ]
@@ -192,7 +192,6 @@ class _ChatScreenState extends State<ChatScreen> {
 
                    Container(
                      alignment: Alignment.bottomCenter,
-
                       child: _textFieldContainer(),
                     ),
                   ],
@@ -207,10 +206,10 @@ class _ChatScreenState extends State<ChatScreen> {
 
   _textFieldContainer(){
     return Container(
-      height: AppSizes.height*0.07,
-      width: AppSizes.width/1.4,
-      margin: EdgeInsets.all(12),
-      padding: EdgeInsets.all(10),
+      height: AppSizes.height*0.08,
+      width: AppSizes.width,
+      margin: EdgeInsets.only(right: AppSizes.width*0.04,left: AppSizes.width*0.04,),
+      padding: EdgeInsets.all(AppSizes.width*0.03),
       decoration: BoxDecoration(
           color: AppColors.clr_field,
           borderRadius: BorderRadius.circular(6)
@@ -218,8 +217,8 @@ class _ChatScreenState extends State<ChatScreen> {
       child: TextField(
         decoration: InputDecoration(
           border: InputBorder.none,
-        hintText: "Type your message",
-          hintStyle: TextStyle(fontSize: 14)
+        hintText: "Type your message...",
+          hintStyle: TextStyle(fontSize: 14,fontFamily: 'MuliRegular')
     ),
     ),);
   }

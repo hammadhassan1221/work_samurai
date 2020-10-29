@@ -29,6 +29,7 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+          resizeToAvoidBottomInset: true,
       body: Container(
         height: AppSizes.height,
         width: AppSizes.width,
@@ -47,7 +48,8 @@ class _SignUpState extends State<SignUp> {
                     style: TextStyle(
                         color: AppColors.clr_bg_black,
                         fontSize: 22,
-                        fontFamily: Assets.muliBold),
+                        fontFamily: "fonts/Muli-Regular.ttf",
+                    ),
                   ),
                 ),
                 Expanded(
@@ -58,13 +60,15 @@ class _SignUpState extends State<SignUp> {
                             borderColor: AppColors.sign_field,
                             textColor: AppColors.clr_bg_black,
                             text: "First Name",
-                            imagePath: Assets.profileS),
+                            imagePath: Assets.profileS,
+                        ),
                         _signUpComponents.getInputField(
                             backgroundColor: AppColors.transparentColor,
                             borderColor: AppColors.sign_field,
                             textColor: AppColors.clr_bg_black,
                             text: "Last Name",
-                            imagePath: Assets.profileS),
+                            imagePath: Assets.profileS,
+                        ),
                         _signUpComponents.getInputField(
                             backgroundColor: AppColors.transparentColor,
                             borderColor: AppColors.sign_field,
@@ -202,6 +206,13 @@ class _SignUpState extends State<SignUp> {
                               ],
                             )
                         ),
+                        SizedBox(height: AppSizes.height*0.05,),
+
+                        CommonWidgets.getButton(backgroundColor: AppColors.clr_bg_black, borderColor: AppColors.transparentColor, textColor: AppColors.clr_white, text: "Sign Up", onPress: (){
+                          Navigator.push(context, SlideRightRoute(page: Home()));
+                        }),
+
+
 
                         /* GestureDetector(
                   onTap: (){
@@ -221,13 +232,11 @@ class _SignUpState extends State<SignUp> {
                 )*/
                       ],
                     )),
+
+
               ],
             ),
-            Positioned(
-                bottom: 0,
-                child: CommonWidgets.getButton(backgroundColor: AppColors.clr_bg_black, borderColor: AppColors.transparentColor, textColor: AppColors.clr_white, text: "Sign Up", onPress: (){
-                  Navigator.push(context, SlideRightRoute(page: Home()));
-                }))
+
           ],
         )
       ),

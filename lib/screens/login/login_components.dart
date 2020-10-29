@@ -24,7 +24,7 @@ class LoginComponents {
             Text(text1,style: TextStyle(
               fontSize: 15,
               color: AppColors.clr_bg_black,
-              fontFamily: Assets.muliRegular,
+              fontFamily: 'MuliRegular',
             ),),
             SizedBox(width: AppSizes.width*0.02,),
             GestureDetector(
@@ -109,7 +109,7 @@ class LoginComponents {
             "Login with email",
             style: TextStyle(
               fontSize: 16.0,
-              fontFamily: Assets.muliRegular,
+              fontFamily: 'MuliRegular',
               color: AppColors.clr_white
             ),
 
