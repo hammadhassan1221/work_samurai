@@ -33,7 +33,7 @@ class _LoginState extends State<Login> {
             children: [
               _loginComponents.getImageContainer(Assets.logo, 400, 400),
               _loginComponents.getSignUpButton(context),
-              _loginComponents.getRichText(text1: "Don't have an account?", text2: "Sign Up"),
+              _loginComponents.getRichText(context: context , text1: "Don't have an account?", text2: "Sign Up"),
             ],
           ),
       )

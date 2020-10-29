@@ -2340,7 +2340,7 @@ class WorkerComponents {
               child: Column(
                 children: [
                   Container(
-                    height: AppSizes.height * 0.17,
+                    height: AppSizes.height * 0.19,
                     padding: EdgeInsets.all(15.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -2459,15 +2459,17 @@ class WorkerComponents {
                     ),
                   ),
                   Divider(),
-                  Container(
-                      padding: EdgeInsets.all(15.0),
-                      child: Text(
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
                           "04 : 22 : 53",
                           style: TextStyle(
                             fontSize: 35,
                             fontFamily: Assets.muliBold,
                           )
-                      )
+                      ),
+                    ],
                   ),
                 ],
               ),

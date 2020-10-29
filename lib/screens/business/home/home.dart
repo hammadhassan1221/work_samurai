@@ -45,14 +45,16 @@ class _HomeState extends State<Home> {
     return SafeArea(
       child: Scaffold(
         body:children[_currentIndex] ,
+
         bottomNavigationBar: BottomNavigationBar(
-          // onTap: onTap,
-          onTap: (index) {
-            setState(() {
-              _currentIndex = index;
-            });
-          },
-          currentIndex: _currentIndex,
+           currentIndex: _currentIndex,
+                     backgroundColor: AppColors.clr_bg,
+                     type: BottomNavigationBarType.fixed,
+                     onTap: (index) {
+                       setState(() {
+                         _currentIndex = index;
+                       });
+                     },
           items: [
             BottomNavigationBarItem(
               icon: GestureDetector(
@@ -117,7 +119,6 @@ class _HomeState extends State<Home> {
             ),
           ],
         ),
-      ),
-    );
+      ) );
   }
 }

@@ -53,113 +53,110 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
                     ))
               ],
             )),
-        bottomNavigationBar: Container(
-          height: AppSizes.height * 0.1,
-          child: BottomNavigationBar(
-            currentIndex: _currentIndex,
-            backgroundColor: AppColors.clr_bg,
-            type: BottomNavigationBarType.fixed,
-            onTap: (index) {
-              setState(() {
-                _currentIndex = index;
-              });
-            },
-            items: [
-              BottomNavigationBarItem(
-                icon: GestureDetector(
-                  onTap: () {},
-                  child: Image.asset(
-                    Assets.gigs,
-                    height: 20,
-                    width: 20,
-                    color: _currentIndex == 0
-                        ? AppColors.clr_bg_black
-                        : Colors.black54,
-                  ),
-                ),
-                title: Text(
-                  "Gigs",
-                  style: TextStyle(
-                    color: _currentIndex == 0
-                        ? AppColors.clr_bg_black
-                        : Colors.black54,
-                  ),
-                ),
-              ),
-              BottomNavigationBarItem(
-                icon: Image.asset(
-                  Assets.schedule,
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _currentIndex,
+          backgroundColor: AppColors.clr_bg,
+          type: BottomNavigationBarType.fixed,
+          onTap: (index) {
+            setState(() {
+              _currentIndex = index;
+            });
+          },
+          items: [
+            BottomNavigationBarItem(
+              icon: GestureDetector(
+                onTap: () {},
+                child: Image.asset(
+                  Assets.gigs,
                   height: 20,
                   width: 20,
+                  color: _currentIndex == 0
+                      ? AppColors.clr_bg_black
+                      : Colors.black54,
+                ),
+              ),
+              title: Text(
+                "Gigs",
+                style: TextStyle(
+                  color: _currentIndex == 0
+                      ? AppColors.clr_bg_black
+                      : Colors.black54,
+                ),
+              ),
+            ),
+            BottomNavigationBarItem(
+              icon: Image.asset(
+                Assets.schedule,
+                height: 20,
+                width: 20,
+                color: _currentIndex == 1
+                    ? AppColors.clr_bg_black
+                    : Colors.black54,
+              ),
+              title: Text(
+                "Schedule",
+                style: TextStyle(
                   color: _currentIndex == 1
                       ? AppColors.clr_bg_black
-                      : Colors.black54,
-                ),
-                title: Text(
-                  "Schedule",
-                  style: TextStyle(
-                    color: _currentIndex == 1
-                        ? AppColors.clr_bg_black
-                        :Colors.black54,
-                  ),
+                      :Colors.black54,
                 ),
               ),
-              BottomNavigationBarItem(
-                icon: Image.asset(
-                  Assets.msgs,
-                  height: 20,
-                  width: 20,
+            ),
+            BottomNavigationBarItem(
+              icon: Image.asset(
+                Assets.msgs,
+                height: 20,
+                width: 20,
+                color: _currentIndex == 2
+                    ? AppColors.clr_bg_black
+                    : Colors.black54,
+              ),
+              title: Text(
+                "Messages",
+                style: TextStyle(
                   color: _currentIndex == 2
                       ? AppColors.clr_bg_black
-                      : Colors.black54,
-                ),
-                title: Text(
-                  "Messages",
-                  style: TextStyle(
-                    color: _currentIndex == 2
-                        ? AppColors.clr_bg_black
-                        :Colors.black54,
-                  ),
+                      :Colors.black54,
                 ),
               ),
-              BottomNavigationBarItem(
-                icon: Image.asset(
-                  Assets.profile,
-                  height: 20,
-                  width: 20,
+            ),
+            BottomNavigationBarItem(
+              icon: Image.asset(
+                Assets.profile,
+                height: 20,
+                width: 20,
+                color: _currentIndex == 3
+                    ? AppColors.clr_bg_black
+                    : Colors.black54,
+              ),
+              title: Text(
+                "Profile",
+                style: TextStyle(
                   color: _currentIndex == 3
                       ? AppColors.clr_bg_black
                       : Colors.black54,
                 ),
-                title: Text(
-                  "Profile",
-                  style: TextStyle(
-                    color: _currentIndex == 3
-                        ? AppColors.clr_bg_black
-                        : Colors.black54,
-                  ),
-                ),
               ),
-              BottomNavigationBarItem(
-                icon: Image.asset(
-                  Assets.alerts,
-                  height: 20,
-                  width: 20,
+            ),
+            BottomNavigationBarItem(
+              icon: Image.asset(
+                Assets.alerts,
+                height: 20,
+                width: 20,
+                color: _currentIndex == 4
+                    ? AppColors.clr_bg_black
+                    : Colors.black54,
+              ),
+              title: Text(
+                "Alerts",
+                style: TextStyle(
                   color: _currentIndex == 4
                       ? AppColors.clr_bg_black
                       : Colors.black54,
                 ),
-                title: Text(
-                  "Alerts",
-                  style: TextStyle(
-                    color: _currentIndex == 4
-                        ? AppColors.clr_bg_black
-                        : Colors.black54,
-                  ),
-                ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

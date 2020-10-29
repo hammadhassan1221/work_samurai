@@ -40,7 +40,11 @@ class _ApplicationState extends State<Application> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Icon(Icons.arrow_back),
+                   GestureDetector(
+                       onTap:(){
+                         Navigator.pop(context);
+          },
+                       child: Image.asset(Assets.barArrow,height: 20,width: 20,)),
                     SizedBox(
                       width: AppSizes.width * 0.02,
                     ),

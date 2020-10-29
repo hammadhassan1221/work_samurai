@@ -121,15 +121,11 @@ class CommonWidgets{
       child: Container(
         width: AppSizes.width * 0.8,
         height: AppSizes.height * 0.07,
+        margin: EdgeInsets.only(left: AppSizes.width*0.08, bottom: AppSizes.height*0.04),
         alignment: Alignment.center,
-        margin: EdgeInsets.only(
-          top: AppSizes.height * 0.02,
-          left: AppSizes.width * 0.08,
-          right: AppSizes.width * 0.08,
-        ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(
-            12,
+            6,
           ),
           border: Border.all(
             color: borderColor,
@@ -140,10 +136,12 @@ class CommonWidgets{
           text,
           style: TextStyle(
             decoration: TextDecoration.none,
-            fontSize: 14,
+            fontSize: 16,
             color: textColor,
             fontWeight: FontWeight.w500,
+            fontFamily: Assets.muliRegular
           ),
+          textAlign: TextAlign.center,
         ),
       ),
     );

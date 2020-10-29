@@ -1,8 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:work_samurai/animations/slide_right.dart';
 import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
+import 'package:work_samurai/screens/business/card_details/card.dart';
+import 'package:work_samurai/screens/business/document_verification/document_verify.dart';
+import 'package:work_samurai/screens/business/payment_history/payment_history.dart';
 
 class Account extends StatefulWidget {
   @override
@@ -225,56 +229,71 @@ class _AccountState extends State<Account> {
                     SizedBox(
                       height: AppSizes.height * 0.015,
                     ),
-                    Row(
-                      children: [
-                       Image.asset(Assets.sign,height: 25,width: 25,),
-                        SizedBox(
-                          width: AppSizes.width*0.02,
-                        ),
-                        Text(
-                          "Document Verification",
-                          style: TextStyle(
-                            fontFamily: Assets.muliSemiBold,
-                            fontSize: 15,
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.push(context, SlideRightRoute(page: DocumentVerification()));
+                      },
+                      child: Row(
+                        children: [
+                         Image.asset(Assets.sign,height: 25,width: 25,),
+                          SizedBox(
+                            width: AppSizes.width*0.02,
                           ),
-                        )
-                      ],
+                          Text(
+                            "Document Verification",
+                            style: TextStyle(
+                              fontFamily: Assets.muliSemiBold,
+                              fontSize: 15,
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                     SizedBox(
                       height: AppSizes.height * 0.015,
                     ),
-                    Row(
-                      children: [
-                        Image.asset(Assets.card,height: 25,width: 25,),
-                        SizedBox(
-                          width: AppSizes.width*0.02,
-                        ),
-                        Text(
-                          "Card Details",
-                          style: TextStyle(
-                            fontFamily: Assets.muliSemiBold,
-                            fontSize: 15,
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.push(context, SlideRightRoute(page:CardDetails()));
+                      },
+                      child: Row(
+                        children: [
+                          Image.asset(Assets.card,height: 25,width: 25,),
+                          SizedBox(
+                            width: AppSizes.width*0.02,
                           ),
-                        )
-                      ],
+                          Text(
+                            "Card Details",
+                            style: TextStyle(
+                              fontFamily: Assets.muliSemiBold,
+                              fontSize: 15,
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                     SizedBox(
                       height: AppSizes.height * 0.015,
                     ),
-                    Row(
-                      children: [
-                        Image.asset(Assets.payment,height: 25,width: 25,),
-                        SizedBox(
-                          width: AppSizes.width*0.02,
-                        ),
-                        Text(
-                          "Payments",
-                          style: TextStyle(
-                            fontFamily: Assets.muliSemiBold,
-                            fontSize: 15,
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.push(context,  SlideRightRoute(page: PaymentHistory()));
+                      },
+                      child: Row(
+                        children: [
+                          Image.asset(Assets.payment,height: 25,width: 25,),
+                          SizedBox(
+                            width: AppSizes.width*0.02,
                           ),
-                        )
-                      ],
+                          Text(
+                            "Payments",
+                            style: TextStyle(
+                              fontFamily: Assets.muliSemiBold,
+                              fontSize: 15,
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                     SizedBox(
                       height: AppSizes.height * 0.01,

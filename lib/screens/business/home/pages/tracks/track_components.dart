@@ -599,10 +599,9 @@ class TracksComponents {
                             textAlign: TextAlign.left,
                             style: TextStyle(
                               color: AppColors.clr_bg_black,
-                              decoration: TextDecoration.none,
                               fontSize: 20,
-                              fontFamily: Assets.muliBold,
-                            )),
+                              fontFamily: Assets.muliRegular,
+                             )),
                         SizedBox(
                           width: AppSizes.width * 0.02,
                         ),

@@ -54,13 +54,13 @@ flutter:
   fonts:
     - family: Multi-Regular
       fonts:
-        - asset: assets/fonts/Muli-Regular.ttf
+        - asset: fonts/Muli-Regular.ttf
     - family: Multi-Bold
       fonts:
-        - asset: assets/fonts/Muli-Bold.ttf
+        - asset: fonts/Muli-Bold.ttf
     - family: Multi-SemiBold
       fonts:
-        - asset: assets/fonts/Muli-SemiBold.ttf
+        - asset: fonts/Muli-SemiBold.ttf
 
   # To add assets to your application, add an assets section, like this:
   # assets:
