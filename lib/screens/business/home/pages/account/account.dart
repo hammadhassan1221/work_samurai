@@ -6,6 +6,7 @@ import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/screens/business/card_details/card.dart';
 import 'package:work_samurai/screens/business/document_verification/document_verify.dart';
+import 'package:work_samurai/screens/business/home/pages/account/account_components.dart';
 import 'package:work_samurai/screens/business/payment_history/payment_history.dart';
 
 class Account extends StatefulWidget {
@@ -14,48 +15,26 @@ class Account extends StatefulWidget {
 }
 
 class _AccountState extends State<Account> {
+  AccountComponent _accountComponent;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    _accountComponent = AccountComponent();
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
         height: AppSizes.height * 0.9,
         width: AppSizes.width * 0.9,
         color: AppColors.clr_bg,
-        padding: EdgeInsets.all(AppSizes.height*0.015),
+        padding: EdgeInsets.only(left:AppSizes.height*0.04),
         child: ListView(
           children: [
-            Container(
-                child: Row(
-                  children: [
-                    Row(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.only(top: 10.0),
-                          child: Image.asset(
-                            Assets.support,
-                            height: 100,
-                            width: 100,
-                          ),
-                        ),
-                        Align(
-                          alignment: Alignment.topRight,
-                          child: Container(
-                              width: AppSizes.width * 0.55,
-                              child: Text(
-                                  "Edit",
-                                  textAlign: TextAlign.right,
-                                  style: TextStyle(
-                                    decoration: TextDecoration.underline,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                  )
-                              )
-                          ),
-                        )
-                      ],
-                    )
-                  ],
-                )
-            ),
+            _accountComponent.getUserEdit(imagePath: Assets.support, text: "Edit"),
+
             SizedBox(
               height: AppSizes.height * 0.01,
             ),
@@ -70,7 +49,7 @@ class _AccountState extends State<Account> {
                             textAlign: TextAlign.left,
                             style: TextStyle(
                               fontSize: 22,
-                              fontFamily: Assets.muliBold,
+                              fontFamily: 'MuliBold,'
 
                             )
                         ),
@@ -98,7 +77,7 @@ class _AccountState extends State<Account> {
                                     "4.5",
                                     style: TextStyle(
                                       fontSize: 12,
-                                      fontFamily: Assets.muliRegular,
+                                      fontFamily: 'MuliRegular',
                                       color: AppColors.clr_bg_grey,
                                     )
                                 )
@@ -114,26 +93,18 @@ class _AccountState extends State<Account> {
                           style: TextStyle(
                             fontSize: 15,
                             color: AppColors.clr_bg_black,
-                            fontFamily: Assets.muliSemiBold,
+                            fontFamily: 'MuliSemiBold',
                           )
                       ),
                     ),
                   ],
                 )
             ),
+
             SizedBox(
               height: AppSizes.height * 0.01,
             ),
-            Container(
-                width: AppSizes.width * 0.85,
-                child: Text(
-                    "Fusce maximus cursus lectus, varius ultricies erat molestie vel. Fusce sapien urna, rhoncus et tempor vel, placerat eu velit. Pellentesque nec felis pulvinar, luctus lectus eget!",
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: AppColors.clr_bg_grey,
-                      fontFamily: Assets.muliRegular,
-                    )
-                )
+            _accountComponent.getUserDetails(text:"Fusce maximus cursus lectus, varius ultricies erat molestie vel. Fusce sapien urna, rhoncus et tempor vel, placerat eu velit. Pellentesque nec felis pulvinar, luctus lectus eget!",
             ),
             SizedBox(
               height: AppSizes.height * 0.01,
@@ -142,76 +113,12 @@ class _AccountState extends State<Account> {
               indent: 20,
               endIndent: 30,
             ),
-            Container(
-              decoration: BoxDecoration(
-                border: Border(bottom: BorderSide(width: 1,color: AppColors.clr_bg_grey))
-              ),
-                width: AppSizes.width * 0.85,
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.check,
-                        ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Text(
-                          "Work rights verified",
-                          style: TextStyle(
-                            fontFamily: Assets.muliSemiBold,
-                            fontSize: 15,
-                          ),
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: AppSizes.height * 0.01,
-                    ),
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.check,
-                        ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Text(
-                          "Driver License verified",
-                          style: TextStyle(
-                            fontFamily: Assets.muliSemiBold,
-                            fontSize: 15,
-                          ),
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: AppSizes.height * 0.01,
-                    ),
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.check,
-                        ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Text(
-                          "Police check",
-                          style: TextStyle(
-                            fontFamily: Assets.muliSemiBold,
-                            fontSize: 15,
-                          ),
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: AppSizes.height * 0.01,
-                    ),
-                  ],
-                )
-            ),
+
+            _accountComponent.getDocumentDetails(text: "Work rights verified"),
+
+            _accountComponent.getDocumentDetails(text: "Driver License verified",),
+
+            _accountComponent.getDocumentDetails(text: "Police check"),
 
             Container(
               margin: EdgeInsets.only(top: AppSizes.height*0.015),
@@ -224,7 +131,7 @@ class _AccountState extends State<Account> {
                   children: [
                     Text("Account Info",style: TextStyle(
                       color: AppColors.clr_bg_black,fontSize: 22,
-                      fontFamily: Assets.muliBold
+                      fontFamily: 'MuliBold',
                     ),),
                     SizedBox(
                       height: AppSizes.height * 0.015,
@@ -242,7 +149,7 @@ class _AccountState extends State<Account> {
                           Text(
                             "Document Verification",
                             style: TextStyle(
-                              fontFamily: Assets.muliSemiBold,
+                              fontFamily: 'MuliSemiBold',
                               fontSize: 15,
                             ),
                           )
@@ -265,7 +172,7 @@ class _AccountState extends State<Account> {
                           Text(
                             "Card Details",
                             style: TextStyle(
-                              fontFamily: Assets.muliSemiBold,
+                              fontFamily: 'MuliSemiBold',
                               fontSize: 15,
                             ),
                           )
@@ -288,7 +195,7 @@ class _AccountState extends State<Account> {
                           Text(
                             "Payments",
                             style: TextStyle(
-                              fontFamily: Assets.muliSemiBold,
+                              fontFamily: 'MuliSemiBold',
                               fontSize: 15,
                             ),
                           )
@@ -302,18 +209,7 @@ class _AccountState extends State<Account> {
                 )
             ),
 
-            Container(
-              margin: EdgeInsets.only(top:AppSizes.height*0.015),
-                width: AppSizes.width * 0.85,
-                child: Text(
-                    "Completed Jobs",
-                    style: TextStyle(
-                        fontSize: 20,
-                        color: AppColors.clr_bg_black,
-                        fontFamily: Assets.muliBold
-                    )
-                )
-            ),
+           _accountComponent.getHeadings(text: "Completed Jobs"),
             SizedBox(
               height: AppSizes.height * 0.01,
             ),
@@ -323,7 +219,7 @@ class _AccountState extends State<Account> {
                     "4",
                     style: TextStyle(
                       fontSize: 18,
-                      fontFamily: Assets.muliSemiBold,
+                      fontFamily: 'MuliSemiBold',
                       color: AppColors.clr_bg_black,
                     )
                 )
@@ -335,17 +231,7 @@ class _AccountState extends State<Account> {
               indent: 20,
               endIndent: 30,
             ),
-            Container(
-                width: AppSizes.width * 0.85,
-                child: Text(
-                    "Positions",
-                    style: TextStyle(
-                        fontSize: 20,
-                        color: AppColors.clr_bg_black,
-                        fontFamily: Assets.muliBold
-                    )
-                )
-            ),
+            _accountComponent.getHeadings(text: "Positions"),
             SizedBox(
               height: AppSizes.height * 0.02,
             ),
@@ -363,7 +249,7 @@ class _AccountState extends State<Account> {
                             "Waiter",
                             style: TextStyle(
                               fontSize: 15,
-                              fontFamily: Assets.muliRegular,
+                              fontFamily: 'MuliRegular',
                               color: AppColors.clr_bg_black,
                             )
                         )
@@ -381,7 +267,7 @@ class _AccountState extends State<Account> {
                             "Bartender",
                             style: TextStyle(
                               fontSize: 15,
-                              fontFamily: Assets.muliRegular,
+                              fontFamily: 'MuliRegular',
                               color: AppColors.clr_bg_black,
                             )
                         )
@@ -399,12 +285,13 @@ class _AccountState extends State<Account> {
                             "Barista",
                             style: TextStyle(
                               fontSize: 15,
-                              fontFamily: Assets.muliRegular,
+                              fontFamily: 'MuliRegular',
                               color: AppColors.clr_bg_black,
                             )
                         )
                     ),
                     SizedBox(
+                      width: AppSizes.width*0.05,
                       height: AppSizes.height * 0.08,
                     ),
                     Container(
@@ -417,7 +304,7 @@ class _AccountState extends State<Account> {
                             "Receptionist",
                             style: TextStyle(
                               fontSize: 15,
-                              fontFamily: Assets.muliRegular,
+                              fontFamily: 'MuliRegular',
                               color: AppColors.clr_bg_black,
                             )
                         )
@@ -432,146 +319,23 @@ class _AccountState extends State<Account> {
               indent: 20,
               endIndent: 30,
             ),
-            Container(
-                width: AppSizes.width * 0.85,
-                child: Text(
-                    "Compliments",
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: AppColors.clr_bg_black,
-                      fontFamily: Assets.muliBold,
-                    )
-                )
-            ),
+            _accountComponent.getHeadings(text: "Compliments"),
             SizedBox(
               height: AppSizes.height * 0.01,
             ),
-            Container(
-                width: AppSizes.width * 0.85,
-                child: Row(
-                  children: [
-                    Image.asset(Assets.diamond,
-                        height: 25,
-                        width: 25),
-                    SizedBox(
-                      width: AppSizes.width * 0.03,
-                    ),
-                    Text(
-                      "Perfect Service",
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontFamily: Assets.muliSemiBold,
-                      ),
-                    ),
-                    SizedBox(
-                      width: AppSizes.width * 0.03,
-                    ),
-                    Container(
-                        padding: EdgeInsets.only(left: 5.0, right: 5.0),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8.0),
-                            border: Border.all(
-                              color: AppColors.clr_bg_grey,
-                            )
-                        ),
-                        child: Text(
-                            "3",
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontFamily: Assets.muliRegular,
-                              color: AppColors.clr_bg_grey,
-                            )
-                        )
-                    ),
-                  ],
-                )
-            ),
+
+
+            _accountComponent.getCompliments(imagePath: Assets.diamond, compliment: "Perfect Service", rating: "3"),
             SizedBox(
               height: AppSizes.height * 0.01,
             ),
-            Container(
-                width: AppSizes.width * 0.85,
-                child: Row(
-                  children: [
-                    Image.asset(Assets.communicate,
-                        height: 25,
-                        width: 25),
-                    SizedBox(
-                      width: AppSizes.width * 0.03,
-                    ),
-                    Text(
-                      "Good Communication",
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontFamily: Assets.muliSemiBold,
-                      ),
-                    ),
-                    SizedBox(
-                      width: AppSizes.width * 0.01,
-                    ),
-                    Container(
-                        padding: EdgeInsets.only(left: 5.0, right: 5.0),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8.0),
-                            border: Border.all(
-                              color: AppColors.clr_bg_grey,
-                            )
-                        ),
-                        child: Text(
-                            "10",
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontFamily: Assets.muliRegular,
-                              color: AppColors.clr_bg_grey,
-                            )
-                        )
-                    ),
-                  ],
-                )
-            ),
+
+
+            _accountComponent.getCompliments(imagePath: Assets.communicate, compliment: "Good Communication", rating: "10"),
             SizedBox(
               height: AppSizes.height * 0.01,
             ),
-            Container(
-                width: AppSizes.width * 0.85,
-                child: Row(
-                  children: [
-                    Image.asset(Assets.muscle,
-                        height: 25,
-                        width: 25),
-                    SizedBox(
-                      width: AppSizes.width * 0.03,
-                    ),
-                    Text(
-                      "Hard Worker",
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontFamily: Assets.muliSemiBold,
-                      ),
-                    ),
-                    SizedBox(
-                      width: AppSizes.width * 0.03,
-                    ),
-                    Container(
-                        padding: EdgeInsets.only(left: 5.0, right: 5.0),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8.0),
-                            border: Border.all(
-                              color: AppColors.clr_bg_grey,
-                            )
-                        ),
-                        child: Text(
-                            "6",
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontFamily: Assets.muliSemiBold,
-                              color: AppColors.clr_bg_grey,
-                            )
-                        )
-                    ),
-                  ],
-                )
-            ),
+            _accountComponent.getCompliments(imagePath: Assets.muscle, compliment: "Hard Worker", rating: "6")
 
           ],
         )

@@ -34,7 +34,7 @@ class DailyComponents{
                           color: AppColors.clr_bg_black,
                           decoration: TextDecoration.none,
                           fontSize: 20,
-                          fontFamily: Assets.muliBold,
+                          fontFamily: 'MuliBold'
                         )),
                     SizedBox(
                       height: AppSizes.height * 0.02,
@@ -46,8 +46,8 @@ class DailyComponents{
                           letterSpacing: 0.09,
                           decoration: TextDecoration.none,
                           fontSize: 15,
-                          color: AppColors.clr_bg_grey,
-                          fontFamily: Assets.muliRegular,
+                          color: AppColors.pay_field,
+                            fontFamily: 'MuliRegular'
                         )),
 
                     SizedBox(
@@ -63,7 +63,7 @@ class DailyComponents{
                               color: AppColors.clr_bg_grey,
                               decoration: TextDecoration.none,
                               fontSize: 14,
-                              fontFamily: Assets.muliRegular,
+                                fontFamily: 'MuliRegular'
                             )),
                         Text(" \$2000",
                             textAlign: TextAlign.left,
@@ -71,7 +71,7 @@ class DailyComponents{
                               color: AppColors.clr_bg_black,
                               decoration: TextDecoration.none,
                               fontSize: 12,
-                              fontFamily: Assets.muliRegular,
+                                fontFamily: 'MuliRegular'
                             )),
 
                       ],

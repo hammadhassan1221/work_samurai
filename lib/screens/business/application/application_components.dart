@@ -119,52 +119,7 @@ class ApplicationComponents {
               )),
               child: Row(
                 children: [
-                  Container(
-                      padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        border: Border(
-                          right: BorderSide(
-                              width: 2.0, color: AppColors.clr_bg_grey),
-                        ),
-                        color: Colors.white,
-                      ),
-                      width: AppSizes.width / 2.2,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.clear,
-                            color: AppColors.clr_bg_black,
-                          ),
-                          SizedBox(
-                            width: AppSizes.width * 0.02,
-                          ),
-                          Text("Decline",
-                              style: TextStyle(
-                                  color: AppColors.clr_bg_black, fontSize: 16)),
-                        ],
-                      )),
-                  Container(
-                      padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                      ),
-                      width: AppSizes.width / 2.2,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.check,
-                            color: AppColors.clr_green,
-                          ),
-                          SizedBox(
-                            width: AppSizes.width * 0.02,
-                          ),
-                          Text("Accept",
-                              style: TextStyle(
-                                  color: AppColors.clr_green, fontSize: 16)),
-                        ],
-                      )),
+
                 ],
               ),
             ),
@@ -220,7 +175,7 @@ class ApplicationComponents {
                                   style: TextStyle(
                                       fontSize: 22,
                                       decoration: TextDecoration.none,
-                                      fontFamily: Assets.muliBold,
+                                      fontFamily: 'MuliBold',
                                       color: AppColors.clr_bg_black)),
                               SizedBox(
                                 width: AppSizes.width * 0.02,
@@ -243,7 +198,7 @@ class ApplicationComponents {
                                       Text("4.5",
                                           style: TextStyle(
                                             fontSize: 12,
-                                            fontFamily: Assets.muliRegular,
+                                            fontFamily: 'MuliRegular',
                                             color: AppColors.clr_bg_grey,
                                           ))
                                     ],
@@ -257,7 +212,7 @@ class ApplicationComponents {
                                   fontSize: 15,
                                   decoration: TextDecoration.none,
                                   color: AppColors.clr_bg_black,
-                                  fontFamily: Assets.muliSemiBold,
+                                  fontFamily: 'MuliBold',
                                 )),
                           ),
                             ],
@@ -272,8 +227,8 @@ class ApplicationComponents {
                                   style: TextStyle(
                                     fontSize: 14,
                                     decoration: TextDecoration.none,
-                                    color: AppColors.clr_bg_grey,
-                                    fontFamily: Assets.muliRegular,
+                                    color: AppColors.clr_bg_black2,
+                                    fontFamily: 'MuliRegular',
                                   ))),
                           SizedBox(
                             height: AppSizes.height * 0.015,
@@ -293,16 +248,16 @@ class ApplicationComponents {
                                   Row(
                                     children: [
                                       Icon(
-                                        Icons.check,
+                                        Icons.check,size: 16,
                                       ),
                                       SizedBox(
-                                        width: 5,
+                                        width: AppSizes.width*0.05,
                                       ),
                                       Text(
                                         "Work rights verified",
                                         style: TextStyle(
                                             decoration: TextDecoration.none,
-                                            fontFamily: Assets.muliSemiBold,
+                                            fontFamily: 'MuliSemiBold',
                                             fontSize: 15,
                                             color: AppColors.clr_bg_black),
                                       )
@@ -314,17 +269,17 @@ class ApplicationComponents {
                                   Row(
                                     children: [
                                       Icon(
-                                        Icons.check,
+                                        Icons.check,size: 16,
                                       ),
                                       SizedBox(
-                                        width: 5,
+                                        width: AppSizes.width*0.05,
                                       ),
                                       Text(
                                         "Driver License verified",
                                         style: TextStyle(
                                           color: AppColors.clr_bg_black,
                                           decoration: TextDecoration.none,
-                                          fontFamily: Assets.muliSemiBold,
+                                          fontFamily: 'MuliSemiBold',
                                           fontSize: 15,
                                         ),
                                       )
@@ -336,17 +291,17 @@ class ApplicationComponents {
                                   Row(
                                     children: [
                                       Icon(
-                                        Icons.check,
+                                        Icons.check,size: 16,
                                       ),
                                       SizedBox(
-                                        width: 5,
+                                        width: AppSizes.width*0.05,
                                       ),
                                       Text(
                                         "Police check",
                                         style: TextStyle(
                                           color: AppColors.clr_bg_black,
                                           decoration: TextDecoration.none,
-                                          fontFamily: Assets.muliSemiBold,
+                                          fontFamily: 'MuliSemiBold',
                                           fontSize: 15,
                                         ),
                                       )
@@ -365,7 +320,7 @@ class ApplicationComponents {
                                       decoration: TextDecoration.none,
                                       fontSize: 20,
                                       color: AppColors.clr_bg_black,
-                                      fontFamily: Assets.muliBold))),
+                                    fontFamily: 'MuliBold',))),
                           SizedBox(
                             height: AppSizes.height * 0.01,
                           ),
@@ -375,7 +330,7 @@ class ApplicationComponents {
                                   style: TextStyle(
                                     decoration: TextDecoration.none,
                                     fontSize: 18,
-                                    fontFamily: Assets.muliSemiBold,
+                                    fontFamily: 'MuliSemiBold',
                                     color: AppColors.clr_bg_black,
                                   ))),
                           SizedBox(
@@ -389,7 +344,7 @@ class ApplicationComponents {
                                       decoration: TextDecoration.none,
                                       fontSize: 20,
                                       color: AppColors.clr_bg_black,
-                                      fontFamily: Assets.muliBold))),
+                                    fontFamily: 'MuliBold',))),
                           SizedBox(
                             height: AppSizes.height * 0.02,
                           ),
@@ -410,7 +365,7 @@ class ApplicationComponents {
                                           style: TextStyle(
                                             decoration: TextDecoration.none,
                                             fontSize: 15,
-                                            fontFamily: Assets.muliRegular,
+                                            fontFamily: 'MuliRegular',
                                             color: AppColors.clr_bg_black,
                                           ))),
                                   SizedBox(
@@ -429,7 +384,7 @@ class ApplicationComponents {
                                           style: TextStyle(
                                             decoration: TextDecoration.none,
                                             fontSize: 15,
-                                            fontFamily: Assets.muliRegular,
+                                            fontFamily: 'MuliRegular',
                                             color: AppColors.clr_bg_black,
                                           ))),
                                   SizedBox(
@@ -448,10 +403,11 @@ class ApplicationComponents {
                                           style: TextStyle(
                                             decoration: TextDecoration.none,
                                             fontSize: 15,
-                                            fontFamily: Assets.muliRegular,
+                                            fontFamily: 'MuliRegular',
                                             color: AppColors.clr_bg_black,
                                           ))),
                                   SizedBox(
+                                    width: AppSizes.width * 0.05,
                                     height: AppSizes.height * 0.08,
                                   ),
                                   Container(
@@ -467,7 +423,7 @@ class ApplicationComponents {
                                           style: TextStyle(
                                             decoration: TextDecoration.none,
                                             fontSize: 15,
-                                            fontFamily: Assets.muliRegular,
+                                            fontFamily: 'MuliRegular',
                                             color: AppColors.clr_bg_black,
                                           )))
                                 ],
@@ -484,7 +440,7 @@ class ApplicationComponents {
                                     decoration: TextDecoration.none,
                                     fontSize: 20,
                                     color: AppColors.clr_bg_black,
-                                    fontFamily: Assets.muliBold,
+                                    fontFamily: 'MuliBold',
                                   ))),
                           SizedBox(
                             height: AppSizes.height * 0.01,
@@ -504,7 +460,7 @@ class ApplicationComponents {
                                       decoration: TextDecoration.none,
                                       color: AppColors.clr_bg_black,
                                       fontSize: 15,
-                                      fontFamily: Assets.muliSemiBold,
+                                      fontFamily: 'MuliSemiBold',
                                     ),
                                   ),
                                   SizedBox(
@@ -523,7 +479,7 @@ class ApplicationComponents {
                                           style: TextStyle(
                                             fontSize: 12,
                                             decoration: TextDecoration.none,
-                                            fontFamily: Assets.muliRegular,
+                                            fontFamily: 'MuliRegular',
                                             color: AppColors.clr_bg_grey,
                                           ))),
                                 ],
@@ -545,7 +501,7 @@ class ApplicationComponents {
                                     style: TextStyle(
                                         decoration: TextDecoration.none,
                                         fontSize: 15,
-                                        fontFamily: Assets.muliSemiBold,
+                                        fontFamily: 'MuliSemiBold',
                                         color: AppColors.clr_bg_black),
                                   ),
                                   SizedBox(
@@ -564,7 +520,7 @@ class ApplicationComponents {
                                           style: TextStyle(
                                             decoration: TextDecoration.none,
                                             fontSize: 12,
-                                            fontFamily: Assets.muliRegular,
+                                            fontFamily: 'MuliSemiBold',
                                             color: AppColors.clr_bg_grey,
                                           ))),
                                 ],
@@ -587,7 +543,7 @@ class ApplicationComponents {
                                       fontSize: 15,
                                       decoration: TextDecoration.none,
                                       color: AppColors.clr_bg_black,
-                                      fontFamily: Assets.muliSemiBold,
+                                      fontFamily: 'MuliSemiBold',
                                     ),
                                   ),
                                   SizedBox(
@@ -606,94 +562,83 @@ class ApplicationComponents {
                                           style: TextStyle(
                                             fontSize: 15,
                                             decoration: TextDecoration.none,
-                                            fontFamily: Assets.muliSemiBold,
+                                            fontFamily: 'MuliSemiBold',
                                             color: AppColors.clr_bg_grey,
                                           ))),
                                 ],
                               )),
 
                           Container(
-                            padding: EdgeInsets.only(left: AppSizes.width*0.025),
-                            margin:
-                                EdgeInsets.only(top: AppSizes.height * 0.02),
                             width: AppSizes.width,
-                            height: AppSizes.height * 0.09,
-                            decoration: BoxDecoration(
-                                color: AppColors.clr_field,
-                                border: Border.all(color: AppColors.clr_field)),
-                            child: Row(
-                              children: [
-                                GestureDetector(
-                                  onTap: () {
-                                    hideLoader(context);
-                                  },
-                                  child: Container(
-                                      padding: EdgeInsets.all(5),
+                            margin: EdgeInsets.only(top: AppSizes.height*0.05,bottom:  AppSizes.height*0.05,),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
                                       decoration: BoxDecoration(
-                                        border: Border(
-                                          right: BorderSide(
-                                              width: 2.0,
-                                              color: AppColors.clr_bg_grey),
-                                        ),
+                                        border: Border.all(color: AppColors.clr_bg_grey),
                                         color: Colors.white,
                                       ),
-                                      width: AppSizes.width / 2.7,
+                                      padding: EdgeInsets.all(AppSizes.width*0.04),
+
+                                      width: AppSizes.width/2.8,
                                       child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
+                                        mainAxisAlignment: MainAxisAlignment
+                                            .start,
                                         children: [
                                           Icon(
-                                            Icons.clear,
+                                            Icons.clear,size: 16,
                                             color: AppColors.clr_bg_black,
                                           ),
                                           SizedBox(
-                                            width: AppSizes.width * 0.02,
-                                          ),
-                                          Text("Decline",
+                                            width: AppSizes.width * 0.02,),
+                                          Text(
+                                              "Skip",
                                               style: TextStyle(
-                                                  decoration:
-                                                      TextDecoration.none,
-                                                  color: AppColors.clr_bg_black,
-                                                  fontSize: 16,
-                                                  fontFamily:
-                                                      Assets.muliRegular)),
-                                        ],
-                                      )),
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    hideLoader(context);
-                                  },
-                                  child: Container(
-                                      padding: EdgeInsets.all(5),
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                      ),
-                                      width: AppSizes.width / 2.7,
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Icon(
-                                            Icons.check,
-                                            color: AppColors.clr_green,
+                                                  color: AppColors
+                                                      .clr_bg_black,
+                                                  fontSize: 17,fontFamily: 'MuliRegular'
+                                              )
                                           ),
-                                          SizedBox(
-                                            width: AppSizes.width * 0.02,
-                                          ),
-                                          Text("Accept",
-                                              style: TextStyle(
-                                                  decoration:
-                                                      TextDecoration.none,
-                                                  color: AppColors.clr_green,
-                                                  fontSize: 14,
-                                                  fontFamily:
-                                                      Assets.muliRegular)),
                                         ],
-                                      )),
-                                ),
-                              ],
-                            ),
+                                      )
+                                  ),
+                                  GestureDetector(
+                                    onTap: (){
+                                      hideLoader(context);
+                                    },
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                        decoration: BoxDecoration(
+                                          border: Border.all(color: AppColors.clr_bg_grey),
+                                          color: Colors.white,
+                                        ),
+                                    padding: EdgeInsets.all(AppSizes.width*0.04),
+                                        width: AppSizes.width/2.8,
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment
+                                              .start,
+                                          children: [
+                                            Icon(
+                                              Icons.clear,size: 16,
+                                              color: AppColors.clr_green,
+                                            ),
+                                            SizedBox(
+                                              width: AppSizes.width * 0.02,),
+                                            Text(
+                                                "Accept",
+                                                style: TextStyle(
+                                                    color: AppColors
+                                                        .clr_green,
+                                                    fontSize: 17,fontFamily: 'MuliRegular'
+                                                )
+                                            ),
+                                          ],
+                                        )
+                                    ),
+                                  ),
+                                ],
+                              )
                           ),
                         ],
                       ),

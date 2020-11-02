@@ -27,22 +27,17 @@ class _DocumentVerificationState extends State<DocumentVerification> {
             height: AppSizes.height,
             width: AppSizes.width,
             color: AppColors.clr_field,
-            child: Stack(
+            child: Column(
                 children:[
-                  Column(
-                    children: [
-                      _documentComponents.getAppBar(text: "Document Verification", context: context),
-
-                    ],
-                  ),
+                  _documentComponents.getAppBar(text: "Document Verification", context: context),
                   Align(
                     alignment: Alignment.center,
-                    child: Container(child: Text("Pending Because of Discussion")),
+                    child: Container(
+                      height: AppSizes.height*0.1,
+                        width: AppSizes.width,
+                        margin:EdgeInsets.all(AppSizes.height*0.1),child: Text("Pending Because of Discussion")),
                   ),
-                  Positioned(
-                    bottom: 0,
-                    child: CommonWidgets.getButton(backgroundColor: AppColors.clr_bg_black, borderColor: AppColors.transparentColor, textColor: AppColors.clr_white, text: "Update", onPress: (){}),
-                  )
+                  CommonWidgets.getButton(backgroundColor: AppColors.clr_bg_black, borderColor: AppColors.transparentColor, textColor: AppColors.clr_white, text: "Update", onPress: (){})
                 ]),
           ),
         ));

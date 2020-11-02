@@ -599,17 +599,17 @@ class TracksComponents {
                             textAlign: TextAlign.left,
                             style: TextStyle(
                               color: AppColors.clr_bg_black,
-                              fontSize: 20,
-                              fontFamily: Assets.muliRegular,
+                              fontSize: 22,
+                              fontFamily: 'MuliSemiBold',
                              )),
                         SizedBox(
                           width: AppSizes.width * 0.02,
                         ),
                         Container(
-                            padding: EdgeInsets.all(2.0),
+                            padding: EdgeInsets.all(3.0),
                             decoration: BoxDecoration(
                                 color: AppColors.clr_green,
-                                borderRadius: BorderRadius.circular(7.0),
+                                borderRadius: BorderRadius.circular(12.0),
                                 border: Border.all(
                                   color: AppColors.clr_bg_grey,
                                 )),
@@ -630,8 +630,8 @@ class TracksComponents {
                         style: TextStyle(
                           decoration: TextDecoration.none,
                           fontSize: 15,
-                          color: AppColors.clr_bg_grey,
-                          fontFamily: Assets.muliRegular,
+                          color: AppColors.clr_bg_black2,
+                          fontFamily: 'MuliRegular',
                         )),
                     SizedBox(
                       height: AppSizes.height * 0.01,
@@ -641,9 +641,11 @@ class TracksComponents {
                         style: TextStyle(
                           decoration: TextDecoration.none,
                           fontSize: 15,
-                          color: AppColors.clr_bg_grey,
-                          fontFamily: Assets.muliRegular,
+                          color: AppColors.clr_bg_black2,
+                          fontFamily: 'MuliRegular',
                         )),
+
+
                     SizedBox(
                       height: AppSizes.height * 0.02,
                     ),
@@ -668,7 +670,7 @@ class TracksComponents {
                                   color: AppColors.clr_green,
                                   decoration: TextDecoration.none,
                                   fontSize: 14,
-                                  fontFamily: Assets.muliSemiBold,
+                                  fontFamily: 'MuliRegular',
                                 )),
                             SizedBox(
                               width: AppSizes.width * 0.02,
@@ -679,7 +681,7 @@ class TracksComponents {
                                   decoration: TextDecoration.none,
                                   fontSize: 16,
                                   color: AppColors.clr_bg_black,
-                                  fontFamily: Assets.muliBold,
+                                  fontFamily: 'MuliBold',
                                 )),
                             SizedBox(
                               width: AppSizes.width * 0.02,
@@ -689,8 +691,8 @@ class TracksComponents {
                                 style: TextStyle(
                                   decoration: TextDecoration.none,
                                   fontSize: 14,
-                                  color: AppColors.clr_bg_black,
-                                  fontFamily: Assets.muliBold,
+                                  color: AppColors.clr_bg_black2,
+                                  fontFamily: 'MuliRegular',
                                 ))
                           ],
                         )
@@ -716,16 +718,16 @@ class TracksComponents {
                               color: AppColors.clr_bg_black,
                               decoration: TextDecoration.none,
                               fontSize: 20,
-                              fontFamily: Assets.muliBold,
+                              fontFamily: 'MuliBold',
                             )),
                         SizedBox(
                           width: AppSizes.width * 0.02,
                         ),
                         Container(
-                            padding: EdgeInsets.all(2.0),
+                            padding: EdgeInsets.all(3.0),
                             decoration: BoxDecoration(
                                 color: AppColors.clr_red,
-                                borderRadius: BorderRadius.circular(7.0),
+                                borderRadius: BorderRadius.circular(12.0),
                                 border: Border.all(
                                   color: AppColors.clr_bg_grey,
                                 )),
@@ -746,8 +748,8 @@ class TracksComponents {
                         style: TextStyle(
                           decoration: TextDecoration.none,
                           fontSize: 15,
-                          color: AppColors.clr_bg_grey,
-                          fontFamily: Assets.muliRegular,
+                          color: AppColors.clr_bg_black2,
+                          fontFamily: 'MuliRegular',
                         )),
                     SizedBox(
                       height: AppSizes.height * 0.01,
@@ -757,8 +759,8 @@ class TracksComponents {
                         style: TextStyle(
                           decoration: TextDecoration.none,
                           fontSize: 15,
-                          color: AppColors.clr_bg_grey,
-                          fontFamily: Assets.muliRegular,
+                          color: AppColors.clr_bg_black2,
+                          fontFamily: 'MuliRegular',
                         )),
                     SizedBox(
                       height: AppSizes.height * 0.02,
@@ -769,6 +771,7 @@ class TracksComponents {
                             context, SlideRightRoute(page: Application()));
                       },
                       child: Container(
+                        alignment: Alignment.center,
                         height: AppSizes.height * 0.07,
                         width: AppSizes.width,
                         decoration: BoxDecoration(
@@ -781,13 +784,13 @@ class TracksComponents {
                           children: [
                             Image.asset(
                               Assets.applicants,
-                              height: 20,
-                              width: 20,
+                              height: 25,
+                              width: 25,
                             ),
                             SizedBox(
                               width: AppSizes.width * 0.02,
                             ),
-                            Text("View Application")
+                            Text("View Application",style: TextStyle(fontSize: 18,fontFamily: 'MuliRegular'),)
                           ],
                         ),
                       ),
@@ -833,7 +836,7 @@ class TracksComponents {
                                 color: AppColors.clr_bg_black,
                                 decoration: TextDecoration.none,
                                 fontSize: 20,
-                                fontFamily: Assets.muliSemiBold,
+                                fontFamily:'MuliBold',
                               )),
                           SizedBox(
                             width: AppSizes.width * 0.02,
@@ -844,7 +847,7 @@ class TracksComponents {
                                 decoration: TextDecoration.none,
                                 fontSize: 16,
                                 color: AppColors.clr_bg_black,
-                                fontFamily: Assets.muliBold,
+                                fontFamily: 'MuliBold',
                               )),
                           SizedBox(
                             width: AppSizes.width * 0.02,
@@ -854,16 +857,16 @@ class TracksComponents {
                               style: TextStyle(
                                 decoration: TextDecoration.none,
                                 fontSize: 15,
-                                color: AppColors.clr_bg_grey,
-                                fontFamily: Assets.muliRegular,
+                                color: AppColors.clr_bg_black2,
+                                fontFamily: 'MuliRegular',
                               )),
                           Text("Crown Hotel, New York",
                               textAlign: TextAlign.left,
                               style: TextStyle(
                                 decoration: TextDecoration.none,
                                 fontSize: 15,
-                                color: AppColors.clr_bg_grey,
-                                fontFamily: Assets.muliRegular,
+                                color: AppColors.clr_bg_black2,
+                                fontFamily: 'MuliRegular',
                               ))
                         ],
                       ),
@@ -889,17 +892,17 @@ class TracksComponents {
                           children: [
                             Image.asset(
                               Assets.checkintime,
-                              height: 20,
-                              width: 20,
+                              height: 18,
+                              width: 18,
                             ),
                             SizedBox(
-                              height: AppSizes.height * 0.01,
+                              width: AppSizes.width * 0.03,
                             ),
                             Text(
                               "Check-in-time",
                               style: TextStyle(
                                   color: AppColors.clr_bg_black,
-                                  fontFamily: Assets.muliRegular,
+                                  fontFamily: 'MuliRegular',
                                   fontSize: 15),
                             )
                           ],
@@ -909,7 +912,7 @@ class TracksComponents {
                             "10:58am",
                             style: TextStyle(
                                 color: AppColors.clr_bg_black,
-                                fontFamily: Assets.muliRegular,
+                                fontFamily: 'MuliRegular',
                                 fontSize: 15),
                           )
                         ])
@@ -928,7 +931,7 @@ class TracksComponents {
                     child: Text(
                       "04 : 22 :53",
                       style: TextStyle(
-                          color: AppColors.clr_bg_black, fontSize: 40),
+                          color: AppColors.clr_bg_black, fontSize: 40, fontFamily: 'MuliBold',),
                     ),
                   ),
                   Container(
@@ -937,6 +940,7 @@ class TracksComponents {
                       top: BorderSide(width: 1.0, color: AppColors.clr_bg_grey),
                     )),
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
                             padding: EdgeInsets.all(8),
@@ -961,6 +965,7 @@ class TracksComponents {
                                 ),
                                 Text("Give Break",
                                     style: TextStyle(
+                                        fontFamily: 'MuliRegular',
                                         color: AppColors.clr_bg_black,
                                         fontSize: 14)),
                               ],
@@ -984,6 +989,7 @@ class TracksComponents {
                                 ),
                                 Text("End Shift",
                                     style: TextStyle(
+                                        fontFamily: 'MuliRegular',
                                         color: AppColors.clr_bg_black,
                                         fontSize: 14)),
                               ],
@@ -1030,7 +1036,7 @@ class TracksComponents {
                                 color: AppColors.clr_bg_black,
                                 decoration: TextDecoration.none,
                                 fontSize: 20,
-                                fontFamily: Assets.muliSemiBold,
+                                  fontFamily: 'MuliBold',
                               )),
                           SizedBox(
                             width: AppSizes.width * 0.02,
@@ -1041,7 +1047,7 @@ class TracksComponents {
                                 decoration: TextDecoration.none,
                                 fontSize: 16,
                                 color: AppColors.clr_bg_black,
-                                fontFamily: Assets.muliBold,
+                                fontFamily: 'MuliBold',
                               )),
                           SizedBox(
                             width: AppSizes.width * 0.02,
@@ -1051,16 +1057,16 @@ class TracksComponents {
                               style: TextStyle(
                                 decoration: TextDecoration.none,
                                 fontSize: 15,
-                                color: AppColors.clr_bg_grey,
-                                fontFamily: Assets.muliRegular,
+                                color: AppColors.clr_bg_black2,
+                                fontFamily: 'MuliRegular',
                               )),
                           Text("Crown Hotel, New York",
                               textAlign: TextAlign.left,
                               style: TextStyle(
                                 decoration: TextDecoration.none,
                                 fontSize: 15,
-                                color: AppColors.clr_bg_grey,
-                                fontFamily: Assets.muliRegular,
+                                color: AppColors.clr_bg_black2,
+                                fontFamily: 'MuliRegular',
                               ))
                         ],
                       ),
@@ -1082,9 +1088,9 @@ class TracksComponents {
                     child: Row(
                       children: [
                         Image.asset(
-                          Assets.checkintime,
-                          height: 30,
-                          width: 30,
+                          Assets.support,
+                          height: 45,
+                          width: 45,
                         ),
                         SizedBox(
                           width: AppSizes.width * 0.03,
@@ -1096,14 +1102,14 @@ class TracksComponents {
                               "Michael",
                               style: TextStyle(
                                   color: AppColors.clr_bg_black,
-                                  fontFamily: Assets.muliRegular,
+                                  fontFamily: 'MuliBold',
                                   fontSize: 15),
                             ),
                             Text(
                               "11:00am - 1:23pm",
                               style: TextStyle(
-                                  color: AppColors.clr_bg_grey,
-                                  fontFamily: Assets.muliRegular,
+                                  color: AppColors.clr_bg_black2,
+                                  fontFamily: 'MuliRegular',
                                   fontSize: 15),
                             ),
                           ],
@@ -1112,14 +1118,14 @@ class TracksComponents {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: AppSizes.height * 0.02),
+                    margin: EdgeInsets.only(top: AppSizes.height * 0.01),
                     padding: EdgeInsets.all(10),
                     child: Row(
                       children: [
                         Image.asset(
-                          Assets.checkintime,
-                          height: 30,
-                          width: 30,
+                          Assets.support,
+                          height: 45,
+                          width: 45,
                         ),
                         SizedBox(
                           width: AppSizes.width * 0.03,
@@ -1131,14 +1137,14 @@ class TracksComponents {
                               "Michael",
                               style: TextStyle(
                                   color: AppColors.clr_bg_black,
-                                  fontFamily: Assets.muliRegular,
+                                  fontFamily: 'MuliBold',
                                   fontSize: 15),
                             ),
                             Text(
                               "11:00am - 1:23pm",
                               style: TextStyle(
-                                  color: AppColors.clr_bg_grey,
-                                  fontFamily: Assets.muliRegular,
+                                  color: AppColors.clr_bg_black2,
+                                  fontFamily: 'MuliRegular',
                                   fontSize: 15),
                             ),
                           ],
@@ -1152,6 +1158,7 @@ class TracksComponents {
                       top: BorderSide(width: 1.0, color: AppColors.clr_bg_grey),
                     )),
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         GestureDetector(
                           onTap: () {
@@ -1179,6 +1186,7 @@ class TracksComponents {
                                   ),
                                   Text("Rate Samurai",
                                       style: TextStyle(
+                                          fontFamily: 'MuliRegular',
                                           color: AppColors.clr_bg_black,
                                           fontSize: 14)),
                                 ],
@@ -1208,6 +1216,7 @@ class TracksComponents {
                                 ),
                                 Text("Email Receipt",
                                     style: TextStyle(
+                                        fontFamily: 'MuliRegular',
                                         color: AppColors.clr_bg_black,
                                         fontSize: 14)),
                               ],
@@ -1239,8 +1248,7 @@ class TracksComponents {
                                 color: AppColors.clr_bg_black,
                                 decoration: TextDecoration.none,
                                 fontSize: 20,
-                                fontFamily: Assets.muliSemiBold,
-                              )),
+                                fontFamily: 'MuliBold',                              )),
                           SizedBox(
                             height: AppSizes.height * 0.03,
                           ),
@@ -1249,17 +1257,15 @@ class TracksComponents {
                               style: TextStyle(
                                 decoration: TextDecoration.none,
                                 fontSize: 15,
-                                color: AppColors.clr_bg_grey,
-                                fontFamily: Assets.muliRegular,
-                              )),
+                                color: AppColors.clr_bg_black2,
+                                fontFamily: 'MuliRegular',                              )),
                           Text("Crown Hotel, New York",
                               textAlign: TextAlign.left,
                               style: TextStyle(
                                 decoration: TextDecoration.none,
                                 fontSize: 15,
-                                color: AppColors.clr_bg_grey,
-                                fontFamily: Assets.muliRegular,
-                              ))
+                                color: AppColors.clr_bg_black2,
+                                fontFamily: 'MuliRegular',                              ))
                         ],
                       ),
                     ],
@@ -1280,9 +1286,9 @@ class TracksComponents {
                     child: Row(
                       children: [
                         Image.asset(
-                          Assets.checkintime,
-                          height: 30,
-                          width: 30,
+                          Assets.support,
+                          height: 45,
+                          width: 45,
                         ),
                         SizedBox(
                           width: AppSizes.width * 0.03,
@@ -1293,16 +1299,14 @@ class TracksComponents {
                             Text(
                               "Michael",
                               style: TextStyle(
-                                  color: AppColors.clr_bg_black,
-                                  fontFamily: Assets.muliRegular,
-                                  fontSize: 15),
+                                  color: AppColors.clr_bg_black2,
+                                  fontFamily: 'MuliRegular',                                  fontSize: 15),
                             ),
                             Text(
                               "11:00am - 1:23pm",
                               style: TextStyle(
-                                  color: AppColors.clr_bg_grey,
-                                  fontFamily: Assets.muliRegular,
-                                  fontSize: 15),
+                                  color: AppColors.clr_bg_black2,
+                                  fontFamily: 'MuliRegular',                                  fontSize: 15),
                             ),
                           ],
                         )
@@ -1310,7 +1314,7 @@ class TracksComponents {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.all(12),
+                    padding: EdgeInsets.all(14),
                     decoration: BoxDecoration(
                         border: Border(
                       top: BorderSide(width: 1.0, color: AppColors.clr_bg_grey),
@@ -1366,7 +1370,7 @@ class TracksComponents {
                                 child: Text("Robert",
                                     style: TextStyle(
                                       fontSize: 20,
-                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'MuliBold',
                                     ),
                                 textAlign: TextAlign.center,)),
                             SizedBox(
@@ -1433,7 +1437,7 @@ class TracksComponents {
                             Container(
 
                               margin: EdgeInsets.only(left:AppSizes.width*0.06,right:AppSizes.width*0.06,top: AppSizes.height*0.04,bottom: AppSizes.height*0.04),
-                              child: Text("ADD a complement",style: TextStyle(fontFamily: Assets.muliBold,fontSize: 18),
+                              child: Text("ADD a complement",style: TextStyle(fontFamily: 'MuliBold',fontSize: 18),
                               textAlign: TextAlign.center,),
                             ),
 
@@ -1467,14 +1471,15 @@ class TracksComponents {
                                             child: Text(
                                           "Perfect Service",
                                           style: TextStyle(
-                                            fontWeight: FontWeight.bold,
+                                            fontFamily: 'MuliBold',
                                             fontSize: 15,
                                           ),
                                         )),
                                       ],
                                     ),
                                     Row(
-                                      children: [Icon(Icons.check)],
+                                      children: [
+                                        Icon(Icons.check,size: 5,),],
                                     )
                                   ],
                                 )),
@@ -1482,8 +1487,8 @@ class TracksComponents {
                               height: AppSizes.height * 0.01,
                             ),
                             Container(
-                                margin: EdgeInsets.only(left:AppSizes.width*0.06,right:AppSizes.width*0.06,top: AppSizes.height*0.02),
-                                width: AppSizes.width * 0.9,
+                                margin: EdgeInsets.only(left:AppSizes.width*0.06,right:AppSizes.width*0.06,top: AppSizes.height*0.01),
+                                width: AppSizes.width * 0.95,
                                 padding: EdgeInsets.all(10),
                                 decoration: BoxDecoration(
                                   border: Border.all(
@@ -1616,7 +1621,7 @@ class TracksComponents {
                             SizedBox(
                               height: AppSizes.height * 0.01,
                             ),
-                            GestureDetector(
+                            /*GestureDetector(
                               onTap: (){
                                 hideLoader(context);
                               },
@@ -1642,7 +1647,7 @@ class TracksComponents {
                                     ),
                                     textAlign: TextAlign.center,
                                   )),
-                            )
+                            )*/
                           ],
                         )),
                     Container(

@@ -12,7 +12,6 @@ class CardDetails extends StatefulWidget {
 }
 
 class _CardDetailsState extends State<CardDetails> {
-
   CardComponents _cardComponents;
 
   @override
@@ -21,6 +20,7 @@ class _CardDetailsState extends State<CardDetails> {
     super.initState();
     _cardComponents = CardComponents();
   }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -29,30 +29,29 @@ class _CardDetailsState extends State<CardDetails> {
         height: AppSizes.height,
         width: AppSizes.width,
         color: AppColors.clr_field,
-        child: Stack(
-          children:[
-            Column(
-            children: [
-             _cardComponents.getAppBar(text: "Card Details", context: context),
-              _cardComponents.getHeading(text: "Card Number"),
-              _cardComponents.getSubHeading(text: "6473 xxxx xxxx 3213"),
-
-              _cardComponents.getHeading(text: "Expiry Date"),
-              _cardComponents.getSubHeading(text: "04/23"),
-
-              _cardComponents.getHeading(text: "Cvv"),
-              _cardComponents.getSubHeading(text: "342"),
-
-              _cardComponents.getHeading(text: "Postal Code"),
-              _cardComponents.getSubHeading(text: "1500"),
-
-            ],
-          ),
-            Positioned(
-              bottom: 0,
-              child: CommonWidgets.getButton(backgroundColor: AppColors.clr_bg_black, borderColor: AppColors.transparentColor, textColor: AppColors.clr_white, text: "Update", onPress: (){}),
+        child: Column(
+          children: [
+            _cardComponents.getAppBar(text: "Card Details", context: context),
+           Expanded(child: ListView(children: [ _cardComponents.getHeading(text: "Card Number"),
+             _cardComponents.getSubHeading(text: "6473 xxxx xxxx 3213"),
+             _cardComponents.getHeading(text: "Expiry Date"),
+             _cardComponents.getSubHeading(text: "04/23"),
+             _cardComponents.getHeading(text: "Cvv"),
+             _cardComponents.getSubHeading(text: "342"),
+             _cardComponents.getHeading(text: "Postal Code"),
+             _cardComponents.getSubHeading(text: "1500"),
+           ],)),
+            Container(
+              margin: EdgeInsets.only(bottom: AppSizes.height*0.04),
+              child: CommonWidgets.getButton(
+                  backgroundColor: AppColors.clr_bg_black,
+                  borderColor: AppColors.transparentColor,
+                  textColor: AppColors.clr_white,
+                  text: "Update",
+                  onPress: () {}),
             )
-        ]),
+          ],
+        ),
       ),
     ));
   }

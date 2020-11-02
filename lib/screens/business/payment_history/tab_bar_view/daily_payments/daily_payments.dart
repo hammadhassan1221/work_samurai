@@ -21,24 +21,28 @@ class _DailyPaymentsState extends State<DailyPayments> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Container(
-            child: ListView(
-          children: [
-            _dailyComponents.getDailyPayment(context),
-            _dailyComponents.getDailyPayment(context),
-            _dailyComponents.getDailyPayment(context),
-            _dailyComponents.getDailyPayment(context),
-            _dailyComponents.getDailyPayment(context),
-            _dailyComponents.getDailyPayment(context),
-
-            _dailyComponents.getDailyPayment(context),
-            _dailyComponents.getDailyPayment(context),
-            _dailyComponents.getDailyPayment(context),
-          ],
-        )),
-      ),
+    return Scaffold(
+      body: Container(
+        color: AppColors.clr_field,
+          child: Column(
+            children: [
+              Expanded(
+                child: ListView(
+                  children: [
+                    _dailyComponents.getDailyPayment(context),
+                    _dailyComponents.getDailyPayment(context),
+                    _dailyComponents.getDailyPayment(context),
+                    _dailyComponents.getDailyPayment(context),
+                    _dailyComponents.getDailyPayment(context),
+                    _dailyComponents.getDailyPayment(context),
+                    _dailyComponents.getDailyPayment(context),
+                    _dailyComponents.getDailyPayment(context),
+                    _dailyComponents.getDailyPayment(context),
+                  ],
+                ),
+              )
+            ],
+          )),
     );
   }
 }

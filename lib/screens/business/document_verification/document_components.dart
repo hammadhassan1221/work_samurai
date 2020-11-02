@@ -28,7 +28,7 @@ class DocumentComponents{
             style: TextStyle(
                 decoration: TextDecoration.none,
                 fontSize: 22,
-                fontFamily: Assets.muliBold),
+                fontFamily: 'MuliBold'),
           )
         ],
       ),

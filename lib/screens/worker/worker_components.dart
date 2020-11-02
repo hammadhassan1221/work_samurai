@@ -31,13 +31,14 @@ class WorkerComponents {
                         Container(
                             width: AppSizes.width*0.60,
                             height: AppSizes.height/8,
+                            padding: EdgeInsets.only(top: AppSizes.height*0.03),
                             child: Text(
                                 "Edit",
                                 textAlign: TextAlign.right,
                                 style: TextStyle(
                                   decoration: TextDecoration.underline,
                                   fontSize: 18,
-                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'MuliBold',
                                 )
                             )
                         )
@@ -303,7 +304,7 @@ class WorkerComponents {
                         )
                     ),
                     SizedBox(
-                      height: AppSizes.height * 0.08,
+                      height: AppSizes.height * 0.08,width: AppSizes.width * 0.05,
                     ),
                     Container(
                         padding: EdgeInsets.all(AppSizes.width*0.020),
@@ -525,7 +526,7 @@ class WorkerComponents {
                               children: [
                                 Image.asset(
                                   Assets.support,
-                                  width: AppSizes.width * 0.13,
+                                  width: AppSizes.width * 0.18,
                                   height: AppSizes.height * 0.08,
                                   fit: BoxFit.fill,
                                 ),
@@ -2466,7 +2467,7 @@ class WorkerComponents {
               ),
               child: FlatButton(
                 onPressed: () {
-
+                  _newTaskModalBottomSheet;
                 },
                 child: Text(
                   "Request Break",
@@ -2853,7 +2854,7 @@ class WorkerComponents {
                                               textAlign: TextAlign.left,
                                               style: TextStyle(
                                                 fontSize: 22,
-                                                fontFamily: Assets.muliBold,
+                                                fontFamily: 'MuliBold',
 
                                               )
                                           ),
@@ -2898,7 +2899,7 @@ class WorkerComponents {
                                             style: TextStyle(
                                               fontSize: 15,
                                               color: AppColors.clr_bg_black,
-                                              fontFamily: Assets.muliSemiBold,
+                                              fontFamily: 'MuliBold',
                                             )
                                         ),
                                       ),
@@ -2932,7 +2933,7 @@ class WorkerComponents {
                                       "Date",
                                       style: TextStyle(
                                         fontSize: 15,
-                                        fontFamily: Assets.muliRegular,
+                                        fontFamily: 'MuliRegular',
                                       ),
                                     ),
                                   ],
@@ -2943,7 +2944,7 @@ class WorkerComponents {
                                       "Friday, 25 Sep",
                                       style: TextStyle(
                                         fontSize: 15,
-                                        fontFamily: Assets.muliRegular,
+                                        fontFamily: 'MuliRegular',
 
                                       ),
                                     )
@@ -2970,7 +2971,7 @@ class WorkerComponents {
                                       "Time",
                                       style: TextStyle(
                                         fontSize: 15,
-                                        fontFamily: Assets.muliRegular,
+                                        fontFamily: 'MuliRegular',
                                       ),
                                     ),
                                   ],
@@ -2981,7 +2982,7 @@ class WorkerComponents {
                                       "10:00am - 5:00pm",
                                       style: TextStyle(
                                         fontSize: 15,
-                                        fontFamily: Assets.muliRegular,
+                                        fontFamily: 'MuliRegular',
                                       ),
                                     )
                                   ],
@@ -3007,7 +3008,7 @@ class WorkerComponents {
                                       "Pay",
                                       style: TextStyle(
                                         fontSize: 15,
-                                        fontFamily: Assets.muliRegular,
+                                        fontFamily: 'MuliRegular',
                                       ),
                                     ),
                                   ],
@@ -3018,7 +3019,7 @@ class WorkerComponents {
                                       "\$140 (\$20/h x 7 hours)",
                                       style: TextStyle(
                                         fontSize: 15,
-                                        fontFamily: Assets.muliRegular,
+                                        fontFamily: 'MuliRegular',
                                       ),
                                     )
                                   ],
@@ -3044,7 +3045,7 @@ class WorkerComponents {
                                       "Contact Person",
                                       style: TextStyle(
                                         fontSize: 15,
-                                        fontFamily: Assets.muliRegular,
+                                        fontFamily: 'MuliRegular',
                                       ),
                                     ),
                                   ],
@@ -3055,7 +3056,7 @@ class WorkerComponents {
                                       "John Doe",
                                       style: TextStyle(
                                         fontSize: 15,
-                                        fontFamily: Assets.muliRegular,
+                                        fontFamily: 'MuliRegular',
                                       ),
                                     )
                                   ],
@@ -3081,7 +3082,7 @@ class WorkerComponents {
                                       "Place",
                                       style: TextStyle(
                                         fontSize: 15,
-                                        fontFamily: Assets.muliRegular,
+                                        fontFamily: 'MuliRegular',
                                       ),
                                     ),
                                   ],
@@ -3092,7 +3093,7 @@ class WorkerComponents {
                                       "Crown Hotel, New York, USA",
                                       style: TextStyle(
                                         fontSize: 15,
-                                        fontFamily: Assets.muliRegular,
+                                        fontFamily: 'MuliRegular',
                                       ),
                                     )
                                   ],
@@ -3118,7 +3119,7 @@ class WorkerComponents {
                                 "Instructions",
                                 style: TextStyle(
                                   fontSize: 20,
-                                  fontFamily: Assets.muliBold,
+                                  fontFamily: 'MuliBold',
                                   color: AppColors.clr_bg_black,
                                 ),
                               )
@@ -3133,7 +3134,7 @@ class WorkerComponents {
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: AppColors.clr_bg_black,
-                                  fontFamily: Assets.muliRegular,
+                                  fontFamily: 'MuliRegular',
                                 ),
                               )
                           ),
@@ -3144,14 +3145,6 @@ class WorkerComponents {
                             width: AppSizes.width * 0.9,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(5),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: AppColors.clr_bg_grey,
-                                    spreadRadius: 0.5,
-                                    blurRadius: 1,
-                                    offset: Offset(0, 0),
-                                  )
-                                ],
                                 border: Border.all(
                                     color: AppColors.clr_bg_grey),
                                 color: AppColors.clr_white),
@@ -3161,8 +3154,7 @@ class WorkerComponents {
                                     Container(
                                         decoration: BoxDecoration(
                                           border: Border(
-                                            top: BorderSide(width: 2.0,
-                                                color: AppColors.clr_bg_grey),
+
                                             right: BorderSide(width: 2.0,
                                                 color: AppColors.clr_bg_grey),
                                           ),
@@ -3176,7 +3168,7 @@ class WorkerComponents {
                                         child: Row(
                                           children: [
                                             Icon(
-                                              Icons.clear,
+                                              Icons.clear,size: 16,
                                               color: AppColors.clr_bg_black,
                                             ),
                                             SizedBox(
@@ -3185,6 +3177,7 @@ class WorkerComponents {
                                                 "Skip",
                                                 style: TextStyle(
                                                   fontSize: 15,
+                                                  fontFamily: 'MuliRegular',
                                                   color: AppColors.clr_bg_black,
                                                 )
                                             ),
@@ -3197,17 +3190,13 @@ class WorkerComponents {
                                             top: 10.0,
                                             bottom: 10.0),
                                         decoration: BoxDecoration(
-                                          border: Border(
-                                            top: BorderSide(width: 2.0,
-                                                color: AppColors.clr_bg_grey),
-                                          ),
                                           color: Colors.white,
                                         ),
                                         width: AppSizes.width * 0.44,
                                         child: Row(
                                           children: [
                                             Icon(
-                                              Icons.check,
+                                              Icons.check,size: 16,
                                               color: AppColors.clr_green,
                                             ),
                                             SizedBox(
@@ -3215,6 +3204,7 @@ class WorkerComponents {
                                             Text(
                                                 "Accept",
                                                 style: TextStyle(
+                                                  fontFamily: 'MuliRegular',
                                                   fontSize: 15,
                                                   color: AppColors.clr_green,
                                                 )
@@ -3338,8 +3328,9 @@ class WorkerComponents {
 
 
                             Container(
-                                width: AppSizes.width * 0.12,
-                                height:AppSizes.height*0.1,
+                                width: AppSizes.width * 0.10,
+                                height: AppSizes.height*0.07,
+
                                 margin: EdgeInsets.only(left:AppSizes.width*0.04,right:AppSizes.width*0.04),
                                 padding: EdgeInsets.all(AppSizes.width*0.03),
                                 decoration: BoxDecoration(
@@ -3388,7 +3379,8 @@ class WorkerComponents {
                             ),
                             Container(
                                 width: AppSizes.width * 0.12,
-                                height:AppSizes.height*0.1,
+                                height: AppSizes.height*0.07,
+
                                 margin: EdgeInsets.only(left:AppSizes.width*0.04,right:AppSizes.width*0.04),
                                 padding: EdgeInsets.all(10),
                                 decoration: BoxDecoration(
@@ -3424,8 +3416,7 @@ class WorkerComponents {
                             ),
                             Container(
                                 width: AppSizes.width * 0.9,
-
-                                height:AppSizes.height*0.1,
+                                height: AppSizes.height*0.07,
                                 margin: EdgeInsets.only(left:AppSizes.width*0.04,right:AppSizes.width*0.04),
                                 padding: EdgeInsets.all(10),
                                 decoration: BoxDecoration(
@@ -3461,8 +3452,7 @@ class WorkerComponents {
                             ),
                             Container(
                                 width: AppSizes.width * 0.12,
-
-                                height:AppSizes.height*0.1,
+                                height: AppSizes.height*0.07,
                                 margin: EdgeInsets.only(left:AppSizes.width*0.04,right:AppSizes.width*0.04),
                                 padding: EdgeInsets.all(10),
                                 decoration: BoxDecoration(
@@ -3498,7 +3488,7 @@ class WorkerComponents {
                             ),
                             Container(
                                 width: AppSizes.width * 0.12,
-                                height:AppSizes.height*0.1,
+                                height: AppSizes.height*0.07,
                                 margin: EdgeInsets.only(left:AppSizes.width*0.04,right:AppSizes.width*0.04),
                                 padding: EdgeInsets.all(10),
                                 decoration: BoxDecoration(
@@ -3562,7 +3552,7 @@ class WorkerComponents {
                               height: AppSizes.height * 0.03,
                             ),
 
-                            CommonWidgets.getButton(backgroundColor: AppColors.clr_bg_black, borderColor: AppColors.transparentColor, textColor: AppColors.clr_white, text: "SUBMIT", onPress: (){hideLoader(context);}),
+                            CommonWidgets.getButton(backgroundColor: AppColors.clr_bg_black, borderColor: AppColors.transparentColor, textColor: AppColors.clr_white, text: "SUBMIT RATING", onPress: (){hideLoader(context);}),
 
                             SizedBox(
                               height: AppSizes.height * 0.04,

@@ -53,15 +53,15 @@ flutter:
     - assets/png/
     - assets/jpg/
   fonts:
-    - family: MultiRegular
+    - family: MuliRegular
       fonts:
-        - asset: assets/fonts/Muli-Regular.ttf
-    - family: MultiBold
+        - asset: fonts/Muli-Regular.ttf
+    - family: MuliBold
       fonts:
-        - asset: assets/fonts/Muli-Bold.ttf
-    - family: MultiSemiBold
+        - asset: fonts/Muli-Bold.ttf
+    - family: MuliSemiBold
       fonts:
-        - asset: assets/fonts/Muli-SemiBold.ttf
+        - asset: fonts/Muli-SemiBold.ttf
 
   # To add assets to your application, add an assets section, like this:
   # assets:

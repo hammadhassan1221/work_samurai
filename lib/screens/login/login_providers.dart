@@ -25,26 +25,34 @@ class LoginProvider extends ChangeNotifier {
     this.context = context;
   }
 
-  Future login({@required BuildContext context, @required String email, @required String password}) async{
+ /* Future login({@required BuildContext context, @required String email, @required String password}) async{
 
-    Response _response = await _networkHelper.post(
-      loginAPI,
-      headers: {
-        "Content-Type" : "multipart/form-data",
-      },
-      body: {
-        "EmailAddress" : "email11@test.com",
-        "Password" : "password",
-        "DeviceID" : "A580E6FE-DA99-4066-AFC7-C939104AED7F",
-      },
-    );
+    try{
+      _loader.showLoader(context: context);
+      Response _response = await _networkHelper.post(
+        loginAPI,
+        headers: {
+          "Content-Type" : "multipart/form-data",
+        },
+        body: {
+          "EmailAddress" : "email11@test.com",
+          "Password" : "password",
+          "DeviceID" : "A580E6FE-DA99-4066-AFC7-C939104AED7F",
+        },
+      );
 
-    if(_response.statusCode !=200){
-      throw "Unauthorized";
-    }
-    if(_response.statusCode == 200){
-      _loginResponse = LoginResponse.fromJson(json.decode(_response.body.toString()));
-      print(_loginResponse.accessToken);
+      if(_response.statusCode !=200){
+        _loader.hideLoader(context);
+        throw "Unauthorized";
+      }
+      if(_response.statusCode == 200){
+        _loader.hideLoader(context);
+        _loginResponse = LoginResponse.fromJson(json.decode(_response.body.toString()));
+        print(_loginResponse.accessToken);
+      }
+    }catch(e){
+      _loader.hideLoader(context);
+      print(e.toString());
     }
   }
-}
+*/}

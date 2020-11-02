@@ -29,15 +29,12 @@ class _PaymentHistoryState extends State<PaymentHistory> with TickerProviderStat
       length: 3,
         child: Scaffold(
           body: Container(
+            color: AppColors.clr_field,
             child: Column(
               children: [
                 _paymentComponents.getAppBar(text: "Payment History", context: context),
-
-
                 Container(
-                  height: AppSizes.height*0.10,
-                  color:AppColors.clr_field,
-
+                 margin: EdgeInsets.only(top: AppSizes.height*0.02),
                   child: TabBar(
                     isScrollable: true,
                     unselectedLabelColor: AppColors.transparentColor,
@@ -49,7 +46,6 @@ class _PaymentHistoryState extends State<PaymentHistory> with TickerProviderStat
                     tabs: [
                       Container(
                         width: AppSizes.width * 0.30 ,
-                        height: AppSizes.height*0.06,
                         decoration: BoxDecoration(
                           border: Border.all(
                           ),
@@ -58,12 +54,12 @@ class _PaymentHistoryState extends State<PaymentHistory> with TickerProviderStat
                         ),
                         child: Tab(
 
-                          child: Text("Daily Payments",style: TextStyle(fontSize: 14,fontFamily: Assets.muliBold,color: AppColors.clr_white),),
+                          child: Text("Daily Payments",style: TextStyle(fontSize: 14,fontFamily:'MuliBold',color: AppColors.clr_white),),
                         ),
                       ),
                       Container(
                         width: AppSizes.width * 0.35 ,
-                        height: AppSizes.height*0.06,
+
                         decoration: BoxDecoration(
                           border: Border.all(
                           ),
@@ -72,12 +68,12 @@ class _PaymentHistoryState extends State<PaymentHistory> with TickerProviderStat
                         ),
                         child: Tab(
 
-                          child: Text("Monthly Payments",style: TextStyle(fontSize: 14,fontFamily: Assets.muliBold,color: AppColors.clr_white),),
+                          child: Text("Monthly Payments",style: TextStyle(fontSize: 14,fontFamily:'MuliBold',color: AppColors.clr_white),),
                         ),
                       ),
                       Container(
                         width: AppSizes.width * 0.30 ,
-                        height: AppSizes.height*0.06,
+
                         decoration: BoxDecoration(
                           border: Border.all(
                           ),
@@ -86,7 +82,7 @@ class _PaymentHistoryState extends State<PaymentHistory> with TickerProviderStat
                         ),
                         child: Tab(
 
-                          child: Text("All Payments",style: TextStyle(fontSize: 14,fontFamily: Assets.muliBold,color: AppColors.clr_white),),
+                          child: Text("All Payments",style: TextStyle(fontSize: 14,fontFamily:'MuliBold',color: AppColors.clr_white),),
                         ),
                       ),
                     ],

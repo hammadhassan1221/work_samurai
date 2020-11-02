@@ -74,7 +74,7 @@ class _HomeState extends State<Home> {
                 child: Image.asset(Assets.track,height: 20,width: 20,),
               ),
               title: Text(
-                "Tracks",style: TextStyle(
+                "Track",style: TextStyle(
                 color: _currentIndex == 0
                     ? AppColors.clr_bg_black
                     : Colors.black54

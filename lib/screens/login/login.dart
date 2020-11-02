@@ -34,37 +34,14 @@ class _LoginState extends State<Login> {
           height: AppSizes.height,
           width: AppSizes.width,
           color: AppColors.clr_bg,
-          child: Stack(
+          child: Column(
             children: [
               _loginComponents.getImageContainer(Assets.logo, 400, 400),
               _loginComponents.getSignUpButton(context, (){
-                _loginProvider.login(context: context, email: "", password: "");
+                //_loginProvider.login(context: context, email: "", password: "");
               }),
-
-              Positioned(
-                top: AppSizes.height*0.45,
-                child: Container(
-                  height:AppSizes.height*0.1,
-                  width: AppSizes.width,
-                  child: TextField(
-                  decoration: InputDecoration(
-                  ),
-                ),),
-              ),
-
-              SizedBox(height: AppSizes.height*0.02,),
-
-              Positioned(
-                top: AppSizes.height*0.40,
-                child: Container(
-                  height:AppSizes.height*0.1,
-                  width: AppSizes.width,
-                  child: TextField(
-                    decoration: InputDecoration(
-                    ),
-                  ),),
-              ),
-              _loginComponents.getRichText(text1: "Don't have an account?", text2: "Sign Up"),
+              SizedBox(height: AppSizes.height*0.20,),
+              _loginComponents.getRichText(text1: "Don't have an account?", text2: "Sign Up",context: context),
             ],
           ),
       )

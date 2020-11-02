@@ -8,13 +8,13 @@ class CardComponents{
   Widget getHeading({@required String text}){
 
     return Container(
-      margin: EdgeInsets.only(left: AppSizes.width*0.03,right: AppSizes.width*0.03,top: AppSizes.height*0.008),
+      margin: EdgeInsets.only(left: AppSizes.width*0.03,right: AppSizes.width*0.03),
       height: AppSizes.height*0.08,
       width: AppSizes.width,
       padding: EdgeInsets.all(12),
       child: Text(text,style: TextStyle(
         color: AppColors.clr_bg_black,
-        fontFamily:Assets.muliBold,
+          fontFamily: 'MuliBold',
         fontSize: 18
       ),),
     );
@@ -24,7 +24,7 @@ class CardComponents{
   Widget getSubHeading({@required String text}){
 
     return Container(
-      margin: EdgeInsets.only(left: AppSizes.width*0.05,right: AppSizes.width*0.05,top: AppSizes.height*0.002),
+      margin: EdgeInsets.only(left: AppSizes.width*0.05,right: AppSizes.width*0.05,),
       height: AppSizes.height*0.04,
       width: AppSizes.width,
       padding: EdgeInsets.only(left:AppSizes.width*0.015),
@@ -32,8 +32,8 @@ class CardComponents{
         border: Border(bottom: BorderSide(color: AppColors.sign_field))
       ),
       child: Text(text,style: TextStyle(
-          color: AppColors.clr_bg_grey,
-          fontFamily:Assets.muliBold,
+          color: AppColors.clr_bg_black2,
+          fontFamily: 'MuliBold',
           fontSize: 14
       ),),
     );
@@ -64,7 +64,7 @@ class CardComponents{
             style: TextStyle(
                 decoration: TextDecoration.none,
                 fontSize: 22,
-                fontFamily: Assets.muliBold),
+                fontFamily: 'MuliBold'),
           )
         ],
       ),

@@ -263,16 +263,16 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Image.asset(
-                              Assets.location,
-                              width: AppSizes.width * 0.08,
-                              height: AppSizes.height * 0.04,
+                              Assets.location,     height: 25,
+                              width: 25,
                               fit: BoxFit.fill,
                             ),
+                            SizedBox(width: AppSizes.width*0.02,),
                             Text(
                               "Location",
                               style: TextStyle(
                                 fontSize: 15,
-                                fontFamily: Assets.muliRegular,
+                                fontFamily: 'MuliRegular',
                               ),
                             ),
                           ],
@@ -283,7 +283,7 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
                               "New York, USA",
                               style: TextStyle(
                                 fontSize: 15,
-                                fontFamily: Assets.muliRegular,
+                                fontFamily: 'MuliRegular',
                                 decoration: TextDecoration.underline,
                               ),
                             )
@@ -302,15 +302,16 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
                           children: [
                             Image.asset(
                               Assets.distance,
-                              width: AppSizes.width * 0.08,
-                              height: AppSizes.height * 0.04,
+                              height: 25,
+                              width: 25,
                               fit: BoxFit.fill,
                             ),
+                            SizedBox(width: AppSizes.width*0.02,),
                             Text(
                               "Distance",
                               style: TextStyle(
                                 fontSize: 15,
-                                fontFamily: Assets.muliRegular,
+                                fontFamily: 'MuliRegular',
                               ),
                             ),
                           ],
@@ -321,7 +322,7 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
                               "40 km",
                               style: TextStyle(
                                 fontSize: 15,
-                                fontFamily: Assets.muliRegular,
+                                fontFamily: 'MuliRegular',
                               ),
                             )
                           ],
@@ -371,14 +372,7 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
                             padding: EdgeInsets.all(10.0),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: AppColors.clr_bg_grey,
-                                    spreadRadius: 0.5,
-                                    blurRadius: 1,
-                                    offset: Offset(0, 0),
-                                  )
-                                ],
+
                                 border:
                                     Border.all(color: AppColors.clr_bg_grey),
                                 color: AppColors.clr_white),
@@ -391,8 +385,8 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
                                     Text(
                                       "Mon",
                                       style: TextStyle(
-                                        fontSize: 15,
-                                        fontFamily: Assets.muliSemiBold,
+                                        fontSize: 18,
+                                        fontFamily: 'MuliSemiBold',
 
                                       ),
                                     ),
@@ -403,8 +397,8 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
                                     Text(
                                       "10:00 am - 5:00 pm",
                                       style: TextStyle(
-                                        fontSize: 15,
-                                        fontFamily: Assets.muliRegular,
+                                        fontSize: 18,
+                                        fontFamily: 'MuliRegular',
                                       ),
                                     )
                                   ],
@@ -421,14 +415,6 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
                           padding: EdgeInsets.all(10.0),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: AppColors.clr_bg_grey,
-                                  spreadRadius: 0.5,
-                                  blurRadius: 1,
-                                  offset: Offset(0, 0),
-                                )
-                              ],
                               border:
                                   Border.all(color: AppColors.clr_bg_grey),
                               color: AppColors.clr_white),
@@ -441,8 +427,8 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
                                   Text(
                                     "Tues",
                                     style: TextStyle(
-                                      fontSize: 15,
-                                      fontFamily: Assets.muliRegular,
+                                      fontSize: 18,
+                                      fontFamily: 'MuliSemiBold',
                                     ),
                                   ),
                                 ],
@@ -452,8 +438,8 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
                                   Text(
                                     "10:00 am - 5:00 pm",
                                     style: TextStyle(
-                                      fontSize: 15,
-                                      fontFamily: Assets.muliRegular,
+                                      fontSize: 18,
+                                      fontFamily: 'MuliRegular',
                                     ),
                                   )
                                 ],
@@ -469,14 +455,6 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
                           padding: EdgeInsets.all(10.0),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: AppColors.clr_bg_grey,
-                                  spreadRadius: 0.5,
-                                  blurRadius: 1,
-                                  offset: Offset(0, 0),
-                                )
-                              ],
                               border:
                                   Border.all(color: AppColors.clr_bg_grey),
                               color: AppColors.clr_white),
@@ -489,8 +467,8 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
                                   Text(
                                     "Wed",
                                     style: TextStyle(
-                                      fontSize: 15,
-                                      fontFamily: Assets.muliRegular,
+                                      fontSize: 18,
+                                      fontFamily: 'MuliSemiBold',
 
                                       color: AppColors.clr_bg_grey,
                                     ),
@@ -502,8 +480,8 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
                                   Text(
                                     "Not Available",
                                     style: TextStyle(
-                                      fontSize: 15,
-                                      fontFamily: Assets.muliRegular,
+                                      fontSize: 18,
+                                      fontFamily: 'MuliRegular',
                                       color: AppColors.clr_bg_grey,
                                     ),
                                   )
@@ -520,14 +498,6 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
                           padding: EdgeInsets.all(10.0),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: AppColors.clr_bg_grey,
-                                  spreadRadius: 0.5,
-                                  blurRadius: 1,
-                                  offset: Offset(0, 0),
-                                )
-                              ],
                               border:
                                   Border.all(color: AppColors.clr_bg_grey),
                               color: AppColors.clr_white),
@@ -540,8 +510,8 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
                                   Text(
                                     "Thurs",
                                     style: TextStyle(
-                                      fontSize: 15,
-                                      fontFamily: Assets.muliRegular,
+                                      fontSize: 18,
+                                      fontFamily: 'MuliSemiBold',
                                     ),
                                   ),
                                 ],
@@ -551,8 +521,8 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
                                   Text(
                                     "Not Available",
                                     style: TextStyle(
-                                      fontSize: 15,
-                                      fontFamily: Assets.muliRegular,
+                                      fontSize: 18,
+                                      fontFamily: 'MuliRegular',
                                       color: AppColors.clr_bg_grey,
                                     ),
                                   )
@@ -569,14 +539,7 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
                           padding: EdgeInsets.all(10.0),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: AppColors.clr_bg_grey,
-                                  spreadRadius: 0.5,
-                                  blurRadius: 1,
-                                  offset: Offset(0, 0),
-                                )
-                              ],
+
                               border:
                                   Border.all(color: AppColors.clr_bg_grey),
                               color: AppColors.clr_white),
@@ -589,8 +552,8 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
                                   Text(
                                     "Fri",
                                     style: TextStyle(
-                                      fontSize: 15,
-                                      fontFamily: Assets.muliRegular,
+                                      fontSize: 18,
+                                      fontFamily: 'MuliSemiBold',
                                     ),
                                   ),
                                 ],
@@ -600,8 +563,8 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
                                   Text(
                                     "10:00 am - 5:00 pm",
                                     style: TextStyle(
-                                      fontSize: 15,
-                                      fontFamily: Assets.muliRegular,
+                                      fontSize: 18,
+                                      fontFamily: 'MuliRegular',
                                     ),
                                   )
                                 ],
@@ -617,14 +580,6 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
                           padding: EdgeInsets.all(10.0),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: AppColors.clr_bg_grey,
-                                  spreadRadius: 0.5,
-                                  blurRadius: 1,
-                                  offset: Offset(0, 0),
-                                )
-                              ],
                               border:
                                   Border.all(color: AppColors.clr_bg_grey),
                               color: AppColors.clr_white),
@@ -637,8 +592,8 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
                                   Text(
                                     "Sat",
                                     style: TextStyle(
-                                      fontSize: 15,
-                                      fontFamily: Assets.muliRegular,
+                                      fontSize: 18,
+                                      fontFamily: 'MuliSemiBold',
                                     ),
                                   ),
                                 ],
@@ -648,8 +603,8 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
                                   Text(
                                     "Available All Day",
                                     style: TextStyle(
-                                      fontSize: 15,
-                                      fontFamily: Assets.muliRegular,
+                                      fontSize: 18,
+                                      fontFamily: 'MuliRegular',
                                     ),
                                   )
                                 ],
@@ -685,8 +640,8 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
                                   Text(
                                     "Sun",
                                     style: TextStyle(
-                                      fontSize: 15,
-                                      fontFamily: Assets.muliRegular,
+                                      fontSize: 18,
+                                      fontFamily: 'MuliSemiBold',
                                     ),
                                   ),
                                 ],
@@ -696,8 +651,8 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
                                   Text(
                                     "Available All Day",
                                     style: TextStyle(
-                                      fontSize: 15,
-                                      fontFamily: Assets.muliRegular,
+                                      fontSize: 18,
+                                      fontFamily: 'MuliRegular',
                                     ),
                                   )
                                 ],

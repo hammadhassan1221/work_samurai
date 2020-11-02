@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
+import 'package:work_samurai/widgets/widgets.dart';
 
 import 'application_components.dart';
 
@@ -33,31 +34,9 @@ class _ApplicationState extends State<Application> {
           color: AppColors.clr_field,
           child: Column(
             children: [
-              Container(
-                height: AppSizes.height * 0.09,
-                color: AppColors.clr_white,
-                padding: EdgeInsets.all(AppSizes.width*0.042),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                   GestureDetector(
-                       onTap:(){
-                         Navigator.pop(context);
-          },
-                       child: Image.asset(Assets.barArrow,height: 20,width: 20,)),
-                    SizedBox(
-                      width: AppSizes.width * 0.02,
-                    ),
-                    Text(
-                      "Application",
-                      style: TextStyle(
-                          decoration: TextDecoration.none,
-                          fontSize: 22,
-                          fontFamily: Assets.muliBold),
-                    )
-                  ],
-                ),
-              ),
+              CommonWidgets.getAppBar(text: "Application", onPress: (){
+                Navigator.pop(context);
+              }, imagepath: Assets.barArrow),
               Expanded(
                 child: ListView(
                   children: [
@@ -79,7 +58,7 @@ class _ApplicationState extends State<Application> {
                                     color: AppColors.clr_bg_black,
                                     decoration: TextDecoration.none,
                                     fontSize: 20,
-                                    fontFamily: Assets.muliBold,
+                                    fontFamily: 'MuliBold',
                                   )),
                               SizedBox(
                                 width: AppSizes.width * 0.02,
@@ -109,8 +88,8 @@ class _ApplicationState extends State<Application> {
                               style: TextStyle(
                                 decoration: TextDecoration.none,
                                 fontSize: 15,
-                                color: AppColors.clr_bg_grey,
-                                fontFamily: Assets.muliRegular,
+                                color: AppColors.clr_bg_black2,
+                                fontFamily: 'MuliRegular',
                               )),
                           SizedBox(
                             height: AppSizes.height * 0.01,
@@ -120,8 +99,8 @@ class _ApplicationState extends State<Application> {
                               style: TextStyle(
                                 decoration: TextDecoration.none,
                                 fontSize: 15,
-                                color: AppColors.clr_bg_grey,
-                                fontFamily: Assets.muliRegular,
+                                color: AppColors.clr_bg_black2,
+                                  fontFamily: 'MuliRegular'
                               ))
                         ],
                       ),
@@ -159,7 +138,7 @@ class _ApplicationState extends State<Application> {
                                             decoration: TextDecoration.none,
                                             fontSize: 16,
                                             color: AppColors.clr_bg_black,
-                                            fontFamily: Assets.muliBold,
+                                            fontFamily: 'MuliBold',
                                           )),
                                       SizedBox(
                                         width: AppSizes.width * 0.03,
@@ -188,21 +167,21 @@ class _ApplicationState extends State<Application> {
                                   Text("Experience: 4 years",
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
-                                        color: AppColors.clr_bg_grey,
                                         decoration: TextDecoration.none,
-                                        fontSize: 14,
-                                        fontFamily: Assets.muliSemiBold,
+                                        fontSize: 15,
+                                        color: AppColors.clr_bg_black2,
+                                        fontFamily: 'MuliRegular',
                                       )),
                                   SizedBox(
-                                    height: AppSizes.height * 0.002,
+                                    height: AppSizes.height * 0.01,
                                   ),
                                   Text("Samurai Jobs:18",
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
-                                        decoration: TextDecoration.none,
-                                        fontSize: 14,
-                                        color: AppColors.clr_bg_grey,
-                                        fontFamily: Assets.muliBold,
+                                          decoration: TextDecoration.none,
+                                          fontSize: 15,
+                                          color: AppColors.clr_bg_black2,
+                                          fontFamily: 'MuliRegular'
                                       ))
                                 ],
                               ),

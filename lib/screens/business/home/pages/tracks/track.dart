@@ -46,8 +46,7 @@ class _TracksState extends State<Tracks> with TickerProviderStateMixin {
                         decoration: TextDecoration.none,
                         color: AppColors.clr_bg_black,
                         fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: Assets.muliBold,
+                        fontFamily: 'MuliBold',
                       ),
                     )),
                 Container(
@@ -56,6 +55,7 @@ class _TracksState extends State<Tracks> with TickerProviderStateMixin {
                   color: AppColors.clr_white,
                   child: TabBar(
                     controller: _tabController,
+                    labelStyle: TextStyle(fontFamily:'MuliSemiBold'),
                     indicatorColor: AppColors.clr_bg_grey,
                     labelColor: AppColors.clr_bg_black,
                     unselectedLabelColor: AppColors.clr_bg_grey,
@@ -69,7 +69,7 @@ class _TracksState extends State<Tracks> with TickerProviderStateMixin {
                     isScrollable: true,
                     tabs: <Widget>[
                       _tabBar("Upcoming"),
-                      _tabBar("In_Progress"),
+                      _tabBar("In-Progress"),
                       _tabBar("Past"),
                       /*   _tabBar("In-Progress"),
                     _tabBar("Past"),*/

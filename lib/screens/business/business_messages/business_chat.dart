@@ -42,7 +42,7 @@ class _BusinessMessagesState extends State<BusinessMessages> {
                               decoration: TextDecoration.none,
                               color: AppColors.clr_bg_black,
                               //fontWeight: FontWeight.w600,
-                              fontFamily: Assets.muliBold,
+                              fontFamily: 'MuliBold',
                               fontSize: 20),
                         )
                       ],
@@ -75,8 +75,7 @@ class _BusinessMessagesState extends State<BusinessMessages> {
                                           textAlign: TextAlign.left,
                                           style: TextStyle(
                                             fontSize: 16,
-                                            fontFamily: Assets.muliBold,
-                                            fontWeight: FontWeight.bold,
+                                            fontFamily: 'MuliBold',
                                           )),
                                     ],
                                   ),
@@ -85,9 +84,8 @@ class _BusinessMessagesState extends State<BusinessMessages> {
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
                                         fontSize: 12,
-                                        color: AppColors.clr_bg_grey,
-                                        fontFamily: Assets.muliRegular,
-                                      ))
+                                        color: AppColors.clr_bg_black2,
+                                        fontFamily: 'MuliRegular',))
                                 ],
                               )
                             ],
@@ -99,7 +97,7 @@ class _BusinessMessagesState extends State<BusinessMessages> {
                             children:[
                               Container(
                                 margin: EdgeInsets.all(12),
-                                height: AppSizes.height*0.18,
+                                height: AppSizes.height*0.15,
                                 padding: EdgeInsets.all(10),
                                 width: AppSizes.width*0.60,
                                 decoration: BoxDecoration(
@@ -110,6 +108,7 @@ class _BusinessMessagesState extends State<BusinessMessages> {
                                   "Morbi pretium, massa non ornare fringilla, odio eros euismod nibh, venenatis commodo orci diam in sapien. Curabitur ut massa odio.",
                                   style: TextStyle(
                                     letterSpacing: 0.25,
+                                    fontFamily: 'MuliRegular',
                                   ),),
                               ),
                             ]
@@ -129,6 +128,7 @@ class _BusinessMessagesState extends State<BusinessMessages> {
                                 ),
                                 child: Text("Aliquam!",
                                   style: TextStyle(
+                                    fontFamily: 'MuliRegular',
                                     letterSpacing: 0.25,
                                   ),),
                               ),
@@ -149,6 +149,7 @@ class _BusinessMessagesState extends State<BusinessMessages> {
                                 ),
                                 child: Text("11:03am",
                                   style: TextStyle(
+                                    fontFamily: 'MuliRegular',
                                     letterSpacing: 0.25,
                                   ),),
                               ),
@@ -160,7 +161,7 @@ class _BusinessMessagesState extends State<BusinessMessages> {
                             children:[
                               Container(
                                 margin: EdgeInsets.only(right: AppSizes.width*0.04),
-                                height: AppSizes.height*0.11,
+                                height: AppSizes.height*0.1,
                                 padding: EdgeInsets.all(10),
                                 width: AppSizes.width*0.60,
                                 decoration: BoxDecoration(
@@ -170,6 +171,7 @@ class _BusinessMessagesState extends State<BusinessMessages> {
                                 child: Text("Quisque vulputate sollicitudin dui, nec placerat ante laoreet sit amet.",
                                   style: TextStyle(
                                     color: AppColors.clr_white,
+                                    fontFamily: 'MuliRegular',
                                     letterSpacing: 0.25,
                                   ),),
                               ),
@@ -199,7 +201,7 @@ class _BusinessMessagesState extends State<BusinessMessages> {
   _textFieldContainer(){
     return Container(
       height: AppSizes.height*0.07,
-      width: AppSizes.width/1.4,
+      width: AppSizes.width,
       margin: EdgeInsets.all(12),
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(

@@ -16,11 +16,11 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: multiProviders,
       child: MaterialApp(
-        title: 'Work Samuri',
+        title: 'Work Samurai',
         theme: ThemeData(
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
-          fontFamily: Assets.muliRegular,
+
         ),
         debugShowCheckedModeBanner: false,
         routes: Routes.routes,

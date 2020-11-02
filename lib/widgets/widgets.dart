@@ -5,8 +5,10 @@ import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 
 class CommonWidgets{
+
   static Widget getRow(String text, bool value, Function onPress){
-    return  Row(
+
+    return /* Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
      Text(text,
@@ -47,6 +49,28 @@ class CommonWidgets{
        ],
      )
       ],
+    );*/Container(
+        margin: EdgeInsets.only(top:AppSizes.height*0.01),
+        padding: EdgeInsets.all(10),
+        height: AppSizes.height*0.09,
+        width: AppSizes.width,
+
+        child:Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+          text,
+              style: TextStyle(
+                  color: AppColors.clr_bg_black,
+                  fontSize: 15,
+                  fontFamily: 'MuliRegular'),),
+            CupertinoSwitch(
+              activeColor: AppColors.clr_green,
+              value:value,
+              onChanged: onPress),
+
+          ],
+        )
     );
   }
 
@@ -119,8 +143,10 @@ class CommonWidgets{
     return GestureDetector(
       onTap: () => onPress(),
       child: Container(
+        width: AppSizes.width,
         height: AppSizes.height * 0.07,
-        margin: EdgeInsets.only(left: AppSizes.width*0.08,  right: AppSizes.width*0.08),
+        margin: EdgeInsets.only(left:AppSizes.height*0.015,right:AppSizes.height*0.015,),
+
         alignment: Alignment.center,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(
@@ -188,126 +214,101 @@ class CommonWidgets{
     );
   }
 
-  static Widget getUserField(
-      {@required Color backgroundColor,
-        @required Color borderColor,
-        @required Color textColor,
-        @required String text,
-        @required Function onPress,
-        @required TextEditingController controller,
-      }) {
+  static Widget getAppBar({@required String text,@required Function onPress,@required String imagepath}){
     return Container(
-      width: AppSizes.width * 0.8,
-      height: AppSizes.height * 0.07,
-      alignment: Alignment.bottomCenter,
-      margin: EdgeInsets.only(
-        top: AppSizes.height * 0.02,
-        left: AppSizes.width * 0.04,
-        right: AppSizes.width * 0.04,
-      ),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(
-          12,
-        ),
-        border: Border.all(
-          color: borderColor,
-        ),
-        color: backgroundColor,
-      ),
-      padding: EdgeInsets.all(10),
-      child: TextField(
-        controller: controller,
-
-        decoration: InputDecoration(
-            prefixIcon: Icon(
-              Icons.person,
-
-            ),
-            border: InputBorder.none,
-            hintText: "Username",
-            hintStyle: TextStyle(
-              fontSize: 15,
-              decoration: TextDecoration.none,
-            )),
-      ),
-    );
-  }
-
-  static Widget getPasswordField(
-      {@required Color backgroundColor,
-        @required Color borderColor,
-        @required Color textColor,
-        @required String text,
-        @required Function onPress}) {
-    return Container(
-      width: AppSizes.width * 0.8,
-      height: AppSizes.height * 0.07,
-      alignment: Alignment.bottomCenter,
-      margin: EdgeInsets.only(
-        top: AppSizes.height * 0.02,
-        left: AppSizes.width * 0.04,
-        right: AppSizes.width * 0.04,
-      ),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(
-          12,
-        ),
-        border: Border.all(
-          color: borderColor,
-        ),
-        color: backgroundColor,
-      ),
-      padding: EdgeInsets.all(10),
-      child: TextField(
-
-        obscureText: true,
-        decoration: InputDecoration(
-            prefixIcon: Icon(
-              Icons.lock,
-
-            ),
-            suffixIcon: Icon(
-              Icons.visibility,
-
-            ),
-            border: InputBorder.none,
-            hintText: "Password",
-            hintStyle: TextStyle(
-              fontSize: 15,
-
-              decoration: TextDecoration.none,
-            )),
-      ),
-    );
-  }
-
-  static Widget getAccount(
-      {@required BuildContext context,
-        @required String text,
-        @required Function onPress}) {
-    return Container(
-      margin: EdgeInsets.only(
-        top: AppSizes.height * 0.02,
-        left: AppSizes.width * 0.04,
-        right: AppSizes.width * 0.04,
-      ),
-      child: GestureDetector(
-        onTap: () => onPress(),
-        child: Text(
-          text,
-          style: TextStyle(),
-        ),
-      ),
-      /*  GestureDetector(
-          onTap: press,
-          child: Text(
-            login ? "Sign Up" : "Sign In",
-            style: TextStyle(
-              color: AppColors.black,
-              fontWeight: FontWeight.bold,
-            ),
+      height: AppSizes.height * 0.09,
+      color: AppColors.clr_white,
+      padding: EdgeInsets.all(AppSizes.width*0.038),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          GestureDetector(
+              onTap: onPress,
+              child: Image.asset(imagepath,height: 20,width: 20,)),
+          SizedBox(
+            width: AppSizes.width * 0.02,
           ),
-        )*/
+          Text(
+            text,
+            style: TextStyle(
+                decoration: TextDecoration.none,
+                fontSize: 22,
+                fontFamily: 'MuliBold'),
+          )
+        ],
+      ),
+    );
+  }
+
+  static Widget getAppBarWithout({@required String text,}){
+    return Container(
+      height: AppSizes.height * 0.09,
+      color: AppColors.clr_white,
+      padding: EdgeInsets.all(AppSizes.width*0.038),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Text(
+            text,
+            style: TextStyle(
+                decoration: TextDecoration.none,
+                fontSize: 22,
+                fontFamily: 'MuliBold'),
+          )
+        ],
+      ),
+    );
+  }
+
+  static Widget getSupportContainer({@required String imagePath,@required String heading,@required Function onPress}){
+    return  GestureDetector(
+      onTap: onPress,
+      child: Container(
+        margin: EdgeInsets.only(left: AppSizes.width*0.04,right: AppSizes.width*0.04),
+        height: AppSizes.height * 0.1,
+        width: AppSizes.width * 0.9,
+        padding: EdgeInsets.all(8.0),
+        decoration: BoxDecoration(
+            border: Border.all(
+              color: AppColors.clr_bg_grey,
+            )
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Image.asset(
+                  imagePath,
+                  width: 45,
+                  height: 45,
+                  fit: BoxFit.fill,
+                ),
+                SizedBox(
+                  width: AppSizes.width * 0.03,
+                ),
+                Text(
+                  heading,
+                  style: TextStyle(
+                    color: AppColors.clr_bg_black,
+                    decoration: TextDecoration.none,
+                    fontSize: 16,
+                    fontFamily: 'MuliBold',
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                Icon(
+                  Icons.arrow_forward_ios,size: 15,
+                ),
+              ],
+            )
+          ],
+        ),
+      ),
     );
   }
 
