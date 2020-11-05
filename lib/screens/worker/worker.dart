@@ -44,122 +44,122 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
             color: AppColors.clr_bg,
             child: Column(
               children: [
-                Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Container(
-                      height: AppSizes.height * 0.85,
-                      color: AppColors.transparentColor,
-                      child: _bottomNavigationContainer(),
-                    ))
+                Container(
+                  height: AppSizes.height * 0.885,
+                  color: AppColors.clr_bg,
+                  child: _bottomNavigationContainer(),
+                )
               ],
             )),
-        bottomNavigationBar: Container(
-          height: AppSizes.height * 0.1,
-          child: BottomNavigationBar(
-            currentIndex: _currentIndex,
-            backgroundColor: AppColors.clr_bg,
-            type: BottomNavigationBarType.fixed,
-            onTap: (index) {
-              setState(() {
-                _currentIndex = index;
-              });
-            },
-            items: [
-              BottomNavigationBarItem(
-                icon: GestureDetector(
-                  onTap: () {},
-                  child: Image.asset(
-                    Assets.gigs,
-                    height: 20,
-                    width: 20,
-                    color: _currentIndex == 0
-                        ? AppColors.clr_bg_black
-                        : Colors.black54,
-                  ),
-                ),
-                title: Text(
-                  "Gigs",
-                  style: TextStyle(
-                    color: _currentIndex == 0
-                        ? AppColors.clr_bg_black
-                        : Colors.black54,
-                  ),
-                ),
-              ),
-              BottomNavigationBarItem(
-                icon: Image.asset(
-                  Assets.schedule,
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _currentIndex,
+          backgroundColor: AppColors.clr_bg,
+          type: BottomNavigationBarType.fixed,
+          onTap: (index) {
+            setState(() {
+              _currentIndex = index;
+            });
+          },
+          items: [
+            BottomNavigationBarItem(
+              icon: GestureDetector(
+                onTap: () {},
+                child: Image.asset(
+                  Assets.gigs,
                   height: 20,
                   width: 20,
+                  color: _currentIndex == 0
+                      ? AppColors.clr_bg_black
+                      : AppColors.clr_bg_black2,
+                ),
+              ),
+              title: Text(
+                "Gigs",
+                style: TextStyle(
+                  color: _currentIndex == 0
+                      ? AppColors.clr_bg_black
+                      : AppColors.clr_bg_black2,
+                ),
+              ),
+            ),
+            BottomNavigationBarItem(
+              icon: Image.asset(
+                Assets.schedule,
+                height: 20,
+                width: 20,
+                color: _currentIndex == 1
+                    ? AppColors.clr_bg_black
+                    : AppColors.clr_bg_black2,
+              ),
+              title: Text(
+                "Schedule",
+                style: TextStyle(
                   color: _currentIndex == 1
                       ? AppColors.clr_bg_black
-                      : Colors.black54,
-                ),
-                title: Text(
-                  "Schedule",
-                  style: TextStyle(
-                    color: _currentIndex == 1
-                        ? AppColors.clr_bg_black
-                        :Colors.black54,
-                  ),
+                      : AppColors.clr_bg_black2,
                 ),
               ),
-              BottomNavigationBarItem(
-                icon: Image.asset(
-                  Assets.msgs,
-                  height: 20,
-                  width: 20,
+            ),
+            BottomNavigationBarItem(
+              icon: Image.asset(
+                Assets.msgs,
+                height: 20,
+                width: 20,
+
                   color: _currentIndex == 2
                       ? AppColors.clr_bg_black
-                      : Colors.black54,
-                ),
-                title: Text(
-                  "Messages",
-                  style: TextStyle(
-                    color: _currentIndex == 2
-                        ? AppColors.clr_bg_black
-                        :Colors.black54,
-                  ),
+                      : AppColors.clr_bg_black2,
+              ),
+              title: Text(
+                "Messages",
+                style: TextStyle(
+                  color: _currentIndex == 2
+                      ? AppColors.clr_bg_black
+                      : AppColors.clr_bg_black2,
                 ),
               ),
-              BottomNavigationBarItem(
-                icon: Image.asset(
-                  Assets.profile,
-                  height: 20,
-                  width: 20,
+            ),
+            BottomNavigationBarItem(
+              icon: Image.asset(
+                Assets.profile,
+                height: 20,
+                width: 20,
+
+                color: _currentIndex == 3
+                    ? AppColors.clr_bg_black
+                    : AppColors.clr_bg_black2,
+              ),
+              title: Text(
+                "Profile",
+                style: TextStyle(
+
                   color: _currentIndex == 3
                       ? AppColors.clr_bg_black
-                      : Colors.black54,
-                ),
-                title: Text(
-                  "Profile",
-                  style: TextStyle(
-                    color: _currentIndex == 3
-                        ? AppColors.clr_bg_black
-                        : Colors.black54,
-                  ),
+                      : AppColors.clr_bg_black2,
                 ),
               ),
-              BottomNavigationBarItem(
-                icon: Image.asset(
-                  Assets.alerts,
-                  height: 20,
-                  width: 20,
+            ),
+            BottomNavigationBarItem(
+              icon: Image.asset(
+                Assets.alerts,
+                height: 20,
+                width: 20,
+
+                color: _currentIndex == 4
+                    ? AppColors.clr_bg_black
+                    : AppColors.clr_bg_black2,
+              ),
+              title: Text(
+                "Alerts",
+                style: TextStyle(
+
                   color: _currentIndex == 4
                       ? AppColors.clr_bg_black
-                      : Colors.black54,
-                ),
-                title: Text(
-                  "Alerts",
-                  style: TextStyle(
-                    color: _currentIndex == 4
-                        ? AppColors.clr_bg_black
-                        : Colors.black54,
-                  ),
+                      : AppColors.clr_bg_black2,
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -174,14 +174,14 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
         child: Column(children: [
           Container(
               width: AppSizes.width,
-              height: AppSizes.height * 0.08,
+              height: AppSizes.height * 0.09,
               padding: EdgeInsets.only(left: AppSizes.width*0.04, top: AppSizes.width*0.07),
               color: AppColors.clr_white,
               child: Text(
                 "Gigs",
                 style: TextStyle(
                   fontSize: 22,
-                  fontFamily: Assets.muliBold,
+                  fontFamily: 'MuliBold',
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -192,23 +192,24 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
             color: AppColors.clr_white,
             child: TabBar(
               controller: _tabController,
+              labelStyle: TextStyle(fontFamily:'MuliSemiBold'),
               indicatorColor: AppColors.clr_bg_grey,
               labelColor: AppColors.clr_bg_black,
               unselectedLabelColor: AppColors.clr_bg_grey,
               indicator: BoxDecoration(
-                color: AppColors.clr_white,
-                border: Border(
-                  bottom: BorderSide(
-                    color: AppColors.clr_bg_black,
-                    width:3.0,
-                  )
-                )
-              ),
+                  color: AppColors.clr_white,
+                  border: Border(
+                      bottom: BorderSide(
+                        color: AppColors.clr_bg_black,
+                        width: 3.0,
+                      ))),
               isScrollable: true,
               tabs: <Widget>[
                 _tabBar("Offers"),
                 _tabBar("In-Progress"),
                 _tabBar("Confirmed"),
+                /*   _tabBar("In-Progress"),
+                    _tabBar("Past"),*/
               ],
             ),
           ),
@@ -236,483 +237,421 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
         width: AppSizes.width,
         color: AppColors.clr_bg,
         child: Column(children: [
-          Container(
-              width: AppSizes.width,
-              height: AppSizes.height * 0.1,
-              padding: EdgeInsets.only(left: AppSizes.width*0.04, top: AppSizes.width*0.07),
-              color: AppColors.clr_white,
-              child: Text(
-                "Your Schedule",
-                style: TextStyle(
-                  fontSize: 22,
-                  fontFamily: Assets.muliBold,
-
-                ),
-              )),
+          CommonWidgets.getAppBarWithout(text: "Your Schedule"),
           SizedBox(
             height: AppSizes.height * 0.02,
           ),
-          Container(
-              width: AppSizes.width * 0.9,
-              height: AppSizes.height * 0.72,
-              color: AppColors.clr_bg,
-              child: Column(
-                children: [
-                  Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Image.asset(
-                              Assets.location,
-                              width: AppSizes.width * 0.08,
-                              height: AppSizes.height * 0.04,
-                              fit: BoxFit.fill,
-                            ),
-                            Text(
-                              "Location",
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontFamily: Assets.muliRegular,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              "New York, USA",
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontFamily: Assets.muliRegular,
-                                decoration: TextDecoration.underline,
-                              ),
-                            )
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                  Divider(),
-                  Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Image.asset(
-                              Assets.distance,
-                              width: AppSizes.width * 0.08,
-                              height: AppSizes.height * 0.04,
-                              fit: BoxFit.fill,
-                            ),
-                            Text(
-                              "Distance",
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontFamily: Assets.muliRegular,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              "40 km",
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontFamily: Assets.muliRegular,
-                              ),
-                            )
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                  SliderTheme(
-                    data: SliderTheme.of(context).copyWith(
-                      activeTrackColor: AppColors.clr_bg_black,
-                      inactiveTrackColor: AppColors.clr_bg_grey,
-                      trackShape: RectangularSliderTrackShape(),
-                      trackHeight: 4.0,
-                      thumbColor: AppColors.clr_bg_black,
-                      thumbShape: RoundSliderThumbShape(
-                          enabledThumbRadius: 6.0),
-                      overlayColor: Colors.red.withAlpha(32),
-                      overlayShape: RoundSliderOverlayShape(
-                          overlayRadius: 28.0),
-                    ),
 
-                    child: Container(
-                      width: AppSizes.width,
+          Expanded(
+            child: ListView(
+              children: [
 
-                      child: Slider(
-                        value: _value,
-                        max: 4,
-                        min: 0,
-                        onChanged: (value) {
-                          setState(() {
-                            _value = value;
-                          });
-                        },
+                Container(
+                  margin: EdgeInsets.only(left: AppSizes.width*0.04,right:  AppSizes.width*0.04,),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Image.asset(
+                            Assets.location,     height: 25,
+                            width: 25,
+                            fit: BoxFit.fill,
+                          ),
+                          SizedBox(width: AppSizes.width*0.02,),
+                          Text(
+                            "Location",
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontFamily: 'MuliRegular',
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
+                      Row(
+                        children: [
+                          Text(
+                            "New York, USA",
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontFamily: 'MuliRegular',
+                              decoration: TextDecoration.underline,
+                            ),
+                          )
+                        ],
+                      )
+                    ],
                   ),
-                  Divider(),
-                  Expanded(
-                    child: ListView(
-                      children: [
-                        GestureDetector(
-                          onTap:(){
-                            _alertDialogueContainer();
-                          },
-                          child: Container(
-                            height: AppSizes.height * 0.08,
-                            padding: EdgeInsets.all(10.0),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: AppColors.clr_bg_grey,
-                                    spreadRadius: 0.5,
-                                    blurRadius: 1,
-                                    offset: Offset(0, 0),
-                                  )
-                                ],
-                                border:
-                                    Border.all(color: AppColors.clr_bg_grey),
-                                color: AppColors.clr_white),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Mon",
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                        fontFamily: Assets.muliSemiBold,
-
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Text(
-                                      "10:00 am - 5:00 pm",
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                        fontFamily: Assets.muliRegular,
-                                      ),
-                                    )
-                                  ],
-                                )
-                              ],
+                ),
+                Divider(),
+                Container(
+                  margin: EdgeInsets.only(left: AppSizes.width*0.04,right:  AppSizes.width*0.04,),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Image.asset(
+                            Assets.distance,
+                            height: 25,
+                            width: 25,
+                            fit: BoxFit.fill,
+                          ),
+                          SizedBox(width: AppSizes.width*0.02,),
+                          Text(
+                            "Distance",
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontFamily: 'MuliRegular',
                             ),
                           ),
-                        ),
-                        SizedBox(
-                          height: AppSizes.height * 0.02,
-                        ),
-                        Container(
-                          height: AppSizes.height * 0.08,
-                          padding: EdgeInsets.all(10.0),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: AppColors.clr_bg_grey,
-                                  spreadRadius: 0.5,
-                                  blurRadius: 1,
-                                  offset: Offset(0, 0),
-                                )
-                              ],
-                              border:
-                                  Border.all(color: AppColors.clr_bg_grey),
-                              color: AppColors.clr_white),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Tues",
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontFamily: Assets.muliRegular,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    "10:00 am - 5:00 pm",
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontFamily: Assets.muliRegular,
-                                    ),
-                                  )
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: AppSizes.height * 0.02,
-                        ),
-                        Container(
-                          height: AppSizes.height * 0.08,
-                          padding: EdgeInsets.all(10.0),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: AppColors.clr_bg_grey,
-                                  spreadRadius: 0.5,
-                                  blurRadius: 1,
-                                  offset: Offset(0, 0),
-                                )
-                              ],
-                              border:
-                                  Border.all(color: AppColors.clr_bg_grey),
-                              color: AppColors.clr_white),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Wed",
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontFamily: Assets.muliRegular,
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            "40 km",
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontFamily: 'MuliRegular',
+                            ),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                SliderTheme(
+                  data: SliderTheme.of(context).copyWith(
+                    activeTrackColor: AppColors.clr_bg_black,
+                    inactiveTrackColor: AppColors.clr_bg_grey,
+                    trackShape: RectangularSliderTrackShape(),
+                    trackHeight: 4.0,
+                    thumbColor: AppColors.clr_bg_black,
+                    thumbShape: RoundSliderThumbShape(
+                        enabledThumbRadius: 6.0),
+                    overlayColor: Colors.red.withAlpha(32),
+                    overlayShape: RoundSliderOverlayShape(
+                        overlayRadius: 28.0),
+                  ),
 
-                                      color: AppColors.clr_bg_grey,
-                                    ),
-                                  ),
-                                ],
+                  child: Container(
+                    width: AppSizes.width,
+                    child: Slider(
+                      value: _value,
+                      max: 4,
+                      min: 0,
+                      onChanged: (value) {
+                        setState(() {
+                          _value = value;
+                        });
+                      },
+                    ),
+                  ),
+                ),
+
+                GestureDetector(
+                  onTap:(){
+                    _alertDialogueContainer();
+                  },
+                  child: Container(
+                    height: AppSizes.height * 0.08,
+                    margin: EdgeInsets.only(left: AppSizes.width*0.04,right:  AppSizes.width*0.04,),
+                    padding: EdgeInsets.all(10.0),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+
+                        border:
+                            Border.all(color: AppColors.clr_bg_grey),
+                        color: AppColors.clr_white),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Mon",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontFamily: 'MuliSemiBold',
+
                               ),
-                              Row(
-                                children: [
-                                  Text(
-                                    "Not Available",
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontFamily: Assets.muliRegular,
-                                      color: AppColors.clr_bg_grey,
-                                    ),
-                                  )
-                                ],
-                              )
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                        SizedBox(
-                          height: AppSizes.height * 0.02,
-                        ),
-                        Container(
-                          height: AppSizes.height * 0.08,
-                          padding: EdgeInsets.all(10.0),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: AppColors.clr_bg_grey,
-                                  spreadRadius: 0.5,
-                                  blurRadius: 1,
-                                  offset: Offset(0, 0),
-                                )
-                              ],
-                              border:
-                                  Border.all(color: AppColors.clr_bg_grey),
-                              color: AppColors.clr_white),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Thurs",
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontFamily: Assets.muliRegular,
-                                    ),
-                                  ),
-                                ],
+                        Row(
+                          children: [
+                            Text(
+                              "10:00 am - 5:00 pm",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontFamily: 'MuliRegular',
                               ),
-                              Row(
-                                children: [
-                                  Text(
-                                    "Not Available",
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontFamily: Assets.muliRegular,
-                                      color: AppColors.clr_bg_grey,
-                                    ),
-                                  )
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: AppSizes.height * 0.02,
-                        ),
-                        Container(
-                          height: AppSizes.height * 0.08,
-                          padding: EdgeInsets.all(10.0),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: AppColors.clr_bg_grey,
-                                  spreadRadius: 0.5,
-                                  blurRadius: 1,
-                                  offset: Offset(0, 0),
-                                )
-                              ],
-                              border:
-                                  Border.all(color: AppColors.clr_bg_grey),
-                              color: AppColors.clr_white),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Fri",
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontFamily: Assets.muliRegular,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    "10:00 am - 5:00 pm",
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontFamily: Assets.muliRegular,
-                                    ),
-                                  )
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: AppSizes.height * 0.02,
-                        ),
-                        Container(
-                          height: AppSizes.height * 0.08,
-                          padding: EdgeInsets.all(10.0),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: AppColors.clr_bg_grey,
-                                  spreadRadius: 0.5,
-                                  blurRadius: 1,
-                                  offset: Offset(0, 0),
-                                )
-                              ],
-                              border:
-                                  Border.all(color: AppColors.clr_bg_grey),
-                              color: AppColors.clr_white),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Sat",
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontFamily: Assets.muliRegular,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    "Available All Day",
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontFamily: Assets.muliRegular,
-                                    ),
-                                  )
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: AppSizes.height * 0.02,
-                        ),
-                        Container(
-                          height: AppSizes.height * 0.08,
-                          padding: EdgeInsets.all(10.0),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: AppColors.clr_bg_grey,
-                                  spreadRadius: 0.5,
-                                  blurRadius: 1,
-                                  offset: Offset(0, 0),
-                                )
-                              ],
-                              border:
-                                  Border.all(color: AppColors.clr_bg_grey),
-                              color: AppColors.clr_white),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Sun",
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontFamily: Assets.muliRegular,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    "Available All Day",
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontFamily: Assets.muliRegular,
-                                    ),
-                                  )
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
+                            )
+                          ],
+                        )
                       ],
                     ),
-                  )
-                ],
-              ))
+                  ),
+                ),
+                SizedBox(
+                  height: AppSizes.height * 0.02,
+                ),
+                Container(
+                  height: AppSizes.height * 0.08,
+                  padding: EdgeInsets.all(10.0),
+                  margin: EdgeInsets.only(left: AppSizes.width*0.04,right:  AppSizes.width*0.04,),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      border:
+                          Border.all(color: AppColors.clr_bg_grey),
+                      color: AppColors.clr_white),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Tues",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontFamily: 'MuliSemiBold',
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            "10:00 am - 5:00 pm",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontFamily: 'MuliRegular',
+                            ),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: AppSizes.height * 0.02,
+                ),
+                Container(
+                  height: AppSizes.height * 0.08,
+                  padding: EdgeInsets.all(10.0),
+                  margin: EdgeInsets.only(left: AppSizes.width*0.04,right:  AppSizes.width*0.04,),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      border:
+                          Border.all(color: AppColors.clr_bg_grey),
+                      color: AppColors.clr_white),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Wed",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontFamily: 'MuliSemiBold',
+
+                              color: AppColors.clr_bg_grey,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            "Not Available",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontFamily: 'MuliRegular',
+                              color: AppColors.clr_bg_grey,
+                            ),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: AppSizes.height * 0.02,
+                ),
+                Container(
+                  height: AppSizes.height * 0.08,
+                  padding: EdgeInsets.all(10.0),
+                  margin: EdgeInsets.only(left: AppSizes.width*0.04,right:  AppSizes.width*0.04,),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      border:
+                          Border.all(color: AppColors.clr_bg_grey),
+                      color: AppColors.clr_white),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Thurs",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontFamily: 'MuliSemiBold',
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            "Not Available",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontFamily: 'MuliRegular',
+                              color: AppColors.clr_bg_grey,
+                            ),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: AppSizes.height * 0.02,
+                ),
+                Container(
+                  height: AppSizes.height * 0.08,
+                  padding: EdgeInsets.all(10.0),
+                  margin: EdgeInsets.only(left: AppSizes.width*0.04,right:  AppSizes.width*0.04,),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+
+                      border:
+                          Border.all(color: AppColors.clr_bg_grey),
+                      color: AppColors.clr_white),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Fri",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontFamily: 'MuliSemiBold',
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            "10:00 am - 5:00 pm",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontFamily: 'MuliRegular',
+                            ),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: AppSizes.height * 0.02,
+                ),
+                Container(
+                  height: AppSizes.height * 0.08,
+                  padding: EdgeInsets.all(10.0),
+                  margin: EdgeInsets.only(left: AppSizes.width*0.04,right:  AppSizes.width*0.04,),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      border:
+                          Border.all(color: AppColors.clr_bg_grey),
+                      color: AppColors.clr_white),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Sat",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontFamily: 'MuliSemiBold',
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            "Available All Day",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontFamily: 'MuliRegular',
+                            ),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: AppSizes.height * 0.02,
+                ),
+                Container(
+                  height: AppSizes.height * 0.08,
+                  padding: EdgeInsets.all(10.0),
+                  margin: EdgeInsets.only(left: AppSizes.width*0.04,right:  AppSizes.width*0.04,),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+
+                      border:
+                          Border.all(color: AppColors.clr_bg_grey),
+                      color: AppColors.clr_white),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Sun",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontFamily: 'MuliSemiBold',
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            "Available All Day",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontFamily: 'MuliRegular',
+                            ),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          )
         ]),
       );
     }
@@ -723,7 +662,11 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
       return workerComponents.getProfile();
     }
     else {
-      return Container();
+      return Container(
+        child: Center(
+          child: Text("Pending"),
+        ),
+      );
     }
   }
 
