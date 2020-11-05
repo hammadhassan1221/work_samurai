@@ -1,4 +1,5 @@
 //Base URL
-const String baseUrl = "http://worksamurai-env.eba-5ttt6dec.ap-southeast-2.elasticbeanstalk.com:";
+const String baseUrl = "http://worksamurai-env.eba-5ttt6dec.ap-southeast-2.elasticbeanstalk.com:/api";
 
-const String loginAPI = "$baseUrl/api/Auth";
+const String loginAPI = "$baseUrl/Auth";
+const String signUpAPI = "$baseUrl/Signup";

@@ -8,50 +8,9 @@ class CommonWidgets{
 
   static Widget getRow(String text, bool value, Function onPress){
 
-    return /* Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-     Text(text,
-       style: TextStyle(
-           fontSize: 15,
-           fontFamily: Assets.muliRegular,
-           color:Colors.black,
-       ),),
-
-     Row(
-       mainAxisAlignment: MainAxisAlignment.end,
-       children: [
-         Container(
-           width: AppSizes.width*0.11,
-           height: AppSizes.height*0.03,
-           margin: EdgeInsets.all(12),
-           decoration: BoxDecoration(
-               borderRadius: BorderRadius.circular(30),
-               color: AppColors.clr_bg_grey
-           ),
-           child: Stack(
-             children: [
-               Align(
-                 alignment:Alignment.centerLeft,
-                 child: Container(
-                   height: AppSizes.height*0.03,
-                   width: AppSizes.width*0.04,
-                   margin: EdgeInsets.only(left:AppSizes.width*0.01,right: AppSizes.width*0.01),
-                   decoration: BoxDecoration(
-                       color: Colors.white,
-                       shape: BoxShape.circle
-                   ),
-                 ),
-               )
-             ],
-           ),
-         ),
-       ],
-     )
-      ],
-    );*/Container(
+    return Container(
         margin: EdgeInsets.only(top:AppSizes.height*0.01),
-        padding: EdgeInsets.all(10),
+
         height: AppSizes.height*0.09,
         width: AppSizes.width,
 

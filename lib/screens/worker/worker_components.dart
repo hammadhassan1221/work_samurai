@@ -13,40 +13,11 @@ class WorkerComponents {
         height: AppSizes.height * 0.9,
         width: AppSizes.width * 0.9,
         color: AppColors.clr_bg,
+        padding: EdgeInsets.only(left:AppSizes.width*0.040),
         child: ListView(
           children: [
-            Container(
-                child: Row(
-                  children: [
-                    Row(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.only(top: 10.0),
-                          child: Image.asset(
-                            Assets.support,
-                            height: 100,
-                            width: 100,
-                          ),
-                        ),
-                        Container(
-                            width: AppSizes.width*0.60,
-                            height: AppSizes.height/8,
-                            padding: EdgeInsets.only(top: AppSizes.height*0.03),
-                            child: Text(
-                                "Edit",
-                                textAlign: TextAlign.right,
-                                style: TextStyle(
-                                  decoration: TextDecoration.underline,
-                                  fontSize: 18,
-                                  fontFamily: 'MuliBold',
-                                )
-                            )
-                        )
-                      ],
-                    )
-                  ],
-                )
-            ),
+            getUserEdit(imagePath: Assets.support, text: "Edit"),
+
             SizedBox(
               height: AppSizes.height * 0.01,
             ),
@@ -60,8 +31,8 @@ class WorkerComponents {
                             "Robert Miller",
                             textAlign: TextAlign.left,
                             style: TextStyle(
-                              fontSize: 22,
-                              fontFamily: 'MuliBold',
+                                fontSize: 22,
+                                fontFamily: 'MuliBold,'
 
                             )
                         ),
@@ -88,9 +59,9 @@ class WorkerComponents {
                                 Text(
                                     "4.5",
                                     style: TextStyle(
-                                      fontSize: 13,
+                                      fontSize: 12,
                                       fontFamily: 'MuliRegular',
-                                      color: AppColors.clr_bg_black2,
+                                      color: AppColors.clr_bg_grey,
                                     )
                                 )
                               ],
@@ -112,19 +83,11 @@ class WorkerComponents {
                   ],
                 )
             ),
+
             SizedBox(
               height: AppSizes.height * 0.01,
             ),
-            Container(
-                width: AppSizes.width * 0.85,
-                child: Text(
-                    "Fusce maximus cursus lectus, varius ultricies erat molestie vel. Fusce sapien urna, rhoncus et tempor vel, placerat eu velit. Pellentesque nec felis pulvinar, luctus lectus eget!",
-                    style: TextStyle(
-                      fontSize: 15,
-                      color: AppColors.clr_bg_black2,
-                      fontFamily: 'MuliRegular',
-                    )
-                )
+            getUserDetails(text:"Fusce maximus cursus lectus, varius ultricies erat molestie vel. Fusce sapien urna, rhoncus et tempor vel, placerat eu velit. Pellentesque nec felis pulvinar, luctus lectus eget!",
             ),
             SizedBox(
               height: AppSizes.height * 0.01,
@@ -133,86 +96,14 @@ class WorkerComponents {
               indent: 20,
               endIndent: 30,
             ),
-            Container(
-                width: AppSizes.width * 0.85,
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.check,size:12
-                        ),
-                        SizedBox(
-                          width: AppSizes.width*0.05,
-                        ),
-                        Text(
-                          "Work rights verified",
-                          style: TextStyle(
-                            fontFamily: 'MuliSemiBold',
-                            fontSize: 15,
-                          ),
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                        width: AppSizes.width * 0.01,
-                    ),
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.check,size: 12,
-                        ),
-                        SizedBox(
-                          width: AppSizes.width*0.05,
-                        ),
-                        Text(
-                          "Driver License verified",
-                          style: TextStyle(
-                            fontFamily: 'MuliSemiBold',
-                            fontSize: 15,
-                          ),
-                        )
-                      ],
-                    ),
-                    SizedBox(width: AppSizes.width * 0.01,
-                    ),
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.check,size: 12,
-                        ),
-                        SizedBox(width: AppSizes.width * 0.05,
-                        ),
-                        Text(
-                          "Police check",
-                          style: TextStyle(
-                            fontFamily: 'MuliSemiBold',
-                            fontSize: 15,
-                          ),
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: AppSizes.height * 0.01,
-                    ),
-                  ],
-                )
-            ),
-            Divider(
-              indent: 20,
-              endIndent: 30,
-            ),
-            Container(
-                width: AppSizes.width * 0.85,
-                child: Text(
-                    "Completed Jobs",
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: AppColors.clr_bg_black,
-                      fontFamily: 'MuliBold',
-                    )
-                )
-            ),
+
+            getDocumentDetails(text: "Work rights verified"),
+
+            getDocumentDetails(text: "Driver License verified",),
+
+            getDocumentDetails(text: "Police check"),
+
+            getHeadings(text: "Completed Jobs"),
             SizedBox(
               height: AppSizes.height * 0.01,
             ),
@@ -234,17 +125,7 @@ class WorkerComponents {
               indent: 20,
               endIndent: 30,
             ),
-            Container(
-                width: AppSizes.width * 0.85,
-                child: Text(
-                    "Positions",
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: AppColors.clr_bg_black,
-                      fontFamily: 'MuliBold'
-                    )
-                )
-            ),
+            getHeadings(text: "Positions"),
             SizedBox(
               height: AppSizes.height * 0.02,
             ),
@@ -253,9 +134,9 @@ class WorkerComponents {
                 child: Wrap(
                   children: [
                     Container(
-                        padding: EdgeInsets.all(AppSizes.width*0.020),
+                        padding: EdgeInsets.all(10.0,),
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16.0),
+                          borderRadius: BorderRadius.circular(20.0),
                           color: AppColors.clr_field,
                         ),
                         child: Text(
@@ -268,12 +149,12 @@ class WorkerComponents {
                         )
                     ),
                     SizedBox(
-                      width: AppSizes.width * 0.05,
+                      width: AppSizes.width * 0.025,
                     ),
                     Container(
-                        padding: EdgeInsets.all(AppSizes.width*0.020),
+                        padding: EdgeInsets.all(10.0,),
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16.0),
+                          borderRadius: BorderRadius.circular(20.0),
                           color: AppColors.clr_field,
                         ),
                         child: Text(
@@ -286,12 +167,12 @@ class WorkerComponents {
                         )
                     ),
                     SizedBox(
-                      width: AppSizes.width * 0.05,
+                      width: AppSizes.width * 0.025,
                     ),
                     Container(
-                        padding: EdgeInsets.all(AppSizes.width*0.020),
+                        padding: EdgeInsets.all(10.0,),
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16.0),
+                          borderRadius: BorderRadius.circular(20.0),
                           color: AppColors.clr_field,
                         ),
                         child: Text(
@@ -304,12 +185,13 @@ class WorkerComponents {
                         )
                     ),
                     SizedBox(
-                      height: AppSizes.height * 0.08,width: AppSizes.width * 0.05,
+                      width: AppSizes.width*0.025,
+                      height: AppSizes.height * 0.08,
                     ),
                     Container(
-                        padding: EdgeInsets.all(AppSizes.width*0.020),
+                        padding: EdgeInsets.all(10.0,),
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16.0),
+                          borderRadius: BorderRadius.circular(20.0),
                           color: AppColors.clr_field,
                         ),
                         child: Text(
@@ -331,146 +213,23 @@ class WorkerComponents {
               indent: 20,
               endIndent: 30,
             ),
-            Container(
-                width: AppSizes.width * 0.85,
-                child: Text(
-                    "Compliments",
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: AppColors.clr_bg_black,
-                      fontFamily: 'MuliBold',
-                    )
-                )
-            ),
+            getHeadings(text: "Compliments"),
             SizedBox(
               height: AppSizes.height * 0.01,
             ),
-            Container(
-                width: AppSizes.width * 0.85,
-                child: Row(
-                  children: [
-                    Image.asset(Assets.diamond,
-                        height: 25,
-                        width: 25),
-                    SizedBox(
-                      width: AppSizes.width * 0.03,
-                    ),
-                    Text(
-                      "Perfect Service",
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontFamily: 'MuliSemiBold',
-                      ),
-                    ),
-                    SizedBox(
-                      width: AppSizes.width * 0.03,
-                    ),
-                    Container(
-                        padding: EdgeInsets.only(left: 5.0, right: 5.0),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8.0),
-                            border: Border.all(
-                              color: AppColors.clr_bg_grey,
-                            )
-                        ),
-                        child: Text(
-                            "3",
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontFamily: 'MuliRegular',
-                              color: AppColors.clr_bg_grey,
-                            )
-                        )
-                    ),
-                  ],
-                )
-            ),
+
+
+            getCompliments(imagePath: Assets.diamond, compliment: "Perfect Service", rating: "3"),
             SizedBox(
               height: AppSizes.height * 0.01,
             ),
-            Container(
-                width: AppSizes.width * 0.85,
-                child: Row(
-                  children: [
-                    Image.asset(Assets.communicate,
-                        height: 25,
-                        width: 25),
-                    SizedBox(
-                      width: AppSizes.width * 0.03,
-                    ),
-                    Text(
-                      "Good Communication",
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontFamily: 'MuliSemiBold',
-                      ),
-                    ),
-                    SizedBox(
-                      width: AppSizes.width * 0.01,
-                    ),
-                    Container(
-                        padding: EdgeInsets.only(left: 5.0, right: 5.0),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8.0),
-                            border: Border.all(
-                              color: AppColors.clr_bg_grey,
-                            )
-                        ),
-                        child: Text(
-                            "10",
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontFamily: 'MuliRegular',
-                              color: AppColors.clr_bg_grey,
-                            )
-                        )
-                    ),
-                  ],
-                )
-            ),
+
+
+            getCompliments(imagePath: Assets.communicate, compliment: "Good Communication", rating: "10"),
             SizedBox(
               height: AppSizes.height * 0.01,
             ),
-            Container(
-                width: AppSizes.width * 0.85,
-                child: Row(
-                  children: [
-                    Image.asset(Assets.muscle,
-                        height: 25,
-                        width: 25),
-                    SizedBox(
-                      width: AppSizes.width * 0.03,
-                    ),
-                    Text(
-                      "Hard Worker",
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontFamily: 'MuliSemiBold',
-                      ),
-                    ),
-                    SizedBox(
-                      width: AppSizes.width * 0.03,
-                    ),
-                    Container(
-                        padding: EdgeInsets.only(left: 5,right: 5),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(6.0),
-                            border: Border.all(
-                              color: AppColors.clr_bg_grey,
-                            )
-                        ),
-                        child: Text(
-                            "6",
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontFamily: 'MuliRegular',
-                              color: AppColors.clr_bg_grey,
-                            )
-                        )
-                    ),
-                  ],
-                )
-            ),
+            getCompliments(imagePath: Assets.muscle, compliment: "Hard Worker", rating: "6")
 
           ],
         )
@@ -526,9 +285,6 @@ class WorkerComponents {
                               children: [
                                 Image.asset(
                                   Assets.support,
-                                  width: AppSizes.width * 0.18,
-                                  height: AppSizes.height * 0.08,
-                                  fit: BoxFit.fill,
                                 ),
                                 SizedBox(
                                   width: AppSizes.width * 0.01,
@@ -1736,7 +1492,6 @@ class WorkerComponents {
                       width: AppSizes.width * 0.9,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
-
                           border: Border.all(color: AppColors.clr_bg_grey),
                           color: AppColors.clr_white),
                       child: Column(
@@ -1779,7 +1534,7 @@ class WorkerComponents {
                                           ),
 
                                           SizedBox(
-                                            height: AppSizes.height * 0.03,
+                                            height: AppSizes.height * 0.015,
                                           ),
                                           Text(
                                             "Crown Hotel, New York",
@@ -1962,7 +1717,7 @@ class WorkerComponents {
                                             ),
 
                                             SizedBox(
-                                              height: AppSizes.height * 0.03,
+                                              height: AppSizes.height * 0.015,
                                             ),
                                             Text(
                                               "Crown Hotel, New York",
@@ -2310,7 +2065,7 @@ class WorkerComponents {
         child: Column(
           children: [
             Container(
-              height: AppSizes.height * 0.45,
+              height: AppSizes.height * 0.35,
               width: AppSizes.width * 0.9,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
@@ -2319,7 +2074,7 @@ class WorkerComponents {
               child: Column(
                 children: [
                   Container(
-                    height: AppSizes.height * 0.21,
+                    height: AppSizes.height * 0.165,
                     padding: EdgeInsets.all(15.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -2347,9 +2102,6 @@ class WorkerComponents {
                                     fontFamily: 'MuliRegular',
                                     color: AppColors.clr_bg_black2,
                                   ),
-                                ),
-                                SizedBox(
-                                  height: AppSizes.height * 0.03,
                                 ),
                                 Text(
                                   "Crown Hotel, New York",
@@ -2434,7 +2186,7 @@ class WorkerComponents {
                   ),
                   Divider(),
                   Container(
-                    height: AppSizes.height*0.15,
+                    height: AppSizes.height*0.1,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -2645,14 +2397,14 @@ class WorkerComponents {
                                   children: [
                                     Image.asset(Assets.start_gig,
                                         height: 24,
-                                        width: 24),
+                                        width: 24,color: AppColors.clr_green,),
                                     SizedBox(width: AppSizes.width * 0.01,),
                                     Text(
                                         "Start Gig",
                                         style: TextStyle(
+
                                           fontSize: 14,
-                                          color: AppColors.clr_bg_black,
-                                        )
+                                          color: AppColors.clr_green,                                        )
                                     ),
                                   ],
                                 )
@@ -2796,14 +2548,14 @@ class WorkerComponents {
                                   children: [
                                     Image.asset(Assets.start_gig,
                                         height: 24,
-                                        width: 24),
+                                        width: 24,color: AppColors.clr_green,),
                                     SizedBox(width: AppSizes.width * 0.01,),
                                     Text(
                                         "Start Gig",
                                         style: TextStyle(
+
                                           fontSize: 14,
-                                          color: AppColors.clr_bg_black,
-                                        )
+                                          color: AppColors.clr_green,                                        )
                                     ),
                                   ],
                                 )
@@ -3228,7 +2980,6 @@ class WorkerComponents {
     );
   }
 
-
   _alertDialogueContainer(BuildContext context) {
     return {
       {
@@ -3367,7 +3118,7 @@ class WorkerComponents {
                                     ),
                                     Row(
                                       children: [
-                                        Icon(Icons.check,size: 13,)
+                                        Icon(Icons.check,size: 15,)
                                       ],
                                     )
 
@@ -3584,6 +3335,131 @@ class WorkerComponents {
 
   hideLoader(BuildContext context) {
     Navigator.of(context).pop();
+  }
+
+  //this has to be here when above line of codes is moved to respective files under new version of bottom navigation
+
+  Widget getDocumentDetails({@required String text}) {
+    return Row(
+      children: [
+        Icon(
+          Icons.check_circle,
+          size: 14,
+          color: AppColors.clr_green,
+        ),
+        SizedBox(
+          width: AppSizes.width * 0.05,
+        ),
+        Text(
+          text,
+          style: TextStyle(
+            fontFamily: 'MuliSemiBold',
+            fontSize: 15,
+          ),
+        ),
+        SizedBox(
+          height: AppSizes.height * 0.01,
+        ),
+      ],
+    );
+  }
+
+  Widget getUserEdit({@required String imagePath,@required String text}) {
+    return Container(
+        child: Row(
+          children: [
+            Container(
+              padding: EdgeInsets.only(top: 10.0),
+              child: Image.asset(
+                imagePath,
+                height: 100,
+                width: 100,
+              ),
+            ),
+            Container(
+                width: AppSizes.width * 0.55,
+                height: AppSizes.height / 8,
+                padding: EdgeInsets.only(top: AppSizes.height * 0.03),
+                child: Text(text,
+                    textAlign: TextAlign.right,
+                    style: TextStyle(
+                      decoration: TextDecoration.underline,
+                      fontSize: 18,
+                      fontFamily: 'MuliBold',
+                    )))
+          ],
+        ));
+  }
+
+  Widget getUserDetails({@required String text}){
+    return Container(
+        width: AppSizes.width * 0.85,
+        child: Text(
+            text,
+            style: TextStyle(
+              fontSize: 14,
+              color: AppColors.clr_bg_black2,
+              fontFamily: 'MuliRegular',                    )
+        )
+    );
+  }
+
+  Widget getHeadings({@required String text}){
+    return  Container(
+        margin: EdgeInsets.only(top:AppSizes.height*0.015),
+        width: AppSizes.width * 0.85,
+        child: Text(
+            text,
+            style: TextStyle(
+              fontSize: 20,
+              color: AppColors.clr_bg_black,
+              fontFamily: 'MuliBold',
+            )
+        )
+    );
+  }
+
+  Widget getCompliments({@required String imagePath, @required String compliment,@required String rating }){
+    return Container(
+        width: AppSizes.width * 0.85,
+        child: Row(
+          children: [
+            Image.asset(imagePath,
+                height: 25,
+                width: 25),
+            SizedBox(
+              width: AppSizes.width * 0.03,
+            ),
+            Text(
+              compliment,
+              style: TextStyle(
+                fontSize: 15,
+                fontFamily: 'MuliSemiBold',
+              ),
+            ),
+            SizedBox(
+              width: AppSizes.width * 0.03,
+            ),
+            Container(
+                padding: EdgeInsets.only(left: 5.0, right: 5.0),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8.0),
+                    border: Border.all(
+                      color: AppColors.clr_bg_black2,
+                    )
+                ),
+                child: Text(
+                    rating,
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontFamily: 'MuliRegular',
+                      color: AppColors.clr_bg_black2,
+                    )
+                )
+            ),
+          ],
+        )
+    );
   }
 
 }

@@ -14,8 +14,8 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        //resizeToAvoidBottomInset: true,
-        resizeToAvoidBottomPadding: true,
+        resizeToAvoidBottomInset: true,
+        //resizeToAvoidBottomPadding: true,
         body: Container(
           color: AppColors.clr_bg,
           height: AppSizes.height,
@@ -185,17 +185,21 @@ class _ChatScreenState extends State<ChatScreen> {
                           ),
                         ]
                     ),
-
-                    SizedBox(
-                      height: AppSizes.height*0.12,
-                    ),
-
-                   Container(
-                     alignment: Alignment.bottomCenter,
-                      child: _textFieldContainer(),
-                    ),
                   ],
                 ),
+              ),
+              Container(
+                  alignment: Alignment.bottomCenter ,
+                  color: AppColors.clr_field,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      _textFieldContainer(),
+                      Icon(Icons.attach_file),
+
+                      Icon(Icons.send),
+                    ],
+                  )
               ),
             ],
           ),
@@ -206,12 +210,12 @@ class _ChatScreenState extends State<ChatScreen> {
 
   _textFieldContainer(){
     return Container(
-      height: AppSizes.height*0.08,
-      width: AppSizes.width,
-      margin: EdgeInsets.only(right: AppSizes.width*0.04,left: AppSizes.width*0.04,),
-      padding: EdgeInsets.all(AppSizes.width*0.03),
+      height: AppSizes.height*0.06,
+      width: AppSizes.width/1.3,
+      margin: EdgeInsets.all(12),
+      padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
-          color: AppColors.clr_field,
+          color: AppColors.clr_white,
           borderRadius: BorderRadius.circular(6)
       ),
       child: TextField(

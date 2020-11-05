@@ -4,7 +4,7 @@ class Assets{
   static const String google_login = "assets/png/google.png";
   static const String facebook_login = "assets/png/facebook.png";
   static const String gigs = "assets/png/gigs.png";
-  static const String alerts = "assets/png/alerts.png";
+  static const String alerts = "assets/png/alert@3x.png";
   static const String msgs = "assets/png/msgs.png";
   static const String profile = "assets/png/profile.png";
   static const String schedule = "assets/png/schedule.png";
@@ -43,6 +43,7 @@ class Assets{
   static const String sign = "assets/png/Signature@3x.png";
   static const String barArrow = "assets/png/Break@3x.png";
   static const String cancelgig = "assets/png/cancel_gig@3x.png";
+  static const String mails = "assets/png/mail@3x.png";
 
 
 
