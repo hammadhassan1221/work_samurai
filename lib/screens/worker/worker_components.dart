@@ -5,6 +5,7 @@ import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 
 class WorkerComponents{
+
   Widget getProfile(){
     return Container(
         height: AppSizes.height*0.9,
