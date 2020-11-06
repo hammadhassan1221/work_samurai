@@ -45,7 +45,7 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
             child: Column(
               children: [
                 Container(
-                  height: AppSizes.height * 0.885,
+                  height: AppSizes.height * 0.881,
                   color: AppColors.clr_bg,
                   child: _bottomNavigationContainer(),
                 )
@@ -168,24 +168,11 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
   _bottomNavigationContainer() {
     if (_currentIndex == 0) {
       return Container(
-        height: AppSizes.height * 0.8,
+        height: AppSizes.height * 0.7,
         width: AppSizes.width,
         color: AppColors.clr_bg,
         child: Column(children: [
-          Container(
-              width: AppSizes.width,
-              height: AppSizes.height * 0.09,
-              padding: EdgeInsets.only(left: AppSizes.width*0.04, top: AppSizes.width*0.07),
-              color: AppColors.clr_white,
-              child: Text(
-                "Gigs",
-                style: TextStyle(
-                  fontSize: 22,
-                  fontFamily: 'MuliBold',
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-          ),
+          CommonWidgets.getAppBarWithout(text: "Gigs"),
           Container(
             alignment: Alignment.center,
             width: AppSizes.width,
@@ -233,7 +220,7 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
     }
     else if (_currentIndex == 1) {
       return Container(
-        height: AppSizes.height * 0.8,
+        height: AppSizes.height * 0.6,
         width: AppSizes.width,
         color: AppColors.clr_bg,
         child: Column(children: [

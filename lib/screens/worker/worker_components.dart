@@ -1485,6 +1485,7 @@ class WorkerComponents {
         child: ListView(
           children: [
             Container(
+                height: AppSizes.height,
                 width: AppSizes.width * 0.9,
                 child: Column(
                   children: [

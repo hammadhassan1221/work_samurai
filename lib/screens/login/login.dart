@@ -8,6 +8,7 @@ import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/screens/forget_password/forget_password.dart';
 import 'package:work_samurai/screens/login/login_components.dart';
 import 'package:work_samurai/screens/sign_up/sign_up.dart';
+import 'package:work_samurai/widgets/toast.dart';
 
 import '../../res/sizes.dart';
 import 'login_providers.dart';
