@@ -4,11 +4,14 @@ class Assets{
   static const String google_login = "assets/png/google.png";
   static const String facebook_login = "assets/png/facebook.png";
   static const String gigs = "assets/png/gigs.png";
-  static const String alerts = "assets/png/alerts.png";
+  static const String alerts = "assets/png/alert@3x.png";
   static const String msgs = "assets/png/msgs.png";
   static const String profile = "assets/png/profile.png";
   static const String schedule = "assets/png/schedule.png";
+  static const String track = "assets/png/Track@3x.png";
+  static const String account = "assets/png/account@3x.png";
   static const String distance = "assets/png/distance.png";
+  static const String applicants = "assets/png/applicants@3x.png";
   static const String location = "assets/png/location.png";
   static const String support = "assets/png/support.png";
   static const String star = "assets/png/star.png";
@@ -25,10 +28,32 @@ class Assets{
   static const String management = "assets/png/management.png";
   static const String team_work = "assets/png/team_work.png";
   static const String venue_safety = "assets/png/venue_safety.png";
+  static const String time = "assets/png/Time@3x.png";
+  static const String checkintime = "assets/png/check_in_time@3x.png";
+  static const String breakcup = "assets/png/give_break@3x.png";
+  static const String endshift = "assets/png/end_shift@3x.png";
+  static const String profileS = "assets/png/Icon - L@3x.png";
+  static const String lock = "assets/png/Icon - Lock3x.png";
+  static const String phone = "assets/png/Icon awesome-phone-alt@3x.png";
+  static const String mail = "assets/png/Icon feather-mail@3x.png";
+  static const String city = "assets/png/Icon awesome-city@3x.png";
+  static const String correct = "assets/png/correct_wor_attire@3x.png";
+  static const String card = "assets/png/credit-card@3x.png";
+  static const String payment = "assets/png/payment-method@3x.png";
+  static const String sign = "assets/png/Signature@3x.png";
+  static const String barArrow = "assets/png/Break@3x.png";
+  static const String cancelgig = "assets/png/cancel_gig@3x.png";
+  static const String mails = "assets/png/mail@3x.png";
+
+
+
+
+ //jpg
+  static const String google = "assets/jpg/GoogleMaps.jpg";
 
 
   //fonts
-  static const String muliRegular = "assets/fonts/Muli-Regular.tff";
-  static const String muliBold = "assets/fonts/Muli-Bold.ttf";
-  static const String muliSemiBold = "assets/font/Muli-SemiBold.tff";
+  static const String muliRegular = 'MuliRegular';
+  static const String muliBold = 'MuliBold';
+  static const String muliSemiBold = 'MuliSemiBold';
 }

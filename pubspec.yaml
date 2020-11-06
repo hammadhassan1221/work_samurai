@@ -27,6 +27,10 @@ dependencies:
   provider: ^4.3.2+1
   http: ^0.12.2
   flutter_datetime_picker: ^1.4.0
+  get_version: ^0.2.2
+  google_fonts: ^1.1.1
+  fluttertoastalert: ^1.0.3
+
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -48,18 +52,17 @@ flutter:
   uses-material-design: true
   assets:
     - assets/png/
-    - assets/svg/
     - assets/jpg/
   fonts:
-    - family: Multi-Regular
+    - family: MuliRegular
       fonts:
-        - asset: assets/fonts/Muli-Regular.ttf
-    - family: Multi-Bold
+        - asset: fonts/Muli-Regular.ttf
+    - family: MuliBold
       fonts:
-        - asset: assets/fonts/Muli-Bold.ttf
-    - family: Multi-SemiBold
+        - asset: fonts/Muli-Bold.ttf
+    - family: MuliSemiBold
       fonts:
-        - asset: assets/fonts/Muli-SemiBold.ttf
+        - asset: fonts/Muli-SemiBold.ttf
 
   # To add assets to your application, add an assets section, like this:
   # assets:

@@ -1,110 +1,118 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:work_samurai/animations/slide_right.dart';
-import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
-import 'package:work_samurai/screens/worker/worker.dart';
+
+
 
 class LoginComponents {
   Widget getImageContainer(String imagePath, double height, double width) {
     return Container(
-        child: Image.asset(imagePath, width: width, height: height));
+        child: Image.asset(imagePath, width: width, height: height,fit: BoxFit.cover,));
   }
 
-  Widget getRichText({@required String text1, @required String text2}) {
-    return Container(
-        width: AppSizes.width * 0.85,
-        child: RichText(
-          textAlign: TextAlign.center,
-          text: TextSpan(
-            text: text1,
-            style: TextStyle(
-              fontSize: 15,
-              color: AppColors.clr_bg_black,
-              fontFamily: Assets.muliRegular,
-            ),
-            children: <TextSpan>[
-              TextSpan(
-                text: text2,
+  Widget getRichText(
+      {@required String text1,
+        @required String text2,
+        @required Function onPress}) {
+    return GestureDetector(
+      onTap: onPress,
+      child: Container(
+          alignment: Alignment.bottomCenter,
+
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                text1,
+                style: TextStyle(
+                  fontSize: 15,
+                  color: AppColors.clr_bg_black,
+                  fontFamily: 'MuliRegular',
+                ),
+              ),
+              SizedBox(
+                width: AppSizes.width * 0.02,
+              ),
+              Text(
+                text2,
                 style: TextStyle(
                   fontSize: 15,
                   color: AppColors.clr_red,
-                  fontFamily: Assets.muliRegular,
+                  fontFamily: 'MuliRegular',
                   decoration: TextDecoration.underline,
                 ),
               )
             ],
-          ),
-        ));
+          )),
+    );
   }
 
-  Widget getLoginButton(@required String imagePath, @required String text) {
-    return Container(
-      height: AppSizes.height * 0.08,
-      width: AppSizes.width * 0.85,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(
-          5,
+  Widget getSignUpButton({@required BuildContext context, @required Function onPress,@required String text}) {
+    return GestureDetector(
+      onTap: onPress,
+      child: Container(
+        margin: EdgeInsets.only(left:AppSizes.height*0.03,right:AppSizes.height*0.03,),
+        alignment: Alignment.center,
+        height: AppSizes.height * 0.08,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(
+            5,
+          ),
+          border: Border.all(
+            color: AppColors.clr_bg_black,
+          ),
+          color: AppColors.clr_bg_black,
         ),
-        border: Border.all(
-          color: AppColors.clr_bg_grey,
-        ),
-        color: AppColors.transparentColor,
-      ),
-      child: FlatButton(
-        color: AppColors.transparentColor,
-        textColor: AppColors.clr_bg_black,
-        padding: EdgeInsets.all(8.0),
-        onPressed: () {},
-        child: Row(
-          children: [
-            getImageContainer(imagePath, 50, 50),
-            SizedBox(
-              width: AppSizes.width * 0.05,
-            ),
-            Container(
-              child: Text(
-                text,
-                style: TextStyle(
-                  fontSize: 16,
-                  fontFamily: Assets.muliRegular,
-                ),
-              ),
-            )
-          ],
+        child: Text(
+          text,
+          style: TextStyle(
+              fontSize: 16.0,
+              fontFamily: 'MuliRegular',
+              color: AppColors.clr_white),
         ),
       ),
     );
   }
 
-  Widget getSignUpButton(BuildContext context) {
+  Widget getInputField(
+      {@required Color backgroundColor,
+        @required Color borderColor,
+        @required Color textColor,
+        @required String text,
+        @required String imagePath,
+        @required TextEditingController controller,
+      }) {
     return Container(
-      height: AppSizes.height * 0.08,
-      width: AppSizes.width * 0.85,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(
-          5,
-        ),
-        border: Border.all(
-          color: AppColors.clr_bg_black,
-        ),
-        color: AppColors.clr_bg_black,
-      ),
-      child: FlatButton(
-        color: AppColors.clr_bg_black,
-        textColor: Colors.white,
-        onPressed: () {
-          Navigator.push(context, SlideRightRoute(page: Worker()));
-        },
-        child: Text(
-          "Login with email",
-          style: TextStyle(
-            fontSize: 16.0,
-            fontFamily: Assets.muliRegular,
+        width: AppSizes.width,
+        height: AppSizes.height*0.075,
+        alignment: Alignment.bottomCenter,
+
+        margin: EdgeInsets.only(left:AppSizes.height*0.03,right:AppSizes.height*0.03,),
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: borderColor,
           ),
+          borderRadius: BorderRadius.circular(5),
+          color: backgroundColor,
         ),
-      ),
+
+        child:TextField(
+          cursorColor: AppColors.clr_bg_black2,
+          controller: controller,
+          decoration: InputDecoration(
+              labelText: text,
+              labelStyle: TextStyle(fontSize: 12,
+                color: AppColors.clr_bg_black2,
+                fontFamily: 'MuliRegular',),
+              border: InputBorder.none,
+              prefixIcon: Padding(
+                padding:EdgeInsets.all(AppSizes.width*0.03),
+                child: Image.asset(imagePath,height: 25,width :25),
+              )
+
+          ),
+        )
     );
   }
 }
