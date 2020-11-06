@@ -13,6 +13,7 @@ Map<int, Color> colorCodes = {
   700: Color.fromRGBO(147, 205, 72, .8),
   800: Color.fromRGBO(147, 205, 72, .9),
   900: Color.fromRGBO(147, 205, 72, 1),
+
 };
 
 class AppColors{
