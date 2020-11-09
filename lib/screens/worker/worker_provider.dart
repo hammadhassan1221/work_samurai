@@ -11,7 +11,6 @@ class WorkerProvider extends ChangeNotifier {
 
   void setValue(RangeValues values){
     this.values = values;
-
     notifyListeners();
   }
 }
