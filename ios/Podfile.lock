@@ -1,0 +1,47 @@
+PODS:
+  - Flutter (1.0.0)
+  - fluttertoastalert (0.0.1):
+    - Flutter
+    - SCLAlertView
+  - get_version (0.0.1):
+    - Flutter
+  - package_info (0.0.1):
+    - Flutter
+  - path_provider (0.0.1):
+    - Flutter
+  - SCLAlertView (0.8)
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - fluttertoastalert (from `.symlinks/plugins/fluttertoastalert/ios`)
+  - get_version (from `.symlinks/plugins/get_version/ios`)
+  - package_info (from `.symlinks/plugins/package_info/ios`)
+  - path_provider (from `.symlinks/plugins/path_provider/ios`)
+
+SPEC REPOS:
+  trunk:
+    - SCLAlertView
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  fluttertoastalert:
+    :path: ".symlinks/plugins/fluttertoastalert/ios"
+  get_version:
+    :path: ".symlinks/plugins/get_version/ios"
+  package_info:
+    :path: ".symlinks/plugins/package_info/ios"
+  path_provider:
+    :path: ".symlinks/plugins/path_provider/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  fluttertoastalert: d495c35eb40caa4fac869197570c6773282cb6df
+  get_version: 2bc18c4e26a265571662cab5d38f8b50dc8c1c77
+  package_info: 873975fc26034f0b863a300ad47e7f1ac6c7ec62
+  path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
+  SCLAlertView: 6a77bb2edfc65e04dbe57725546cb4107a506b85
+
+PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+
+COCOAPODS: 1.9.3
