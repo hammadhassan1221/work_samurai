@@ -4,7 +4,7 @@ import 'package:get_version/get_version.dart';
 import 'package:work_samurai/animations/slide_right.dart';
 import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/screens/login/login.dart';
-import 'package:work_samurai/screens/worker/worker.dart';
+
 
 class SplashProvider extends ChangeNotifier {
   String versionNumber;
