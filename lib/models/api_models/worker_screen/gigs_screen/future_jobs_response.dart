@@ -15,6 +15,7 @@ class FutureJobsResponse {
     }
   }
 
+
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['ResponseCode'] = this.responseCode;

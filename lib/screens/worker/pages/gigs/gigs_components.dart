@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:work_samurai/models/api_models/worker_screen/gigs_screen/future_jobs_response.dart';
 import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/widgets/widgets.dart';
 
 class GigsComponents{
-  Widget getOffersContainer(BuildContext context) {
+  Widget getOffersContainer({@required BuildContext context, @required FutureJobsResponse futureJobsResponse}) {
     return Container(
         child: ListView(
           children: [
@@ -1863,5 +1864,7 @@ class GigsComponents{
   hideLoader(BuildContext context) {
     Navigator.of(context).pop();
   }
+
+
 
 }
