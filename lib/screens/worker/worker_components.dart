@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:work_samurai/animations/slide_right.dart';
+import 'package:work_samurai/models/api_models/worker_screen/gigs_screen/future_jobs_response.dart';
 import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
@@ -8,6 +9,198 @@ import 'package:work_samurai/screens/chat/chat_screen.dart';
 import 'package:work_samurai/widgets/widgets.dart';
 
 class WorkerComponents {
+
+
+  Widget getOffersContainer(
+      BuildContext context, FutureJobsResponse futureJobsResponse) {
+    return Container(
+        child: ListView.builder(
+          itemCount: futureJobsResponse.data.length,
+          itemBuilder: (context, index) {
+            return Container(
+                width: AppSizes.width,
+                margin: EdgeInsets.only(top: AppSizes.width*0.03,left: AppSizes.width*0.05, right: AppSizes.width*0.05),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.clr_bg_grey,
+                        spreadRadius: 0.5,
+                        blurRadius: 1,
+                        offset: Offset(0, 0),
+                      )
+                    ],
+                    border: Border.all(color: AppColors.clr_bg_grey),
+                    color: AppColors.clr_white),
+                child: Column(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        _newTaskModalBottomSheet(context);
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(10.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      futureJobsResponse.data[index].name,
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontFamily: Assets.muliSemiBold,
+                                        color: AppColors.clr_bg_black,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: AppSizes.height * 0.015,
+                                    ),
+                                    Text(
+                                      "Wed, Sep 23",
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        color: AppColors.clr_bg_grey,
+                                      ),
+                                    ),
+                                    Text(
+                                      getTime(futureJobsResponse
+                                          .data[index].startDate) +
+                                          " - " +
+                                          getTime(futureJobsResponse
+                                              .data[index].completedDate),
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        color: AppColors.clr_bg_grey,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: AppSizes.height * 0.01,
+                                    ),
+                                    Container(
+                                      width: AppSizes.width*0.65,
+                                      child: Text(
+                                        futureJobsResponse.data[index].description,
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          color: AppColors.clr_bg_grey,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Column(
+                                  children: [
+                                    IconButton(
+                                      onPressed: () {
+                                        _newTaskModalBottomSheet(context);
+                                      },
+                                      icon: Icon(
+                                        Icons.arrow_forward_ios,
+                                        size: 15,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                    Text(
+                                      "\$" + _getTotalAmount(futureJobsResponse.data[index].rate, futureJobsResponse.data[index].estimatedDuration),
+                                      style: TextStyle(
+                                        fontSize: 22,
+                                        fontFamily: Assets.muliSemiBold,
+                                      ),
+                                    ),
+                                    Text(
+                                      "\$" + futureJobsResponse.data[index].rate.toString() + "/h",
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontFamily: Assets.muliRegular,
+                                      ),
+                                    )
+                                  ],
+                                )
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Container(
+                        child: Row(
+                          children: [
+                            Container(
+                                decoration: BoxDecoration(
+                                  border: Border(
+                                    top: BorderSide(
+                                        width: 2.0, color: AppColors.clr_bg_grey),
+                                    right: BorderSide(
+                                        width: 2.0, color: AppColors.clr_bg_grey),
+                                  ),
+                                  color: Colors.white,
+                                ),
+                                padding: EdgeInsets.only(
+                                    left: 50.0, right: 10.0, top: 10.0, bottom: 10.0),
+                                width: AppSizes.width * 0.44,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Icon(
+                                      Icons.clear,
+                                      color: AppColors.clr_bg_black,
+                                    ),
+                                    SizedBox(
+                                      width: AppSizes.width * 0.02,
+                                    ),
+                                    Text("Skip",
+                                        style: TextStyle(
+                                            color: AppColors.clr_bg_black,
+                                            fontSize: 17)),
+                                  ],
+                                )),
+                            GestureDetector(
+                              onTap: () {
+                                _alertDialogueContainer(context);
+                              },
+                              child: Container(
+                                  padding: EdgeInsets.only(
+                                      left: 50.0, right: 10.0, top: 10.0, bottom: 10.0),
+                                  decoration: BoxDecoration(
+                                    border: Border(
+                                      top: BorderSide(
+                                          width: 2.0, color: AppColors.clr_bg_grey),
+                                    ),
+                                    color: Colors.white,
+                                  ),
+                                  width: AppSizes.width * 0.44,
+                                  child: Row(
+                                    children: [
+                                      Icon(
+                                        Icons.check,
+                                        color: AppColors.clr_green,
+                                      ),
+                                      SizedBox(
+                                        width: AppSizes.width * 0.02,
+                                      ),
+                                      Text("Accept",
+                                          style: TextStyle(
+                                              color: AppColors.clr_green,
+                                              fontSize: 16)),
+                                    ],
+                                  )),
+                            ),
+                          ],
+                        )),
+                  ],
+                ));
+          },
+        ));
+  }
 
 
 
