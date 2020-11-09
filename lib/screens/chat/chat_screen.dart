@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
+import 'package:work_samurai/widgets/widgets.dart';
 
 class ChatScreen extends StatefulWidget {
   @override
@@ -23,33 +24,7 @@ class _ChatScreenState extends State<ChatScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
-                height: AppSizes.height * 0.09,
-                width: AppSizes.width,
-                color: AppColors.clr_white,
-                padding: EdgeInsets.all(15),
-                child: Row(
-                  children: [
-                    GestureDetector(
-                        onTap:(){
-                          Navigator.pop(context);
-                        },
-                        child: Image.asset(Assets.barArrow,height: 20,width: 20,)),
-                    SizedBox(
-                      width: AppSizes.width * 0.03,
-                    ),
-                    Text(
-                      "Chat with Crown Hotel",
-                      style: TextStyle(
-                          decoration: TextDecoration.none,
-                          color: AppColors.clr_bg_black,
-                          //fontWeight: FontWeight.w600,
-                          fontFamily: 'MuliBold',
-                          fontSize: 22),
-                    )
-                  ],
-                ),
-              ),
+              CommonWidgets.getAppBar(text: "Chat with Crown Hotel", onPress: (){Navigator.pop(context);}, imagepath: Assets.barArrow),
               Expanded(
                 child: ListView(
                   children: [

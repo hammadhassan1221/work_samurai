@@ -54,7 +54,7 @@ class LoginProvider extends ChangeNotifier {
         _loader.hideLoader(context);
         _loginResponse = LoginResponse.fromJson(_genericDecodeEncode.decodeJson(Helper.getString(_response)));
         print(_loginResponse.accessToken);
-        ApplicationToast.getSuccessToast(durationTime: 3, heading: "Success", subHeading: "User logged in sucessfully");
+        ApplicationToast.getSuccessToast(durationTime: 3, heading: "Success", subHeading: "Login Successfully");
         Navigator.pushReplacement(context, SlideRightRoute(page: Worker()));
 
       }

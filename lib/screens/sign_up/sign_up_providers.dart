@@ -109,9 +109,12 @@ class SignUpProvider extends ChangeNotifier {
         ApplicationToast.getSuccessToast(durationTime: 3, heading: "Congratulation", subHeading: "");
         _loginResponse = LoginResponse.fromJson(_genericDecodeEncode.decodeJson(Helper.getString(_response)));
 
+        ApplicationToast.getSuccessToast(durationTime: 3,
+            heading: "Success",
+            subHeading: "Welcome to Work Samurai");
+
         print(_loginResponse.accessExpiry);
         Navigator.pushReplacement(context, SlideRightRoute(page: Worker()));
-
       }
     }
     catch(e){
