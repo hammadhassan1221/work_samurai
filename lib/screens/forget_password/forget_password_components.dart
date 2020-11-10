@@ -29,7 +29,7 @@ class ForgetPasswordComponents{
 
         child:TextField(
           cursorColor: AppColors.clr_bg_black2,
-          cursorHeight: 12,
+          //cursorHeight: 12,
           decoration: InputDecoration(
               labelText: text,
               labelStyle: TextStyle(fontSize: 12,
