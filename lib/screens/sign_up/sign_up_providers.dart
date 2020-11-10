@@ -12,6 +12,7 @@ import 'package:work_samurai/network/network_helper_impl.dart';
 import 'package:work_samurai/screens/worker/worker.dart';
 import 'package:work_samurai/widgets/loader.dart';
 import 'package:work_samurai/widgets/toast.dart';
+import 'package:work_samurai/utilities/utilities.dart';
 
 class SignUpProvider extends ChangeNotifier {
   BuildContext _context;
@@ -72,7 +73,7 @@ class SignUpProvider extends ChangeNotifier {
     try{
       _loader.showLoader(context: context);
       Response _response = await _networkHelper.post(
-          signUpAPI,
+          signUpURL,
           headers: {
             "Authorization" : "Bearer KH87NJi0KdODA9KpXZQkrXbDWEFokc1PxYRbv+vV+ogYmCp4PJNALryPllpjNNzY/0r2fTA8a91DGXoa9cRpDkI1EI4v5lPfpqpImF2kssumZ9Y/n3wkCZF8Qqd2HAdCE=",
             "Content-Type" : "multipart/form-data",
@@ -121,19 +122,6 @@ class SignUpProvider extends ChangeNotifier {
       _loader.hideLoader(context);
       print(e.toString());
     }
-
-  }
-}
-
-extension StringExtensions on String{
-  bool validateEmail(){
-    return
-      RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(this);
-  }
-
-  bool validatePhoneNumber(){
-    return
-        RegExp(r"^(?:\+?(61))? ?(?:\((?=.*\)))?(0?[2-57-8])\)? ?(\d\d(?:[- ](?=\d{3})|(?!\d\d[- ]?\d[- ]))\d\d[- ]?\d[- ]?\d{3})$").hasMatch(this);
 
   }
 }

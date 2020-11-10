@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:work_samurai/models/api_models/worker_screen/gigs_screen/future_jobs_response.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/screens/worker/pages/gigs/gigs_components.dart';
@@ -7,6 +9,10 @@ import 'package:work_samurai/screens/worker/pages/gigs/gigs_provider.dart';
 import 'package:work_samurai/widgets/widgets.dart';
 
 class Gigs extends StatefulWidget {
+
+  final FutureJobsResponse jobsResponse;
+
+  Gigs({@required this.jobsResponse});
   @override
   _GigsState createState() => _GigsState();
 }
@@ -21,11 +27,16 @@ class _GigsState extends State<Gigs> with TickerProviderStateMixin{
     // TODO: implement initState
     super.initState();
     _gigsComponents = GigsComponents();
+    gigsProvider = Provider.of<GigsProvider>(context, listen: false);
+    Future.delayed(Duration.zero, (){
+      gigsProvider.init(context: context);
+    });
     _tabController = new TabController(length: 3, vsync: this);
   }
 
   @override
   Widget build(BuildContext context) {
+    Provider.of<GigsProvider>(context, listen: true);
     return Container(
       height: AppSizes.height * 0.7,
       width: AppSizes.width,
@@ -65,7 +76,18 @@ class _GigsState extends State<Gigs> with TickerProviderStateMixin{
             child: TabBarView(
               controller: _tabController,
               children: <Widget>[
-                _gigsComponents.getOffersContainer(context),
+                gigsProvider.getFutureJobFetched() ? _gigsComponents.getOffersContainer(context: context, futureJobsResponse: gigsProvider.getFutureJobResponse()) : Container(
+                  child: Column(
+                    children: [
+                      Container(
+                        height: AppSizes.height*0.05,
+                        width: AppSizes.width*0.05,
+                        margin: EdgeInsets.only(top: 20),
+                        child: CircularProgressIndicator(),
+                      ),
+                    ],
+                  ),
+                ),
                 _gigsComponents.getInProgressContainer(),
                 _gigsComponents.getConfirmedContainer(),
               ],
