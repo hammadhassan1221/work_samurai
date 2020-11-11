@@ -1,8 +1,10 @@
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:work_samurai/providers/multi_providers.dart';
 import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/routes/routes.dart';
+
+import 'providers/multi_providers.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,11 +16,11 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: multiProviders,
       child: MaterialApp(
-        title: 'Work Samuri',
+        title: 'Work Samurai',
         theme: ThemeData(
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
-          fontFamily: Assets.muliRegular,
+
         ),
         debugShowCheckedModeBanner: false,
         routes: Routes.routes,

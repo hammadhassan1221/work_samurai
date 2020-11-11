@@ -1,120 +1,118 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:work_samurai/animations/slide_right.dart';
-import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
-import 'package:work_samurai/screens/Business/home/pages/book/book.dart';
-import 'package:work_samurai/screens/business/application/application.dart';
-import 'package:work_samurai/screens/business/home/home.dart';
-import 'package:work_samurai/screens/signup/sign_up.dart';
-import 'package:work_samurai/screens/worker/worker.dart';
+
+
 
 class LoginComponents {
   Widget getImageContainer(String imagePath, double height, double width) {
     return Container(
-        child: Image.asset(imagePath, width: width, height: height));
+        child: Image.asset(imagePath, width: width, height: height,fit: BoxFit.cover,));
   }
 
-  Widget getRichText({@required String text1, @required String text2,@required BuildContext context}) {
-    return Container(
-      alignment: Alignment.bottomCenter,
-        margin: EdgeInsets.only(bottom:AppSizes.height*0.06),
+  Widget getRichText(
+      {@required String text1,
+        @required String text2,
+        @required Function onPress}) {
+    return GestureDetector(
+      onTap: onPress,
+      child: Container(
+          alignment: Alignment.bottomCenter,
 
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(text1,style: TextStyle(
-              fontSize: 15,
-              color: AppColors.clr_bg_black,
-              fontFamily: Assets.muliRegular,
-            ),),
-            SizedBox(width: AppSizes.width*0.02,),
-            Text("Sign Up",   style: TextStyle(
-              fontSize: 15,
-              color: AppColors.clr_red,
-              fontFamily: Assets.muliRegular,
-              decoration: TextDecoration.underline,
-            ),)
-          ],
-        ));
-  }
-
-  Widget getLoginButton(@required String imagePath, @required String text) {
-    return Container(
-
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(
-          5,
-        ),
-        border: Border.all(
-          color: AppColors.clr_bg_grey,
-        ),
-        color: AppColors.transparentColor,
-      ),
-      child: FlatButton(
-        color: AppColors.transparentColor,
-        textColor: AppColors.clr_bg_black,
-        padding: EdgeInsets.all(8.0),
-        onPressed: () {},
-        child: Row(
-          children: [
-            getImageContainer(imagePath, 28, 28),
-            SizedBox(
-              width: AppSizes.width * 0.10,
-            ),
-            Container(
-              child: Text(
-                text,
-                textAlign: TextAlign.center,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                text1,
                 style: TextStyle(
-                  fontSize: 16,
-                  fontFamily: Assets.muliRegular,
-
+                  fontSize: 15,
+                  color: AppColors.clr_bg_black,
+                  fontFamily: 'MuliRegular',
                 ),
-
               ),
+              SizedBox(
+                width: AppSizes.width * 0.02,
+              ),
+              Text(
+                text2,
+                style: TextStyle(
+                  fontSize: 15,
+                  color: AppColors.clr_red,
+                  fontFamily: 'MuliRegular',
+                  decoration: TextDecoration.underline,
+                ),
+              )
+            ],
+          )),
+    );
+  }
 
-            )
-          ],
+  Widget getSignUpButton({@required BuildContext context, @required Function onPress,@required String text}) {
+    return GestureDetector(
+      onTap: onPress,
+      child: Container(
+        margin: EdgeInsets.only(left:AppSizes.height*0.03,right:AppSizes.height*0.03,),
+        alignment: Alignment.center,
+        height: AppSizes.height * 0.08,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(
+            5,
+          ),
+          border: Border.all(
+            color: AppColors.clr_bg_black,
+          ),
+          color: AppColors.clr_bg_black,
+        ),
+        child: Text(
+          text,
+          style: TextStyle(
+              fontSize: 16.0,
+              fontFamily: 'MuliRegular',
+              color: AppColors.clr_white),
         ),
       ),
     );
   }
 
-  Widget getSignUpButton(BuildContext context) {
-    return Positioned(
-      top: AppSizes.height*0.55,
-      child: GestureDetector(
-        onTap: (){
-          Navigator.push(context, SlideRightRoute(page: Home()));
-        },
-        child: Container(
-          margin: EdgeInsets.only(left: AppSizes.width*0.05),
-          alignment: Alignment.center,
-          height: AppSizes.height * 0.08,
-          width: AppSizes.width/1.1 ,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(
-              5,
-            ),
-            border: Border.all(
-              color: AppColors.clr_bg_black,
-            ),
-            color: AppColors.clr_bg_black,
+  Widget getInputField(
+      {@required Color backgroundColor,
+        @required Color borderColor,
+        @required Color textColor,
+        @required String text,
+        @required String imagePath,
+        @required TextEditingController controller,
+      }) {
+    return Container(
+        width: AppSizes.width,
+        height: AppSizes.height*0.075,
+        alignment: Alignment.bottomCenter,
+
+        margin: EdgeInsets.only(left:AppSizes.height*0.03,right:AppSizes.height*0.03,),
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: borderColor,
           ),
-          child: Text(
-            "Login with email",
-            style: TextStyle(
-              fontSize: 16.0,
-              fontFamily: Assets.muliRegular,
-              color: AppColors.clr_white
-            ),
+          borderRadius: BorderRadius.circular(5),
+          color: backgroundColor,
+        ),
+
+        child:TextField(
+          cursorColor: AppColors.clr_bg_black2,
+          controller: controller,
+          decoration: InputDecoration(
+              labelText: text,
+              labelStyle: TextStyle(fontSize: 12,
+                color: AppColors.clr_bg_black2,
+                fontFamily: 'MuliRegular',),
+              border: InputBorder.none,
+              prefixIcon: Padding(
+                padding:EdgeInsets.all(AppSizes.width*0.03),
+                child: Image.asset(imagePath,height: 25,width :25),
+              )
 
           ),
-        ),
-      ),
+        )
     );
   }
 }

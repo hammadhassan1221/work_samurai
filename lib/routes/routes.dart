@@ -1,4 +1,4 @@
-import 'package:work_samurai/screens/business/home/home.dart';
+
 import 'package:work_samurai/screens/login/login.dart';
 import 'package:work_samurai/screens/splash/splash.dart';
 import 'package:work_samurai/screens/worker/worker.dart';
@@ -13,6 +13,5 @@ class Routes {
     splash: (context) => Splash(),
     login: (context) => Login(),
     worker: (context) => Worker(),
-    home: (context) => Home(),
   };
 }
