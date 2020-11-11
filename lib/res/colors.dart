@@ -24,6 +24,8 @@ class AppColors{
   static const clr_white = Color.fromRGBO(255, 255, 255, 1);
   static const clr_red = Color.fromRGBO(211, 63, 63, 1);
   static const clr_green = Color.fromRGBO(11, 171, 106, 1);
+  static const clr_field = Color.fromRGBO(234, 236, 238, 1);
+  static const sign_field = Color.fromRGBO(70, 70, 70, 1);
 
   // Hex color code
   // text Colors

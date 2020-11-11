@@ -1,4 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
+import 'package:get_version/get_version.dart';
 import 'package:work_samurai/animations/slide_right.dart';
 import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/screens/login/login.dart';
@@ -17,10 +19,19 @@ class SplashProvider extends ChangeNotifier {
     AppSizes.initializeSize(context);
   }
 
+  void getVersionNumber() async {
+    try {
+      versionNumber = await GetVersion.projectVersion;
+    } on PlatformException {
+      versionNumber = 'Failed to get project version.';
+    }
+    notifyListeners();
+  }
+
   void navigateToNextRoute(BuildContext context) async {
     await Future.delayed(Duration(
       seconds: 4,
     ));
-    Navigator.pushReplacement(context, SlideRightRoute(page: Worker()));
+    Navigator.pushReplacement(context, SlideRightRoute(page: Login()));
   }
 }
