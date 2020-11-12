@@ -41,12 +41,12 @@ class ForgetPasswordProvider extends ChangeNotifier {
         getForgetPasswordURL,
         headers: {
           "Authorization":
-          "Bearer kcY41rrlhSxQRMXGcR8NZpefl81J1uHzgrJriHM1IIQKkyYkEg3jUUmeN1AgMryhb7fwgtbAK4H3AWz4ZCS3FMzsSOoTEZ7iOh8jTZO+RId04BJZ9s/KDEezA1sObkBPw=",
+          "Bearer Ueu59x6g65M5sKz8n+P6kOjUe1pqXVTJEHz97omrFGw7H9rY9bgS/ZbUz08kXhc73R8Lr8yeEVDA+7zk+3+irM=",
           "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
           "Content-Type" : "multipart/form-data",
         },
         body: {
-          "EmailAddress" : email,
+          "Email" : email,
         },
       );
 

@@ -42,7 +42,7 @@ class AccountComponent {
               ),
             ),
             Container(
-                width: AppSizes.width * 0.55,
+                width: AppSizes.width * 0.6,
                 height: AppSizes.height / 8,
                 padding: EdgeInsets.only(top: AppSizes.height * 0.03),
                 child: Text(text,
@@ -219,8 +219,8 @@ class AccountComponent {
                       textAlign: TextAlign.left,
                       style: TextStyle(
                           fontSize: 22,
-                          fontFamily: 'MuliBold,'
-
+                          fontFamily: 'MuliBold,',
+                        fontWeight: FontWeight.bold,
                       )
                   ),
                   SizedBox(
