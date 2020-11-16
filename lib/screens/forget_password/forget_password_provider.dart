@@ -46,13 +46,12 @@ class ForgetPasswordProvider extends ChangeNotifier {
           "Content-Type" : "multipart/form-data",
         },
         body: {
-          "EmailAddress" : email,
+          "Email" : email,
         },
       );
 
       if(_response.statusCode !=200){
         _loader.hideLoader(context);
-        ApplicationToast.getErrorToast(durationTime: 3, heading: "Error", subHeading: "Please enter again");
         throw "Unauthorized";
       }
       if(_response.statusCode == 200){
