@@ -1,19 +1,24 @@
 class JobsInProgressResponse {
   int responseCode;
-  Data data;
+  List<Data> data;
 
   JobsInProgressResponse({this.responseCode, this.data});
 
   JobsInProgressResponse.fromJson(Map<String, dynamic> json) {
     responseCode = json['ResponseCode'];
-    data = json['Data'] != null ? new Data.fromJson(json['Data']) : null;
+    if (json['Data'] != null) {
+      data = new List<Data>();
+      json['Data'].forEach((v) {
+        data.add(new Data.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['ResponseCode'] = this.responseCode;
     if (this.data != null) {
-      data['Data'] = this.data.toJson();
+      data['Data'] = this.data.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -23,10 +28,10 @@ class Data {
   int iD;
   String name;
   String description;
-  int rate;
-  int estimatedDuration;
+  double rate;
+  double estimatedDuration;
   String startDate;
-  Null completedDate;
+  String completedDate;
   int jobStatus;
   bool isInstant;
   bool autoAssign;

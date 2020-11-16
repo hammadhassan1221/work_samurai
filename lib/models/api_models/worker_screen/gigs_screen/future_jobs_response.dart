@@ -3,7 +3,7 @@ class FutureJobsResponse {
   int responseCode;
   List<Data> data;
 
-  FutureJobsResponse({this.responseCode, this.data});
+  FutureJobsResponse.empty();
 
   FutureJobsResponse.fromJson(Map<String, dynamic> json) {
     responseCode = json['ResponseCode'];

@@ -17,7 +17,7 @@ class Gigs extends StatefulWidget {
   _GigsState createState() => _GigsState();
 }
 
-class _GigsState extends State<Gigs> with TickerProviderStateMixin{
+class _GigsState extends State<Gigs> with SingleTickerProviderStateMixin{
   TabController _tabController;
   GigsComponents _gigsComponents;
   GigsProvider gigsProvider;
@@ -32,13 +32,18 @@ class _GigsState extends State<Gigs> with TickerProviderStateMixin{
       gigsProvider.init(context: context);
     });
     _tabController = new TabController(length: 3, vsync: this);
+    _tabController.addListener(() {
+      if(_tabController.index == 1){
+        gigsProvider.setInProgress(true);
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     Provider.of<GigsProvider>(context, listen: true);
     return Container(
-      height: AppSizes.height * 0.7,
+      height: AppSizes.height,
       width: AppSizes.width,
       color: AppColors.clr_bg,
       child: Column(children: [
@@ -88,7 +93,18 @@ class _GigsState extends State<Gigs> with TickerProviderStateMixin{
                     ],
                   ),
                 ),
-                _gigsComponents.getInProgressContainer(),
+                gigsProvider.getFetchJobInProgress() ? _gigsComponents.getInProgressContainer(context: context, jobsInProgressResponse: gigsProvider.getJobsInProgressResponse()):Container(
+                  child: Column(
+                    children: [
+                      Container(
+                        height: AppSizes.height*0.05,
+                        width: AppSizes.width*0.05,
+                        margin: EdgeInsets.only(top: 20),
+                        child: CircularProgressIndicator(),
+                      ),
+                    ],
+                  ),
+                ),
                 _gigsComponents.getConfirmedContainer(),
               ],
             ),
