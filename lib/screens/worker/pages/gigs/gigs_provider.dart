@@ -48,8 +48,7 @@ class GigsProvider extends ChangeNotifier {
       _loader.showLoader(context: context);
 
       Response _response = await _networkHelper.post(getFutureJobURL, headers: {
-        "Authorization":
-            "Bearer "+_token,
+        "Authorization": "Bearer " + _token,
         "DeviceID": "Device Id goes here",
       }, body: {});
 
