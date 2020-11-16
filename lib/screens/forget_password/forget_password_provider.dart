@@ -33,48 +33,57 @@ class ForgetPasswordProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future _forgetPassword({@required BuildContext context, @required String email}) async{
-
-    try{
+  Future _forgetPassword(
+      {@required BuildContext context, @required String email}) async {
+    try {
       _loader.showLoader(context: context);
       Response _response = await _networkHelper.post(
         getForgetPasswordURL,
         headers: {
           "Authorization":
-          "Bearer Ueu59x6g65M5sKz8n+P6kOjUe1pqXVTJEHz97omrFGw7H9rY9bgS/ZbUz08kXhc73R8Lr8yeEVDA+7zk+3+irM=",
+              "Bearer Ueu59x6g65M5sKz8n+P6kOjUe1pqXVTJEHz97omrFGw7H9rY9bgS/ZbUz08kXhc73R8Lr8yeEVDA+7zk+3+irM=",
           "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
-          "Content-Type" : "multipart/form-data",
+          "Content-Type": "multipart/form-data",
         },
         body: {
-          "Email" : email,
+          "Email": email,
         },
       );
 
-      if(_response.statusCode !=200){
+      if (_response.statusCode != 200) {
         _loader.hideLoader(context);
         throw "Unauthorized";
       }
-      if(_response.statusCode == 200){
+      if (_response.statusCode == 200) {
         _loader.hideLoader(context);
-        _forgetPasswordResponse = ForgetPasswordResponse.fromJson(_genericDecodeEncode.decodeJson(Helper.getString(_response)));
-        ApplicationToast.getSuccessToast(durationTime: 3, heading: "Success", subHeading: "Email Sent Successfully");
+        _forgetPasswordResponse = ForgetPasswordResponse.fromJson(
+            _genericDecodeEncode.decodeJson(Helper.getString(_response)));
+        ApplicationToast.getSuccessToast(
+            durationTime: 3,
+            heading: "Success",
+            subHeading: "Email Sent Successfully");
         Navigator.pushReplacement(context, SlideRightRoute(page: Login()));
       }
-    }
-    catch(e){
+    } catch (e) {
       _loader.hideLoader(context);
       print(e.toString());
     }
   }
 
-  callForgetPasswordAPI({@required BuildContext context,@required String email}){
-    if(email.toString().validateEmail())
-    {
-      ApplicationToast.getWarningToast(durationTime: 3, heading: "Testing", subHeading: "email is: "+email);
+  callForgetPasswordAPI(
+      {@required BuildContext context, @required String email}) {
+    if (email.toString().validateEmail()) {
+      ApplicationToast.getWarningToast(
+          durationTime: 3,
+          heading: "Testing",
+          subHeading: "email is: " + email);
       _forgetPassword(context: context, email: email);
-    }
-    else{
-      ApplicationToast.getWarningToast(durationTime: 3, heading: "Error", subHeading: "Email should not be empty and it should be valid email address");
+    } else {
+      ApplicationToast.getWarningToast(
+          durationTime: 3,
+          heading: "Error",
+          subHeading:
+              "Email should not be empty and it should be valid email address");
     }
   }
 }

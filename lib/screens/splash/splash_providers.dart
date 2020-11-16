@@ -2,9 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:get_version/get_version.dart';
 import 'package:work_samurai/animations/slide_right.dart';
+import 'package:work_samurai/commons/utils.dart';
 import 'package:work_samurai/res/sizes.dart';
+import 'package:work_samurai/res/strings.dart';
 import 'package:work_samurai/screens/login/login.dart';
-
+import 'package:work_samurai/screens/worker/worker.dart';
 
 class SplashProvider extends ChangeNotifier {
   String versionNumber;
@@ -32,6 +34,11 @@ class SplashProvider extends ChangeNotifier {
     await Future.delayed(Duration(
       seconds: 4,
     ));
-    Navigator.pushReplacement(context, SlideRightRoute(page: Login()));
+
+    if (PreferenceUtils.getBoolean(Strings.IS_LOGGED_IN) == true) {
+      Navigator.pushReplacement(context, SlideRightRoute(page: Worker()));
+    } else {
+      Navigator.pushReplacement(context, SlideRightRoute(page: Login()));
+    }
   }
 }
