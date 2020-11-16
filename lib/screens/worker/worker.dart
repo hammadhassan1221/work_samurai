@@ -74,7 +74,7 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
                       : AppColors.clr_bg_black2,),
               ),
               title: Text(
-                "Book",style: TextStyle(
+                "Gigs",style: TextStyle(
                 color: _currentIndex == 0
                     ? AppColors.clr_bg_black
                     : AppColors.clr_bg_black2,
@@ -83,12 +83,12 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
             ),
             BottomNavigationBarItem(
               icon: GestureDetector(
-                child: Image.asset(Assets.track,height: 20,width: 20, color: _currentIndex == 1
+                child: Image.asset(Assets.schedule,height: 20,width: 20, color: _currentIndex == 1
                     ? AppColors.clr_bg_black
                     : AppColors.clr_bg_black2,),
               ),
               title: Text(
-                "Track",style: TextStyle(
+                "Schedule",style: TextStyle(
                 color: _currentIndex == 1
                     ? AppColors.clr_bg_black
                     : AppColors.clr_bg_black2,
@@ -97,7 +97,7 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
             ),
             BottomNavigationBarItem(
               icon: GestureDetector(
-                child: Image.asset(Assets.schedule,height: 20,width: 20, color: _currentIndex == 2
+                child: Image.asset(Assets.msgs,height: 20,width: 20, color: _currentIndex == 2
                     ? AppColors.clr_bg_black
                     : AppColors.clr_bg_black2,),
               ),
@@ -111,12 +111,12 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
             ),
             BottomNavigationBarItem(
               icon: GestureDetector(
-                child: Image.asset(Assets.account,height: 20,width: 20, color: _currentIndex == 3
+                child: Image.asset(Assets.profile,height: 20,width: 20, color: _currentIndex == 3
                     ? AppColors.clr_bg_black
                     : AppColors.clr_bg_black2,),
               ),
               title: Text(
-                "Account",style: TextStyle(
+                "Profile",style: TextStyle(
                 color: _currentIndex == 3
                     ? AppColors.clr_bg_black
                     : AppColors.clr_bg_black2,

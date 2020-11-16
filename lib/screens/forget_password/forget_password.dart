@@ -1,13 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:work_samurai/animations/slide_right.dart';
+import 'package:provider/provider.dart';
 import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
-import 'package:work_samurai/screens/sign_up/sign_up.dart';
 import 'package:work_samurai/widgets/widgets.dart';
-
 import 'forget_password_components.dart';
+import 'forget_password_provider.dart';
 
 class ForgetPassword extends StatefulWidget {
   @override
@@ -16,15 +15,21 @@ class ForgetPassword extends StatefulWidget {
 
 class _ForgetPasswordState extends State<ForgetPassword> {
   ForgetPasswordComponents _forgetPasswordComponents;
+  ForgetPasswordProvider _forgetPasswordProvider;
+  TextEditingController _email;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     _forgetPasswordComponents = ForgetPasswordComponents();
+    _forgetPasswordProvider = Provider.of<ForgetPasswordProvider>(context, listen:false);
+    _forgetPasswordProvider = ForgetPasswordProvider();
+    _email = TextEditingController();
   }
   @override
   Widget build(BuildContext context) {
+    _forgetPasswordProvider = Provider.of<ForgetPasswordProvider>(context, listen:true);
     return SafeArea(child: Scaffold(
       body: Container(
         height: AppSizes.height,
@@ -47,9 +52,11 @@ class _ForgetPasswordState extends State<ForgetPassword> {
               ),),
             ),
 
-            _forgetPasswordComponents.getInputField(backgroundColor: AppColors.clr_field, borderColor: AppColors.clr_bg_grey, textColor: AppColors.clr_bg_black2, text: "Email", imagePath: Assets.mail),
+            _forgetPasswordComponents.getInputField(backgroundColor: AppColors.clr_field, borderColor: AppColors.clr_bg_grey, textColor: AppColors.clr_bg_black2, text: "Email", imagePath: Assets.mail,controller: _email),
 
-            _forgetPasswordComponents.getSignUpButton(context: context, onPress: (){Navigator.push(context, SlideRightRoute(page: SignUp()));}, text: "Reset my Password")
+            _forgetPasswordComponents.getSignUpButton(context: context, onPress: (){
+              _forgetPasswordProvider.callForgetPasswordAPI(context: context, email: _email.text.toString());
+            }, text: "Reset my Password",)
           ],
         ),
       ),

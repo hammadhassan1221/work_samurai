@@ -10,7 +10,7 @@ class MessageComponents{
       onTap: onPress,
       child: Container(
         margin: EdgeInsets.only(left: AppSizes.width*0.03,right: AppSizes.width*0.03),
-        height: AppSizes.height * 0.11,
+        height: AppSizes.height * 0.12,
         padding: EdgeInsets.all(10.0),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5),

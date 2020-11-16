@@ -68,13 +68,13 @@ class LoginProvider extends ChangeNotifier {
   callLoginAPI({@required BuildContext context,@required String email, @required String password}){
     if(email.toString().validateEmail()){
       if(password.isNotEmpty){
-        ApplicationToast.getWarningToast(durationTime: 3, heading: "Testing", subHeading: "email is: "+email+" and password is: "+password);
         _login(context: context, email: email, password: password);
-
-      }else{
+      }
+      else{
         ApplicationToast.getWarningToast(durationTime: 3, heading: "Error", subHeading: "Password should not be empty");
       }
-    }else{
+    }
+    else{
       ApplicationToast.getWarningToast(durationTime: 3, heading: "Error", subHeading: "Email should not be empty and it should be valid email address");
     }
   }

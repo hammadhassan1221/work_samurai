@@ -12,6 +12,7 @@ class ForgetPasswordComponents{
         @required Color textColor,
         @required String text,
         @required String imagePath,
+        @required TextEditingController controller,
       }) {
     return Container(
         width: AppSizes.width,
@@ -29,7 +30,8 @@ class ForgetPasswordComponents{
 
         child:TextField(
           cursorColor: AppColors.clr_bg_black2,
-          cursorHeight: 12,
+          controller: controller,
+          //cursorHeight: 12,
           decoration: InputDecoration(
               labelText: text,
               labelStyle: TextStyle(fontSize: 12,

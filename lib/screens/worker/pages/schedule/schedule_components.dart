@@ -55,7 +55,7 @@ class ScheduleComponents {
   Widget getDayTime({@required String day,@required String time}){
     return GestureDetector(
       onTap:(){
-     //   _alertDialogueContainer();
+      //_alertDialogueContainer();
       },
       child: Container(
         height: AppSizes.height * 0.08,

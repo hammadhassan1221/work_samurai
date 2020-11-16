@@ -27,7 +27,7 @@ class _AccountState extends State<Account> {
         child: Scaffold(
           body: Container(
               height: AppSizes.height * 0.9,
-              width: AppSizes.width * 0.9,
+              width: AppSizes.width * 0.95,
               color: AppColors.clr_bg,
               padding: EdgeInsets.only(left:AppSizes.width*0.040),
               child: ListView(
@@ -86,7 +86,7 @@ class _AccountState extends State<Account> {
                     height: AppSizes.height * 0.02,
                   ),
 
-                  _accountComponent.getPositionContainer(text1: "Waiter", text2: "Bartender", text3: "Barista", text4: "Receptionist"),
+                  _accountComponent.getPositionContainer(text1: "Waiter", text2: "Bartender", text3: "Receptionist", text4: "Barista"),
 
                   SizedBox(
                     height: AppSizes.height * 0.03,
@@ -109,8 +109,10 @@ class _AccountState extends State<Account> {
                   SizedBox(
                     height: AppSizes.height * 0.01,
                   ),
-                  _accountComponent.getCompliments(imagePath: Assets.muscle, compliment: "Hard Worker", rating: "6")
-
+                  _accountComponent.getCompliments(imagePath: Assets.muscle, compliment: "Hard Worker", rating: "6"),
+                  SizedBox(
+                    height: AppSizes.height * 0.03,
+                  ),
                 ],
               )
           ),

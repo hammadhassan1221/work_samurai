@@ -727,7 +727,6 @@ class GigsComponents{
         context: context,
         builder: (BuildContext context) {
           return Container(
-
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
                     topRight: Radius.circular(15),
