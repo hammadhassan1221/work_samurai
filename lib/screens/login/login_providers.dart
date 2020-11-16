@@ -12,6 +12,7 @@ import 'package:work_samurai/network/network_helper_impl.dart';
 import 'package:http/http.dart' as http;
 import 'package:work_samurai/screens/worker/worker.dart';
 import 'package:work_samurai/widgets/toast.dart';
+import 'package:work_samurai/utilities/utilities.dart';
 
 import '../../widgets/loader.dart';
 
@@ -33,7 +34,7 @@ class LoginProvider extends ChangeNotifier {
     try{
       _loader.showLoader(context: context);
       Response _response = await _networkHelper.post(
-        loginAPI,
+        loginURL,
         headers: {
           "Content-Type" : "multipart/form-data",
         },
@@ -54,7 +55,7 @@ class LoginProvider extends ChangeNotifier {
         _loader.hideLoader(context);
         _loginResponse = LoginResponse.fromJson(_genericDecodeEncode.decodeJson(Helper.getString(_response)));
         print(_loginResponse.accessToken);
-        ApplicationToast.getSuccessToast(durationTime: 3, heading: "Success", subHeading: "User logged in sucessfully");
+        ApplicationToast.getSuccessToast(durationTime: 3, heading: "Success", subHeading: "Login Successfully");
         Navigator.pushReplacement(context, SlideRightRoute(page: Worker()));
 
       }
@@ -67,28 +68,16 @@ class LoginProvider extends ChangeNotifier {
   callLoginAPI({@required BuildContext context,@required String email, @required String password}){
     if(email.toString().validateEmail()){
       if(password.isNotEmpty){
-        ApplicationToast.getWarningToast(durationTime: 3, heading: "Testing", subHeading: "email is: "+email+" and password is: "+password);
         _login(context: context, email: email, password: password);
-
-      }else{
+      }
+      else{
         ApplicationToast.getWarningToast(durationTime: 3, heading: "Error", subHeading: "Password should not be empty");
       }
-    }else{
+    }
+    else{
       ApplicationToast.getWarningToast(durationTime: 3, heading: "Error", subHeading: "Email should not be empty and it should be valid email address");
     }
   }
 }
 
 
-extension StringExtensions on String{
-  bool validateEmail(){
-    return
-      RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(this);
-  }
-
-  bool validatePhoneNumber(){
-    return
-      RegExp(r"^(?:\+?(61))? ?(?:\((?=.*\)))?(0?[2-57-8])\)? ?(\d\d(?:[- ](?=\d{3})|(?!\d\d[- ]?\d[- ]))\d\d[- ]?\d[- ]?\d{3})$").hasMatch(this);
-
-  }
-}

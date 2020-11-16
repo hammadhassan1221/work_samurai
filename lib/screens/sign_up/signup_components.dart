@@ -75,7 +75,7 @@ class SignUpComponents{
 
         child:TextField(
           cursorColor: AppColors.clr_bg_black2,
-          cursorHeight: 12,
+          //cursorHeight: 12,
           obscureText: isPassword,
           controller: controller,
           decoration: InputDecoration(
