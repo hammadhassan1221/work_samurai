@@ -15,12 +15,13 @@ class GigsProvider extends ChangeNotifier {
   RangeValues values;
 
   NetworkHelper _networkHelper = NetworkHelperImpl();
-  FutureJobsResponse _futureJobsResponse = FutureJobsResponse();
-  JobsInProgressResponse _jobsInProgressResponse = JobsInProgressResponse();
+  FutureJobsResponse _futureJobsResponse = FutureJobsResponse.empty();
+  JobsInProgressResponse _jobsInResponse = JobsInProgressResponse();
   GenericDecodeEncode _genericDecodeEncode = GenericDecodeEncode();
   Loader _loader = Loader();
 
   bool _isFutureJobsFetched = false;
+  bool _inProgress = false;
 
   init({@required BuildContext context}) async {
     try {
@@ -44,7 +45,7 @@ class GigsProvider extends ChangeNotifier {
         getFutureJobURL,
         headers: {
           "Authorization":
-              "Bearer CAXVgT3ahg7e853Lr1exnX+EXzAs2d2gbRODYKJIjLo2k0noAoh4jbV+JC1ojq10i3V2ENe407Ax4hE/BLRbQ8tTLLHkJw3NmAN8ld9uvbF3pXKVGRZfwFwyLlF8N3aWo=",
+              "Bearer Xyai07xrQsefpXavQ5fnXhn2km+cPWOnbhvHKrvKvw0fFxAwOcTMUML7jTtqJ+S6DAAAtKVsI8vYgzUJzxrVQA=",
           "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F"
         },
       );
@@ -67,11 +68,56 @@ class GigsProvider extends ChangeNotifier {
     }
   }
 
+  Future getJobsInProgress({@required BuildContext context}) async{
+
+    try{
+      _loader.showLoader(context: context);
+      Response _response = await _networkHelper.post(
+          getInProgressJobURL,
+          headers:{
+            "Authorization" : "Bearer Xyai07xrQsefpXavQ5fnXhn2km+cPWOnbhvHKrvKvw0fFxAwOcTMUML7jTtqJ+S6DAAAtKVsI8vYgzUJzxrVQA=",
+            "DeviceId" : "A580E6FE-DA99-4066-AFC7-C939104AED7F"
+          }
+      );
+
+      if(_response.statusCode != 200){
+        throw("Unauthorized");
+      }
+      if(_response.statusCode == 200){
+        _loader.hideLoader(context);
+        _jobsInResponse = JobsInProgressResponse.fromJson(_genericDecodeEncode.decodeJson(Helper.getString(_response)));
+        if(_jobsInResponse.data != null){
+          notifyListeners();
+        }
+        _inProgress = true;
+
+      }
+    }
+    catch(e){
+      print(e.toString());
+    }
+  }
+
+
   getFutureJobResponse() {
     return this._futureJobsResponse;
   }
 
   getFutureJobFetched() {
     return this._isFutureJobsFetched;
+  }
+
+  getJobsInProgressResponse() {
+    return this._jobsInResponse;
+  }
+
+
+  getFetchJobInProgress() {
+    return this._inProgress;
+  }
+
+  void setInProgress(bool value){
+    this._inProgress = value;
+    notifyListeners();
   }
 }

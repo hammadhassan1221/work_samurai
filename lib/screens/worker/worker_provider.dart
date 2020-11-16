@@ -17,10 +17,10 @@ class WorkerProvider extends ChangeNotifier {
   RangeValues values;
 
   NetworkHelper _networkHelper = NetworkHelperImpl();
-  FutureJobsResponse futureJobsResponse = FutureJobsResponse();
+  FutureJobsResponse futureJobsResponse = FutureJobsResponse.empty();
   JobsInProgressResponse jobsInProgressResponse = JobsInProgressResponse();
   GenericDecodeEncode _genericDecodeEncode = GenericDecodeEncode();
-  FutureJobsResponse _futureJobsResponse = FutureJobsResponse();
+  FutureJobsResponse _futureJobsResponse = FutureJobsResponse.empty();
   Loader _loader = Loader();
 
   bool _isFutureJobsFetched = false;

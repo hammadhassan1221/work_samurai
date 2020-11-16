@@ -16,6 +16,7 @@ import 'package:work_samurai/utilities/utilities.dart';
 
 import '../../widgets/loader.dart';
 
+
 class LoginProvider extends ChangeNotifier {
   BuildContext context;
 
@@ -28,71 +29,55 @@ class LoginProvider extends ChangeNotifier {
     this.context = context;
   }
 
-  Future _login(
-      {@required BuildContext context,
-      @required String email,
-      @required String password}) async {
-    try {
+  Future _login({@required BuildContext context, @required String email, @required String password}) async{
+
+    try{
       _loader.showLoader(context: context);
       Response _response = await _networkHelper.post(
         loginURL,
         headers: {
-          "Authorization": "Bearer xyfDZCB2kHdkA6yiy+HYQN0jCLMa+259Cjv4q+nQB1oelwNhUZjiAoQLO5mcnJXSDMFMLRGGpbQQKF7hOfXsWEcL4oumlH3DXIrqcQ7zY3DanF1XZKKFPCfW8UevhkL/w=",
-          "Content-Type": "multipart/form-data",
+          "Content-Type" : "multipart/form-data",
         },
         body: {
-          "EmailAddress": email,
-          "Password": password,
-          "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
+          "EmailAddress" : email,
+          "Password" : password,
+          "DeviceID" : "A580E6FE-DA99-4066-AFC7-C939104AED7F",
         },
       );
 
-      if (_response.statusCode != 200) {
+      if(_response.statusCode !=200){
+
         _loader.hideLoader(context);
-        ApplicationToast.getErrorToast(
-            durationTime: 3, heading: "Error", subHeading: "Please try again");
+        ApplicationToast.getErrorToast(durationTime: 3, heading: "Error", subHeading: "Please try again");
         throw "Unauthorized";
       }
-      if (_response.statusCode == 200) {
+      if(_response.statusCode == 200){
         _loader.hideLoader(context);
-        _loginResponse = LoginResponse.fromJson(
-            _genericDecodeEncode.decodeJson(Helper.getString(_response)));
+        _loginResponse = LoginResponse.fromJson(_genericDecodeEncode.decodeJson(Helper.getString(_response)));
         print(_loginResponse.accessToken);
-        ApplicationToast.getSuccessToast(
-            durationTime: 3,
-            heading: "Success",
-            subHeading: "Login Successfully");
+        ApplicationToast.getSuccessToast(durationTime: 3, heading: "Success", subHeading: "Login Successfully");
         Navigator.pushReplacement(context, SlideRightRoute(page: Worker()));
+
       }
-    } catch (e) {
+    }catch(e){
       _loader.hideLoader(context);
       print(e.toString());
     }
   }
 
-  callLoginAPI(
-      {@required BuildContext context,
-      @required String email,
-      @required String password}) {
-    if (email.toString().validateEmail()) {
-      if (password.isNotEmpty) {
-        ApplicationToast.getWarningToast(
-            durationTime: 3,
-            heading: "Testing",
-            subHeading: "email is: " + email + " and password is: " + password);
+  callLoginAPI({@required BuildContext context,@required String email, @required String password}){
+    if(email.toString().validateEmail()){
+      if(password.isNotEmpty){
         _login(context: context, email: email, password: password);
-      } else {
-        ApplicationToast.getWarningToast(
-            durationTime: 3,
-            heading: "Error",
-            subHeading: "Password should not be empty");
       }
-    } else {
-      ApplicationToast.getWarningToast(
-          durationTime: 3,
-          heading: "Error",
-          subHeading:
-              "Email should not be empty and it should be valid email address");
+      else{
+        ApplicationToast.getWarningToast(durationTime: 3, heading: "Error", subHeading: "Password should not be empty");
+      }
+    }
+    else{
+      ApplicationToast.getWarningToast(durationTime: 3, heading: "Error", subHeading: "Email should not be empty and it should be valid email address");
     }
   }
 }
+
+

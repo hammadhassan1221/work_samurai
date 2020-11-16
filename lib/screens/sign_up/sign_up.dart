@@ -253,8 +253,6 @@ Widget build(BuildContext context) {
                               male: male,
                               female: female,
                               onCheck: onCheck,
-
-
                             );
                           },
                           text: "Sign Up",
