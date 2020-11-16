@@ -5,3 +5,4 @@ const String loginURL = "$baseUrl/Auth";
 const String signUpURL = "$baseUrl/Signup";
 const String getFutureJobURL = "$baseUrl/Job/FutureWorks";
 const String getInProgressJobURL = "$baseUrl/Job/FutureWorks";
+const String getForgetPasswordURL = "$baseUrl/Job/FutureWorks";
