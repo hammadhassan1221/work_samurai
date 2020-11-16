@@ -21,15 +21,15 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   LoginComponents _loginComponents;
   LoginProvider _loginProvider;
-  TextEditingController _email,
-      _password;
+  TextEditingController _email, _password;
   FocusNode _focusNode;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     _loginComponents = LoginComponents();
-    _loginProvider = Provider.of<LoginProvider>(context, listen:false);
+    _loginProvider = Provider.of<LoginProvider>(context, listen: false);
     _loginProvider = LoginProvider();
     _email = TextEditingController();
     _password = TextEditingController();
@@ -37,7 +37,7 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    Provider.of<LoginProvider>(context, listen:true);
+    Provider.of<LoginProvider>(context, listen: true);
     return Scaffold(
         resizeToAvoidBottomInset: true,
         body: Container(
@@ -68,21 +68,34 @@ class _LoginState extends State<Login> {
                 SizedBox(
                   height: AppSizes.height * 0.02,
                 ),
-                _loginComponents.getSignUpButton(context: context, onPress: (){
-                  _loginProvider.callLoginAPI(context: context, email: _email.text.toString(), password: _password.text.toString());
-                }, text: "Login"),
+                _loginComponents.getSignUpButton(
+                    context: context,
+                    onPress: () {
+                      _loginProvider.callLoginAPI(
+                          context: context,
+                          email: _email.text.toString(),
+                          password: _password.text.toString());
+                    },
+                    text: "Login"),
                 SizedBox(
                   height: AppSizes.height * 0.05,
                 ),
                 _loginComponents.getRichText(
-                    text1: "", text2: "Forget Password", onPress: (){Navigator.push(context, SlideRightRoute(page: ForgetPassword()));}),
+                    text1: "",
+                    text2: "Forget Password",
+                    onPress: () {
+                      Navigator.push(
+                          context, SlideRightRoute(page: ForgetPassword()));
+                    }),
                 SizedBox(
                   height: AppSizes.height * 0.05,
                 ),
                 _loginComponents.getRichText(
                     text1: "Don't have an account?",
                     text2: "Sign Up",
-                    onPress: (){Navigator.push(context, SlideRightRoute(page: SignUp()));}),
+                    onPress: () {
+                      Navigator.push(context, SlideRightRoute(page: SignUp()));
+                    }),
               ],
             ),
           ),
