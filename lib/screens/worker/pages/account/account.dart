@@ -32,8 +32,7 @@ class _AccountState extends State<Account> {
               padding: EdgeInsets.only(left:AppSizes.width*0.040),
               child: ListView(
                 children: [
-                  _accountComponent.getUserEdit(imagePath: Assets.support, text: "Edit"),
-
+                  _accountComponent.getUserEdit(context: context, imagePath: Assets.support, text: "Settings"),
                   SizedBox(
                     height: AppSizes.height * 0.01,
                   ),
