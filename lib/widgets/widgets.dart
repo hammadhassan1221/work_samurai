@@ -185,7 +185,7 @@ class CommonWidgets{
               onTap: onPress,
               child: Image.asset(imagepath,height: 20,width: 20,)),
           SizedBox(
-            width: AppSizes.width * 0.02,
+            width: AppSizes.width * 0.05,
           ),
           Text(
             text,

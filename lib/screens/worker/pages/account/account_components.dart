@@ -1,7 +1,13 @@
+
+
 import 'package:flutter/material.dart';
+import 'package:work_samurai/animations/slide_right.dart';
 import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
+import 'package:work_samurai/screens/login/login.dart';
+import 'package:work_samurai/screens/settings/settings.dart';
+
 
 class AccountComponent {
   Widget getDocumentDetails({@required String text}) {
@@ -29,7 +35,7 @@ class AccountComponent {
     );
   }
 
-  Widget getUserEdit({@required String imagePath,@required String text}) {
+  Widget getUserEdit({@required BuildContext context, @required String imagePath,@required String text}) {
     return Container(
         child: Row(
           children: [
@@ -41,7 +47,11 @@ class AccountComponent {
                 width: 100,
               ),
             ),
-            Container(
+            GestureDetector(
+                onTap: () {
+                  Navigator.pushReplacement(context, SlideRightRoute(page: Settings()));
+                },
+              child:Container(
                 width: AppSizes.width * 0.6,
                 height: AppSizes.height / 8,
                 padding: EdgeInsets.only(top: AppSizes.height * 0.03),
@@ -52,7 +62,7 @@ class AccountComponent {
                       fontSize: 18,
                       fontFamily: 'MuliBold',
                     )))
-          ],
+    ),],
         ));
   }
 
