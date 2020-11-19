@@ -38,9 +38,8 @@ class LoginComponents {
                 text2,
                 style: TextStyle(
                   fontSize: 15,
-                  color: AppColors.clr_red,
+                  color: AppColors.clr_bg_black,
                   fontFamily: 'MuliRegular',
-                  decoration: TextDecoration.underline,
                 ),
               )
             ],

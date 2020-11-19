@@ -38,20 +38,6 @@ class LoginProvider extends ChangeNotifier {
       @required String password}) async {
     try {
       _loader.showLoader(context: context);
-//      Response _response = await _networkHelper.post(
-//        loginURL,
-//        headers: {
-//          "Authorization":
-//              "Bearer Ahnvfh5gHZwOhQSIXuN5O4Owx3FxF4timM49N8ecbVcqgIfKfk3/ie7V2ijD54gC0dWDVxmxeud2s/5MFIABCI=",
-//          "Content-Type": "multipart/form-data",
-//        },
-//        body: {
-//          "EmailAddress": email,
-//          "Password": password,
-//          "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
-//        },
-//      );
-
       var formData = Map<String, dynamic>();
       formData['EmailAddress'] = email;
       formData['Password'] = password;
