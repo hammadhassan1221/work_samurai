@@ -5,8 +5,6 @@ import 'package:work_samurai/animations/slide_right.dart';
 import 'package:work_samurai/generic_decode_encode/generic.dart';
 import 'package:work_samurai/helper/helper.dart';
 import 'package:work_samurai/models/api_models/forget_password/forget_password_response.dart';
-import 'package:work_samurai/models/api_models/worker_screen/gigs_screen/future_jobs_response.dart';
-import 'package:work_samurai/models/api_models/worker_screen/gigs_screen/jobs_in_progress_response.dart';
 import 'package:work_samurai/network/api_urls.dart';
 import 'package:work_samurai/network/network_helper.dart';
 import 'package:work_samurai/network/network_helper_impl.dart';
