@@ -129,10 +129,9 @@ Widget build(BuildContext context) {
                         ),
                         Container(
                             margin: EdgeInsets.only(
-                                top: AppSizes.height * 0.01,
-                                left: AppSizes.width * 0.03,
+                              top: AppSizes.height*0.01,
+                                left: AppSizes.width * 0.05,
                                 right: AppSizes.width * 0.03),
-                            padding: EdgeInsets.all(10),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -164,7 +163,7 @@ Widget build(BuildContext context) {
                                           fontSize: 12, fontFamily: 'MuliRegular'),
                                     ),
                                     SizedBox(
-                                      width: AppSizes.width * 0.1,
+                                      width: AppSizes.width * 0.05,
                                     ),
                                     Radio(
                                       value: 2,
@@ -198,8 +197,7 @@ Widget build(BuildContext context) {
                         ),
                         Container(
                             margin: EdgeInsets.only(
-                              top: AppSizes.height * 0.008,
-                              left: AppSizes.height * 0.03,
+                              left: AppSizes.height * 0.01,
                               right: AppSizes.height * 0.03,
                             ),
                             alignment: Alignment.topLeft,
@@ -224,7 +222,7 @@ Widget build(BuildContext context) {
                                           fontSize: 13),
                                       children: <TextSpan>[
                                         TextSpan(
-                                            text: 'Term and Conditions',
+                                            text: 'Term and Conditions.',
                                             style: TextStyle(
                                               color: AppColors.clr_bg_black,
                                               decoration: TextDecoration.underline,

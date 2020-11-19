@@ -210,9 +210,12 @@ class CommonWidgets{
           Text(
             text,
             style: TextStyle(
+                color: AppColors.clr_bg_black,
                 decoration: TextDecoration.none,
                 fontSize: 22,
-                fontFamily: 'MuliBold'),
+              fontFamily: Assets
+                  .muliRegular,
+              fontWeight: FontWeight.bold,),
           )
         ],
       ),
@@ -224,9 +227,10 @@ class CommonWidgets{
       onTap: onPress,
       child: Container(
         margin: EdgeInsets.only(left: AppSizes.width*0.03,right: AppSizes.width*0.03),
-        height: AppSizes.height * 0.1,
-        padding: EdgeInsets.all(8.0),
+        height: AppSizes.height * 0.12,
+        padding: EdgeInsets.all(10.0),
         decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5),
             border: Border.all(
               color: AppColors.clr_bg_grey,
             )
@@ -237,12 +241,7 @@ class CommonWidgets{
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Image.asset(
-                  imagePath,
-                  width: 45,
-                  height: 45,
-                  fit: BoxFit.fill,
-                ),
+                Image.asset(imagePath),
                 SizedBox(
                   width: AppSizes.width * 0.03,
                 ),

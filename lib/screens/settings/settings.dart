@@ -379,7 +379,7 @@ class _SettingsState extends State<Settings> {
                              child: TextField(
                                  cursorColor: AppColors.clr_bg_black2,
                                  decoration: InputDecoration(
-                                     labelText: "Description",
+                                     labelText: "Password",
                                      labelStyle: TextStyle(fontSize: 12,
                                        color: AppColors.clr_bg_black2,
                                        decorationColor: AppColors.clr_bg_black,

@@ -40,10 +40,9 @@ class _ForgetPasswordState extends State<ForgetPassword> {
             CommonWidgets.getAppBarWithout(text: "Forget Password"),
 
             Container(
-              margin: EdgeInsets.only(top: AppSizes.height*0.15),
-              padding: EdgeInsets.only(left: AppSizes.width*0.038),
+              margin: EdgeInsets.only(top: AppSizes.height*0.15, left: AppSizes.width*0.05),
               width: AppSizes.width,
-              child:Text("Confirm your email and we'll send you the information",
+              child:Text("Confirm your email and we'll send you the information.",
                 style: TextStyle(
                 fontFamily: 'MuliRegular',
                   fontSize: 14,
@@ -53,7 +52,9 @@ class _ForgetPasswordState extends State<ForgetPassword> {
             ),
 
             _forgetPasswordComponents.getInputField(backgroundColor: AppColors.clr_field, borderColor: AppColors.clr_bg_grey, textColor: AppColors.clr_bg_black2, text: "Email", imagePath: Assets.mail,controller: _email),
-
+            SizedBox(
+              height: AppSizes.height*0.4,
+            ),
             _forgetPasswordComponents.getSignUpButton(context: context, onPress: (){
               _forgetPasswordProvider.callForgetPasswordAPI(context: context, email: _email.text.toString());
             }, text: "Reset my Password",)
