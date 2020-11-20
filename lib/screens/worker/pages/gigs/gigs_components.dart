@@ -406,7 +406,6 @@ class GigsComponents{
     );
   }
 
-
   Widget getConfirmedContainer() {
     return Container(
         child: Column(
@@ -548,7 +547,7 @@ class GigsComponents{
                                         style: TextStyle(
 
                                           fontSize: 14,
-                                          color: AppColors.clr_green,                                        )
+                                          color: AppColors.clr_bg_black,                                        )
                                     ),
                                   ],
                                 )
@@ -1261,7 +1260,7 @@ class GigsComponents{
                                     ),
                                     Row(
                                       children: [
-                                        Icon(Icons.check,size: 15,)
+                                        Icon(Icons.check,size: 20,)
                                       ],
                                     )
 

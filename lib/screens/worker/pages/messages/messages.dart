@@ -24,33 +24,35 @@ class _WorkerChatRoomState extends State<WorkerChatRoom> {
   }
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: AppSizes.height,
-      width: AppSizes.width,
-      color: AppColors.clr_field,
-      child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+    return SafeArea(
+      child: Container(
+        height: AppSizes.height,
+        width: AppSizes.width,
+        color: AppColors.clr_field,
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
 
-            CommonWidgets.getAppBarWithout(text: "Messages",),
+              CommonWidgets.getAppBarWithout(text: "Messages",),
 
-            SizedBox(
-              height: AppSizes.height * 0.02,
-            ),
+              SizedBox(
+                height: AppSizes.height * 0.02,
+              ),
 
-            CommonWidgets.getSupportContainer(imagePath: Assets.support,heading: "Work Samurai Support",onPress: (){}),
+              CommonWidgets.getSupportContainer(imagePath: Assets.support,heading: "Work Samurai Support",onPress: (){}),
 
-            SizedBox(
-              height: AppSizes.height * 0.02,
-            ),
+              SizedBox(
+                height: AppSizes.height * 0.02,
+              ),
 
-            _messageComponents.getMessageThread(onPress: (){Navigator.push(context, SlideRightRoute(page:ChatScreen()));}, imagePath: Assets.support, heading: "Bartender", subHeading: "Wed, Sep 23 ,11:00am - 1:00pm", imagePath1: Assets.star, rating: "4.5"),
+              _messageComponents.getMessageThread(onPress: (){Navigator.push(context, SlideRightRoute(page:ChatScreen()));}, imagePath: Assets.support, heading: "Bartender", subHeading: "Wed, Sep 23 ,11:00am - 1:00pm", imagePath1: Assets.star, rating: "4.5"),
 
-            SizedBox(height: AppSizes.height*0.02,),
+              SizedBox(height: AppSizes.height*0.02,),
 
-            _messageComponents.getMessageThread(onPress: (){Navigator.push(context, SlideRightRoute(page:ChatScreen()));}, imagePath: Assets.support, heading: "Bartender", subHeading: "Wed, Sep 23 ,11:00am - 1:00pm", imagePath1: Assets.star, rating: "4.5"),
+              _messageComponents.getMessageThread(onPress: (){Navigator.push(context, SlideRightRoute(page:ChatScreen()));}, imagePath: Assets.support, heading: "Bartender", subHeading: "Wed, Sep 23 ,11:00am - 1:00pm", imagePath1: Assets.star, rating: "4.5"),
 
-          ]),
+            ]),
+      ),
     );
   }
 }
