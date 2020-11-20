@@ -13,7 +13,8 @@ class Assets{
   static const String distance = "assets/png/distance.png";
   static const String applicants = "assets/png/applicants@3x.png";
   static const String location = "assets/png/location.png";
-  static const String support = "assets/png/support.png";
+  static const String support = "assets/png/SupportPic@3x.png";
+  static const String oval = "assets/png/Oval@3x.png";
   static const String star = "assets/png/star.png";
   static const String icon_driving_license = "assets/png/icon_driving_license.png";
   static const String icon_international_passport = "assets/png/icon_international_passport.png";

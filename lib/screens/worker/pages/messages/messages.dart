@@ -27,7 +27,7 @@ class _WorkerChatRoomState extends State<WorkerChatRoom> {
     return Container(
       height: AppSizes.height,
       width: AppSizes.width,
-      color: AppColors.clr_field,
+      color: AppColors.clr_bg,
       child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -44,11 +44,9 @@ class _WorkerChatRoomState extends State<WorkerChatRoom> {
               height: AppSizes.height * 0.02,
             ),
 
-            _messageComponents.getMessageThread(onPress: (){Navigator.push(context, SlideRightRoute(page:ChatScreen()));}, imagePath: Assets.support, heading: "Bartender", subHeading: "Wed, Sep 23 ,11:00am - 1:00pm", imagePath1: Assets.star, rating: "4.5"),
+            _messageComponents.getMessageThread(onPress: (){Navigator.push(context, SlideRightRoute(page:ChatScreen()));}, imagePath: Assets.oval, heading: "Crown Hotel", subHeading: "Waiter, Wed, Sep 23" , imagePath1: Assets.star, rating: "4.5"),
 
-            SizedBox(height: AppSizes.height*0.02,),
 
-            _messageComponents.getMessageThread(onPress: (){Navigator.push(context, SlideRightRoute(page:ChatScreen()));}, imagePath: Assets.support, heading: "Bartender", subHeading: "Wed, Sep 23 ,11:00am - 1:00pm", imagePath1: Assets.star, rating: "4.5"),
 
           ]),
     );

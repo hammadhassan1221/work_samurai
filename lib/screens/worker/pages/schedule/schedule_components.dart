@@ -74,6 +74,46 @@ class ScheduleComponents {
               style: TextStyle(
                 fontSize: 18,
                 fontFamily: 'MuliSemiBold',
+                color: AppColors.clr_bg_black
+              ),
+            ),
+            Text(
+              time,
+              style: TextStyle(
+                fontSize: 18,
+                color: AppColors.clr_bg_black,
+                fontFamily: 'MuliRegular',
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget getWedThur({@required String day,@required String time}){
+    return GestureDetector(
+      onTap:(){
+        // _alertDialogueContainer();
+      },
+      child: Container(
+        height: AppSizes.height * 0.08,
+        margin: EdgeInsets.only(left: AppSizes.width*0.04,right:  AppSizes.width*0.04,),
+        padding: EdgeInsets.all(10.0),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            border:
+            Border.all(color: AppColors.clr_bg_grey),
+            color: AppColors.clr_white),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              day,
+              style: TextStyle(
+                fontSize: 18,
+                fontFamily: 'MuliSemiBold',
+                color: AppColors.clr_field
 
               ),
             ),
@@ -82,6 +122,8 @@ class ScheduleComponents {
               style: TextStyle(
                 fontSize: 18,
                 fontFamily: 'MuliRegular',
+                  color: AppColors.clr_field
+
               ),
             )
           ],

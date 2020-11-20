@@ -31,7 +31,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     Container(
                       height: AppSizes.height * 0.1,
                       padding: EdgeInsets.all(AppSizes.width*0.013),
-                      margin: EdgeInsets.only(left:AppSizes.width*0.05,right:AppSizes.width*0.05,),
+                      margin: EdgeInsets.only(left:AppSizes.width*0.03,right:AppSizes.width*0.03,top: AppSizes.height*0.03),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           border: Border.all(color: AppColors.clr_bg_grey),
@@ -76,7 +76,6 @@ class _ChatScreenState extends State<ChatScreen> {
                         children:[
                           Container(
                             margin: EdgeInsets.all(12),
-                            height: AppSizes.height*0.18,
                             padding: EdgeInsets.all(10),
                             width: AppSizes.width*0.60,
                             decoration: BoxDecoration(
@@ -99,7 +98,7 @@ class _ChatScreenState extends State<ChatScreen> {
                         children:[
                           Container(
                             margin: EdgeInsets.all(12),
-                            height: AppSizes.height*0.06,
+
                             padding: EdgeInsets.all(10),
                             width: AppSizes.width*0.25,
                             decoration: BoxDecoration(
@@ -143,7 +142,7 @@ class _ChatScreenState extends State<ChatScreen> {
                         children:[
                           Container(
                             margin: EdgeInsets.only(right: AppSizes.width*0.04),
-                            height: AppSizes.height*0.11,
+
                             padding: EdgeInsets.all(10),
                             width: AppSizes.width*0.60,
                             decoration: BoxDecoration(
@@ -164,9 +163,25 @@ class _ChatScreenState extends State<ChatScreen> {
                 ),
               ),
               Container(
-                  alignment: Alignment.bottomCenter ,
+                  alignment: Alignment.bottomLeft ,
                   color: AppColors.clr_field,
-                  child: Row(
+                  child: Container(
+                    height: AppSizes.height*0.06,
+                    width: AppSizes.width/1.3,
+                    margin: EdgeInsets.all(12),
+                    padding: EdgeInsets.only(left:AppSizes.width*0.03),
+                    decoration: BoxDecoration(
+                        color: AppColors.clr_white,
+                        borderRadius: BorderRadius.circular(6)
+                    ),
+                    child: TextField(
+                      decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "Type your message...",
+                          hintStyle: TextStyle(fontSize: 14,fontFamily: 'MuliRegular',fontStyle: FontStyle.italic)
+                      ),
+                    ),)
+                /*Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       _textFieldContainer(),
@@ -174,7 +189,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
                       Icon(Icons.send),
                     ],
-                  )
+                  )*/
               ),
             ],
           ),

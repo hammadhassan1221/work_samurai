@@ -7,10 +7,12 @@ import 'package:work_samurai/routes/routes.dart';
 import 'providers/multi_providers.dart';
 
 void main() {
+
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(

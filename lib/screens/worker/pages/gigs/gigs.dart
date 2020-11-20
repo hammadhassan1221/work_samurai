@@ -33,9 +33,9 @@ class _GigsState extends State<Gigs> with SingleTickerProviderStateMixin {
     });
     _tabController = new TabController(length: 3, vsync: this);
     _tabController.addListener(() {
-      if (_tabController.index == 1) {
+    /*  if (_tabController.index == 1) {
         gigsProvider.setInProgress(true);
-      }
+      }*/
     });
   }
 
@@ -81,7 +81,7 @@ class _GigsState extends State<Gigs> with SingleTickerProviderStateMixin {
             child: TabBarView(
               controller: _tabController,
               children: <Widget>[
-                gigsProvider.getFutureJobFetched()
+                /*gigsProvider.getFutureJobFetched()
                     ? _gigsComponents.getOffersContainer(
                         context: context,
                         futureJobsResponse: gigsProvider.getFutureJobResponse())
@@ -96,8 +96,10 @@ class _GigsState extends State<Gigs> with SingleTickerProviderStateMixin {
                             ),
                           ],
                         ),
-                      ),
-                gigsProvider.getFetchJobInProgress()
+                      ),*/
+                _gigsComponents.getOffersContainer(context: context, futureJobsResponse: null),
+                _gigsComponents.getInProgressContainer(context: context, jobsInProgressResponse: null),
+                /*    gigsProvider.getFetchJobInProgress()
                     ? _gigsComponents.getInProgressContainer(
                         context: context,
                         jobsInProgressResponse:
@@ -113,7 +115,8 @@ class _GigsState extends State<Gigs> with SingleTickerProviderStateMixin {
                             ),
                           ],
                         ),
-                      ),
+                      ),*/
+
                 _gigsComponents.getConfirmedContainer(),
               ],
             ),

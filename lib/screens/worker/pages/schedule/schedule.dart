@@ -27,7 +27,6 @@ class _ScheduleState extends State<Schedule> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: AppSizes.height * 0.6,
       width: AppSizes.width,
       color: AppColors.clr_bg,
       child: Column(children: [
@@ -36,13 +35,14 @@ class _ScheduleState extends State<Schedule> {
           height: AppSizes.height * 0.02,
         ),
 
+
         Expanded(
           child: ListView(
             children: [
 
               _scheduleComponents.getLocationDistance(imagePath: Assets.location, text: "Location", text1: "New York,USA"),
               Divider(),
-              _scheduleComponents.getLocationDistance(imagePath: Assets.location, text: "Distance", text1: "40km"),
+              _scheduleComponents.getLocationDistance(imagePath: Assets.distance, text: "Distance", text1: "40km"),
               SliderTheme(
                 data: SliderTheme.of(context).copyWith(
                   activeTrackColor: AppColors.clr_bg_black,
@@ -80,11 +80,11 @@ class _ScheduleState extends State<Schedule> {
               SizedBox(
                 height: AppSizes.height * 0.02,
               ),
-              _scheduleComponents.getDayTime(day: "Wed", time: "10:00 am - 5:00pm"),
+              _scheduleComponents.getWedThur(day: "Wed", time: "10:00 am - 5:00pm"),
               SizedBox(
                 height: AppSizes.height * 0.02,
               ),
-              _scheduleComponents.getDayTime(day: "Thur", time: "10:00 am - 5:00pm"),
+              _scheduleComponents.getWedThur(day: "Thur", time: "10:00 am - 5:00pm"),
               SizedBox(
                 height: AppSizes.height * 0.02,
               ),

@@ -80,7 +80,7 @@ class MessageComponents{
                   ],
                 ),
                 SizedBox(
-                  height: AppSizes.height * 0.010,
+                  height: AppSizes.height * 0.022,
                 ),
                 Text(
                     subHeading,

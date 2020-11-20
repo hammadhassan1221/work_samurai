@@ -224,8 +224,8 @@ class CommonWidgets{
       onTap: onPress,
       child: Container(
         margin: EdgeInsets.only(left: AppSizes.width*0.03,right: AppSizes.width*0.03),
-        height: AppSizes.height * 0.1,
-        padding: EdgeInsets.all(8.0),
+        height: AppSizes.height * 0.12,
+        padding: EdgeInsets.all(10.0),
         decoration: BoxDecoration(
             border: Border.all(
               color: AppColors.clr_bg_grey,
@@ -239,10 +239,7 @@ class CommonWidgets{
               children: [
                 Image.asset(
                   imagePath,
-                  width: 45,
-                  height: 45,
-                  fit: BoxFit.fill,
-                ),
+                  ),
                 SizedBox(
                   width: AppSizes.width * 0.03,
                 ),
