@@ -72,7 +72,7 @@ class _ScheduleState extends State<Schedule> {
                 ),
               ),
 
-              _scheduleComponents.getDayTime(day: "Mon", time: "10:00 am - 5:00pm"),
+              _scheduleComponents.getDayTime(day: "Mon", time: "10:00 am - 5:00pm",buildContext: context),
               SizedBox(
                 height: AppSizes.height * 0.02,
               ),

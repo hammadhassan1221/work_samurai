@@ -6,6 +6,8 @@ import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/screens/card_details/card_details.dart';
 import 'package:work_samurai/screens/documents/documents.dart';
+import 'package:work_samurai/screens/earnings/earnings.dart';
+import 'package:work_samurai/screens/earnings/tab_bar_view/daily_earning/daily_earnings.dart';
 import 'package:work_samurai/screens/settings/settings.dart';
 
 import 'account_components.dart';
@@ -88,7 +90,7 @@ class _AccountState extends State<Account> {
                   imagePath: Assets.sign),
               _accountComponent.getVerification(
                   onPress: (){Navigator.push(context, SlideRightRoute(page: CardDetails()));}, text: "Card Details", imagePath: Assets.card),
-              _accountComponent.getVerification(onPress: (){}, text: "Earnings", imagePath: Assets.payment),
+              _accountComponent.getVerification(onPress: (){Navigator.push(context, SlideRightRoute(page: Earnings()));}, text: "Earnings", imagePath: Assets.payment),
               SizedBox(
                 height: AppSizes.height * 0.015,
               ),

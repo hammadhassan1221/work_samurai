@@ -17,13 +17,14 @@ class SettingsComponents {
           Positioned(
             bottom: 0,
             right: 0,
-            top: AppSizes.height*0.22,
+            top: AppSizes.height*0.1,
             child: Icon(iconData,),
           )
         ],
       ),
     );
   }
+
   Widget getInputContainer({@required String heading , @required IconData iconData,@required Function onPress}){
      return GestureDetector(
       onTap: onPress,

@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
-import 'package:work_samurai/res/assets.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
+import 'package:work_samurai/widgets/widgets.dart';
 
 class ScheduleComponents {
 
@@ -52,10 +54,61 @@ class ScheduleComponents {
     );
   }
 
-  Widget getDayTime({@required String day,@required String time}){
+  _alertDialogueContainer(context){
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext buildContext){
+          return Container(
+            padding: EdgeInsets.only(left: AppSizes.width*0.03,right: AppSizes.width*0.03),
+            height: AppSizes.height/4,
+            child: Column(
+              children: [
+
+                CommonWidgets.getAvailability(text:"10:00 am",onPress: (){DatePicker.showTime12hPicker(context, showTitleActions: true, onChanged: (date) {
+                  print('change $date in time zone ' + date.timeZoneOffset.inHours.toString());
+                }, onConfirm: (date) {
+                  print('confirm $date');
+                }, currentTime: DateTime.now());
+                }),
+                SizedBox(
+                  height: AppSizes.height * 0.01,
+                ),
+                Container(
+                  height: AppSizes.height * 0.0025,
+                  decoration: BoxDecoration(
+                      color: AppColors.clr_field,
+                      borderRadius: BorderRadius.circular(3)),
+                ),
+                SizedBox(
+                  height: AppSizes.height * 0.01,
+                ),
+                CommonWidgets.getAvailability2(text:"5:00pm",onPress: (){DatePicker.showTime12hPicker(context, showTitleActions: true, onChanged: (date) {
+                  print('change $date in time zone ' + date.timeZoneOffset.inHours.toString());
+                }, onConfirm: (date) {
+                  print('confirm $date');
+                }, currentTime: DateTime.now());
+                }),
+                SizedBox(
+                  height: AppSizes.height * 0.01,
+                ),
+                Container(
+                  height: AppSizes.height * 0.0025,
+                  decoration: BoxDecoration(
+                      color: AppColors.clr_field,
+                      borderRadius: BorderRadius.circular(3)),
+                ),
+                CommonWidgets.getButton(backgroundColor: AppColors.clr_bg_black, borderColor: AppColors.transparentColor, textColor: AppColors.clr_white , text: "Save Availability", onPress: (){})
+              ],
+            ),
+          );
+        }
+    );
+  }
+
+  Widget getDayTime({@required BuildContext buildContext,@required String day,@required String time}){
     return GestureDetector(
       onTap:(){
-      // _alertDialogueContainer();
+        _alertDialogueContainer(buildContext);
       },
       child: Container(
         height: AppSizes.height * 0.08,
@@ -65,7 +118,16 @@ class ScheduleComponents {
             borderRadius: BorderRadius.circular(8),
             border:
             Border.all(color: AppColors.clr_bg_grey),
-            color: AppColors.clr_white),
+            color: AppColors.clr_white,
+            boxShadow: [
+        BoxShadow(
+        color: Colors.grey.withOpacity(0.1),
+        spreadRadius: 5,
+        blurRadius: 5,
+        offset: Offset(0, 0), // changes position of shadow
+      ),]
+        ),
+
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -131,4 +193,8 @@ class ScheduleComponents {
       ),
     );
   }
+
+
 }
+
+

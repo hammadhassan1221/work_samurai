@@ -28,7 +28,7 @@ class CardComponents{
             color: AppColors.clr_bg_grey,
           ),
           borderRadius: BorderRadius.circular(5),
-          color: AppColors.clr_field,
+          color: AppColors.clr_bg,
         ),
 
         child:TextField(
