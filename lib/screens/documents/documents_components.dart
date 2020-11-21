@@ -55,7 +55,7 @@ class DocumentComponents{
       child: GestureDetector(
         onTap: onPress,
         child: Container(
-          margin: EdgeInsets.only(left:AppSizes.width*0.03,right:AppSizes.width*0.03,top: AppSizes.height*0.03,bottom: AppSizes.height*0.15,),
+          margin: EdgeInsets.only(left:AppSizes.width*0.03,right:AppSizes.width*0.03,top: AppSizes.height*0.03,bottom: AppSizes.height*0.05,),
           alignment: Alignment.center,
           height: AppSizes.height * 0.08,
           width: AppSizes.width,
@@ -79,44 +79,47 @@ class DocumentComponents{
       ),
     );
   }
-  Widget getUserInfo({@required String text,@required String text1,@required IconData iconData, @required Color colors}){
-    return Container(
-      height: AppSizes.height*0.1,
-      margin: EdgeInsets.only(left: AppSizes.width*0.03,right: AppSizes.width*0.03,top: AppSizes.height*0.02),
-      width: AppSizes.width,
-      padding: EdgeInsets.only(left: AppSizes.width*0.03,right: AppSizes.width*0.03),
-      decoration: BoxDecoration(
-        color: AppColors.clr_white,
-        borderRadius: BorderRadius.circular(5),
-        border: Border.all(color: AppColors.transparentColor),
-      ),
+  Widget getUserInfo({@required Function onPress,@required String text,@required String text1,@required IconData iconData, @required Color colors}){
+    return GestureDetector(
+      onTap:onPress,
+      child: Container(
+        height: AppSizes.height*0.1,
+        margin: EdgeInsets.only(left: AppSizes.width*0.03,right: AppSizes.width*0.03,top: AppSizes.height*0.02),
+        width: AppSizes.width,
+        padding: EdgeInsets.only(left: AppSizes.width*0.03,right: AppSizes.width*0.03),
+        decoration: BoxDecoration(
+          color: AppColors.clr_white,
+          borderRadius: BorderRadius.circular(5),
+          border: Border.all(color: AppColors.transparentColor),
+        ),
 
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                text1,
-                style: TextStyle(
-                    fontSize: 10,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  text1,
+                  style: TextStyle(
+                      fontSize: 10,
+                      fontFamily: 'MuliRegular',
+                      color: AppColors.clr_bg_black
+                  ),),
+                Text(
+                  text,
+                  style: TextStyle(
+                  fontSize: 15,
                     fontFamily: 'MuliRegular',
                     color: AppColors.clr_bg_black
                 ),),
-              Text(
-                text,
-                style: TextStyle(
-                fontSize: 15,
-                  fontFamily: 'MuliRegular',
-                  color: AppColors.clr_bg_black
-              ),),
-            ],
-          ),
+              ],
+            ),
 
-          Icon(iconData,color: colors,),
-        ],
+            Icon(iconData,color: colors,),
+          ],
+        ),
       ),
     );
   }

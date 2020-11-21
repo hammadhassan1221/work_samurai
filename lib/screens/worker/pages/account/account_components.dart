@@ -43,16 +43,19 @@ class AccountComponent {
                 width: 100,
               ),
             ),
-            Container(
-                width: AppSizes.width * 0.6,
-                height: AppSizes.height / 8,
-                child: Text(text,
-                    textAlign: TextAlign.right,
-                    style: TextStyle(
-                     // decoration: TextDecoration.underline,
-                      fontSize: 18,
-                      fontFamily: 'MuliBold',
-                    )))
+            GestureDetector(
+              onTap: onPress,
+              child: Container(
+                  width: AppSizes.width * 0.6,
+                  height: AppSizes.height / 8,
+                  child: Text(text,
+                      textAlign: TextAlign.right,
+                      style: TextStyle(
+                       // decoration: TextDecoration.underline,
+                        fontSize: 18,
+                        fontFamily: 'MuliBold',
+                      ))),
+            )
           ],
         ));
   }

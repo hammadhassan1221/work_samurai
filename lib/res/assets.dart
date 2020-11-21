@@ -45,6 +45,7 @@ class Assets{
   static const String barArrow = "assets/png/Break@3x.png";
   static const String cancelgig = "assets/png/cancel_gig@3x.png";
   static const String mails = "assets/png/mail@3x.png";
+  static const String files = "assets/png/add-file@3x.png";
 
 
 

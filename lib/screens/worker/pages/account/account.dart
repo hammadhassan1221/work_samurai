@@ -6,6 +6,7 @@ import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/screens/card_details/card_details.dart';
 import 'package:work_samurai/screens/documents/documents.dart';
+import 'package:work_samurai/screens/settings/settings.dart';
 
 import 'account_components.dart';
 
@@ -21,7 +22,6 @@ class _AccountState extends State<Account> {
   void initState() {
     // TODO: implement initState
     super.initState();
-
     _accountComponent = AccountComponent();
   }
 
@@ -37,7 +37,7 @@ class _AccountState extends State<Account> {
           child: ListView(
             children: [
               _accountComponent.getUserEdit(
-                  imagePath: Assets.support, text: "Settings",onPress:(){}),
+                  imagePath: Assets.support, text: "Settings",onPress:(){Navigator.push(context, SlideRightRoute(page: Settings()));}),
               SizedBox(
                 height: AppSizes.height * 0.01,
               ),

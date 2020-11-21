@@ -10,10 +10,7 @@ class CommonWidgets{
 
     return Container(
         margin: EdgeInsets.only(top:AppSizes.height*0.01),
-
-        height: AppSizes.height*0.09,
-        width: AppSizes.width,
-
+        padding: EdgeInsets.only(left: AppSizes.width*0.03,right: AppSizes.width*0.03,),
         child:Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -24,7 +21,7 @@ class CommonWidgets{
                   fontSize: 15,
                   fontFamily: 'MuliRegular'),),
             CupertinoSwitch(
-              activeColor: AppColors.clr_green,
+              activeColor: Colors.lightGreenAccent,
               value:value,
               onChanged: onPress),
 
