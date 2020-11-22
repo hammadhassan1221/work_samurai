@@ -97,12 +97,17 @@ class ScheduleComponents {
                       color: AppColors.clr_field,
                       borderRadius: BorderRadius.circular(3)),
                 ),
-                CommonWidgets.getButton(backgroundColor: AppColors.clr_bg_black, borderColor: AppColors.transparentColor, textColor: AppColors.clr_white , text: "Save Availability", onPress: (){})
-              ],
+CommonWidgets.getSignUpButton(context: context, onPress: () {
+  hideLoader(context);
+}, text: "Save Availability")              ],
             ),
           );
         }
     );
+  }
+
+  hideLoader(BuildContext context) {
+    Navigator.of(context).pop();
   }
 
   Widget getDayTime({@required BuildContext buildContext,@required String day,@required String time}){

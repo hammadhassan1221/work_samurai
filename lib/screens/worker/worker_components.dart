@@ -1470,7 +1470,7 @@ class WorkerComponents {
                               height: AppSizes.height * 0.03,
                             ),
 
-                            CommonWidgets.getButton(backgroundColor: AppColors.clr_bg_black, borderColor: AppColors.transparentColor, textColor: AppColors.clr_white, text: "SUBMIT RATING", onPress: (){hideLoader(context);}),
+                            CommonWidgets.getSignUpButton(context:context,text:"SUBMIT RATING", onPress: (){hideLoader(context);}),
 
                             SizedBox(
                               height: AppSizes.height * 0.04,

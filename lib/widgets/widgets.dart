@@ -31,6 +31,39 @@ class CommonWidgets{
     );
   }
 
+  static Widget getScheduleRow(String text, bool value, Function onPress){
+
+    return Container(
+        margin: EdgeInsets.only(top:AppSizes.height*0.01),
+        padding: EdgeInsets.only(left: AppSizes.width*0.03,right: AppSizes.width*0.03,),
+        child:Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              text,
+              style: TextStyle(
+                  color: AppColors.clr_bg_black,
+                  fontSize: 15,
+                  fontFamily: 'MuliRegular'),),
+            Row(
+              children: [
+                Text("All Day",style: TextStyle(
+                  fontFamily: 'MuliRegular',
+                  fontSize: 10
+                ),),
+                CupertinoSwitch(
+                    activeColor: Colors.lightGreenAccent,
+                    value:value,
+                    onChanged: onPress),
+              ],
+            )
+
+          ],
+        )
+    );
+  }
+
+
   static Widget getAvailability({@required String text,@required Function onPress}){
     return GestureDetector(
       onTap: onPress,
@@ -98,47 +131,40 @@ class CommonWidgets{
     );
   }
 
-  static Widget getButton(
-      {@required Color backgroundColor,
-        @required Color borderColor,
-        @required Color textColor,
-        @required String text,
-        @required Function onPress}) {
+
+ static Widget getSignUpButton({@required BuildContext context, @required Function onPress,@required String text}) {
     return Expanded(
       child: Align(
         alignment: Alignment.bottomCenter,
         child: GestureDetector(
-          onTap: () => onPress(),
+          onTap: onPress,
           child: Container(
-            margin: EdgeInsets.only(bottom: AppSizes.height*0.05),
-            width: AppSizes.width,
-            height: AppSizes.height * 0.07,
+            margin: EdgeInsets.only(left:AppSizes.width*0.03,right:AppSizes.width*0.03,top: AppSizes.height*0.03,bottom: AppSizes.height*0.03),
             alignment: Alignment.center,
+            height: AppSizes.height * 0.08,
+            width: AppSizes.width,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(
-                6,
+                5,
               ),
               border: Border.all(
-                color: borderColor,
+                color: AppColors.clr_bg_black,
               ),
-              color: backgroundColor,
+              color: AppColors.clr_bg_black,
             ),
             child: Text(
               text,
               style: TextStyle(
-                decoration: TextDecoration.none,
-                fontSize: 16,
-                color: textColor,
-                fontWeight: FontWeight.w500,
-                fontFamily: Assets.muliRegular
-              ),
-              textAlign: TextAlign.center,
+                  fontSize: 16.0,
+                  fontFamily: 'MuliRegular',
+                  color: AppColors.clr_white),
             ),
           ),
         ),
       ),
     );
   }
+
 
   static Widget getInputField(
       {@required Color backgroundColor,

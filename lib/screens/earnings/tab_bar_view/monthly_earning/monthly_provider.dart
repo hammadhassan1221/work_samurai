@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-class SettingsProviders extends ChangeNotifier{
+class MonthlyProviders extends ChangeNotifier{
   BuildContext context;
 
   init({@required BuildContext context}) {

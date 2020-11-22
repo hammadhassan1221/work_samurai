@@ -57,7 +57,7 @@ class _GigsState extends State<Gigs> with SingleTickerProviderStateMixin {
             labelStyle: TextStyle(fontFamily: 'MuliSemiBold'),
             indicatorColor: AppColors.clr_bg_grey,
             labelColor: AppColors.clr_bg_black,
-            unselectedLabelColor: AppColors.clr_bg_grey,
+            unselectedLabelColor: AppColors.clr_bg_black2,
             indicator: BoxDecoration(
                 color: AppColors.clr_white,
                 border: Border(
@@ -81,43 +81,9 @@ class _GigsState extends State<Gigs> with SingleTickerProviderStateMixin {
             child: TabBarView(
               controller: _tabController,
               children: <Widget>[
-                /*gigsProvider.getFutureJobFetched()
-                    ? _gigsComponents.getOffersContainer(
-                        context: context,
-                        futureJobsResponse: gigsProvider.getFutureJobResponse())
-                    : Container(
-                        child: Column(
-                          children: [
-                            Container(
-                              height: AppSizes.height * 0.05,
-                              width: AppSizes.width * 0.05,
-                              margin: EdgeInsets.only(top: 20),
-                              child: CircularProgressIndicator(),
-                            ),
-                          ],
-                        ),
-                      ),*/
-                _gigsComponents.getOffersContainer(context: context, futureJobsResponse: null),
-                _gigsComponents.getInProgressContainer(context: context, jobsInProgressResponse: null),
-                /*    gigsProvider.getFetchJobInProgress()
-                    ? _gigsComponents.getInProgressContainer(
-                        context: context,
-                        jobsInProgressResponse:
-                            gigsProvider.getJobsInProgressResponse())
-                    : Container(
-                        child: Column(
-                          children: [
-                            Container(
-                              height: AppSizes.height * 0.05,
-                              width: AppSizes.width * 0.05,
-                              margin: EdgeInsets.only(top: 20),
-                              child: CircularProgressIndicator(),
-                            ),
-                          ],
-                        ),
-                      ),*/
-
-                _gigsComponents.getConfirmedContainer(),
+                _gigsComponents.getOffersContainer(context: context),
+                _gigsComponents.getInProgressContainer(context: context),
+                _gigsComponents.getConfirmedContainer(context: null),
               ],
             ),
           ),
