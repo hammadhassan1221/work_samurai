@@ -50,36 +50,4 @@ class SettingsComponents {
     );
  }
 
-  Widget getSignUpButton({@required BuildContext context, @required Function onPress,@required String text}) {
-    return Align(
-      alignment: Alignment.bottomCenter,
-      child: GestureDetector(
-        onTap: onPress,
-        child: Container(
-          margin: EdgeInsets.only(left:AppSizes.width*0.03,right:AppSizes.width*0.03,top: AppSizes.height*0.03),
-          alignment: Alignment.center,
-          height: AppSizes.height * 0.08,
-          width: AppSizes.width,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(
-              5,
-            ),
-            border: Border.all(
-              color: AppColors.clr_bg_black,
-            ),
-            color: AppColors.clr_bg_black,
-          ),
-          child: Text(
-            text,
-            style: TextStyle(
-                fontSize: 16.0,
-                fontFamily: 'MuliRegular',
-                color: AppColors.clr_white),
-          ),
-        ),
-      ),
-    );
-  }
-
-
 }

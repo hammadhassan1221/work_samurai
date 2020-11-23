@@ -48,39 +48,6 @@ class ForgetPasswordComponents{
     );
   }
 
-  Widget getSignUpButton({@required BuildContext context, @required Function onPress,@required String text}) {
-    return Expanded(
-      child: Align(
-        alignment: Alignment.bottomCenter,
-        child: GestureDetector(
-          onTap: onPress,
-          child: Container(
-            margin: EdgeInsets.only(left:AppSizes.width*0.03,right:AppSizes.width*0.03,top: AppSizes.height*0.03,bottom: AppSizes.height*0.03),
-            alignment: Alignment.center,
-            height: AppSizes.height * 0.08,
-            width: AppSizes.width,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(
-                5,
-              ),
-              border: Border.all(
-                color: AppColors.clr_bg_black,
-              ),
-              color: AppColors.clr_bg_black,
-            ),
-            child: Text(
-              text,
-              style: TextStyle(
-                  fontSize: 16.0,
-                  fontFamily: 'MuliRegular',
-                  color: AppColors.clr_white),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
   Widget getConfirmationText(){
     return Container(
       margin: EdgeInsets.only(top: AppSizes.height*0.15,left: AppSizes.width*0.03,right:AppSizes.width*0.03),

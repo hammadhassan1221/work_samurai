@@ -33,7 +33,7 @@ class _SettingsState extends State<Settings> {
               Expanded(
                 child: ListView(
                   children: [
-                    CommonWidgets.getAppBar(text: "Settings", onPress: (){Navigator.pop(context);}, imagepath: Assets.barArrow),
+                    CommonWidgets.getAppBar(text: "Settings", context: context),
                     SizedBox(height: AppSizes.height*0.05,),
                     _settingsComponents.getUserImage(onPress: (){},iconData: Icons.camera_alt,imagePath: Assets.support),
                     SizedBox(height: AppSizes.height*0.05,),
@@ -44,7 +44,7 @@ class _SettingsState extends State<Settings> {
                     _settingsComponents.getInputContainer(heading: "Description", iconData: Icons.keyboard_arrow_down_outlined, onPress: (){}),
                     SizedBox(height: AppSizes.height*0.025,),
                     _settingsComponents.getInputContainer(heading: "Password", iconData: Icons.keyboard_arrow_down_outlined, onPress: (){}),
-                    _settingsComponents.getSignUpButton(context: context, onPress: (){}, text: "Update")
+                    CommonWidgets.getSignUpButton(context: context, onPress: (){}, text: "Update")
 
                   ],
                 ),

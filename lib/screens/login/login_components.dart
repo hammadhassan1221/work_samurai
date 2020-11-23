@@ -70,13 +70,18 @@ class LoginComponents {
               SizedBox(
                 width: AppSizes.width * 0.02,
               ),
-              Text(
-                text2,
-                style: TextStyle(
-                  fontSize: 15,
-                  color: AppColors.clr_red,
-                  fontFamily: 'MuliRegular',
-                  decoration: TextDecoration.underline,
+              Container(
+                decoration: BoxDecoration(
+                    border: Border(bottom: BorderSide(color: AppColors.clr_red))
+                ),
+                child: Text(
+                  text2,
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: AppColors.clr_red,
+                    fontFamily: 'MuliRegular',
+
+                  ),
                 ),
               )
             ],

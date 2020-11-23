@@ -5,6 +5,7 @@ import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/screens/app_settings/app_settings.dart';
 import 'package:work_samurai/screens/update_documents/update_documents.dart';
+import 'package:work_samurai/widgets/widgets.dart';
 
 import 'documents_components.dart';
 
@@ -33,7 +34,7 @@ class _DocumentVerificationState extends State<DocumentVerification> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
                 children:[
-                  _documentComponents.getAppBar(text: "Document Verification", context: context),
+                  CommonWidgets.getAppBar(text: "Document Verification", context: context),
                  Expanded(
                    child: ListView(
                      children: [
@@ -44,7 +45,7 @@ class _DocumentVerificationState extends State<DocumentVerification> {
                        _documentComponents.getUserInfo(text: "Terms And Conditions",text1:"Completed",iconData: Icons.check_circle_outline,colors: Colors.green ,onPress: (){Navigator.push(context, SlideRightRoute(page:UpdateDocuments()));}),
                        _documentComponents.getUserInfo(text: "Legal Agreement",text1:"Completed",iconData: Icons.check_circle_outline,colors: Colors.green ,onPress: (){}),
                        _documentComponents.getUserInfo(text: "Driving Licence",text1:"Completed",iconData: Icons.check_circle_outline,colors: Colors.green ,onPress: (){}),
-                       _documentComponents.getSignUpButton(context: context, onPress: (){}, text: "Update")
+                       CommonWidgets.getSignUpButton(context: context, onPress: (){}, text: "Update")
                      ],
                    ),
                  ),

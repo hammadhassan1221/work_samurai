@@ -6,6 +6,7 @@ import 'package:work_samurai/screens/earnings/earnings_components.dart';
 import 'package:work_samurai/screens/earnings/tab_bar_view/all_earnings/all_earnings.dart';
 import 'package:work_samurai/screens/earnings/tab_bar_view/daily_earning/daily_earnings.dart';
 import 'package:work_samurai/screens/earnings/tab_bar_view/monthly_earning/monthly_earning.dart';
+import 'package:work_samurai/widgets/widgets.dart';
 
 class Earnings extends StatefulWidget {
   @override
@@ -35,7 +36,7 @@ class _EarningsState extends State<Earnings> with TickerProviderStateMixin{
               color: AppColors.clr_bg,
               child: Column(
                 children: [
-                  _earningComponents.getAppBar(text: "Earning History", context: context),
+                  CommonWidgets.getAppBar(text: "Earning History", context: context),
                   Container(
                     margin: EdgeInsets.only(top: AppSizes.height*0.025),
                     child: TabBar(

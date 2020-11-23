@@ -41,17 +41,18 @@ class ScheduleComponents {
               ),
             ],
           ),
-          Row(
-            children: [
-              Text(
-                text1,
-                style: TextStyle(
-                  fontSize: 15,
-                  fontFamily: 'MuliRegular',
-                  decoration: TextDecoration.underline,
-                ),
-              )
-            ],
+          Container(
+            decoration: BoxDecoration(
+                border: Border(bottom: BorderSide(color: AppColors.clr_bg_black))
+            ),
+            child: Text(
+              text1,
+              style: TextStyle(
+                fontSize: 15,
+                fontFamily: 'MuliRegular',
+
+              ),
+            ),
           )
         ],
       ),

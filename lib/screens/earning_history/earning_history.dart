@@ -29,14 +29,14 @@ class _EarningHistoryState extends State<EarningHistory> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-                _earningHistoryComponents.getAppBar(text: "Earning History", context: context),
+                CommonWidgets.getAppBar(text: "Earning History", context: context),
             _earningHistoryComponents.getHeadings(text: "Job Title"),
             _earningHistoryComponents.getSubHeading(text: "Waiter in Hotel"),
             _earningHistoryComponents.getHeadings(text: "Job Description"),
             _earningHistoryComponents.getSubHeading(text: "Donec dapibus mauris id odio ornare tempus amet accumsan justo, quis tempor ligula. Qui haretra felis. Ut quis consequat orci, at conseq Suspendisse auctor laoreet placerat. Nam et r lacus dignissim lacinia sit amet nec eros. Null quis libero pharetra varius. Nulla tellus nunc, ada at scelerisque eget, cursus at eros. Maec ntesque lacus quis erat eleifend sagittis. Sed v us ante, quis mattis neque. Nullam dapibus er ulla cursus accumsan. Nulla volutpat libero la natis sodales. Ut in pellentesque velit."),
             _earningHistoryComponents.getHeadings(text: "Job Payment"),
             _earningHistoryComponents.getSubHeading(text: "Price: \$ 2000."),
-            _earningHistoryComponents.getSignUpButton(context: context, onPress: (){}, text: "Download Pdf")
+            CommonWidgets.getSignUpButton(context: context, onPress: (){}, text: "Download Pdf")
           ],
         ),
       ),

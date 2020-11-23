@@ -37,10 +37,7 @@ class _AppSettingsState extends State<AppSettings> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CommonWidgets.getAppBar(
-                text: "App Settings",
-                onPress: () {Navigator.pop(context);},
-                imagepath: Assets.barArrow),
+            CommonWidgets.getAppBar(text: "App Settings", context: context),
             SizedBox(height: AppSizes.height*0.04,),
             CommonWidgets.getRow("Notification Sound", isEnabled, (bool value) {
               setState(() {

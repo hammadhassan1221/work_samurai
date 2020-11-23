@@ -130,8 +130,8 @@ class _LoginState extends State<Login> {
                   height: AppSizes.height * 0.05,
                 ),
                 _loginComponents.getRichText1(
-                    text1: "",
-                    text2: "Forget Password?",
+                    text1: "Forget Password?",
+                    text2: "",
                     onPress: () {
                       Navigator.push(
                           context, SlideRightRoute(page: ForgetPassword()));

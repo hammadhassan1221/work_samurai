@@ -1363,7 +1363,7 @@ class GigsComponents {
                                   )),
                               GestureDetector(
                                 onTap: () {
-                                  _newTaskModalBottomSheet(context);
+                                 // _newTaskModalBottomSheet(context);
                                 },
                                 child: Container(
                                     height: AppSizes.height*0.06,

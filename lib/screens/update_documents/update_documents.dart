@@ -31,7 +31,7 @@ class _UpdateDocumentsState extends State<UpdateDocuments> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CommonWidgets.getAppBar(text: "Document Verification", onPress: (){Navigator.pop(context);}, imagepath: Assets.barArrow),
+CommonWidgets.getAppBar(text: "Document Verification", context: context),
                 _updateComponents.getHeadings(text: "Add Your Documentation"),
                 SizedBox(height: AppSizes.height*0.025,),
 
@@ -47,7 +47,7 @@ class _UpdateDocumentsState extends State<UpdateDocuments> {
                     width: 160,
                   ),
                 ),
-                _updateComponents.getSignUpButton(context: context, onPress: (){}, text: "Choose File")
+                CommonWidgets.getSignUpButton(context: context, onPress: (){}, text: "Choose File")
 
               ],
             ),
