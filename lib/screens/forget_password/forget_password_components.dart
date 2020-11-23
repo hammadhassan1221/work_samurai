@@ -19,7 +19,7 @@ class ForgetPasswordComponents{
         height: AppSizes.height*0.075,
         alignment: Alignment.bottomCenter,
 
-        margin: EdgeInsets.only(left:AppSizes.width*0.03,right:AppSizes.width*0.03,top: AppSizes.height*0.03),
+        margin: EdgeInsets.only(left:AppSizes.width*0.05,right:AppSizes.width*0.05,top: AppSizes.height*0.03),
         decoration: BoxDecoration(
           border: Border.all(
             color: borderColor,
@@ -52,7 +52,7 @@ class ForgetPasswordComponents{
     return GestureDetector(
       onTap: onPress,
       child: Container(
-        margin: EdgeInsets.only(left:AppSizes.width*0.03,right:AppSizes.width*0.03,top: AppSizes.height*0.03),
+        margin: EdgeInsets.only(left:AppSizes.width*0.05,right:AppSizes.width*0.05,top: AppSizes.height*0.03),
         alignment: Alignment.center,
         height: AppSizes.height * 0.08,
         width: AppSizes.width,

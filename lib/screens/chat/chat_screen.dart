@@ -171,7 +171,9 @@ class _ChatScreenState extends State<ChatScreen> {
                     children: [
                       _textFieldContainer(),
                       Icon(Icons.attach_file),
-
+                      SizedBox(
+                        width: AppSizes.width*0.01,
+                      ),
                       Icon(Icons.send),
                     ],
                   )
@@ -185,10 +187,10 @@ class _ChatScreenState extends State<ChatScreen> {
 
   _textFieldContainer(){
     return Container(
-      height: AppSizes.height*0.06,
+      height: AppSizes.height*0.07,
       width: AppSizes.width/1.3,
-      margin: EdgeInsets.all(12),
-      padding: EdgeInsets.all(10),
+      margin: EdgeInsets.all(10),
+      padding: EdgeInsets.all(8),
       decoration: BoxDecoration(
           color: AppColors.clr_white,
           borderRadius: BorderRadius.circular(6)

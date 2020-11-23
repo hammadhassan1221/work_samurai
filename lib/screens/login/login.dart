@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:work_samurai/animations/slide_right.dart';
@@ -21,15 +22,16 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   LoginComponents _loginComponents;
   LoginProvider _loginProvider;
-  TextEditingController _email,
-      _password;
+  TextEditingController _email, _password;
   FocusNode _focusNode;
+  bool onCheck = false;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     _loginComponents = LoginComponents();
-    _loginProvider = Provider.of<LoginProvider>(context, listen:false);
+    _loginProvider = Provider.of<LoginProvider>(context, listen: false);
     _loginProvider = LoginProvider();
     _email = TextEditingController();
     _password = TextEditingController();
@@ -37,7 +39,7 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    Provider.of<LoginProvider>(context, listen:true);
+    Provider.of<LoginProvider>(context, listen: true);
     return Scaffold(
         resizeToAvoidBottomInset: true,
         body: Container(
@@ -65,24 +67,76 @@ class _LoginState extends State<Login> {
                     text: "Password",
                     controller: _password,
                     imagePath: Assets.lock),
+                Container(
+                    margin: EdgeInsets.only(
+                      left: AppSizes.height * 0.01,
+                      right: AppSizes.height * 0.03,
+                    ),
+                    alignment: Alignment.topLeft,
+                    child: Row(
+                      children: [
+                        Checkbox(
+                          checkColor: AppColors.clr_white,
+                          activeColor: AppColors.clr_bg_black,
+                          value: onCheck,
+                          onChanged: (bool value) {
+                            setState(() {
+                              onCheck = value;
+                            });
+                          },
+                        ),
+                        Text(
+                          "Remember Me",
+                        )
+                      ],
+                    )),
                 SizedBox(
                   height: AppSizes.height * 0.02,
                 ),
-                _loginComponents.getSignUpButton(context: context, onPress: (){
-                  _loginProvider.callLoginAPI(context: context, email: _email.text.toString(), password: _password.text.toString());
-                }, text: "Login"),
+                _loginComponents.getSignUpButton(
+                    context: context,
+                    onPress: () {
+                      _loginProvider.callLoginAPI(
+                          context: context,
+                          email: _email.text.toString(),
+                          password: _password.text.toString());
+                    },
+                    text: "Login"),
                 SizedBox(
-                  height: AppSizes.height * 0.05,
+                  height: AppSizes.height * 0.02,
                 ),
                 _loginComponents.getRichText(
-                    text1: "", text2: "Forget Password", onPress: (){Navigator.push(context, SlideRightRoute(page: ForgetPassword()));}),
+                    text1: "",
+                    text2: "Forget Password?",
+                    onPress: () {
+                      Navigator.push(
+                          context, SlideRightRoute(page: ForgetPassword()));
+                    }),
                 SizedBox(
-                  height: AppSizes.height * 0.05,
+                  height: AppSizes.height * 0.06,
                 ),
-                _loginComponents.getRichText(
-                    text1: "Don't have an account?",
-                    text2: "Sign Up",
-                    onPress: (){Navigator.push(context, SlideRightRoute(page: SignUp()));}),
+              RichText(
+                text: TextSpan(
+                    text: 'Dont have an account?',
+                    style: TextStyle(
+                        fontFamily: 'MuliRegular',
+                        color: AppColors.clr_bg_black,
+                        fontSize: 15),
+                    children: <TextSpan>[
+                      TextSpan(
+                          text: 'Sign up',
+                          style: TextStyle(
+                            color: AppColors.clr_red,
+                            decoration: TextDecoration.underline,
+                            fontSize: 15,
+                            fontFamily: 'MuliRegular',
+                          ),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              Navigator.push(context, SlideRightRoute(page: SignUp()));
+                            })
+                    ]),
+              )
               ],
             ),
           ),

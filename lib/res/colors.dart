@@ -8,7 +8,7 @@ Map<int, Color> colorCodes = {
   200: Color.fromRGBO(147, 205, 72, .3),
   300: Color.fromRGBO(147, 205, 72, .4),
   400: Color.fromRGBO(147, 205, 72, .5),
-  500: Color.fromRGBO(147, 205, 72, .6
+  500: Color.fromRGBO(147, 205, 72, .6),
   600: Color.fromRGBO(147, 205, 72, .7),
   700: Color.fromRGBO(147, 205, 72, .8),
   800: Color.fromRGBO(147, 205, 72, .9),
@@ -27,8 +27,9 @@ class AppColors{
   static const clr_red = Color.fromRGBO(211, 63, 63, 1);
   static const clr_green = Color.fromRGBO(11, 171, 106, 1);
   static const clr_field = Color.fromRGBO(234, 236, 238, 1);
-  static const sign_field = Color.fromRGBO(70, 70, 70, 1);
+  static const sign_field = Color.fromRGBO(206, 209, 212, 1);
   static const pay_field = Color.fromRGBO(151, 151, 151, 1);
+
 
   // Hex color code
   // text Colors

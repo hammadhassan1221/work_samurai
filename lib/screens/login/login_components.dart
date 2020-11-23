@@ -8,7 +8,7 @@ import 'package:work_samurai/res/sizes.dart';
 class LoginComponents {
   Widget getImageContainer(String imagePath, double height, double width) {
     return Container(
-        child: Image.asset(imagePath, width: width, height: height,fit: BoxFit.cover,));
+        child: Image.asset(imagePath, width: width, height: height,));
   }
 
   Widget getRichText(
@@ -38,9 +38,8 @@ class LoginComponents {
                 text2,
                 style: TextStyle(
                   fontSize: 15,
-                  color: AppColors.clr_red,
+                  color: AppColors.clr_bg_black,
                   fontFamily: 'MuliRegular',
-                  decoration: TextDecoration.underline,
                 ),
               )
             ],
