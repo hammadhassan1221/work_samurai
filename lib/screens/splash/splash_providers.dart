@@ -45,7 +45,7 @@ class SplashProvider extends ChangeNotifier {
     if (PreferenceUtils.getBoolean(Strings.IS_LOGGED_IN) == true) {
       Navigator.pushReplacement(context, SlideRightRoute(page: Worker()));
     } else {
-      Navigator.pushReplacement(context, SlideRightRoute(page: SignUp()));
+      Navigator.pushReplacement(context, SlideRightRoute(page: Login()));
     }
   }
 }
