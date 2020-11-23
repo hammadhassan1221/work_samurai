@@ -118,6 +118,7 @@ class LoginComponents {
         @required String text,
         @required String imagePath,
         @required TextEditingController controller,
+        @required bool isPassword,
 
       }) {
     return Container(
@@ -135,6 +136,7 @@ class LoginComponents {
         ),
 
         child:TextField(
+          obscureText: isPassword,
           cursorColor: AppColors.clr_bg_black2,
           controller: controller,
           decoration: InputDecoration(

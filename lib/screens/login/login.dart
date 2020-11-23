@@ -57,6 +57,7 @@ class _LoginState extends State<Login> {
                     borderColor: AppColors.clr_bg_grey,
                     textColor: AppColors.clr_bg_black2,
                     text: "Username",
+                    isPassword: false,
                     controller: _email,
                     imagePath: Assets.mail),
                 SizedBox(
@@ -68,6 +69,7 @@ class _LoginState extends State<Login> {
                     textColor: AppColors.clr_bg_black2,
                     text: "Password",
                     controller: _password,
+                    isPassword: true,
                     imagePath: Assets.lock,),
                 SizedBox(
                   height: AppSizes.height * 0.02,

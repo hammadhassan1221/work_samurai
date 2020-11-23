@@ -10,8 +10,8 @@
 
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="work_samurai">
-<!--        android:icon="@mipmap/1024"-->
+        android:label="work_samurai"
+        android:icon="@mipmap/app_logo">
 
         <activity
             android:name=".MainActivity"

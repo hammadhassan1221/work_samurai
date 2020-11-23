@@ -3,41 +3,40 @@ import 'package:flutter/material.dart';
 import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
+import 'package:work_samurai/screens/worker/pages/schedule/schedule_provider.dart';
 
-class CommonWidgets{
-
-
-  static Widget getRow(String text, bool value, Function onPress){
-
+class CommonWidgets {
+  static Widget getRow(String text, bool value, Function onPress) {
     return Container(
-        margin: EdgeInsets.only(top:AppSizes.height*0.01),
-        padding: EdgeInsets.only(left: AppSizes.width*0.03,right: AppSizes.width*0.03,),
-        child:Row(
+        margin: EdgeInsets.only(top: AppSizes.height * 0.01),
+        padding: EdgeInsets.only(
+          left: AppSizes.width * 0.03,
+          right: AppSizes.width * 0.03,
+        ),
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-          text,
+              text,
               style: TextStyle(
                   color: AppColors.clr_bg_black,
                   fontSize: 15,
-                  fontFamily: 'MuliRegular'),),
+                  fontFamily: 'MuliRegular'),
+            ),
             CupertinoSwitch(
-              activeColor: Colors.lightGreenAccent,
-              value:value,
-              onChanged: onPress),
-
+                activeColor: Colors.lightGreenAccent,
+                value: value,
+                onChanged: onPress),
           ],
-        )
-    );
+        ));
   }
 
-
-  static Widget getScheduleRow(String text, Function onPress){
-
+  static Widget getScheduleRow(
+      String text, ScheduleProviders scheduleProviders) {
     return Container(
-        margin: EdgeInsets.only(top:AppSizes.height*0.01,bottom: AppSizes.height*0.01),
-
-        child:Row(
+        margin: EdgeInsets.only(
+            top: AppSizes.height * 0.01, bottom: AppSizes.height * 0.01),
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
@@ -45,19 +44,29 @@ class CommonWidgets{
               style: TextStyle(
                   color: AppColors.clr_bg_black,
                   fontSize: 20,
-                  fontFamily: 'MuliBold'),),
-            Text("All Day",style: TextStyle(
-              fontFamily: 'MuliRegular',
-              fontSize: 14
-            ),)
+                  fontFamily: 'MuliBold'),
+            ),
+            Row(
+              children: [
+                Text(
+                  "All Day",
+                  style: TextStyle(fontFamily: 'MuliRegular', fontSize: 14),
+                ),
+                CupertinoSwitch(
+                  value: scheduleProviders.value,
+                  onChanged: (value){
+                    scheduleProviders.setToggleButton(value);
+                  }
 
+                ),
+              ],
+            ),
           ],
-        )
-    );
+        ));
   }
 
-
-  static Widget getAvailability({@required String text,@required Function onPress}){
+  static Widget getAvailability(
+      {@required String text, @required Function onPress}) {
     return GestureDetector(
       onTap: onPress,
       child: Row(
@@ -67,31 +76,46 @@ class CommonWidgets{
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(
-                height: AppSizes.height*0.05,
-                width: AppSizes.width*0.03,
+                height: AppSizes.height * 0.05,
+                width: AppSizes.width * 0.03,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: AppColors.clr_green,
                 ),
               ),
-              SizedBox(width: AppSizes.width*0.03,),
-              Text("Available From",
+              SizedBox(
+                width: AppSizes.width * 0.03,
+              ),
+              Text(
+                "Available From",
                 style: TextStyle(
                     fontFamily: 'MuliRegular',
                     color: AppColors.clr_green,
-                    fontSize: 16),)
+                    fontSize: 16),
+              )
             ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
-            children: [Text(text,style: TextStyle(fontSize: 16,color: AppColors.clr_green,fontFamily: 'MuliRegular'),)],
+            children: [
+              Text(
+                text,
+                style: TextStyle(
+                    fontSize: 16,
+                    color: AppColors.clr_green,
+                    fontFamily: 'MuliRegular'),
+              )
+            ],
           ),
         ],
       ),
     );
   }
 
-  static Widget getAvailability2({@required String text1,@required String text,@required Function onPress}){
+  static Widget getAvailability2(
+      {@required String text1,
+      @required String text,
+      @required Function onPress}) {
     return GestureDetector(
       onTap: onPress,
       child: Row(
@@ -101,38 +125,57 @@ class CommonWidgets{
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(
-                height: AppSizes.height*0.05,
-                width: AppSizes.width*0.03,
+                height: AppSizes.height * 0.05,
+                width: AppSizes.width * 0.03,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: AppColors.clr_bg_black,
                 ),
               ),
-              SizedBox(width: AppSizes.width*0.03,),
-              Text(text1,
+              SizedBox(
+                width: AppSizes.width * 0.03,
+              ),
+              Text(
+                text1,
                 style: TextStyle(
                     color: AppColors.clr_bg_black,
-                    fontSize: 16,fontFamily: 'MuliRegular'),)
+                    fontSize: 16,
+                    fontFamily: 'MuliRegular'),
+              )
             ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
-            children: [Text(text,style: TextStyle(fontSize: 16,color: AppColors.clr_bg_black,fontFamily: 'MuliRegular'),)],
+            children: [
+              Text(
+                text,
+                style: TextStyle(
+                    fontSize: 16,
+                    color: AppColors.clr_bg_black,
+                    fontFamily: 'MuliRegular'),
+              )
+            ],
           ),
         ],
       ),
     );
   }
 
-
- static Widget getSignUpButton({@required BuildContext context, @required Function onPress,@required String text}) {
+  static Widget getSignUpButton(
+      {@required BuildContext context,
+      @required Function onPress,
+      @required String text}) {
     return Expanded(
       child: Align(
         alignment: Alignment.bottomCenter,
         child: GestureDetector(
           onTap: onPress,
           child: Container(
-            margin: EdgeInsets.only(left:AppSizes.width*0.03,right:AppSizes.width*0.03,top: AppSizes.height*0.03,bottom: AppSizes.height*0.03),
+            margin: EdgeInsets.only(
+                left: AppSizes.width * 0.03,
+                right: AppSizes.width * 0.03,
+                top: AppSizes.height * 0.03,
+                bottom: AppSizes.height * 0.03),
             alignment: Alignment.center,
             height: AppSizes.height * 0.08,
             width: AppSizes.width,
@@ -158,13 +201,12 @@ class CommonWidgets{
     );
   }
 
-
   static Widget getInputField(
       {@required Color backgroundColor,
-        @required Color borderColor,
-        @required Color textColor,
-        @required String text,
-        @required Function onPress}) {
+      @required Color borderColor,
+      @required Color textColor,
+      @required String text,
+      @required Function onPress}) {
     return Container(
       width: AppSizes.width * 0.8,
       height: AppSizes.height * 0.07,
@@ -185,7 +227,6 @@ class CommonWidgets{
       ),
       padding: EdgeInsets.all(10),
       child: TextField(
-
         decoration: InputDecoration(
             prefixIcon: Icon(
               Icons.email,
@@ -194,24 +235,30 @@ class CommonWidgets{
             hintText: "Email",
             hintStyle: TextStyle(
               fontSize: 15,
-
               decoration: TextDecoration.none,
             )),
       ),
     );
   }
 
-  static Widget getAppBar({@required String text,@required Function onPress,@required String imagepath}){
+  static Widget getAppBar(
+      {@required String text,
+      @required Function onPress,
+      @required String imagepath}) {
     return Container(
       height: AppSizes.height * 0.09,
       color: AppColors.clr_white,
-      padding: EdgeInsets.all(AppSizes.width*0.038),
+      padding: EdgeInsets.all(AppSizes.width * 0.038),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           GestureDetector(
               onTap: onPress,
-              child: Image.asset(imagepath,height: 20,width: 20,)),
+              child: Image.asset(
+                imagepath,
+                height: 20,
+                width: 20,
+              )),
           SizedBox(
             width: AppSizes.width * 0.02,
           ),
@@ -227,11 +274,13 @@ class CommonWidgets{
     );
   }
 
-  static Widget getAppBarWithout({@required String text,}){
+  static Widget getAppBarWithout({
+    @required String text,
+  }) {
     return Container(
       height: AppSizes.height * 0.09,
       color: AppColors.clr_white,
-      padding: EdgeInsets.all(AppSizes.width*0.038),
+      padding: EdgeInsets.all(AppSizes.width * 0.038),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -247,19 +296,22 @@ class CommonWidgets{
     );
   }
 
-  static Widget getSupportContainer({@required String imagePath,@required String heading,@required Function onPress}){
-    return  GestureDetector(
+  static Widget getSupportContainer(
+      {@required String imagePath,
+      @required String heading,
+      @required Function onPress}) {
+    return GestureDetector(
       onTap: onPress,
       child: Container(
-        margin: EdgeInsets.only(left: AppSizes.width*0.03,right: AppSizes.width*0.03),
+        margin: EdgeInsets.only(
+            left: AppSizes.width * 0.03, right: AppSizes.width * 0.03),
         height: AppSizes.height * 0.12,
         padding: EdgeInsets.all(10.0),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(6),
+            borderRadius: BorderRadius.circular(6),
             border: Border.all(
               color: AppColors.clr_bg_grey,
-            )
-        ),
+            )),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -268,7 +320,7 @@ class CommonWidgets{
               children: [
                 Image.asset(
                   imagePath,
-                  ),
+                ),
                 SizedBox(
                   width: AppSizes.width * 0.03,
                 ),
@@ -286,7 +338,8 @@ class CommonWidgets{
             Row(
               children: [
                 Icon(
-                  Icons.arrow_forward_ios,size: 15,
+                  Icons.arrow_forward_ios,
+                  size: 15,
                 ),
               ],
             )
@@ -295,5 +348,4 @@ class CommonWidgets{
       ),
     );
   }
-
 }

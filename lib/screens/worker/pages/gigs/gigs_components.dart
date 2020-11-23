@@ -438,7 +438,7 @@ class GigsComponents {
                                 Text(
                                   "Waiter",
                                   style: TextStyle(
-                                    fontSize: 18,
+                                    fontSize: 20,
                                     fontFamily: "MuliSemiBold",
                                     color: AppColors.clr_bg_black,
                                   ),
@@ -479,7 +479,7 @@ class GigsComponents {
                                 Text(
                                   "\$140",
                                   style: TextStyle(
-                                    fontSize: 22,
+                                    fontSize: 20,
                                     fontFamily: 'MuliBold',
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -599,7 +599,7 @@ class GigsComponents {
                                 Text(
                                   "Bartender",
                                   style: TextStyle(
-                                    fontSize: 18,
+                                    fontSize: 22,
                                     fontFamily: "MuliSemiBold",
                                     color: AppColors.clr_bg_black,
                                   ),
@@ -640,7 +640,7 @@ class GigsComponents {
                                 Text(
                                   "\$140",
                                   style: TextStyle(
-                                    fontSize: 22,
+                                    fontSize: 20,
                                     fontFamily: 'MuliBold',
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -759,7 +759,7 @@ class GigsComponents {
                                 Text(
                                   "Chef",
                                   style: TextStyle(
-                                    fontSize: 18,
+                                    fontSize: 20,
                                     fontFamily: "MuliSemiBold",
                                     color: AppColors.clr_bg_black,
                                   ),
@@ -923,7 +923,7 @@ class GigsComponents {
                                 Text(
                                   "Waiter",
                                   style: TextStyle(
-                                    fontSize: 18,
+                                    fontSize: 22,
                                     fontFamily: "MuliSemiBold",
                                     color: AppColors.clr_bg_black,
                                   ),
@@ -1436,42 +1436,47 @@ class GigsComponents {
                                             fontSize: 22,
                                             fontFamily: 'MuliBold',
                                           )),
-                                      SizedBox(
-                                        width: AppSizes.width * 0.03,
-                                      ),
-                                      Container(
-                                          padding: EdgeInsets.all(2.0),
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(10.0),
-                                              border: Border.all(
-                                                color: AppColors.clr_bg_grey,
-                                              )),
-                                          child: Row(
-                                            children: [
-                                              Image.asset(Assets.star,
-                                                  width: 10, height: 10),
-                                              Text("4.5",
-                                                  style: TextStyle(
-                                                    fontSize: 12,
-                                                    fontFamily:
-                                                        Assets.muliRegular,
-                                                    color:
-                                                        AppColors.clr_bg_grey,
-                                                  ))
-                                            ],
-                                          ))
+
+
                                     ],
                                   ),
-                                  Container(
-                                    alignment: Alignment.bottomLeft,
-                                    child: Text("Crown Hotel",
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          color: AppColors.clr_bg_black,
-                                          fontFamily: 'MuliBold',
-                                        )),
-                                  ),
+                                 Row(children: [
+
+                                   Container(
+                                     alignment: Alignment.bottomLeft,
+                                     child: Text("Crown Hotel",
+                                         style: TextStyle(
+                                           fontSize: 15,
+                                           color: AppColors.clr_bg_black,
+                                           fontFamily: 'MuliBold',
+                                         )),
+                                   ),
+                                   SizedBox(
+                                     width: AppSizes.width * 0.015,
+                                   ),
+                                   Container(
+                                       padding: EdgeInsets.all(2.0),
+                                       decoration: BoxDecoration(
+                                           borderRadius:
+                                           BorderRadius.circular(10.0),
+                                           border: Border.all(
+                                             color: AppColors.clr_bg_grey,
+                                           )),
+                                       child: Row(
+                                         children: [
+                                           Image.asset(Assets.star,
+                                               width: 10, height: 10),
+                                           Text("4.5",
+                                               style: TextStyle(
+                                                 fontSize: 12,
+                                                 fontFamily:
+                                                 Assets.muliRegular,
+                                                 color:
+                                                 AppColors.clr_bg_grey,
+                                               ))
+                                         ],
+                                       )),
+                                 ],)
                                 ],
                               )),
                               Container(

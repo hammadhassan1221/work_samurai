@@ -67,7 +67,7 @@ class MessageComponents{
                                   fontFamily: Assets
                                       .muliRegular,
                                   color: AppColors
-                                      .clr_bg_grey,
+                                      .clr_bg_black,
                                 )
                             )
                           ],

@@ -29,72 +29,74 @@ class _EarningsState extends State<Earnings> with TickerProviderStateMixin{
   Widget build(BuildContext context) {
     return DefaultTabController(
         length: 3,
-        child: Scaffold(
-          body: Container(
-            color: AppColors.clr_bg,
-            child: Column(
-              children: [
-                _earningComponents.getAppBar(text: "Earning History", context: context),
-                Container(
-                  margin: EdgeInsets.only(top: AppSizes.height*0.025),
-                  child: TabBar(
-                    isScrollable: true,
-                    unselectedLabelColor: AppColors.transparentColor,
-                    indicatorSize: TabBarIndicatorSize.tab,
-                    indicator: BoxDecoration(
-                      borderRadius: BorderRadius.circular(6),
-                      color: AppColors.transparentColor,
-                    ),
-                    tabs: [
-                      Container(
-                        padding: EdgeInsets.only(left: AppSizes.width*0.02,right: AppSizes.width*0.02,),
-                        decoration: BoxDecoration(
-                          color: AppColors.clr_bg_black,
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: Tab(
-                          child: Text("Daily Payments",style: TextStyle(fontSize: 14,fontFamily:'MuliBold',color: AppColors.clr_white),),
-                        ),
+        child: SafeArea(
+          child: Scaffold(
+            body: Container(
+              color: AppColors.clr_bg,
+              child: Column(
+                children: [
+                  _earningComponents.getAppBar(text: "Earning History", context: context),
+                  Container(
+                    margin: EdgeInsets.only(top: AppSizes.height*0.025),
+                    child: TabBar(
+                      isScrollable: true,
+                      unselectedLabelColor: AppColors.transparentColor,
+                      indicatorSize: TabBarIndicatorSize.tab,
+                      indicator: BoxDecoration(
+                        borderRadius: BorderRadius.circular(6),
+                        color: AppColors.transparentColor,
                       ),
-                      Container(
-                        padding: EdgeInsets.only(left: AppSizes.width*0.02,right: AppSizes.width*0.02,),
-                        decoration: BoxDecoration(
-
-                          color: AppColors.clr_bg_black,
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: Tab(
-
-                          child: Text("Monthly Payments",style: TextStyle(fontSize: 14,fontFamily:'MuliBold',color: AppColors.clr_white),),
-                        ),
-                      ),
-                      Container(
-                        padding: EdgeInsets.only(left: AppSizes.width*0.02,right: AppSizes.width*0.02,),
-                        decoration: BoxDecoration(
-                          border: Border.all(
+                      tabs: [
+                        Container(
+                          padding: EdgeInsets.only(left: AppSizes.width*0.02,right: AppSizes.width*0.02,),
+                          decoration: BoxDecoration(
+                            color: AppColors.clr_bg_black,
+                            borderRadius: BorderRadius.circular(15),
                           ),
-                          color: AppColors.clr_bg_black,
-                          borderRadius: BorderRadius.circular(15),
+                          child: Tab(
+                            child: Text("Daily Payments",style: TextStyle(fontSize: 14,fontFamily:'MuliBold',color: AppColors.clr_white),),
+                          ),
                         ),
-                        child: Tab(
+                        Container(
+                          padding: EdgeInsets.only(left: AppSizes.width*0.02,right: AppSizes.width*0.02,),
+                          decoration: BoxDecoration(
 
-                          child: Text("All Payments",style: TextStyle(fontSize: 14,fontFamily:'MuliBold',color: AppColors.clr_white),),
+                            color: AppColors.clr_bg_black,
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: Tab(
+
+                            child: Text("Monthly Payments",style: TextStyle(fontSize: 14,fontFamily:'MuliBold',color: AppColors.clr_white),),
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                ),
+                        Container(
+                          padding: EdgeInsets.only(left: AppSizes.width*0.02,right: AppSizes.width*0.02,),
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                            ),
+                            color: AppColors.clr_bg_black,
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: Tab(
 
-                Expanded(
-                  child: TabBarView(
-                    children: [
-                      DailyEarning(),
-                      MonthlyEarning(),
-                      AllEarnings(),
-                    ],
+                            child: Text("All Payments",style: TextStyle(fontSize: 14,fontFamily:'MuliBold',color: AppColors.clr_white),),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+
+                  Expanded(
+                    child: TabBarView(
+                      children: [
+                        DailyEarning(),
+                        MonthlyEarning(),
+                        AllEarnings(),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ));

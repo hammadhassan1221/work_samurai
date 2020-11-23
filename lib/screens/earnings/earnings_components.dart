@@ -12,10 +12,10 @@ class EarningComponents{
       height: AppSizes.height * 0.09,
       width: AppSizes.width,
       color: AppColors.clr_white,
-      margin: EdgeInsets.only(top: AppSizes.height*0.02),
       padding: EdgeInsets.all(AppSizes.width * 0.042),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           GestureDetector(
               onTap:(){

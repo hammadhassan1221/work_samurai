@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
+import 'package:work_samurai/screens/worker/pages/schedule/schedule_provider.dart';
 import 'package:work_samurai/widgets/widgets.dart';
 
 class ScheduleComponents {
@@ -107,7 +108,7 @@ class ScheduleComponents {
     );
   }
 
-  _alertDialogueContainer(context) {
+  _alertDialogueContainer({@required BuildContext context,@required ScheduleProviders scheduleProviders}) {
     showModalBottomSheet(
         context: context,
         builder: (BuildContext buildContext) {
@@ -117,7 +118,7 @@ class ScheduleComponents {
             height: AppSizes.height,
             child: Column(
               children: [
-                CommonWidgets.getScheduleRow("Monday", (){}),
+                CommonWidgets.getScheduleRow("Monday", scheduleProviders),
                 CommonWidgets.getAvailability(
                     text: "10:00 am",
                     onPress: () {
@@ -181,10 +182,12 @@ class ScheduleComponents {
   Widget getDayTime(
       {@required BuildContext buildContext,
       @required String day,
-      @required String time}) {
+      @required String time,
+      @required ScheduleProviders scheduleProviders
+      }) {
     return GestureDetector(
       onTap: () {
-        _alertDialogueContainer(buildContext);
+        _alertDialogueContainer(context: buildContext, scheduleProviders: scheduleProviders);
       },
       child: Container(
         height: AppSizes.height * 0.08,

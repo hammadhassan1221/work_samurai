@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/screens/worker/pages/schedule/schedule_components.dart';
+import 'package:work_samurai/screens/worker/pages/schedule/schedule_provider.dart';
 import 'package:work_samurai/widgets/widgets.dart';
 
 class Schedule extends StatefulWidget {
@@ -15,6 +17,7 @@ class _ScheduleState extends State<Schedule> {
 
   double _value = 0.0;
   ScheduleComponents _scheduleComponents;
+  ScheduleProviders _scheduleProviders;
 
   @override
   void initState() {
@@ -22,10 +25,12 @@ class _ScheduleState extends State<Schedule> {
     super.initState();
 
     _scheduleComponents = ScheduleComponents();
+    _scheduleProviders = Provider.of<ScheduleProviders>(context, listen:false);
   }
 
   @override
   Widget build(BuildContext context) {
+    Provider.of<ScheduleProviders>(context, listen:true);
     return Container(
       width: AppSizes.width,
       color: AppColors.clr_bg,
@@ -88,11 +93,11 @@ class _ScheduleState extends State<Schedule> {
                 ,),
               SizedBox(height: AppSizes.height*0.02,),
 
-              _scheduleComponents.getDayTime(day: "Mon", time: "10:00 am - 5:00pm",buildContext: context),
+              _scheduleComponents.getDayTime(day: "Mon", time: "10:00 am - 5:00pm",buildContext: context, scheduleProviders: _scheduleProviders),
               SizedBox(
                 height: AppSizes.height * 0.02,
               ),
-              _scheduleComponents.getDayTime(day: "Tues", time: "10:00 am - 5:00pm"),
+              _scheduleComponents.getDayTime(day: "Tues", time: "10:00 am - 5:00pm",buildContext: context, scheduleProviders: _scheduleProviders),
               SizedBox(
                 height: AppSizes.height * 0.02,
               ),
