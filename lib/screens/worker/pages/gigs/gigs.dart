@@ -83,7 +83,7 @@ class _GigsState extends State<Gigs> with SingleTickerProviderStateMixin {
               children: <Widget>[
                 _gigsComponents.getOffersContainer(context: context),
                 _gigsComponents.getInProgressContainer(context: context),
-                _gigsComponents.getConfirmedContainer(context: null),
+                _gigsComponents.getConfirmedContainer(context: context),
               ],
             ),
           ),

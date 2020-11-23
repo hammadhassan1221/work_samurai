@@ -510,6 +510,7 @@ class GigsComponents {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
+                            height: AppSizes.height*0.06,
                               decoration: BoxDecoration(
                                 border: Border(
                                   right: BorderSide(
@@ -544,6 +545,7 @@ class GigsComponents {
                               _newTaskModalBottomSheet(context);
                             },
                             child: Container(
+                              height: AppSizes.height*0.06,
                                 padding: EdgeInsets.all(AppSizes.width * 0.02),
                                 decoration: BoxDecoration(),
                                 width: AppSizes.width * 0.44,
@@ -669,6 +671,7 @@ class GigsComponents {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
+                            height: AppSizes.height*0.06,
                               decoration: BoxDecoration(
                                 border: Border(
                                   right: BorderSide(
@@ -699,6 +702,7 @@ class GigsComponents {
                                 ],
                               )),
                           Container(
+                              height: AppSizes.height*0.06,
                               padding: EdgeInsets.all(AppSizes.width * 0.02),
                               decoration: BoxDecoration(),
                               width: AppSizes.width * 0.44,
@@ -827,6 +831,7 @@ class GigsComponents {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
+                              height: AppSizes.height*0.06,
                               decoration: BoxDecoration(
                                 border: Border(
                                   right: BorderSide(
@@ -857,6 +862,7 @@ class GigsComponents {
                                 ],
                               )),
                           Container(
+                              height: AppSizes.height*0.06,
                               padding: EdgeInsets.all(AppSizes.width * 0.02),
                               decoration: BoxDecoration(),
                               width: AppSizes.width * 0.44,
@@ -983,6 +989,7 @@ class GigsComponents {
                               width: 2.0, color: AppColors.clr_field)),
                     ),
                     child: CommonWidgets.getAvailability2(
+                      text1: "Check-in Time",
                       text: "10:02am",
                       onPress: () {},
                     ),
@@ -1086,7 +1093,7 @@ class GigsComponents {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      "Bartender",
+                                      "Receptionist",
                                       style: TextStyle(
                                         fontSize: 18,
                                         fontFamily: "MuliSemiBold",
@@ -1152,6 +1159,7 @@ class GigsComponents {
                         height: AppSizes.height * 0.02,
                       ),
                       Container(
+                          height: AppSizes.height*0.06,
                           decoration: BoxDecoration(
                               border: Border(
                                 top: BorderSide(width: 2.0, color: AppColors.clr_field),
@@ -1160,6 +1168,7 @@ class GigsComponents {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Container(
+                                height: AppSizes.height*0.06,
                                   decoration: BoxDecoration(
                                     border: Border(
                                       right: BorderSide(
@@ -1191,9 +1200,10 @@ class GigsComponents {
                                   )),
                               GestureDetector(
                                 onTap: () {
-                                  _newTaskModalBottomSheet(context);
+                                  _alertDialogueContainer(context);
                                 },
                                 child: Container(
+                                    height: AppSizes.height*0.06,
                                     padding: EdgeInsets.all(AppSizes.width * 0.02),
                                     decoration: BoxDecoration(),
                                     width: AppSizes.width * 0.44,
@@ -1246,7 +1256,7 @@ class GigsComponents {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      "Bartender",
+                                      "Cleaner",
                                       style: TextStyle(
                                         fontSize: 18,
                                         fontFamily: "MuliSemiBold",
@@ -1312,6 +1322,7 @@ class GigsComponents {
                         height: AppSizes.height * 0.02,
                       ),
                       Container(
+                          height: AppSizes.height*0.06,
                           decoration: BoxDecoration(
                               border: Border(
                                 top: BorderSide(width: 2.0, color: AppColors.clr_field),
@@ -1320,6 +1331,7 @@ class GigsComponents {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Container(
+                                  height: AppSizes.height*0.06,
                                   decoration: BoxDecoration(
                                     border: Border(
                                       right: BorderSide(
@@ -1354,6 +1366,7 @@ class GigsComponents {
                                   _newTaskModalBottomSheet(context);
                                 },
                                 child: Container(
+                                    height: AppSizes.height*0.06,
                                     padding: EdgeInsets.all(AppSizes.width * 0.02),
                                     decoration: BoxDecoration(),
                                     width: AppSizes.width * 0.44,
@@ -1386,6 +1399,8 @@ class GigsComponents {
           ))
     ]);
   }
+
+
   _newTaskModalBottomSheet(context) {
     showModalBottomSheet(
         context: context,
@@ -1783,328 +1798,330 @@ class GigsComponents {
         });
   }
 
-  _alertDialogueContainer(context) {
-    showDialog(
-        context: context,
-        builder: (BuildContext buildContext) {
-          return Material(
-            color: AppColors.clr_bg_black.withOpacity(0.5),
-            child: Center(
-              child: Stack(
-                children: [
-                  Container(
-                      margin: EdgeInsets.only(
-                        top: AppSizes.width * 0.15,
-                      ),
-                      height: AppSizes.height * 0.90,
-                      color: AppColors.clr_bg,
-                      child: ListView(
-                        children: [
-                          Container(
-                              margin:
-                                  EdgeInsets.only(top: AppSizes.height * 0.07),
-                              child: Text(
-                                "Robert",
-                                style: TextStyle(
-                                    fontSize: 22, fontFamily: "MuliBold"),
-                                textAlign: TextAlign.center,
-                              )),
-                          SizedBox(
-                            height: AppSizes.height * 0.01,
-                          ),
-                          Container(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  padding: EdgeInsets.all(
-                                    5,
+  _alertDialogueContainer(BuildContext context) {
+    return {
+      {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return Material(
+              color: AppColors.clr_bg_black.withOpacity(0.5),
+              child: Center(
+                child: Stack(
+                  children: [
+                    Container(
+                        margin: EdgeInsets.only(
+                          top: AppSizes.width * 0.15,
+
+                        ),
+                        height: AppSizes.height*0.90,
+                        color: AppColors.clr_bg,
+                        child: ListView(
+                          children: [
+                            Container(
+                                margin: EdgeInsets.only(top:AppSizes.height*0.07),
+                                child: Text("Robert",
+                                  style: TextStyle(
+                                      fontSize: 22,
+                                      fontFamily: "MuliBold"
                                   ),
-                                  child: Image.asset(
-                                    Assets.star,
-                                    height: 25,
-                                    width: 25,
-                                  ),
-                                ),
-                                Container(
-                                  padding: EdgeInsets.all(
-                                    5,
-                                  ),
-                                  child: Image.asset(
-                                    Assets.star,
-                                    height: 25,
-                                    width: 25,
-                                  ),
-                                ),
-                                Container(
-                                  padding: EdgeInsets.all(
-                                    5,
-                                  ),
-                                  child: Image.asset(
-                                    Assets.star,
-                                    height: 25,
-                                    width: 25,
-                                  ),
-                                ),
-                                Container(
-                                  padding: EdgeInsets.all(
-                                    5,
-                                  ),
-                                  child: Image.asset(
-                                    Assets.star,
-                                    height: 25,
-                                    width: 25,
-                                  ),
-                                ),
-                                Container(
-                                  padding: EdgeInsets.all(
-                                    5,
-                                  ),
-                                  child: Image.asset(
-                                    Assets.star,
-                                    height: 25,
-                                    width: 25,
-                                  ),
-                                ),
-                              ],
+                                  textAlign: TextAlign.center,)),
+                            SizedBox(
+                              height: AppSizes.height * 0.01,
                             ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(
-                                left: AppSizes.width * 0.06,
-                                right: AppSizes.width * 0.06,
-                                top: AppSizes.height * 0.04,
-                                bottom: AppSizes.height * 0.04),
-                            child: Text(
-                              "Add compliment",
-                              style: TextStyle(
-                                  fontFamily: 'MuliBold', fontSize: 18),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                          Container(
-                              width: AppSizes.width * 0.10,
-                              height: AppSizes.height * 0.07,
-                              margin: EdgeInsets.only(
-                                  left: AppSizes.width * 0.04,
-                                  right: AppSizes.width * 0.04),
-                              padding: EdgeInsets.all(AppSizes.width * 0.03),
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: AppColors.clr_bg_black,
-                                ),
-                                borderRadius: BorderRadius.circular(5),
-                              ),
+                            Container(
                               child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Image.asset(
-                                        Assets.greeting,
-                                        height: 25,
-                                        width: 25,
-                                      ),
-                                      SizedBox(
-                                        width: AppSizes.width * 0.03,
-                                      ),
-                                      Container(
-                                          child: Text(
-                                        "Greeting",
-                                        style: TextStyle(
-                                          fontFamily: "MuliBold",
-                                          fontSize: 15,
+                                  Container(
+                                    padding: EdgeInsets.all(
+                                      5,
+                                    ),
+                                    child: Image.asset(
+                                      Assets.star,
+                                      height: 25,
+                                      width: 25,
+                                    ),
+                                  ),
+                                  Container(
+                                    padding: EdgeInsets.all(
+                                      5,
+                                    ),
+                                    child: Image.asset(
+                                      Assets.star,
+                                      height: 25,
+                                      width: 25,
+                                    ),
+                                  ),
+                                  Container(
+                                    padding: EdgeInsets.all(
+                                      5,
+                                    ),
+                                    child: Image.asset(
+                                      Assets.star,
+                                      height: 25,
+                                      width: 25,
+                                    ),
+                                  ),
+                                  Container(
+                                    padding: EdgeInsets.all(
+                                      5,
+                                    ),
+                                    child: Image.asset(
+                                      Assets.star,
+                                      height: 25,
+                                      width: 25,
+                                    ),
+                                  ),
+                                  Container(
+                                    padding: EdgeInsets.all(
+                                      5,
+                                    ),
+                                    child: Image.asset(
+                                      Assets.star,
+                                      height: 25,
+                                      width: 25,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+
+                            Container(
+
+                              margin: EdgeInsets.only(left:AppSizes.width*0.06,right:AppSizes.width*0.06,top: AppSizes.height*0.04,bottom: AppSizes.height*0.04),
+                              child: Text("Add compliment",style: TextStyle(fontFamily: 'MuliBold',fontSize: 18),
+                                textAlign: TextAlign.center,),
+                            ),
+
+
+
+                            Container(
+                                width: AppSizes.width * 0.10,
+                                height: AppSizes.height*0.07,
+
+                                margin: EdgeInsets.only(left:AppSizes.width*0.04,right:AppSizes.width*0.04),
+                                padding: EdgeInsets.all(AppSizes.width*0.03),
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: AppColors.clr_bg_black,
+                                  ),
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween ,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      children: [
+
+                                        Image.asset(
+                                          Assets.greeting,
+                                          height: 25,
+                                          width: 25,
                                         ),
-                                      )),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        Icons.check,
-                                        size: 15,
-                                      )
-                                    ],
-                                  )
-                                ],
-                              )),
-                          SizedBox(
-                            height: AppSizes.height * 0.015,
-                          ),
-                          Container(
-                              width: AppSizes.width * 0.12,
-                              height: AppSizes.height * 0.07,
-                              margin: EdgeInsets.only(
-                                  left: AppSizes.width * 0.04,
-                                  right: AppSizes.width * 0.04),
-                              padding: EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: AppColors.clr_bg_grey,
-                                ),
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              child: Row(
-                                children: [
-                                  Image.asset(
-                                    Assets.venue_safety,
-                                    height: 25,
-                                    width: 25,
-                                  ),
-                                  SizedBox(
-                                    width: AppSizes.width * 0.03,
-                                  ),
-                                  Container(
-                                      child: Text(
-                                    "Venue Safety",
-                                    style: TextStyle(
-                                      fontFamily: "MuliBold",
-                                      fontSize: 15,
+                                        SizedBox(
+                                          width: AppSizes.width * 0.03,
+                                        ),
+                                        Container(
+                                            child: Text(
+                                              "Greeting",
+                                              style: TextStyle(
+                                                fontFamily: "MuliBold",
+                                                fontSize: 15,
+                                              ),
+                                            )
+                                        ),
+                                      ],
                                     ),
-                                  )),
-                                ],
-                              )),
-                          SizedBox(
-                            height: AppSizes.height * 0.015,
-                          ),
-                          Container(
-                              width: AppSizes.width * 0.9,
-                              height: AppSizes.height * 0.07,
-                              margin: EdgeInsets.only(
-                                  left: AppSizes.width * 0.04,
-                                  right: AppSizes.width * 0.04),
-                              padding: EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: AppColors.clr_bg_grey,
+                                    Row(
+                                      children: [
+                                        Icon(Icons.check,size: 15,)
+                                      ],
+                                    )
+
+                                  ],
+                                )
+                            ),
+                            SizedBox(
+                              height: AppSizes.height * 0.015,
+                            ),
+                            Container(
+                                width: AppSizes.width * 0.12,
+                                height: AppSizes.height*0.07,
+
+                                margin: EdgeInsets.only(left:AppSizes.width*0.04,right:AppSizes.width*0.04),
+                                padding: EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: AppColors.clr_bg_grey,
+                                  ),
+                                  borderRadius: BorderRadius.circular(5),
                                 ),
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              child: Row(
-                                children: [
-                                  Image.asset(
-                                    Assets.work_atmosphere,
-                                    height: 25,
-                                    width: 25,
-                                  ),
-                                  SizedBox(
-                                    width: AppSizes.width * 0.03,
-                                  ),
-                                  Container(
-                                      child: Text(
-                                    "Work Atmosphere",
-                                    style: TextStyle(
-                                      fontFamily: 'MuliBold',
-                                      fontSize: 15,
+                                child: Row(
+                                  children: [
+                                    Image.asset(
+                                      Assets.venue_safety,
+                                      height: 25,
+                                      width: 25,
                                     ),
-                                  )),
-                                ],
-                              )),
-                          SizedBox(
-                            height: AppSizes.height * 0.015,
-                          ),
-                          Container(
-                              width: AppSizes.width * 0.12,
-                              height: AppSizes.height * 0.07,
-                              margin: EdgeInsets.only(
-                                  left: AppSizes.width * 0.04,
-                                  right: AppSizes.width * 0.04),
-                              padding: EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: AppColors.clr_bg_grey,
+                                    SizedBox(
+                                      width: AppSizes.width * 0.03,
+                                    ),
+                                    Container(
+                                        child: Text(
+                                          "Venue Safety",
+                                          style: TextStyle(
+                                            fontFamily: "MuliBold",
+                                            fontSize: 15,
+                                          ),
+                                        )
+                                    ),
+                                  ],
+                                )
+                            ),
+                            SizedBox(
+                              height: AppSizes.height * 0.015,
+                            ),
+                            Container(
+                                width: AppSizes.width * 0.9,
+                                height: AppSizes.height*0.07,
+                                margin: EdgeInsets.only(left:AppSizes.width*0.04,right:AppSizes.width*0.04),
+                                padding: EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: AppColors.clr_bg_grey,
+                                  ),
+                                  borderRadius: BorderRadius.circular(5),
                                 ),
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              child: Row(
-                                children: [
-                                  Image.asset(
-                                    Assets.team_work,
-                                    height: 25,
-                                    width: 25,
-                                  ),
-                                  SizedBox(
-                                    width: AppSizes.width * 0.03,
-                                  ),
-                                  Container(
-                                      child: Text(
-                                    "Team Work",
-                                    style: TextStyle(
-                                      fontFamily: 'MuliBold',
-                                      fontSize: 15,
+                                child: Row(
+                                  children: [
+                                    Image.asset(
+                                      Assets.work_atmosphere,
+                                      height: 25,
+                                      width: 25,
                                     ),
-                                  )),
-                                ],
-                              )),
-                          SizedBox(
-                            height: AppSizes.height * 0.015,
-                          ),
-                          Container(
-                              width: AppSizes.width * 0.12,
-                              height: AppSizes.height * 0.07,
-                              margin: EdgeInsets.only(
-                                  left: AppSizes.width * 0.04,
-                                  right: AppSizes.width * 0.04),
-                              padding: EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: AppColors.clr_bg_grey,
+                                    SizedBox(
+                                      width: AppSizes.width * 0.03,
+                                    ),
+                                    Container(
+                                        child: Text(
+                                          "Work Atmosphere",
+                                          style: TextStyle(
+                                            fontFamily: 'MuliBold',
+                                            fontSize: 15,
+                                          ),
+                                        )
+                                    ),
+                                  ],
+                                )
+                            ),
+                            SizedBox(
+                              height: AppSizes.height * 0.015,
+                            ),
+                            Container(
+                                width: AppSizes.width * 0.12,
+                                height: AppSizes.height*0.07,
+                                margin: EdgeInsets.only(left:AppSizes.width*0.04,right:AppSizes.width*0.04),
+                                padding: EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: AppColors.clr_bg_grey,
+                                  ),
+                                  borderRadius: BorderRadius.circular(5),
                                 ),
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              child: Row(
-                                children: [
-                                  Image.asset(
-                                    Assets.management,
-                                    height: 25,
-                                    width: 25,
-                                  ),
-                                  SizedBox(
-                                    width: AppSizes.width * 0.03,
-                                  ),
-                                  Container(
-                                      child: Text(
-                                    "Management",
-                                    style: TextStyle(
-                                      fontFamily: 'MuliBold',
-                                      fontSize: 15,
+                                child: Row(
+                                  children: [
+                                    Image.asset(
+                                      Assets.team_work,
+                                      height: 25,
+                                      width: 25,
                                     ),
-                                  )),
-                                ],
-                              )),
-                          SizedBox(
-                            height: AppSizes.height * 0.03,
-                          ),
-                          CommonWidgets.getSignUpButton(
-                              context: context,
-                              onPress: () {
-                                hideLoader(context);
-                              },
-                              text: "Submit Rating"),
-                          SizedBox(
-                            height: AppSizes.height * 0.02,
-                          ),
-                        ],
-                      )),
-                  Container(
-                      margin: EdgeInsets.only(
-                        left: AppSizes.width * 0.38,
-                      ),
-                      height: AppSizes.width * 0.25,
-                      width: AppSizes.width * 0.25,
-                      child: Image.asset(
-                        Assets.support,
-                        height: 100,
-                        width: 100,
-                        fit: BoxFit.cover,
-                      )),
-                ],
+                                    SizedBox(
+                                      width: AppSizes.width * 0.03,
+                                    ),
+                                    Container(
+                                        child: Text(
+                                          "Team Work",
+                                          style: TextStyle(
+                                            fontFamily: 'MuliBold',
+                                            fontSize: 15,
+                                          ),
+                                        )
+                                    ),
+                                  ],
+                                )
+                            ),
+                            SizedBox(
+                              height: AppSizes.height * 0.015,
+                            ),
+                            Container(
+                                width: AppSizes.width * 0.12,
+                                height: AppSizes.height*0.07,
+                                margin: EdgeInsets.only(left:AppSizes.width*0.04,right:AppSizes.width*0.04),
+                                padding: EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: AppColors.clr_bg_grey,
+                                  ),
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                                child: Row(
+                                  children: [
+                                    Image.asset(
+                                      Assets.management,
+                                      height: 25,
+                                      width: 25,
+                                    ),
+                                    SizedBox(
+                                      width: AppSizes.width * 0.03,
+                                    ),
+                                    Container(
+                                        child: Text(
+                                          "Management",
+                                          style: TextStyle(
+                                            fontFamily: 'MuliBold',
+                                            fontSize: 15,
+                                          ),
+                                        )
+                                    ),
+                                  ],
+                                )
+                            ),
+
+
+                            SizedBox(
+                              height: AppSizes.height * 0.03,
+                            ),
+
+                            CommonWidgets.getSignUpButton(context:context,text:"SUBMIT RATING", onPress: (){hideLoader(context);}),
+
+                            SizedBox(
+                              height: AppSizes.height * 0.04,
+                            ),
+                          ],
+                        )),
+                    Container(
+                        margin: EdgeInsets.only(
+                          left: AppSizes.width * 0.38,
+                        ),
+                        height: AppSizes.width * 0.25,
+                        width: AppSizes.width * 0.25,
+
+                        child: Image.asset(
+                          Assets.support,
+                          height: 100,
+                          width: 100,
+                          fit: BoxFit.cover,
+                        )),
+                  ],
+                ),
               ),
-            ),
-          );
-        });
+            );
+          },
+        )
+      },
+    };
   }
 
   _container() {

@@ -31,11 +31,12 @@ class CommonWidgets{
     );
   }
 
-  static Widget getScheduleRow(String text, bool value, Function onPress){
+
+  static Widget getScheduleRow(String text, Function onPress){
 
     return Container(
-        margin: EdgeInsets.only(top:AppSizes.height*0.01),
-        padding: EdgeInsets.only(left: AppSizes.width*0.03,right: AppSizes.width*0.03,),
+        margin: EdgeInsets.only(top:AppSizes.height*0.01,bottom: AppSizes.height*0.01),
+
         child:Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -43,20 +44,12 @@ class CommonWidgets{
               text,
               style: TextStyle(
                   color: AppColors.clr_bg_black,
-                  fontSize: 15,
-                  fontFamily: 'MuliRegular'),),
-            Row(
-              children: [
-                Text("All Day",style: TextStyle(
-                  fontFamily: 'MuliRegular',
-                  fontSize: 10
-                ),),
-                CupertinoSwitch(
-                    activeColor: Colors.lightGreenAccent,
-                    value:value,
-                    onChanged: onPress),
-              ],
-            )
+                  fontSize: 20,
+                  fontFamily: 'MuliBold'),),
+            Text("All Day",style: TextStyle(
+              fontFamily: 'MuliRegular',
+              fontSize: 14
+            ),)
 
           ],
         )
@@ -98,7 +91,7 @@ class CommonWidgets{
     );
   }
 
-  static Widget getAvailability2({@required String text,@required Function onPress}){
+  static Widget getAvailability2({@required String text1,@required String text,@required Function onPress}){
     return GestureDetector(
       onTap: onPress,
       child: Row(
@@ -116,7 +109,7 @@ class CommonWidgets{
                 ),
               ),
               SizedBox(width: AppSizes.width*0.03,),
-              Text("Available To",
+              Text(text1,
                 style: TextStyle(
                     color: AppColors.clr_bg_black,
                     fontSize: 16,fontFamily: 'MuliRegular'),)
@@ -262,6 +255,7 @@ class CommonWidgets{
         height: AppSizes.height * 0.12,
         padding: EdgeInsets.all(10.0),
         decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(6),
             border: Border.all(
               color: AppColors.clr_bg_grey,
             )

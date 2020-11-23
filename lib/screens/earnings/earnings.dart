@@ -16,6 +16,7 @@ class _EarningsState extends State<Earnings> with TickerProviderStateMixin{
   EarningComponents _earningComponents;
   TabController _tabController;
 
+  bool onClick = false;
   @override
   void initState() {
     // TODO: implement initState
@@ -52,7 +53,6 @@ class _EarningsState extends State<Earnings> with TickerProviderStateMixin{
                           borderRadius: BorderRadius.circular(15),
                         ),
                         child: Tab(
-
                           child: Text("Daily Payments",style: TextStyle(fontSize: 14,fontFamily:'MuliBold',color: AppColors.clr_white),),
                         ),
                       ),

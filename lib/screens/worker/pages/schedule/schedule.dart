@@ -40,19 +40,26 @@ class _ScheduleState extends State<Schedule> {
           child: ListView(
             children: [
 
-              _scheduleComponents.getLocationDistance(imagePath: Assets.location, text: "Location", text1: "New York,USA"),
-              Divider(),
-              _scheduleComponents.getLocationDistance(imagePath: Assets.distance, text: "Distance", text1: "40km"),
+              _scheduleComponents.getDistance(imagePath: Assets.location, text: "Location", text1: "New York,USA"),
+              Container(
+                margin: EdgeInsets.only(
+                  top: AppSizes.height*0.01,
+                  left: AppSizes.width*0.03,right: AppSizes.width*0.03,),
+                height:AppSizes.height*0.0025,
+                width: AppSizes.width,
+                color: AppColors.clr_field
+                ,),
+              SizedBox(height: AppSizes.height*0.02,),
+              _scheduleComponents.getLocation(imagePath: Assets.distance, text: "Max Distance", text1: "40km"),
               SliderTheme(
                 data: SliderTheme.of(context).copyWith(
                   activeTrackColor: AppColors.clr_bg_black,
-                  inactiveTrackColor: AppColors.clr_bg_grey,
+                  inactiveTrackColor: AppColors.clr_field,
                   trackShape: RectangularSliderTrackShape(),
-                  trackHeight: 4.0,
+                  trackHeight: 2.0,
                   thumbColor: AppColors.clr_bg_black,
                   thumbShape: RoundSliderThumbShape(
                       enabledThumbRadius: 6.0),
-                  overlayColor: Colors.red.withAlpha(32),
                   overlayShape: RoundSliderOverlayShape(
                       overlayRadius: 28.0),
                 ),
@@ -71,6 +78,15 @@ class _ScheduleState extends State<Schedule> {
                   ),
                 ),
               ),
+              Container(
+                margin: EdgeInsets.only(
+                  top: AppSizes.height*0.01,
+                  left: AppSizes.width*0.03,right: AppSizes.width*0.03,),
+                height:AppSizes.height*0.0025,
+                width: AppSizes.width,
+                color: AppColors.clr_field
+                ,),
+              SizedBox(height: AppSizes.height*0.02,),
 
               _scheduleComponents.getDayTime(day: "Mon", time: "10:00 am - 5:00pm",buildContext: context),
               SizedBox(

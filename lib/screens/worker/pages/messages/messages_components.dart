@@ -13,9 +13,7 @@ class MessageComponents{
         height: AppSizes.height * 0.12,
         padding: EdgeInsets.all(10.0),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5),
-
-            border: Border.all(color: AppColors.clr_bg_grey),
+            borderRadius: BorderRadius.circular(8),
             color: AppColors.clr_white
         ),
         child: Row(

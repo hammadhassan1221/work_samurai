@@ -29,8 +29,8 @@ class _ChatScreenState extends State<ChatScreen> {
                 child: ListView(
                   children: [
                     Container(
-                      height: AppSizes.height * 0.1,
-                      padding: EdgeInsets.all(AppSizes.width*0.013),
+                      height: AppSizes.height * 0.125,
+                      padding: EdgeInsets.all(AppSizes.width*0.03),
                       margin: EdgeInsets.only(left:AppSizes.width*0.03,right:AppSizes.width*0.03,top: AppSizes.height*0.03),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),

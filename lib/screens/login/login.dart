@@ -56,7 +56,7 @@ class _LoginState extends State<Login> {
                     backgroundColor: AppColors.transparentColor,
                     borderColor: AppColors.clr_bg_grey,
                     textColor: AppColors.clr_bg_black2,
-                    text: "Email",
+                    text: "Username",
                     controller: _email,
                     imagePath: Assets.mail),
                 SizedBox(
