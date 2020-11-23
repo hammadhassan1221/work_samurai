@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:work_samurai/animations/slide_right.dart';
 import 'package:work_samurai/models/api_models/worker_screen/gigs_screen/future_jobs_response.dart';
 import 'package:work_samurai/models/api_models/worker_screen/gigs_screen/jobs_in_progress_response.dart';
 import 'package:work_samurai/res/assets.dart';
@@ -7,20 +9,20 @@ import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/widgets/widgets.dart';
 
-class GigsComponents{
-
+class GigsComponents {
   String getTime(String dateTime) {
-    if(dateTime != null){
+    if (dateTime != null) {
       List<String> temp = dateTime.split(" ");
       return temp[1] + temp[2];
-    }else{
+    } else {
       return "10:30 PM";
     }
   }
 
-  String _getTotalAmount(double valueA, double valueB) => (valueA*valueB).toString();
+  String _getTotalAmount(double valueA, double valueB) =>
+      (valueA * valueB).toString();
 
-  Widget getOffersContainer({@required BuildContext context, @required FutureJobsResponse futureJobsResponse}) {
+  /*Widget getOffersContainer({@required BuildContext context, @required FutureJobsResponse futureJobsResponse}) {
     return Container(
         child: Container(
             child: ListView.builder(
@@ -405,326 +407,1012 @@ class GigsComponents{
         )
     );
   }
+*/
 
-  Widget getConfirmedContainer() {
-    return Container(
-        child: Column(
-          children: [
-            Container(
-                width: AppSizes.width * 0.9,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    border: Border.all(color: AppColors.clr_field),
-                    color: AppColors.clr_white),
-                child: Column(
-                  children: [
-                    Container(
-                      height: AppSizes.height * 0.20,
-                      padding: EdgeInsets.all(15.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Receptionist",
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontFamily: "MuliSemiBold",
-                                      color: AppColors.clr_bg_black,
-                                    ),
-                                  ),
-                                  SizedBox(height: AppSizes.height * 0.02),
-                                  Text(
-                                    "Wed, Sep 23",
-                                    style: TextStyle(
-                                      fontFamily: 'MuliSemiRegular',
-                                      fontSize: 15,
-                                      color: AppColors.clr_bg_black2,
-                                    ),
-                                  ),
-
-                                  SizedBox(
-                                    height: AppSizes.height * 0.03,
-                                  ),
-                                  Text(
-                                    "Crown Hotel, New York",
-                                    style: TextStyle(
-                                      fontFamily: 'MuliRegular',
-                                      fontSize: 15,
-                                      color: AppColors.clr_bg_black2,
-                                    ),
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Icon(Icons.arrow_forward_ios,size: 15,color: AppColors.clr_bg_black2,),
-                                  Text(
-                                    "\$140",
-                                    style: TextStyle(
-                                      fontSize: 22,
-                                      fontFamily: 'MuliBold',
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Text(
-                                    "\$20/h",
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontFamily: 'MuliRegular',
-                                        color: AppColors.clr_bg_black2
-                                    ),
-                                  )
-                                ],
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                    Container(
-                        child: Row(
+  Widget getOffersContainer({@required BuildContext context}) {
+    return Column(children: [
+      Expanded(
+          child: ListView(
+        children: [
+          Container(
+              margin: EdgeInsets.only(
+                left: AppSizes.width * 0.05,
+                right: AppSizes.width * 0.05,
+              ),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  border: Border.all(color: AppColors.clr_field),
+                  color: AppColors.clr_white),
+              child: Column(
+                children: [
+                  Container(
+                    padding: EdgeInsets.all(AppSizes.width * 0.03),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
                           children: [
-                            Container(
-                                decoration: BoxDecoration(
-                                  border: Border(
-                                    top: BorderSide(width: 2.0,
-                                        color: AppColors.clr_field),
-                                    right: BorderSide(width: 2.0,
-                                        color: AppColors.clr_field),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Waiter",
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontFamily: "MuliSemiBold",
+                                    color: AppColors.clr_bg_black,
                                   ),
-                                  color: Colors.white,
                                 ),
-                                padding: EdgeInsets.all(AppSizes.width*0.02),
-                                width: AppSizes.width * 0.44,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Image.asset(Assets.cancelgig,
-                                        height: 24,
-                                        width: 24),
-
-                                    SizedBox(width: AppSizes.width * 0.01,),
-                                    Text(
-                                        "Cancel Gig",
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          fontFamily: 'MuliRegular',color: AppColors.clr_red,
-                                        )
-                                    ),
-                                  ],
-                                )
+                                SizedBox(height: AppSizes.height * 0.005),
+                                Text(
+                                  "Wed,Sep 23",
+                                  style: TextStyle(
+                                    fontFamily: 'MuliRegular',
+                                    fontSize: 15,
+                                    color: AppColors.clr_bg_black2,
+                                  ),
+                                ),
+                                SizedBox(height: AppSizes.height * 0.03),
+                                Text(
+                                  "Crown Hotel New York",
+                                  style: TextStyle(
+                                    fontFamily: 'MuliRegular',
+                                    fontSize: 15,
+                                    color: AppColors.clr_bg_black2,
+                                  ),
+                                ),
+                              ],
                             ),
-                            Container(
-                                padding: EdgeInsets.all(AppSizes.width*0.02),
-                                decoration: BoxDecoration(
-                                  border: Border(
-                                    top: BorderSide(width: 2.0,
-                                        color: AppColors.clr_field),
-                                  ),
-                                  color: Colors.white,
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Icon(
+                                  Icons.arrow_forward_ios,
+                                  size: 15,
+                                  color: AppColors.clr_bg_black2,
                                 ),
-                                width: AppSizes.width * 0.44,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Image.asset(Assets.start_gig,
-                                      height: 24,
-                                      width: 24,color: AppColors.clr_green,),
-                                    SizedBox(width: AppSizes.width * 0.01,),
-                                    Text(
-                                        "Start Gig",
-                                        style: TextStyle(
-
-                                          fontSize: 14,
-                                          color: AppColors.clr_bg_black,                                        )
-                                    ),
-                                  ],
+                                SizedBox(height: AppSizes.height * 0.01),
+                                Text(
+                                  "\$140",
+                                  style: TextStyle(
+                                    fontSize: 22,
+                                    fontFamily: 'MuliBold',
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  "\$20/h",
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontFamily: 'MuliRegular',
+                                      color: AppColors.clr_bg_black2),
                                 )
+                              ],
                             ),
                           ],
                         )
+                      ],
                     ),
-                  ],
-                )
-            ),
-            SizedBox(
-              height: AppSizes.height * 0.02,
-            ),
-            Container(
-                width: AppSizes.width * 0.9,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    border: Border.all(color: AppColors.clr_field),
-                    color: AppColors.clr_white),
-                child: Column(
-                  children: [
-                    Container(
-                      height: AppSizes.height * 0.20,
-                      padding: EdgeInsets.all(15.0),
+                  ),
+                  SizedBox(
+                    height: AppSizes.height * 0.02,
+                  ),
+                  Container(
+                      decoration: BoxDecoration(
+                          border: Border(
+                        top: BorderSide(width: 2.0, color: AppColors.clr_field),
+                      )),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                          Container(
+                            height: AppSizes.height*0.06,
+                              decoration: BoxDecoration(
+                                border: Border(
+                                  right: BorderSide(
+                                      width: 2.0, color: AppColors.clr_field),
+                                ),
+                                color: Colors.white,
+                              ),
+                              padding: EdgeInsets.all(AppSizes.width * 0.02),
+                              width: AppSizes.width * 0.44,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text(
-                                    "Receptionist",
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontFamily: "MuliSemiBold",
-                                      color: AppColors.clr_bg_black,
-                                    ),
+                                  Image.asset(
+                                    Assets.cancelgig,
+                                    height: 14,
+                                    width: 14,
+                                    color: AppColors.clr_bg_black,
                                   ),
-                                  SizedBox(height: AppSizes.height * 0.02),
-                                  Text(
-                                    "Wed, Sep 23",
-                                    style: TextStyle(
-                                      fontFamily: 'MuliSemiRegular',
-                                      fontSize: 15,
-                                      color: AppColors.clr_bg_black2,
-                                    ),
-                                  ),
-
                                   SizedBox(
-                                    height: AppSizes.height * 0.03,
+                                    width: AppSizes.width * 0.01,
                                   ),
-                                  Text(
-                                    "Crown Hotel, New York",
-                                    style: TextStyle(
-                                      fontFamily: 'MuliRegular',
-                                      fontSize: 15,
-                                      color: AppColors.clr_bg_black2,
-                                    ),
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Icon(Icons.arrow_forward_ios,size: 15,color: AppColors.clr_bg_black2,),
-                                  Text(
-                                    "\$140",
-                                    style: TextStyle(
-                                      fontSize: 22,
-                                      fontFamily: 'MuliBold',
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Text(
-                                    "\$20/h",
-                                    style: TextStyle(
-                                        fontSize: 16,
+                                  Text("Skip",
+                                      style: TextStyle(
+                                        fontSize: 14,
                                         fontFamily: 'MuliRegular',
-                                        color: AppColors.clr_bg_black2
-                                    ),
-                                  )
+                                        color: AppColors.clr_bg_black,
+                                      )),
                                 ],
-                              )
-                            ],
-                          )
+                              )),
+                          GestureDetector(
+                            onTap: () {
+                              _newTaskModalBottomSheet(context);
+                            },
+                            child: Container(
+                              height: AppSizes.height*0.06,
+                                padding: EdgeInsets.all(AppSizes.width * 0.02),
+                                decoration: BoxDecoration(),
+                                width: AppSizes.width * 0.44,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.check,
+                                      color: AppColors.clr_green,
+                                      size: 14,
+                                    ),
+                                    SizedBox(
+                                      width: AppSizes.width * 0.01,
+                                    ),
+                                    Text("Accept",
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          color: AppColors.clr_green,
+                                        )),
+                                  ],
+                                )),
+                          ),
                         ],
-                      ),
-                    ),
-                    Container(
-                        child: Row(
+                      )),
+                ],
+              )),
+          SizedBox(
+            height: AppSizes.height * 0.02,
+          ),
+          Container(
+              margin: EdgeInsets.only(
+                left: AppSizes.width * 0.05,
+                right: AppSizes.width * 0.05,
+              ),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  border: Border.all(color: AppColors.clr_field),
+                  color: AppColors.clr_white),
+              child: Column(
+                children: [
+                  Container(
+                    padding: EdgeInsets.all(AppSizes.width * 0.03),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
                           children: [
-                            Container(
-                                decoration: BoxDecoration(
-                                  border: Border(
-                                    top: BorderSide(width: 2.0,
-                                        color: AppColors.clr_field),
-                                    right: BorderSide(width: 2.0,
-                                        color: AppColors.clr_field),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Bartender",
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontFamily: "MuliSemiBold",
+                                    color: AppColors.clr_bg_black,
                                   ),
-                                  color: Colors.white,
                                 ),
-                                padding: EdgeInsets.all(AppSizes.width*0.02),
-                                width: AppSizes.width * 0.44,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Image.asset(Assets.cancelgig,
-                                        height: 24,
-                                        width: 24),
-
-                                    SizedBox(width: AppSizes.width * 0.01,),
-                                    Text(
-                                        "Cancel Gig",
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          fontFamily: 'MuliRegular',color: AppColors.clr_red,
-                                        )
-                                    ),
-                                  ],
-                                )
+                                SizedBox(height: AppSizes.height * 0.005),
+                                Text(
+                                  "Wed,Sep 23",
+                                  style: TextStyle(
+                                    fontFamily: 'MuliRegular',
+                                    fontSize: 15,
+                                    color: AppColors.clr_bg_black2,
+                                  ),
+                                ),
+                                SizedBox(height: AppSizes.height * 0.03),
+                                Text(
+                                  "Crown Hotel New York",
+                                  style: TextStyle(
+                                    fontFamily: 'MuliRegular',
+                                    fontSize: 15,
+                                    color: AppColors.clr_bg_black2,
+                                  ),
+                                ),
+                              ],
                             ),
-                            Container(
-                                padding: EdgeInsets.all(AppSizes.width*0.02),
-                                decoration: BoxDecoration(
-                                  border: Border(
-                                    top: BorderSide(width: 2.0,
-                                        color: AppColors.clr_field),
-                                  ),
-                                  color: Colors.white,
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Icon(
+                                  Icons.arrow_forward_ios,
+                                  size: 15,
+                                  color: AppColors.clr_bg_black2,
                                 ),
-                                width: AppSizes.width * 0.44,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Image.asset(Assets.start_gig,
-                                      height: 24,
-                                      width: 24,color: AppColors.clr_green,),
-                                    SizedBox(width: AppSizes.width * 0.01,),
-                                    Text(
-                                        "Start Gig",
-                                        style: TextStyle(
-
-                                          fontSize: 14,
-                                          color: AppColors.clr_green,                                        )
-                                    ),
-                                  ],
+                                SizedBox(height: AppSizes.height * 0.01),
+                                Text(
+                                  "\$140",
+                                  style: TextStyle(
+                                    fontSize: 22,
+                                    fontFamily: 'MuliBold',
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  "\$20/h",
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontFamily: 'MuliRegular',
+                                      color: AppColors.clr_bg_black2),
                                 )
+                              ],
                             ),
                           ],
                         )
+                      ],
                     ),
-                  ],
-                )
-            ),
-          ],
-        )
-    );
+                  ),
+                  SizedBox(
+                    height: AppSizes.height * 0.02,
+                  ),
+                  Container(
+                      decoration: BoxDecoration(
+                          border: Border(
+                        top: BorderSide(width: 2.0, color: AppColors.clr_field),
+                      )),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            height: AppSizes.height*0.06,
+                              decoration: BoxDecoration(
+                                border: Border(
+                                  right: BorderSide(
+                                      width: 2.0, color: AppColors.clr_field),
+                                ),
+                                color: Colors.white,
+                              ),
+                              padding: EdgeInsets.all(AppSizes.width * 0.02),
+                              width: AppSizes.width * 0.44,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Image.asset(
+                                    Assets.cancelgig,
+                                    height: 14,
+                                    width: 14,
+                                    color: AppColors.clr_bg_black,
+                                  ),
+                                  SizedBox(
+                                    width: AppSizes.width * 0.01,
+                                  ),
+                                  Text("Skip",
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        fontFamily: 'MuliRegular',
+                                        color: AppColors.clr_bg_black,
+                                      )),
+                                ],
+                              )),
+                          Container(
+                              height: AppSizes.height*0.06,
+                              padding: EdgeInsets.all(AppSizes.width * 0.02),
+                              decoration: BoxDecoration(),
+                              width: AppSizes.width * 0.44,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.check,
+                                    color: AppColors.clr_green,
+                                    size: 14,
+                                  ),
+                                  SizedBox(
+                                    width: AppSizes.width * 0.01,
+                                  ),
+                                  Text("Accept",
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: AppColors.clr_green,
+                                      )),
+                                ],
+                              )),
+                        ],
+                      )),
+                ],
+              )),
+          SizedBox(
+            height: AppSizes.height * 0.02,
+          ),
+          _container(),
+          SizedBox(
+            height: AppSizes.height * 0.02,
+          ),
+          Container(
+              margin: EdgeInsets.only(
+                left: AppSizes.width * 0.05,
+                right: AppSizes.width * 0.05,
+              ),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  border: Border.all(color: AppColors.clr_field),
+                  color: AppColors.clr_white),
+              child: Column(
+                children: [
+                  Container(
+                    padding: EdgeInsets.all(AppSizes.width * 0.03),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Chef",
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontFamily: "MuliSemiBold",
+                                    color: AppColors.clr_bg_black,
+                                  ),
+                                ),
+                                SizedBox(height: AppSizes.height * 0.005),
+                                Text(
+                                  "Wed,Sep 23",
+                                  style: TextStyle(
+                                    fontFamily: 'MuliRegular',
+                                    fontSize: 15,
+                                    color: AppColors.clr_bg_black2,
+                                  ),
+                                ),
+                                SizedBox(height: AppSizes.height * 0.03),
+                                Text(
+                                  "Crown Hotel New York",
+                                  style: TextStyle(
+                                    fontFamily: 'MuliRegular',
+                                    fontSize: 15,
+                                    color: AppColors.clr_bg_black2,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Icon(
+                                  Icons.arrow_forward_ios,
+                                  size: 15,
+                                  color: AppColors.clr_bg_black2,
+                                ),
+                                SizedBox(height: AppSizes.height * 0.01),
+                                Text(
+                                  "\$140",
+                                  style: TextStyle(
+                                    fontSize: 22,
+                                    fontFamily: 'MuliBold',
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  "\$20/h",
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontFamily: 'MuliRegular',
+                                      color: AppColors.clr_bg_black2),
+                                )
+                              ],
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: AppSizes.height * 0.02,
+                  ),
+                  Container(
+                      decoration: BoxDecoration(
+                          border: Border(
+                        top: BorderSide(width: 2.0, color: AppColors.clr_field),
+                      )),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                              height: AppSizes.height*0.06,
+                              decoration: BoxDecoration(
+                                border: Border(
+                                  right: BorderSide(
+                                      width: 2.0, color: AppColors.clr_field),
+                                ),
+                                color: Colors.white,
+                              ),
+                              padding: EdgeInsets.all(AppSizes.width * 0.02),
+                              width: AppSizes.width * 0.44,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Image.asset(
+                                    Assets.cancelgig,
+                                    height: 14,
+                                    width: 14,
+                                    color: AppColors.clr_bg_black,
+                                  ),
+                                  SizedBox(
+                                    width: AppSizes.width * 0.01,
+                                  ),
+                                  Text("Skip",
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        fontFamily: 'MuliRegular',
+                                        color: AppColors.clr_bg_black,
+                                      )),
+                                ],
+                              )),
+                          Container(
+                              height: AppSizes.height*0.06,
+                              padding: EdgeInsets.all(AppSizes.width * 0.02),
+                              decoration: BoxDecoration(),
+                              width: AppSizes.width * 0.44,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.check,
+                                    color: AppColors.clr_green,
+                                    size: 14,
+                                  ),
+                                  SizedBox(
+                                    width: AppSizes.width * 0.01,
+                                  ),
+                                  Text("Accept",
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: AppColors.clr_green,
+                                      )),
+                                ],
+                              )),
+                        ],
+                      )),
+                ],
+              )),
+        ],
+      ))
+    ]);
   }
 
-  void _newTaskModalBottomSheet(BuildContext context) {
+  Widget getInProgressContainer({@required BuildContext context}) {
+    return Column(children: [
+      Expanded(
+          child: ListView(
+        children: [
+          Container(
+              margin: EdgeInsets.only(
+                left: AppSizes.width * 0.05,
+                right: AppSizes.width * 0.05,
+              ),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  border: Border.all(color: AppColors.clr_field),
+                  color: AppColors.clr_white),
+              child: Column(
+                children: [
+                  Container(
+                    padding: EdgeInsets.all(AppSizes.width * 0.03),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Waiter",
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontFamily: "MuliSemiBold",
+                                    color: AppColors.clr_bg_black,
+                                  ),
+                                ),
+                                SizedBox(height: AppSizes.height * 0.005),
+                                Text(
+                                  "Wed,Sep 23",
+                                  style: TextStyle(
+                                    fontFamily: 'MuliRegular',
+                                    fontSize: 15,
+                                    color: AppColors.clr_bg_black2,
+                                  ),
+                                ),
+                                SizedBox(height: AppSizes.height * 0.03),
+                                Text(
+                                  "Crown Hotel New York",
+                                  style: TextStyle(
+                                    fontFamily: 'MuliRegular',
+                                    fontSize: 15,
+                                    color: AppColors.clr_bg_black2,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(
+                              "\$140",
+                              style: TextStyle(
+                                fontSize: 22,
+                                fontFamily: 'MuliBold',
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              "\$20/h",
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  fontFamily: 'MuliRegular',
+                                  color: AppColors.clr_bg_black2),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: AppSizes.height * 0.02,
+                  ),
+                  Container(
+                    padding: EdgeInsets.all( AppSizes.width*0.03),
+                    decoration: BoxDecoration(
+                      border: Border(
+                          top: BorderSide(
+                            width: 2.0,
+                            color: AppColors.clr_field,
+                          ),
+                          bottom: BorderSide(
+                              width: 2.0, color: AppColors.clr_field)),
+                    ),
+                    child: CommonWidgets.getAvailability2(
+                      text1: "Check-in Time",
+                      text: "10:02am",
+                      onPress: () {},
+                    ),
+                  ),
+
+                  Container(
+                    padding: EdgeInsets.all(AppSizes.height*0.03),
+                    child: Text("04 : 22 : 53",style: TextStyle(
+                      fontSize: 40,
+                      fontFamily: 'MuliBold'
+                    ),),
+                  ),
+
+                ],
+              )),
+
+          SizedBox(
+            height: AppSizes.height * 0.02,
+          ),
+
+          Align(
+            alignment: Alignment.center,
+            child: GestureDetector(
+              onTap: (){DatePicker.showTime12hPicker(context, showTitleActions: true, onChanged: (date) {
+                print('change $date in time zone ' + date.timeZoneOffset.inHours.toString());
+              }, onConfirm: (date) {
+                print('confirm $date');
+              }, currentTime: DateTime.now());
+              } ,
+              child: Container(
+                width: AppSizes.width,
+                margin: EdgeInsets.only(left: AppSizes.width*0.05,right: AppSizes.width*0.05),
+                decoration: BoxDecoration(
+                  color: AppColors.clr_white,
+                  border: Border.all(color: AppColors.clr_bg_black),
+                  borderRadius: BorderRadius.circular(6),
+                ),
+                padding: EdgeInsets.all(AppSizes.height*0.020),
+                child: Text("Request Break",style: TextStyle(
+                    fontSize: 16,
+                    fontFamily: 'MuliRegular',
+                ),
+                textAlign: TextAlign.center,),
+              ),
+            ),
+          ),
+
+          SizedBox(
+            height: AppSizes.height * 0.02,
+          ),
+
+          Align(
+            alignment: Alignment.center,
+            child: Container(
+              width: AppSizes.width,
+              margin: EdgeInsets.only(left: AppSizes.width*0.05,right: AppSizes.width*0.05),
+              decoration: BoxDecoration(
+                color: AppColors.clr_bg_black,
+                border: Border.all(color: AppColors.clr_bg_black),
+                borderRadius: BorderRadius.circular(6),
+              ),
+              padding: EdgeInsets.all(AppSizes.height*0.020),
+              child: Text("End Shift",style: TextStyle(
+                fontSize: 16,
+                color: AppColors.clr_white,
+                fontFamily: 'MuliRegular',
+              ),
+                textAlign: TextAlign.center,),
+            ),
+          ),
+
+        ],
+      ))
+    ]);
+  }
+
+  Widget getConfirmedContainer({@required BuildContext context}) {
+    return Column(children: [
+      Expanded(
+          child: ListView(
+            children: [
+              Container(
+                  margin: EdgeInsets.only(
+                    left: AppSizes.width * 0.05,
+                    right: AppSizes.width * 0.05,
+                  ),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(color: AppColors.clr_field),
+                      color: AppColors.clr_white),
+                  child: Column(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.all(AppSizes.width * 0.03),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Receptionist",
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontFamily: "MuliSemiBold",
+                                        color: AppColors.clr_bg_black,
+                                      ),
+                                    ),
+                                    SizedBox(height: AppSizes.height * 0.005),
+                                    Text(
+                                      "Wed,Sep 23",
+                                      style: TextStyle(
+                                        fontFamily: 'MuliRegular',
+                                        fontSize: 15,
+                                        color: AppColors.clr_bg_black2,
+                                      ),
+                                    ),
+                                    SizedBox(height: AppSizes.height * 0.03),
+                                    Text(
+                                      "Crown Hotel New York",
+                                      style: TextStyle(
+                                        fontFamily: 'MuliRegular',
+                                        fontSize: 15,
+                                        color: AppColors.clr_bg_black2,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Icon(
+                                      Icons.arrow_forward_ios,
+                                      size: 15,
+                                      color: AppColors.clr_bg_black2,
+                                    ),
+                                    SizedBox(height: AppSizes.height * 0.01),
+                                    Text(
+                                      "\$140",
+                                      style: TextStyle(
+                                        fontSize: 22,
+                                        fontFamily: 'MuliBold',
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Text(
+                                      "\$20/h",
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontFamily: 'MuliRegular',
+                                          color: AppColors.clr_bg_black2),
+                                    )
+                                  ],
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: AppSizes.height * 0.02,
+                      ),
+                      Container(
+                          height: AppSizes.height*0.06,
+                          decoration: BoxDecoration(
+                              border: Border(
+                                top: BorderSide(width: 2.0, color: AppColors.clr_field),
+                              )),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                height: AppSizes.height*0.06,
+                                  decoration: BoxDecoration(
+                                    border: Border(
+                                      right: BorderSide(
+                                          width: 2.0, color: AppColors.clr_field),
+                                    ),
+                                    color: Colors.white,
+                                  ),
+                                  padding: EdgeInsets.all(AppSizes.width * 0.02),
+                                  width: AppSizes.width * 0.44,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Image.asset(
+                                        Assets.cancelgig,
+                                        height: 14,
+                                        width: 14,
+                                        color: AppColors.clr_red,
+                                      ),
+                                      SizedBox(
+                                        width: AppSizes.width * 0.01,
+                                      ),
+                                      Text("Cancel Gig",
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                            fontFamily: 'MuliRegular',
+                                            color: AppColors.clr_red,
+                                          )),
+                                    ],
+                                  )),
+                              GestureDetector(
+                                onTap: () {
+                                  _alertDialogueContainer(context);
+                                },
+                                child: Container(
+                                    height: AppSizes.height*0.06,
+                                    padding: EdgeInsets.all(AppSizes.width * 0.02),
+                                    decoration: BoxDecoration(),
+                                    width: AppSizes.width * 0.44,
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Image.asset(
+                                          Assets.start_gig,
+                                          height: 25,
+                                          width: 14,
+                                          color: AppColors.clr_bg_black,
+                                        ),
+                                        SizedBox(
+                                          width: AppSizes.width * 0.01,
+                                        ),
+                                        Text("Start Gig",
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                              color: AppColors.clr_bg_black2,
+                                            )),
+                                      ],
+                                    )),
+                              ),
+                            ],
+                          )),
+                    ],
+                  )),
+              SizedBox(
+                height: AppSizes.height * 0.02,
+              ),
+              Container(
+                  margin: EdgeInsets.only(
+                    left: AppSizes.width * 0.05,
+                    right: AppSizes.width * 0.05,
+                  ),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(color: AppColors.clr_field),
+                      color: AppColors.clr_white),
+                  child: Column(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.all(AppSizes.width * 0.03),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Cleaner",
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontFamily: "MuliSemiBold",
+                                        color: AppColors.clr_bg_black,
+                                      ),
+                                    ),
+                                    SizedBox(height: AppSizes.height * 0.005),
+                                    Text(
+                                      "Wed,Sep 23",
+                                      style: TextStyle(
+                                        fontFamily: 'MuliRegular',
+                                        fontSize: 15,
+                                        color: AppColors.clr_bg_black2,
+                                      ),
+                                    ),
+                                    SizedBox(height: AppSizes.height * 0.03),
+                                    Text(
+                                      "Crown Hotel New York",
+                                      style: TextStyle(
+                                        fontFamily: 'MuliRegular',
+                                        fontSize: 15,
+                                        color: AppColors.clr_bg_black2,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Icon(
+                                      Icons.arrow_forward_ios,
+                                      size: 15,
+                                      color: AppColors.clr_bg_black2,
+                                    ),
+                                    SizedBox(height: AppSizes.height * 0.01),
+                                    Text(
+                                      "\$140",
+                                      style: TextStyle(
+                                        fontSize: 22,
+                                        fontFamily: 'MuliBold',
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Text(
+                                      "\$20/h",
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontFamily: 'MuliRegular',
+                                          color: AppColors.clr_bg_black2),
+                                    )
+                                  ],
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: AppSizes.height * 0.02,
+                      ),
+                      Container(
+                          height: AppSizes.height*0.06,
+                          decoration: BoxDecoration(
+                              border: Border(
+                                top: BorderSide(width: 2.0, color: AppColors.clr_field),
+                              )),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                  height: AppSizes.height*0.06,
+                                  decoration: BoxDecoration(
+                                    border: Border(
+                                      right: BorderSide(
+                                          width: 2.0, color: AppColors.clr_field),
+                                    ),
+                                    color: Colors.white,
+                                  ),
+                                  padding: EdgeInsets.all(AppSizes.width * 0.02),
+                                  width: AppSizes.width * 0.44,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Image.asset(
+                                        Assets.cancelgig,
+                                        height: 14,
+                                        width: 14,
+                                        color: AppColors.clr_red,
+                                      ),
+                                      SizedBox(
+                                        width: AppSizes.width * 0.01,
+                                      ),
+                                      Text("Cancel Gig",
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                            fontFamily: 'MuliRegular',
+                                            color: AppColors.clr_red,
+                                          )),
+                                    ],
+                                  )),
+                              GestureDetector(
+                                onTap: () {
+                                  _newTaskModalBottomSheet(context);
+                                },
+                                child: Container(
+                                    height: AppSizes.height*0.06,
+                                    padding: EdgeInsets.all(AppSizes.width * 0.02),
+                                    decoration: BoxDecoration(),
+                                    width: AppSizes.width * 0.44,
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Image.asset(
+                                          Assets.start_gig,
+                                          height: 25,
+                                          width: 14,
+                                          color: AppColors.clr_bg_black,
+                                        ),
+                                        SizedBox(
+                                          width: AppSizes.width * 0.01,
+                                        ),
+                                        Text("Start Gig",
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                              color: AppColors.clr_bg_black2,
+                                            )),
+                                      ],
+                                    )),
+                              ),
+                            ],
+                          )),
+                    ],
+                  )),
+
+            ],
+          ))
+    ]);
+  }
+
+
+  _newTaskModalBottomSheet(context) {
     showModalBottomSheet(
         context: context,
         builder: (BuildContext context) {
           return Container(
+              padding: EdgeInsets.only(
+                  left: AppSizes.width * 0.015, right: AppSizes.width * 0.015),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(15),
-                    topLeft: Radius.circular(15),
-                  )
-              ),
+                topRight: Radius.circular(15),
+                topLeft: Radius.circular(15),
+              )),
               child: ListView(
                 children: [
                   Container(
@@ -738,68 +1426,54 @@ class GigsComponents{
                             children: [
                               Container(
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment
-                                        .start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
                                     children: [
-                                      Row(
-                                        children: [
-                                          Text(
-                                              "Waiter",
-                                              textAlign: TextAlign.left,
-                                              style: TextStyle(
-                                                fontSize: 22,
-                                                fontFamily: 'MuliBold',
-
-                                              )
-                                          ),
-                                          SizedBox(
-                                            width: AppSizes.width * 0.03,
-                                          ),
-                                          Container(
-                                              padding: EdgeInsets.all(2.0),
-                                              decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius
-                                                      .circular(10.0),
-                                                  border: Border.all(
-                                                    color: AppColors
-                                                        .clr_bg_grey,
-                                                  )
-                                              ),
-                                              child: Row(
-                                                children: [
-                                                  Image.asset(
-                                                      Assets.star,
-                                                      width: 10,
-                                                      height: 10),
-                                                  Text(
-                                                      "4.5",
-                                                      style: TextStyle(
-                                                        fontSize: 12,
-                                                        fontFamily: Assets
-                                                            .muliRegular,
-                                                        color: AppColors
-                                                            .clr_bg_grey,
-                                                      )
-                                                  )
-                                                ],
-                                              )
-                                          )
-                                        ],
+                                      Text("Waiter",
+                                          textAlign: TextAlign.left,
+                                          style: TextStyle(
+                                            fontSize: 22,
+                                            fontFamily: 'MuliBold',
+                                          )),
+                                      SizedBox(
+                                        width: AppSizes.width * 0.03,
                                       ),
                                       Container(
-                                        alignment: Alignment.bottomLeft,
-                                        child: Text(
-                                            "Crown Hotel",
-                                            style: TextStyle(
-                                              fontSize: 15,
-                                              color: AppColors.clr_bg_black,
-                                              fontFamily: 'MuliBold',
-                                            )
-                                        ),
-                                      ),
+                                          padding: EdgeInsets.all(2.0),
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0),
+                                              border: Border.all(
+                                                color: AppColors.clr_bg_grey,
+                                              )),
+                                          child: Row(
+                                            children: [
+                                              Image.asset(Assets.star,
+                                                  width: 10, height: 10),
+                                              Text("4.5",
+                                                  style: TextStyle(
+                                                    fontSize: 12,
+                                                    fontFamily:
+                                                        Assets.muliRegular,
+                                                    color:
+                                                        AppColors.clr_bg_grey,
+                                                  ))
+                                            ],
+                                          ))
                                     ],
-                                  )
-                              ),
+                                  ),
+                                  Container(
+                                    alignment: Alignment.bottomLeft,
+                                    child: Text("Crown Hotel",
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          color: AppColors.clr_bg_black,
+                                          fontFamily: 'MuliBold',
+                                        )),
+                                  ),
+                                ],
+                              )),
                               Container(
                                 child: Image.asset(
                                   Assets.support,
@@ -811,7 +1485,9 @@ class GigsComponents{
                           ),
                           Divider(),
                           Container(
-                            padding: EdgeInsets.all(5,),
+                            padding: EdgeInsets.all(
+                              5,
+                            ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -822,7 +1498,9 @@ class GigsComponents{
                                       Icons.calendar_today,
                                       size: 15,
                                     ),
-                                    SizedBox(width: AppSizes.width * 0.03,),
+                                    SizedBox(
+                                      width: AppSizes.width * 0.03,
+                                    ),
                                     Text(
                                       "Date",
                                       style: TextStyle(
@@ -839,7 +1517,6 @@ class GigsComponents{
                                       style: TextStyle(
                                         fontSize: 15,
                                         fontFamily: 'MuliRegular',
-
                                       ),
                                     )
                                   ],
@@ -849,7 +1526,9 @@ class GigsComponents{
                           ),
                           Divider(),
                           Container(
-                            padding: EdgeInsets.all(5,),
+                            padding: EdgeInsets.all(
+                              5,
+                            ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -860,7 +1539,9 @@ class GigsComponents{
                                       Icons.timer,
                                       size: 15,
                                     ),
-                                    SizedBox(width: AppSizes.width * 0.03,),
+                                    SizedBox(
+                                      width: AppSizes.width * 0.03,
+                                    ),
                                     Text(
                                       "Time",
                                       style: TextStyle(
@@ -886,7 +1567,9 @@ class GigsComponents{
                           ),
                           Divider(),
                           Container(
-                            padding: EdgeInsets.all(5,),
+                            padding: EdgeInsets.all(
+                              5,
+                            ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -897,7 +1580,9 @@ class GigsComponents{
                                       Icons.payment,
                                       size: 15,
                                     ),
-                                    SizedBox(width: AppSizes.width * 0.03,),
+                                    SizedBox(
+                                      width: AppSizes.width * 0.03,
+                                    ),
                                     Text(
                                       "Pay",
                                       style: TextStyle(
@@ -923,7 +1608,9 @@ class GigsComponents{
                           ),
                           Divider(),
                           Container(
-                            padding: EdgeInsets.all(5,),
+                            padding: EdgeInsets.all(
+                              5,
+                            ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -934,7 +1621,9 @@ class GigsComponents{
                                       Icons.contacts,
                                       size: 15,
                                     ),
-                                    SizedBox(width: AppSizes.width * 0.03,),
+                                    SizedBox(
+                                      width: AppSizes.width * 0.03,
+                                    ),
                                     Text(
                                       "Contact Person",
                                       style: TextStyle(
@@ -960,7 +1649,9 @@ class GigsComponents{
                           ),
                           Divider(),
                           Container(
-                            padding: EdgeInsets.all(5,),
+                            padding: EdgeInsets.all(
+                              5,
+                            ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -971,7 +1662,9 @@ class GigsComponents{
                                       Icons.location_on,
                                       size: 15,
                                     ),
-                                    SizedBox(width: AppSizes.width * 0.03,),
+                                    SizedBox(
+                                      width: AppSizes.width * 0.03,
+                                    ),
                                     Text(
                                       "Place",
                                       style: TextStyle(
@@ -995,16 +1688,20 @@ class GigsComponents{
                               ],
                             ),
                           ),
-                          SizedBox(height: AppSizes.height * 0.02,),
-
+                          SizedBox(
+                            height: AppSizes.height * 0.02,
+                          ),
                           Divider(),
-
-                          SizedBox(height: AppSizes.height * 0.02,),
+                          SizedBox(
+                            height: AppSizes.height * 0.02,
+                          ),
                           Container(
                             height: AppSizes.height * 0.4,
                             width: AppSizes.width,
                             child: Image.asset(
-                              Assets.google, fit: BoxFit.fill,),
+                              Assets.google,
+                              fit: BoxFit.fill,
+                            ),
                           ),
                           Divider(),
                           Container(
@@ -1016,8 +1713,7 @@ class GigsComponents{
                                   fontFamily: 'MuliBold',
                                   color: AppColors.clr_bg_black,
                                 ),
-                              )
-                          ),
+                              )),
                           SizedBox(
                             height: AppSizes.height * 0.01,
                           ),
@@ -1030,96 +1726,76 @@ class GigsComponents{
                                   color: AppColors.clr_bg_black,
                                   fontFamily: 'MuliRegular',
                                 ),
-                              )
-                          ),
+                              )),
                           SizedBox(
                             height: AppSizes.height * 0.02,
                           ),
                           Container(
-                            width: AppSizes.width * 0.9,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                border: Border.all(
-                                    color: AppColors.clr_bg_grey),
-                                color: AppColors.clr_white),
-                            child: Container(
-                                child: Row(
-                                  children: [
-                                    Container(
-                                        decoration: BoxDecoration(
-                                          border: Border(
-
-                                            right: BorderSide(width: 2.0,
-                                                color: AppColors.clr_bg_grey),
-                                          ),
-                                          color: Colors.white,
-                                        ),
-                                        padding: EdgeInsets.only(left: 50.0,
-                                            right: 10.0,
-                                            top: 10.0,
-                                            bottom: 10.0),
-                                        width: AppSizes.width * 0.44,
-                                        child: Row(
-                                          children: [
-                                            Icon(
-                                              Icons.clear,size: 16,
-                                              color: AppColors.clr_bg_black,
-                                            ),
-                                            SizedBox(
-                                              width: AppSizes.width * 0.02,),
-                                            Text(
-                                                "Skip",
-                                                style: TextStyle(
-                                                  fontSize: 15,
-                                                  fontFamily: 'MuliRegular',
-                                                  color: AppColors.clr_bg_black,
-                                                )
-                                            ),
-                                          ],
-                                        )
-                                    ),
-                                    Container(
-                                        padding: EdgeInsets.only(left: 50.0,
-                                            right: 10.0,
-                                            top: 10.0,
-                                            bottom: 10.0),
-                                        decoration: BoxDecoration(
-                                          color: Colors.white,
-                                        ),
-                                        width: AppSizes.width * 0.44,
-                                        child: Row(
-                                          children: [
-                                            Icon(
-                                              Icons.check,size: 16,
-                                              color: AppColors.clr_green,
-                                            ),
-                                            SizedBox(
-                                              width: AppSizes.width * 0.02,),
-                                            Text(
-                                                "Accept",
-                                                style: TextStyle(
-                                                  fontFamily: 'MuliRegular',
-                                                  fontSize: 15,
-                                                  color: AppColors.clr_green,
-                                                )
-                                            ),
-                                          ],
-                                        )
-                                    ),
-                                  ],
-                                )
-                            ),
-                          ),
+                              child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                  decoration: BoxDecoration(
+                                    border:
+                                        Border.all(color: AppColors.clr_field),
+                                    color: Colors.white,
+                                  ),
+                                  padding:
+                                      EdgeInsets.all(AppSizes.width * 0.02),
+                                  width: AppSizes.width * 0.44,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Image.asset(
+                                        Assets.cancelgig,
+                                        height: 14,
+                                        width: 14,
+                                        color: AppColors.clr_bg_black,
+                                      ),
+                                      SizedBox(
+                                        width: AppSizes.width * 0.01,
+                                      ),
+                                      Text("Skip",
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                            fontFamily: 'MuliRegular',
+                                            color: AppColors.clr_bg_black,
+                                          )),
+                                    ],
+                                  )),
+                              Container(
+                                  padding:
+                                      EdgeInsets.all(AppSizes.width * 0.02),
+                                  decoration: BoxDecoration(
+                                      color: AppColors.clr_white,
+                                      border: Border.all(
+                                          color: AppColors.clr_field)),
+                                  width: AppSizes.width * 0.44,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.check,
+                                        color: AppColors.clr_green,
+                                        size: 14,
+                                      ),
+                                      SizedBox(
+                                        width: AppSizes.width * 0.01,
+                                      ),
+                                      Text("Accept",
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                            color: AppColors.clr_green,
+                                          )),
+                                    ],
+                                  )),
+                            ],
+                          )),
                         ],
-                      )
-                  )
-
-
+                      ))
                 ],
-              )
-          );
-        }
-    );
+              ));
+        });
   }
 
   _alertDialogueContainer(BuildContext context) {
@@ -1127,7 +1803,7 @@ class GigsComponents{
       {
         showDialog(
           context: context,
-          builder: (_) {
+          builder: (context) {
             return Material(
               color: AppColors.clr_bg_black.withOpacity(0.5),
               child: Center(
@@ -1260,7 +1936,7 @@ class GigsComponents{
                                     ),
                                     Row(
                                       children: [
-                                        Icon(Icons.check,size: 20,)
+                                        Icon(Icons.check,size: 15,)
                                       ],
                                     )
 
@@ -1413,39 +2089,12 @@ class GigsComponents{
                                 )
                             ),
 
-                            /*GestureDetector(
-                              onTap: (){
-                                hideLoader(context);
-                              },
-                              child: Container(
-                                  margin: EdgeInsets.only(top: AppSizes.width*0.04,left: AppSizes.width*0.06,right: AppSizes.width*0.06,),
-                                  alignment: Alignment.center,
-                                  width: AppSizes.width/2,
-                                  height: AppSizes.height * 0.095,
-                                  padding: EdgeInsets.all(12),
-                                  decoration: BoxDecoration(
-                                    color: AppColors.clr_bg_black,
-                                    border: Border.all(
-                                      color: AppColors.clr_bg_grey,
-                                    ),
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                  child: Text(
-                                    "Submit Rating",
-                                    style: TextStyle(
-                                      color: AppColors.clr_white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15,
-                                    ),
-                                    textAlign: TextAlign.center,
-                                  )),
-                            )*/
 
                             SizedBox(
                               height: AppSizes.height * 0.03,
                             ),
 
-                            CommonWidgets.getButton(backgroundColor: AppColors.clr_bg_black, borderColor: AppColors.transparentColor, textColor: AppColors.clr_white, text: "SUBMIT RATING", onPress: (){hideLoader(context);}),
+                            CommonWidgets.getSignUpButton(context:context,text:"SUBMIT RATING", onPress: (){hideLoader(context);}),
 
                             SizedBox(
                               height: AppSizes.height * 0.04,
@@ -1478,7 +2127,7 @@ class GigsComponents{
   _container() {
     return Container(
         alignment: Alignment.centerLeft,
-        margin: EdgeInsets.only(left: 20.0),
+        margin: EdgeInsets.only(left: AppSizes.width * 0.05),
         child: Text(
           "Apply",
           style: TextStyle(
@@ -1486,14 +2135,10 @@ class GigsComponents{
             fontFamily: 'MuliBold',
             color: AppColors.clr_bg_black,
           ),
-        )
-    );
+        ));
   }
 
   hideLoader(BuildContext context) {
     Navigator.of(context).pop();
   }
-
-
-
 }

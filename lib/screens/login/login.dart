@@ -9,6 +9,7 @@ import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/screens/forget_password/forget_password.dart';
 import 'package:work_samurai/screens/login/login_components.dart';
 import 'package:work_samurai/screens/sign_up/sign_up.dart';
+import 'package:work_samurai/screens/worker/worker.dart';
 import 'package:work_samurai/widgets/toast.dart';
 
 import '../../res/sizes.dart';
@@ -19,12 +20,13 @@ class Login extends StatefulWidget {
   _LoginState createState() => _LoginState();
 }
 
+bool onCheck = false;
 class _LoginState extends State<Login> {
   LoginComponents _loginComponents;
   LoginProvider _loginProvider;
   TextEditingController _email, _password;
   FocusNode _focusNode;
-  bool onCheck = false;
+
 
   @override
   void initState() {
@@ -54,7 +56,7 @@ class _LoginState extends State<Login> {
                     backgroundColor: AppColors.transparentColor,
                     borderColor: AppColors.clr_bg_grey,
                     textColor: AppColors.clr_bg_black2,
-                    text: "Email",
+                    text: "Username",
                     controller: _email,
                     imagePath: Assets.mail),
                 SizedBox(
@@ -66,11 +68,15 @@ class _LoginState extends State<Login> {
                     textColor: AppColors.clr_bg_black2,
                     text: "Password",
                     controller: _password,
-                    imagePath: Assets.lock),
+                    imagePath: Assets.lock,),
+                SizedBox(
+                  height: AppSizes.height * 0.02,
+                ),
                 Container(
                     margin: EdgeInsets.only(
-                      left: AppSizes.height * 0.01,
+                      left: AppSizes.height * 0.015,
                       right: AppSizes.height * 0.03,
+                      bottom: AppSizes.height*0.03
                     ),
                     alignment: Alignment.topLeft,
                     child: Row(
@@ -85,27 +91,43 @@ class _LoginState extends State<Login> {
                             });
                           },
                         ),
-                        Text(
-                          "Remember Me",
+                        RichText(
+                          text: TextSpan(
+                              text: '',
+                              style: TextStyle(
+                                  fontFamily: 'MuliRegular',
+                                  color: AppColors.clr_bg_black,
+                                  fontSize: 13),
+                              children: <TextSpan>[
+                                TextSpan(
+                                    text: 'Remember Me',
+                                    style: TextStyle(
+                                      color: AppColors.clr_bg_black,
+                                      fontSize: 14,
+                                      fontFamily: 'MuliRegular',
+                                    ),
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () {
+                                        // navigate to desired screen
+                                      })
+                              ]),
                         )
                       ],
                     )),
-                SizedBox(
-                  height: AppSizes.height * 0.02,
-                ),
                 _loginComponents.getSignUpButton(
                     context: context,
                     onPress: () {
-                      _loginProvider.callLoginAPI(
+                      Navigator.push(context, SlideRightRoute(page: Worker()));
+                      /*_loginProvider.callLoginAPI(
                           context: context,
                           email: _email.text.toString(),
-                          password: _password.text.toString());
+                          password: _password.text.toString());*/
                     },
                     text: "Login"),
                 SizedBox(
-                  height: AppSizes.height * 0.02,
+                  height: AppSizes.height * 0.05,
                 ),
-                _loginComponents.getRichText(
+                _loginComponents.getRichText1(
                     text1: "",
                     text2: "Forget Password?",
                     onPress: () {
@@ -113,30 +135,14 @@ class _LoginState extends State<Login> {
                           context, SlideRightRoute(page: ForgetPassword()));
                     }),
                 SizedBox(
-                  height: AppSizes.height * 0.06,
+                  height: AppSizes.height * 0.05,
                 ),
-              RichText(
-                text: TextSpan(
-                    text: 'Dont have an account?',
-                    style: TextStyle(
-                        fontFamily: 'MuliRegular',
-                        color: AppColors.clr_bg_black,
-                        fontSize: 15),
-                    children: <TextSpan>[
-                      TextSpan(
-                          text: 'Sign up',
-                          style: TextStyle(
-                            color: AppColors.clr_red,
-                            decoration: TextDecoration.underline,
-                            fontSize: 15,
-                            fontFamily: 'MuliRegular',
-                          ),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              Navigator.push(context, SlideRightRoute(page: SignUp()));
-                            })
-                    ]),
-              )
+                _loginComponents.getRichText(
+                    text1: "Don't have an account?",
+                    text2: "Sign Up",
+                    onPress: () {
+                      Navigator.push(context, SlideRightRoute(page: SignUp()));
+                    }),
               ],
             ),
           ),

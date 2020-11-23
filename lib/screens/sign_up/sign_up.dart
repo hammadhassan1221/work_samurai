@@ -2,12 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:work_samurai/animations/slide_right.dart';
 import 'package:work_samurai/models/hitting_model/sign_up_screen/sign_up_model.dart';
 import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/screens/sign_up/sign_up_providers.dart';
 import 'package:work_samurai/screens/sign_up/signup_components.dart';
+import 'package:work_samurai/screens/worker/worker.dart';
 import 'package:work_samurai/widgets/widgets.dart';
 
 class SignUp extends StatefulWidget {
@@ -240,7 +242,7 @@ Widget build(BuildContext context) {
                         SizedBox(
                           height: AppSizes.height * 0.05,
                         ),
-                        _signUpComponents.getSignUpButton(
+                    /*    _signUpComponents.getSignUpButton(
                           context: context,
                           onPress: () {
                             _makeSignUpModel();
@@ -254,7 +256,8 @@ Widget build(BuildContext context) {
                             );
                           },
                           text: "Sign Up",
-                        ),
+                        ),*/
+                        _signUpComponents.getSignUpButton(context: context, onPress: (){Navigator.push(context, SlideRightRoute(page:Worker()));}, text: "Sign Up")
                       ],
                     )),
               ],

@@ -60,8 +60,8 @@ class SignUpComponents{
         @required bool isPassword,
       }) {
     return Container(
-        width: AppSizes.width*0.8,
-        height: AppSizes.height*0.075,
+        /*width: AppSizes.width*0.8,
+        height: AppSizes.height*0.075,*/
         alignment: Alignment.bottomCenter,
         padding:EdgeInsets.only(left: AppSizes.width*0.025),
         margin: EdgeInsets.only(top:AppSizes.height*0.02,left:AppSizes.height*0.03,right:AppSizes.height*0.03,),

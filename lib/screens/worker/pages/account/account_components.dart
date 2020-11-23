@@ -1,13 +1,8 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:work_samurai/animations/slide_right.dart';
 import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
-import 'package:work_samurai/screens/login/login.dart';
-import 'package:work_samurai/screens/settings/settings.dart';
-
 
 class AccountComponent {
   Widget getDocumentDetails({@required String text}) {
@@ -35,12 +30,13 @@ class AccountComponent {
     );
   }
 
-  Widget getUserEdit({@required BuildContext context, @required String imagePath,@required String text}) {
+  Widget getUserEdit({@required String imagePath,@required String text,@required Function onPress}) {
     return Container(
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              padding: EdgeInsets.only(top: 10.0),
+              margin: EdgeInsets.only(top: AppSizes.height*0.03),
               child: Image.asset(
                 imagePath,
                 height: 100,
@@ -48,22 +44,52 @@ class AccountComponent {
               ),
             ),
             GestureDetector(
-                onTap: () {
-                  Navigator.pushReplacement(context, SlideRightRoute(page: Settings()));
-                },
-              child:Container(
-                width: AppSizes.width * 0.6,
-                height: AppSizes.height / 8,
-                padding: EdgeInsets.only(top: AppSizes.height * 0.03),
-                child: Text(text,
-                    textAlign: TextAlign.right,
-                    style: TextStyle(
-                      decoration: TextDecoration.underline,
-                      fontSize: 18,
-                      fontFamily: 'MuliBold',
-                    )))
-    ),],
+              onTap: onPress,
+              child: Container(
+                  width: AppSizes.width * 0.6,
+                  height: AppSizes.height / 8,
+                  child: Text(text,
+                      textAlign: TextAlign.right,
+                      style: TextStyle(
+                       // decoration: TextDecoration.underline,
+                        fontSize: 18,
+                        fontFamily: 'MuliBold',
+                      ))),
+            )
+          ],
         ));
+  }
+
+  Widget getVerification({@required Function onPress,@required String text,@required String imagePath}){
+    return Container(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            GestureDetector(
+              onTap: onPress,
+              child: Row(
+                children: [
+                  Image.asset(imagePath,height: 25,width: 25,),
+                  SizedBox(
+                    width: AppSizes.width*0.045,
+                  ),
+                  Text(
+                    text,
+                    style: TextStyle(
+                      fontFamily: 'MuliSemiBold',
+                      fontSize: 15,
+                    ),
+                  )
+                ],
+              ),
+            ),
+            SizedBox(
+              height: AppSizes.height * 0.015,
+            ),
+          ],
+        )
+    );
+
   }
 
   Widget getUserDetails({@required String text}){
@@ -82,11 +108,10 @@ class AccountComponent {
   Widget getHeadings({@required String text}){
     return  Container(
         margin: EdgeInsets.only(top:AppSizes.height*0.015),
-        width: AppSizes.width * 0.85,
         child: Text(
             text,
             style: TextStyle(
-              fontSize: 20,
+              fontSize: 18,
               color: AppColors.clr_bg_black,
               fontFamily: 'MuliBold',
             )
@@ -139,7 +164,6 @@ class AccountComponent {
 
   Widget getPositionContainer({@required String text1,@required String text2,@required String text3,@required String text4}){
     return Container(
-        width: AppSizes.width * 0.85,
         child: Wrap(
           children: [
             Container(
@@ -158,7 +182,7 @@ class AccountComponent {
                 )
             ),
             SizedBox(
-              width: AppSizes.width * 0.025,
+              width: AppSizes.width * 0.028,
             ),
             Container(
                 padding: EdgeInsets.all(10.0,),

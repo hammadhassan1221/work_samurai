@@ -57,7 +57,7 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
         body: children[_currentIndex],
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _currentIndex,
-          backgroundColor: AppColors.clr_bg,
+          backgroundColor: AppColors.clr_white,
           type: BottomNavigationBarType.fixed,
           onTap: (index) {
             setState(() {

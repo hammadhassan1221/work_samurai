@@ -13,7 +13,7 @@ class MessageComponents{
         height: AppSizes.height * 0.12,
         padding: EdgeInsets.all(10.0),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5),
+            borderRadius: BorderRadius.circular(8),
             color: AppColors.clr_white
         ),
         child: Row(
@@ -35,19 +35,17 @@ class MessageComponents{
                           color: AppColors.clr_bg_black,
                           decoration: TextDecoration.none,
                           fontSize: 16,
-                          fontFamily: Assets
-                              .muliRegular,
-                          fontWeight: FontWeight.bold,
+                          fontFamily: 'MuliBold',
                         )
                     ),
                     SizedBox(
                       width: AppSizes.width * 0.02,
                     ),
                     Container(
-                        padding: EdgeInsets.all(3.5),
+                        padding: EdgeInsets.all(3.0),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius
-                                .circular(12.0),
+                                .circular(10.0),
                             border: Border.all(
                               color: AppColors.clr_bg_grey,
                             )
@@ -80,14 +78,14 @@ class MessageComponents{
                   ],
                 ),
                 SizedBox(
-                  height: AppSizes.height * 0.010,
+                  height: AppSizes.height * 0.022,
                 ),
                 Text(
                     subHeading,
                     textAlign: TextAlign.left,
                     style: TextStyle(
                       decoration: TextDecoration.none,
-                      fontSize: 14,
+                      fontSize: 15,
                       color: AppColors.clr_bg_black2,
                       fontFamily: 'MuliRegular',
                     )

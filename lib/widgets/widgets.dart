@@ -6,14 +6,12 @@ import 'package:work_samurai/res/sizes.dart';
 
 class CommonWidgets{
 
+
   static Widget getRow(String text, bool value, Function onPress){
 
     return Container(
         margin: EdgeInsets.only(top:AppSizes.height*0.01),
-
-        height: AppSizes.height*0.09,
-        width: AppSizes.width,
-
+        padding: EdgeInsets.only(left: AppSizes.width*0.03,right: AppSizes.width*0.03,),
         child:Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -24,7 +22,7 @@ class CommonWidgets{
                   fontSize: 15,
                   fontFamily: 'MuliRegular'),),
             CupertinoSwitch(
-              activeColor: AppColors.clr_green,
+              activeColor: Colors.lightGreenAccent,
               value:value,
               onChanged: onPress),
 
@@ -33,103 +31,133 @@ class CommonWidgets{
     );
   }
 
-  static Widget getAvailability(String text){
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Container(
-              height: AppSizes.height*0.05,
-              width: AppSizes.width*0.03,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: AppColors.clr_green,
-              ),
-            ),
-            SizedBox(width: AppSizes.width*0.03,),
-            Text("Available From",
-              style: TextStyle(
-                  color: AppColors.clr_green,
-                  fontSize: 16),)
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [Text("10:00am",style: TextStyle(fontSize: 16,color: AppColors.clr_green),)],
-        ),
-      ],
-    );
-  }
 
-  static Widget getAvailability2(String text){
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+  static Widget getScheduleRow(String text, Function onPress){
+
+    return Container(
+        margin: EdgeInsets.only(top:AppSizes.height*0.01,bottom: AppSizes.height*0.01),
+
+        child:Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Container(
-              height: AppSizes.height*0.05,
-              width: AppSizes.width*0.03,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: AppColors.clr_bg_black,
-              ),
-            ),
-            SizedBox(width: AppSizes.width*0.03,),
-            Text(text,
+            Text(
+              text,
               style: TextStyle(
                   color: AppColors.clr_bg_black,
-                  fontSize: 16),)
+                  fontSize: 20,
+                  fontFamily: 'MuliBold'),),
+            Text("All Day",style: TextStyle(
+              fontFamily: 'MuliRegular',
+              fontSize: 14
+            ),)
+
           ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [Text("5:00pm",style: TextStyle(fontSize: 16,color: AppColors.clr_bg_black),)],
-        ),
-      ],
+        )
     );
   }
 
-  static Widget getButton(
-      {@required Color backgroundColor,
-        @required Color borderColor,
-        @required Color textColor,
-        @required String text,
-        @required Function onPress}) {
-    return GestureDetector(
-      onTap: () => onPress(),
-      child: Container(
-        width: AppSizes.width,
-        height: AppSizes.height * 0.07,
-        margin: EdgeInsets.only(left:AppSizes.height*0.015,right:AppSizes.height*0.015,),
 
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(
-            6,
+  static Widget getAvailability({@required String text,@required Function onPress}){
+    return GestureDetector(
+      onTap: onPress,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Container(
+                height: AppSizes.height*0.05,
+                width: AppSizes.width*0.03,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: AppColors.clr_green,
+                ),
+              ),
+              SizedBox(width: AppSizes.width*0.03,),
+              Text("Available From",
+                style: TextStyle(
+                    fontFamily: 'MuliRegular',
+                    color: AppColors.clr_green,
+                    fontSize: 16),)
+            ],
           ),
-          border: Border.all(
-            color: borderColor,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [Text(text,style: TextStyle(fontSize: 16,color: AppColors.clr_green,fontFamily: 'MuliRegular'),)],
           ),
-          color: backgroundColor,
-        ),
-        child: Text(
-          text,
-          style: TextStyle(
-            decoration: TextDecoration.none,
-            fontSize: 16,
-            color: textColor,
-            fontWeight: FontWeight.w500,
-            fontFamily: Assets.muliRegular
+        ],
+      ),
+    );
+  }
+
+  static Widget getAvailability2({@required String text1,@required String text,@required Function onPress}){
+    return GestureDetector(
+      onTap: onPress,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Container(
+                height: AppSizes.height*0.05,
+                width: AppSizes.width*0.03,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: AppColors.clr_bg_black,
+                ),
+              ),
+              SizedBox(width: AppSizes.width*0.03,),
+              Text(text1,
+                style: TextStyle(
+                    color: AppColors.clr_bg_black,
+                    fontSize: 16,fontFamily: 'MuliRegular'),)
+            ],
           ),
-          textAlign: TextAlign.center,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [Text(text,style: TextStyle(fontSize: 16,color: AppColors.clr_bg_black,fontFamily: 'MuliRegular'),)],
+          ),
+        ],
+      ),
+    );
+  }
+
+
+ static Widget getSignUpButton({@required BuildContext context, @required Function onPress,@required String text}) {
+    return Expanded(
+      child: Align(
+        alignment: Alignment.bottomCenter,
+        child: GestureDetector(
+          onTap: onPress,
+          child: Container(
+            margin: EdgeInsets.only(left:AppSizes.width*0.03,right:AppSizes.width*0.03,top: AppSizes.height*0.03,bottom: AppSizes.height*0.03),
+            alignment: Alignment.center,
+            height: AppSizes.height * 0.08,
+            width: AppSizes.width,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(
+                5,
+              ),
+              border: Border.all(
+                color: AppColors.clr_bg_black,
+              ),
+              color: AppColors.clr_bg_black,
+            ),
+            child: Text(
+              text,
+              style: TextStyle(
+                  fontSize: 16.0,
+                  fontFamily: 'MuliRegular',
+                  color: AppColors.clr_white),
+            ),
+          ),
         ),
       ),
     );
   }
+
 
   static Widget getInputField(
       {@required Color backgroundColor,
@@ -185,7 +213,7 @@ class CommonWidgets{
               onTap: onPress,
               child: Image.asset(imagepath,height: 20,width: 20,)),
           SizedBox(
-            width: AppSizes.width * 0.05,
+            width: AppSizes.width * 0.02,
           ),
           Text(
             text,
@@ -210,12 +238,9 @@ class CommonWidgets{
           Text(
             text,
             style: TextStyle(
-                color: AppColors.clr_bg_black,
                 decoration: TextDecoration.none,
                 fontSize: 22,
-              fontFamily: Assets
-                  .muliRegular,
-              fontWeight: FontWeight.bold,),
+                fontFamily: 'MuliBold'),
           )
         ],
       ),
@@ -230,7 +255,7 @@ class CommonWidgets{
         height: AppSizes.height * 0.12,
         padding: EdgeInsets.all(10.0),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5),
+          borderRadius: BorderRadius.circular(6),
             border: Border.all(
               color: AppColors.clr_bg_grey,
             )
@@ -241,7 +266,9 @@ class CommonWidgets{
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Image.asset(imagePath),
+                Image.asset(
+                  imagePath,
+                  ),
                 SizedBox(
                   width: AppSizes.width * 0.03,
                 ),
