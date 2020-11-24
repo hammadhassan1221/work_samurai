@@ -46,16 +46,20 @@ class AccountComponent {
             GestureDetector(
               onTap: onPress,
               child: Container(
-                  width: AppSizes.width * 0.6,
-                  height: AppSizes.height / 8,
+                alignment: Alignment.topRight,
+                decoration : BoxDecoration(
+                    border: Border(
+                        bottom: BorderSide( color: AppColors.clr_bg_black)
+                    ),
+            ),
                   child: Text(text,
-                      textAlign: TextAlign.right,
-                      style: TextStyle(
-                       // decoration: TextDecoration.underline,
-                        fontSize: 18,
-                        fontFamily: 'MuliBold',
-                      ))),
-            )
+                  textAlign: TextAlign.right,
+                  style: TextStyle(
+                    // decoration: TextDecoration.underline,
+                    fontSize: 18,
+                    fontFamily: 'MuliBold',
+                  )),
+    )),
           ],
         ));
   }
