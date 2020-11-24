@@ -38,12 +38,12 @@ class _ForgetPasswordState extends State<ForgetPassword> {
         child: Column(
           children: [
 
-            CommonWidgets.getAppBar(text: "Forget Password", context: context),
+            CommonWidgets.getAppBar(text: "Forgot Password", context: context),
             _forgetPasswordComponents.getConfirmationText(),
 
             _forgetPasswordComponents.getInputField(backgroundColor: AppColors.clr_field, borderColor: AppColors.clr_bg_grey, textColor: AppColors.clr_bg_black2, text: "Email", imagePath: Assets.mail,controller: _email),
 
-            CommonWidgets.getSignUpButton(context: context, onPress: (){}, text: "Reset My Password"),
+            Expanded(child: CommonWidgets.getSignUpButton(context: context, onPress: (){}, text: "Reset My Password")),
             /*_forgetPasswordComponents.getSignUpButton(context: context, onPress: (){
               _forgetPasswordProvider.callForgetPasswordAPI(context: context, email: _email.text.toString());
             }, text: "Reset my Password",)*/

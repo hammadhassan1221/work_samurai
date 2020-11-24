@@ -468,6 +468,7 @@ class GigsComponents {
                         Row(
                           children: [
                             Column(
+
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Icon(
@@ -475,7 +476,7 @@ class GigsComponents {
                                   size: 15,
                                   color: AppColors.clr_bg_black2,
                                 ),
-                                SizedBox(height: AppSizes.height * 0.01),
+                                SizedBox(height: AppSizes.height * 0.016),
                                 Text(
                                   "\$140",
                                   style: TextStyle(
@@ -636,7 +637,7 @@ class GigsComponents {
                                   size: 15,
                                   color: AppColors.clr_bg_black2,
                                 ),
-                                SizedBox(height: AppSizes.height * 0.01),
+                                SizedBox(height: AppSizes.height * 0.016),
                                 Text(
                                   "\$140",
                                   style: TextStyle(
@@ -796,7 +797,7 @@ class GigsComponents {
                                   size: 15,
                                   color: AppColors.clr_bg_black2,
                                 ),
-                                SizedBox(height: AppSizes.height * 0.01),
+                                SizedBox(height: AppSizes.height * 0.016),
                                 Text(
                                   "\$140",
                                   style: TextStyle(
@@ -888,6 +889,10 @@ class GigsComponents {
                       )),
                 ],
               )),
+
+          SizedBox(
+            height: AppSizes.height * 0.030,
+          ),
         ],
       ))
     ]);
@@ -1222,7 +1227,7 @@ class GigsComponents {
                                         Text("Start Gig",
                                             style: TextStyle(
                                               fontSize: 14,
-                                              color: AppColors.clr_bg_black2,
+                                              color: AppColors.clr_bg_black,
                                             )),
                                       ],
                                     )),
@@ -1385,7 +1390,7 @@ class GigsComponents {
                                         Text("Start Gig",
                                             style: TextStyle(
                                               fontSize: 14,
-                                              color: AppColors.clr_bg_black2,
+                                              color: AppColors.clr_bg_black,
                                             )),
                                       ],
                                     )),
@@ -1406,6 +1411,7 @@ class GigsComponents {
         context: context,
         builder: (BuildContext context) {
           return Container(
+
               padding: EdgeInsets.only(
                   left: AppSizes.width * 0.015, right: AppSizes.width * 0.015),
               decoration: BoxDecoration(

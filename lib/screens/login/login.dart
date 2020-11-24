@@ -11,6 +11,7 @@ import 'package:work_samurai/screens/login/login_components.dart';
 import 'package:work_samurai/screens/sign_up/sign_up.dart';
 import 'package:work_samurai/screens/worker/worker.dart';
 import 'package:work_samurai/widgets/toast.dart';
+import 'package:work_samurai/widgets/widgets.dart';
 
 import '../../res/sizes.dart';
 import 'login_providers.dart';
@@ -52,7 +53,7 @@ class _LoginState extends State<Login> {
             child: Column(
               children: [
                 _loginComponents.getImageContainer(Assets.logo, 300, 300),
-                _loginComponents.getInputField(
+                CommonWidgets.getInputField(
                     backgroundColor: AppColors.transparentColor,
                     borderColor: AppColors.clr_bg_grey,
                     textColor: AppColors.clr_bg_black2,
@@ -63,7 +64,7 @@ class _LoginState extends State<Login> {
                 SizedBox(
                   height: AppSizes.height * 0.02,
                 ),
-                _loginComponents.getInputField(
+                CommonWidgets.getInputField(
                     backgroundColor: AppColors.transparentColor,
                     borderColor: AppColors.clr_bg_grey,
                     textColor: AppColors.clr_bg_black2,
@@ -116,7 +117,7 @@ class _LoginState extends State<Login> {
                         )
                       ],
                     )),
-                _loginComponents.getSignUpButton(
+                CommonWidgets.getSignUpButton(
                     context: context,
                     onPress: () {
                       Navigator.push(context, SlideRightRoute(page: Worker()));
@@ -127,17 +128,17 @@ class _LoginState extends State<Login> {
                     },
                     text: "Login"),
                 SizedBox(
-                  height: AppSizes.height * 0.05,
+                  height: AppSizes.height * 0.025,
                 ),
                 _loginComponents.getRichText1(
-                    text1: "Forget Password?",
+                    text1: "Forgot Password?",
                     text2: "",
                     onPress: () {
                       Navigator.push(
                           context, SlideRightRoute(page: ForgetPassword()));
                     }),
                 SizedBox(
-                  height: AppSizes.height * 0.05,
+                  height: AppSizes.height * 0.025,
                 ),
                 _loginComponents.getRichText(
                     text1: "Don't have an account?",
@@ -145,6 +146,9 @@ class _LoginState extends State<Login> {
                     onPress: () {
                       Navigator.push(context, SlideRightRoute(page: SignUp()));
                     }),
+                SizedBox(
+                  height: AppSizes.height * 0.1,
+                ),
               ],
             ),
           ),

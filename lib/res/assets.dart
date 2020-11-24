@@ -35,8 +35,8 @@ class Assets{
   static const String endshift = "assets/png/end_shift@3x.png";
   static const String profileS = "assets/png/Icon - L@3x.png";
   static const String lock = "assets/png/Icon - Lock3x.png";
-  static const String phone = "assets/png/Icon awesome-phone-alt@3x.png";
-  static const String mail = "assets/png/Icon feather-mail@3x.png";
+  static const String phone = "assets/png/Icon-zocial-call.png";
+  static const String mail = "assets/png/Icon-feather-mail.png";
   static const String city = "assets/png/Icon awesome-city@3x.png";
   static const String correct = "assets/png/correct_wor_attire@3x.png";
   static const String card = "assets/png/credit-card@3x.png";

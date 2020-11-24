@@ -68,7 +68,7 @@ class DailyEarningComponents{
                                 color: AppColors.clr_bg_black,
                                 decoration: TextDecoration.none,
                                 fontSize: 14,
-                                fontFamily: 'MuliRegular'
+                                fontFamily: 'MuliSemiBold'
                             )),
 
                       ],

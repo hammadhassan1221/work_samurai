@@ -194,52 +194,64 @@ class CommonWidgets {
  }
 
 
-  static Widget getInputField(
+  static   Widget getInputField(
       {@required Color backgroundColor,
-      @required Color borderColor,
-      @required Color textColor,
-      @required String text,
-      @required Function onPress}) {
+        @required Color borderColor,
+        @required Color textColor,
+        @required String text,
+        @required String imagePath,
+        @required TextEditingController controller,
+        @required bool isPassword,
+      }) {
     return Container(
-      width: AppSizes.width * 0.8,
-      height: AppSizes.height * 0.07,
-      alignment: Alignment.bottomCenter,
-      margin: EdgeInsets.only(
-        top: AppSizes.height * 0.02,
-        left: AppSizes.width * 0.04,
-        right: AppSizes.width * 0.04,
-      ),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(
-          12,
+        alignment: Alignment.bottomCenter,
+        padding:EdgeInsets.only(left: AppSizes.width*0.025),
+        margin: EdgeInsets.only(top:AppSizes.height*0.015,left:AppSizes.height*0.03,right:AppSizes.height*0.03,),
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: borderColor,
+          ),
+          borderRadius: BorderRadius.circular(5),
+          color: backgroundColor,
         ),
-        border: Border.all(
-          color: borderColor,
-        ),
-        color: backgroundColor,
-      ),
-      padding: EdgeInsets.all(10),
-      child: TextField(
-        decoration: InputDecoration(
-            prefixIcon: Icon(
-              Icons.email,
-            ),
-            border: InputBorder.none,
-            hintText: "Email",
-            hintStyle: TextStyle(
-              fontSize: 15,
-              decoration: TextDecoration.none,
-            )),
-      ),
+
+        child:TextField(
+          cursorColor: AppColors.clr_bg_black2,
+          //cursorHeight: 12,
+          obscureText: isPassword,
+          controller: controller,
+          decoration: InputDecoration(
+              labelText: text,
+              labelStyle: TextStyle(fontSize: 12,
+                color: AppColors.clr_bg_black2,
+                fontFamily: 'MuliRegular',),
+              border: InputBorder.none,
+              prefixIcon: Padding(
+                padding:EdgeInsets.all(AppSizes.width*0.03),
+                child: Image.asset(imagePath,height: 25,width :25),
+              )
+
+          ),
+        )
     );
   }
 
    static Widget getAppBar({@required String text , @required BuildContext context}) {
 
     return Container(
-
+      height: AppSizes.height * 0.09,
       width: AppSizes.width,
-      color: AppColors.clr_white,
+      decoration: BoxDecoration(
+        color: AppColors.clr_white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.25),
+            spreadRadius: 0.5,
+            blurRadius: 1,
+            offset: Offset(0, 1), // changes position of shadow
+          ),
+        ],
+      ),
       padding: EdgeInsets.all(AppSizes.width * 0.035 ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -272,7 +284,18 @@ class CommonWidgets {
   }) {
     return Container(
       height: AppSizes.height * 0.09,
-      color: AppColors.clr_white,
+
+      decoration: BoxDecoration(
+        color: AppColors.clr_white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.25),
+            spreadRadius: 0.5,
+            blurRadius: 1,
+            offset: Offset(0, 1), // changes position of shadow
+          ),
+        ],
+      ),
       padding: EdgeInsets.all(AppSizes.width * 0.038),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -301,6 +324,15 @@ class CommonWidgets {
         height: AppSizes.height * 0.12,
         padding: EdgeInsets.all(10.0),
         decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.25),
+                spreadRadius: 0.8,
+                blurRadius: 0.5,
+                offset: Offset(0, 1), // changes position of shadow
+              ),
+            ],
+          color: AppColors.clr_bg,
             borderRadius: BorderRadius.circular(6),
             border: Border.all(
               color: AppColors.clr_bg_grey,

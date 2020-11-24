@@ -38,7 +38,7 @@ class _EarningsState extends State<Earnings> with TickerProviderStateMixin{
                 children: [
                   CommonWidgets.getAppBar(text: "Earning History", context: context),
                   Container(
-                    margin: EdgeInsets.only(top: AppSizes.height*0.025),
+                    margin: EdgeInsets.only(top: AppSizes.height*0.0125),
                     child: TabBar(
                       isScrollable: true,
                       unselectedLabelColor: AppColors.transparentColor,
@@ -49,39 +49,31 @@ class _EarningsState extends State<Earnings> with TickerProviderStateMixin{
                       ),
                       tabs: [
                         Container(
-                          padding: EdgeInsets.only(left: AppSizes.width*0.02,right: AppSizes.width*0.02,),
+                          padding: EdgeInsets.all(AppSizes.width*0.025,),
                           decoration: BoxDecoration(
                             color: AppColors.clr_bg_black,
                             borderRadius: BorderRadius.circular(15),
                           ),
-                          child: Tab(
-                            child: Text("Daily Payments",style: TextStyle(fontSize: 14,fontFamily:'MuliBold',color: AppColors.clr_white),),
-                          ),
+                          child: Text("Daily Payments",style: TextStyle(fontSize: 14,fontFamily:'MuliBold',color: AppColors.clr_white),),
                         ),
                         Container(
-                          padding: EdgeInsets.only(left: AppSizes.width*0.02,right: AppSizes.width*0.02,),
+                          padding: EdgeInsets.all(AppSizes.width*0.025,),
                           decoration: BoxDecoration(
 
                             color: AppColors.clr_bg_black,
                             borderRadius: BorderRadius.circular(15),
                           ),
-                          child: Tab(
-
-                            child: Text("Monthly Payments",style: TextStyle(fontSize: 14,fontFamily:'MuliBold',color: AppColors.clr_white),),
-                          ),
+                          child: Text("Monthly Payments",style: TextStyle(fontSize: 14,fontFamily:'MuliBold',color: AppColors.clr_white),),
                         ),
                         Container(
-                          padding: EdgeInsets.only(left: AppSizes.width*0.02,right: AppSizes.width*0.02,),
+                          padding: EdgeInsets.all(AppSizes.width*0.025,),
                           decoration: BoxDecoration(
                             border: Border.all(
                             ),
                             color: AppColors.clr_bg_black,
                             borderRadius: BorderRadius.circular(15),
                           ),
-                          child: Tab(
-
-                            child: Text("All Payments",style: TextStyle(fontSize: 14,fontFamily:'MuliBold',color: AppColors.clr_white),),
-                          ),
+                          child: Text("All Payments",style: TextStyle(fontSize: 14,fontFamily:'MuliBold',color: AppColors.clr_white),),
                         ),
                       ],
                     ),

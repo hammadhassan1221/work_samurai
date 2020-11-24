@@ -49,15 +49,18 @@ class _GigsState extends State<Gigs> with SingleTickerProviderStateMixin {
       child: Column(children: [
         CommonWidgets.getAppBarWithout(text: "Gigs"),
         Container(
-          alignment: Alignment.center,
+          margin: EdgeInsets.only(top: AppSizes.height*0.0075,),
+          padding: EdgeInsets.only(left: AppSizes.width*0.05),
+          decoration: BoxDecoration(
+              color: AppColors.clr_white,
+          ),
           width: AppSizes.width,
-          color: AppColors.clr_white,
           child: TabBar(
             controller: _tabController,
             labelStyle: TextStyle(fontFamily: 'MuliSemiBold'),
             indicatorColor: AppColors.clr_bg_grey,
             labelColor: AppColors.clr_bg_black,
-            unselectedLabelColor: AppColors.clr_bg_black2,
+            unselectedLabelColor: AppColors.clr_bg_black3,
             indicator: BoxDecoration(
                 color: AppColors.clr_white,
                 border: Border(
@@ -94,7 +97,7 @@ class _GigsState extends State<Gigs> with SingleTickerProviderStateMixin {
 
   _tabBar(String tabName) {
     return Container(
-      width: AppSizes.width * 0.21,
+
       child: Tab(
         text: tabName,
       ),

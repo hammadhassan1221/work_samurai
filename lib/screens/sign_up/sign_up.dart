@@ -77,7 +77,7 @@ class _SignUpState extends State<SignUp> {
               Expanded(
                   child: ListView(
                 children: [
-                  _signUpComponents.getInputField(
+                  CommonWidgets.getInputField(
                     backgroundColor: AppColors.transparentColor,
                     borderColor: AppColors.sign_field,
                     textColor: AppColors.clr_bg_black,
@@ -86,7 +86,7 @@ class _SignUpState extends State<SignUp> {
                     controller: _firstName,
                     isPassword: false,
                   ),
-                  _signUpComponents.getInputField(
+                  CommonWidgets.getInputField(
                     backgroundColor: AppColors.transparentColor,
                     borderColor: AppColors.sign_field,
                     textColor: AppColors.clr_bg_black,
@@ -95,7 +95,7 @@ class _SignUpState extends State<SignUp> {
                     controller: _lastName,
                     isPassword: false,
                   ),
-                  _signUpComponents.getInputField(
+                  CommonWidgets.getInputField(
                     backgroundColor: AppColors.transparentColor,
                     borderColor: AppColors.sign_field,
                     textColor: AppColors.clr_bg_black,
@@ -104,7 +104,7 @@ class _SignUpState extends State<SignUp> {
                     controller: _email,
                     isPassword: false,
                   ),
-                  _signUpComponents.getInputField(
+                  CommonWidgets.getInputField(
                     backgroundColor: AppColors.transparentColor,
                     borderColor: AppColors.sign_field,
                     textColor: AppColors.clr_bg_black,
@@ -113,7 +113,7 @@ class _SignUpState extends State<SignUp> {
                     controller: _password,
                     isPassword: true,
                   ),
-                  _signUpComponents.getInputField(
+                  CommonWidgets.getInputField(
                       backgroundColor: AppColors.transparentColor,
                       borderColor: AppColors.sign_field,
                       textColor: AppColors.clr_bg_black,
@@ -121,7 +121,7 @@ class _SignUpState extends State<SignUp> {
                       imagePath: Assets.lock,
                       controller: _confirmPassword,
                       isPassword: true),
-                  _signUpComponents.getInputField(
+                  CommonWidgets.getInputField(
                     backgroundColor: AppColors.transparentColor,
                     borderColor: AppColors.sign_field,
                     textColor: AppColors.clr_bg_black,
@@ -131,8 +131,8 @@ class _SignUpState extends State<SignUp> {
                   ),
                   Container(
                       margin: EdgeInsets.only(
-                          top: AppSizes.height * 0.01,
-                          left: AppSizes.width * 0.05,
+                          top: AppSizes.height * 0.02,
+                          left: AppSizes.height * 0.03,
                           right: AppSizes.width * 0.03),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -188,7 +188,7 @@ class _SignUpState extends State<SignUp> {
                           ),
                         ],
                       )),
-                  _signUpComponents.getInputField(
+                  CommonWidgets.getInputField(
                     backgroundColor: AppColors.transparentColor,
                     borderColor: AppColors.sign_field,
                     textColor: AppColors.clr_bg_black,
@@ -224,7 +224,7 @@ class _SignUpState extends State<SignUp> {
                             decoration: BoxDecoration(
                               border: Border(bottom: BorderSide(color: AppColors.clr_bg_black))
                             ),
-                            child: Text('Term and Conditions.',
+                            child: Text('Terms and Conditions.',
                               style: TextStyle(
                                 color: AppColors.clr_bg_black,
                                 fontSize: 14,

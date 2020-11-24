@@ -43,14 +43,13 @@ class ScheduleComponents {
           ),
           Container(
             decoration: BoxDecoration(
-                border: Border(bottom: BorderSide(color: AppColors.clr_bg_black))
-            ),
+                border:
+                    Border(bottom: BorderSide(color: AppColors.clr_bg_black))),
             child: Text(
               text1,
               style: TextStyle(
                 fontSize: 15,
                 fontFamily: 'MuliRegular',
-
               ),
             ),
           )
@@ -109,7 +108,9 @@ class ScheduleComponents {
     );
   }
 
-  _alertDialogueContainer({@required BuildContext context,@required ScheduleProviders scheduleProviders}) {
+  _alertDialogueContainer(
+      {@required BuildContext context,
+      @required ScheduleProviders scheduleProviders}) {
     showModalBottomSheet(
         context: context,
         builder: (BuildContext buildContext) {
@@ -144,7 +145,7 @@ class ScheduleComponents {
                   height: AppSizes.height * 0.01,
                 ),
                 CommonWidgets.getAvailability2(
-                  text1: "Available to",
+                    text1: "Available to",
                     text: "5:00 pm",
                     onPress: () {
                       DatePicker.showTime12hPicker(context,
@@ -155,6 +156,18 @@ class ScheduleComponents {
                         print('confirm $date');
                       }, currentTime: DateTime.now());
                     }),
+                SizedBox(
+                  height: AppSizes.height * 0.035,
+                ),
+
+                Container(
+                  height: AppSizes.height*0.15,
+                  child: CupertinoDatePicker(
+                      mode: CupertinoDatePickerMode.time,
+                      onDateTimeChanged: (dateTime) {
+                      }
+                  ),
+                ),
                 SizedBox(
                   height: AppSizes.height * 0.01,
                 ),
@@ -184,11 +197,11 @@ class ScheduleComponents {
       {@required BuildContext buildContext,
       @required String day,
       @required String time,
-      @required ScheduleProviders scheduleProviders
-      }) {
+      @required ScheduleProviders scheduleProviders}) {
     return GestureDetector(
       onTap: () {
-        _alertDialogueContainer(context: buildContext, scheduleProviders: scheduleProviders);
+        _alertDialogueContainer(
+            context: buildContext, scheduleProviders: scheduleProviders);
       },
       child: Container(
         height: AppSizes.height * 0.08,
@@ -197,17 +210,14 @@ class ScheduleComponents {
           right: AppSizes.width * 0.04,
         ),
         padding: EdgeInsets.all(10.0),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-            color: AppColors.clr_white,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.1),
-                spreadRadius: 5,
-                blurRadius: 5,
-                offset: Offset(0, 0), // changes position of shadow
-              ),
-            ]),
+        decoration: BoxDecoration(boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.25),
+            spreadRadius: 1.5,
+            blurRadius: 1,
+            offset: Offset(0, 1), // changes position of shadow
+          ),
+        ], borderRadius: BorderRadius.circular(8), color: AppColors.clr_white),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -268,4 +278,6 @@ class ScheduleComponents {
       ),
     );
   }
+
+
 }
