@@ -51,7 +51,6 @@ class _GigsState extends State<Gigs> with SingleTickerProviderStateMixin {
           children: [
         CommonWidgets.getGigsAppBar(text: "Gigs"),
         Container(
-
           decoration: BoxDecoration(
               color: AppColors.clr_white,
           ),

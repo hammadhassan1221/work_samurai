@@ -33,6 +33,7 @@ dependencies:
   shared_preferences: ^0.5.8
   dio: ^3.0.10
   font_awesome: ^5.10.1
+  fluttericon: ^1.0.7
 
 
 

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:fluttericon/linearicons_free_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
@@ -67,11 +68,13 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
           items: [
             BottomNavigationBarItem(
               icon: GestureDetector(
-                child: Image.asset(Assets.gigs,
+                child:Icon(LineariconsFree.briefcase,color: _currentIndex == 0
+                    ? AppColors.clr_bg_black
+                    : AppColors.clr_bg_black2,size: 20,) /*Image.asset(Assets.gigs,
                   height: 20,width: 20,
                   color: _currentIndex == 0
                       ? AppColors.clr_bg_black
-                      : AppColors.clr_bg_black2,),
+                      : AppColors.clr_bg_black2,),*/
               ),
               title: Text(
                 "Gigs",style: TextStyle(

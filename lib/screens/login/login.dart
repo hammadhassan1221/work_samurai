@@ -77,7 +77,7 @@ class _LoginState extends State<Login> {
                 ),
                 Container(
                     margin: EdgeInsets.only(
-                      left: AppSizes.height * 0.015,
+
                       right: AppSizes.height * 0.03,
                       bottom: AppSizes.height*0.03
                     ),

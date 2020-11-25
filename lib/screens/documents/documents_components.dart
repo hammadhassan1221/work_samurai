@@ -29,6 +29,14 @@ class DocumentComponents{
         width: AppSizes.width,
         padding: EdgeInsets.only(left: AppSizes.width*0.03,right: AppSizes.width*0.03),
         decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.25),
+              spreadRadius: 0.5,
+              blurRadius: 1,
+              offset: Offset(0, 1), // changes position of shadow
+            ),
+          ],
           color: AppColors.clr_white,
           borderRadius: BorderRadius.circular(5),
           border: Border.all(color: AppColors.transparentColor),
@@ -48,6 +56,7 @@ class DocumentComponents{
                       fontFamily: 'MuliRegular',
                       color: AppColors.clr_bg_black
                   ),),
+                SizedBox(height: AppSizes.height*0.007,),
                 Text(
                   text,
                   style: TextStyle(

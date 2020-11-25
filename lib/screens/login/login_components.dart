@@ -68,7 +68,7 @@ class LoginComponents {
                 ),
               ),
               SizedBox(
-                width: AppSizes.width * 0.02,
+                width: AppSizes.width * 0.01,
               ),
               Container(
                 decoration: BoxDecoration(

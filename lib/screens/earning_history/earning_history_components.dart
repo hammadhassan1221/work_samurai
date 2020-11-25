@@ -15,7 +15,7 @@ class EarningHistoryComponents{
               fontSize: 20,
               decoration:TextDecoration.none,
               color: AppColors.clr_bg_black,
-              fontFamily: 'MulisSemiBold',
+              fontFamily: 'MuliRegular',
             )
         )
     );
@@ -29,6 +29,7 @@ class EarningHistoryComponents{
             style:TextStyle(
               decoration:TextDecoration.none,
               fontSize: 15,
+              fontWeight: FontWeight.w400,
               color: AppColors.clr_bg_black2,
               fontFamily: 'MuliRegular',
             ),

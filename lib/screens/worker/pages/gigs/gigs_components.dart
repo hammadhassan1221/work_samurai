@@ -420,6 +420,14 @@ class GigsComponents {
                 right: AppSizes.width * 0.05,
               ),
               decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.25),
+                      spreadRadius: 0.5,
+                      blurRadius: 1,
+                      offset: Offset(0, 1), // changes position of shadow
+                    ),
+                  ],
                   borderRadius: BorderRadius.circular(5),
                   border: Border.all(color: AppColors.clr_field),
                   color: AppColors.clr_white),
@@ -438,7 +446,7 @@ class GigsComponents {
                                 Text(
                                   "Waiter",
                                   style: TextStyle(
-                                    fontSize: 20,
+                                    fontSize: 22,
                                     fontFamily: "MuliSemiBold",
                                     color: AppColors.clr_bg_black,
                                   ),
@@ -526,8 +534,8 @@ class GigsComponents {
                                 children: [
                                   Image.asset(
                                     Assets.cancelgig,
-                                    height: 14,
-                                    width: 14,
+                                    height: 20,
+                                    width: 20,
                                     color: AppColors.clr_bg_black,
                                   ),
                                   SizedBox(
@@ -556,7 +564,7 @@ class GigsComponents {
                                     Icon(
                                       Icons.check,
                                       color: AppColors.clr_green,
-                                      size: 14,
+                                      size: 18,
                                     ),
                                     SizedBox(
                                       width: AppSizes.width * 0.01,
@@ -582,6 +590,14 @@ class GigsComponents {
                 right: AppSizes.width * 0.05,
               ),
               decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.25),
+                      spreadRadius: 0.5,
+                      blurRadius: 1,
+                      offset: Offset(0, 1), // changes position of shadow
+                    ),
+                  ],
                   borderRadius: BorderRadius.circular(5),
                   border: Border.all(color: AppColors.clr_field),
                   color: AppColors.clr_white),
@@ -687,8 +703,8 @@ class GigsComponents {
                                 children: [
                                   Image.asset(
                                     Assets.cancelgig,
-                                    height: 14,
-                                    width: 14,
+                                    height: 20,
+                                    width: 20,
                                     color: AppColors.clr_bg_black,
                                   ),
                                   SizedBox(
@@ -713,7 +729,7 @@ class GigsComponents {
                                   Icon(
                                     Icons.check,
                                     color: AppColors.clr_green,
-                                    size: 14,
+                                    size: 18,
                                   ),
                                   SizedBox(
                                     width: AppSizes.width * 0.01,
@@ -742,6 +758,14 @@ class GigsComponents {
                 right: AppSizes.width * 0.05,
               ),
               decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.25),
+                      spreadRadius: 0.5,
+                      blurRadius: 1,
+                      offset: Offset(0, 1), // changes position of shadow
+                    ),
+                  ],
                   borderRadius: BorderRadius.circular(5),
                   border: Border.all(color: AppColors.clr_field),
                   color: AppColors.clr_white),
@@ -760,7 +784,7 @@ class GigsComponents {
                                 Text(
                                   "Chef",
                                   style: TextStyle(
-                                    fontSize: 20,
+                                    fontSize: 22,
                                     fontFamily: "MuliSemiBold",
                                     color: AppColors.clr_bg_black,
                                   ),
@@ -847,8 +871,8 @@ class GigsComponents {
                                 children: [
                                   Image.asset(
                                     Assets.cancelgig,
-                                    height: 14,
-                                    width: 14,
+                                    height: 20,
+                                    width: 20,
                                     color: AppColors.clr_bg_black,
                                   ),
                                   SizedBox(
@@ -873,7 +897,7 @@ class GigsComponents {
                                   Icon(
                                     Icons.check,
                                     color: AppColors.clr_green,
-                                    size: 14,
+                                    size: 18,
                                   ),
                                   SizedBox(
                                     width: AppSizes.width * 0.01,
@@ -926,7 +950,7 @@ class GigsComponents {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Waiter",
+                                  "Receptionist",
                                   style: TextStyle(
                                     fontSize: 22,
                                     fontFamily: "MuliSemiBold",
@@ -1032,6 +1056,8 @@ class GigsComponents {
                 padding: EdgeInsets.all(AppSizes.height*0.020),
                 child: Text("Request Break",style: TextStyle(
                     fontSize: 16,
+                    color: AppColors.clr_bg_black,
+                    fontWeight: FontWeight.w600,
                     fontFamily: 'MuliRegular',
                 ),
                 textAlign: TextAlign.center,),
@@ -1097,7 +1123,7 @@ class GigsComponents {
                                     Text(
                                       "Receptionist",
                                       style: TextStyle(
-                                        fontSize: 18,
+                                        fontSize: 22,
                                         fontFamily: "MuliSemiBold",
                                         color: AppColors.clr_bg_black,
                                       ),
@@ -1113,7 +1139,7 @@ class GigsComponents {
                                     ),
                                     SizedBox(height: AppSizes.height * 0.03),
                                     Text(
-                                      "Crown Hotel New York",
+                                      "Crown Hotel,New York",
                                       style: TextStyle(
                                         fontFamily: 'MuliRegular',
                                         fontSize: 15,
@@ -1185,8 +1211,8 @@ class GigsComponents {
                                     children: [
                                       Image.asset(
                                         Assets.cancelgig,
-                                        height: 14,
-                                        width: 14,
+                                        height: 20,
+                                        width: 20,
                                         color: AppColors.clr_red,
                                       ),
                                       SizedBox(
@@ -1214,8 +1240,8 @@ class GigsComponents {
                                       children: [
                                         Image.asset(
                                           Assets.start_gig,
-                                          height: 25,
-                                          width: 14,
+                                          height: 20,
+                                          width: 20,
                                           color: AppColors.clr_bg_black,
                                         ),
                                         SizedBox(
@@ -1260,7 +1286,7 @@ class GigsComponents {
                                     Text(
                                       "Cleaner",
                                       style: TextStyle(
-                                        fontSize: 18,
+                                        fontSize: 22,
                                         fontFamily: "MuliSemiBold",
                                         color: AppColors.clr_bg_black,
                                       ),
@@ -1276,7 +1302,7 @@ class GigsComponents {
                                     ),
                                     SizedBox(height: AppSizes.height * 0.03),
                                     Text(
-                                      "Crown Hotel New York",
+                                      "Crown Hotel,New York",
                                       style: TextStyle(
                                         fontFamily: 'MuliRegular',
                                         fontSize: 15,
@@ -1348,8 +1374,8 @@ class GigsComponents {
                                     children: [
                                       Image.asset(
                                         Assets.cancelgig,
-                                        height: 14,
-                                        width: 14,
+                                        height: 20,
+                                        width: 20,
                                         color: AppColors.clr_red,
                                       ),
                                       SizedBox(
@@ -1377,8 +1403,8 @@ class GigsComponents {
                                       children: [
                                         Image.asset(
                                           Assets.start_gig,
-                                          height: 25,
-                                          width: 14,
+                                          height: 20,
+                                          width: 20,
                                           color: AppColors.clr_bg_black,
                                         ),
                                         SizedBox(
@@ -1475,7 +1501,7 @@ class GigsComponents {
                                                  fontFamily:
                                                  Assets.muliRegular,
                                                  color:
-                                                 AppColors.clr_bg_grey,
+                                                 AppColors.clr_bg_black,
                                                ))
                                          ],
                                        )),
@@ -1739,66 +1765,69 @@ class GigsComponents {
                             height: AppSizes.height * 0.02,
                           ),
                           Container(
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: AppColors.clr_field,
+                                  ),),
                               child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
-                                  decoration: BoxDecoration(
-                                    border:
-                                        Border.all(color: AppColors.clr_field),
-                                    color: Colors.white,
-                                  ),
-                                  padding:
-                                      EdgeInsets.all(AppSizes.width * 0.02),
-                                  width: AppSizes.width * 0.44,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Image.asset(
-                                        Assets.cancelgig,
-                                        height: 14,
-                                        width: 14,
-                                        color: AppColors.clr_bg_black,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                      height: AppSizes.height*0.06,
+                                      decoration: BoxDecoration(
+                                        border: Border(
+                                          right: BorderSide(
+                                              width: 2.0, color: AppColors.clr_field),
+                                        ),
+                                        color: Colors.white,
                                       ),
-                                      SizedBox(
-                                        width: AppSizes.width * 0.01,
-                                      ),
-                                      Text("Skip",
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                            fontFamily: 'MuliRegular',
+                                      padding: EdgeInsets.all(AppSizes.width * 0.02),
+                                      width: AppSizes.width * 0.44,
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Image.asset(
+                                            Assets.cancelgig,
+                                            height: 20,
+                                            width: 20,
                                             color: AppColors.clr_bg_black,
-                                          )),
-                                    ],
-                                  )),
-                              Container(
-                                  padding:
-                                      EdgeInsets.all(AppSizes.width * 0.02),
-                                  decoration: BoxDecoration(
-                                      color: AppColors.clr_white,
-                                      border: Border.all(
-                                          color: AppColors.clr_field)),
-                                  width: AppSizes.width * 0.44,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        Icons.check,
-                                        color: AppColors.clr_green,
-                                        size: 14,
-                                      ),
-                                      SizedBox(
-                                        width: AppSizes.width * 0.01,
-                                      ),
-                                      Text("Accept",
-                                          style: TextStyle(
-                                            fontSize: 14,
+                                          ),
+                                          SizedBox(
+                                            width: AppSizes.width * 0.01,
+                                          ),
+                                          Text("Skip",
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                                fontFamily: 'MuliRegular',
+                                                color: AppColors.clr_bg_black,
+                                              )),
+                                        ],
+                                      )),
+                                  Container(
+                                      height: AppSizes.height*0.06,
+                                      padding: EdgeInsets.all(AppSizes.width * 0.02),
+                                      decoration: BoxDecoration(color: AppColors.clr_white),
+                                      width: AppSizes.width * 0.44,
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Icon(
+                                            Icons.check,
                                             color: AppColors.clr_green,
-                                          )),
-                                    ],
-                                  )),
-                            ],
-                          )),
+                                            size: 18,
+                                          ),
+                                          SizedBox(
+                                            width: AppSizes.width * 0.01,
+                                          ),
+                                          Text("Accept",
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                                color: AppColors.clr_green,
+                                              )),
+                                        ],
+                                      )),
+                                ],
+                              )),
                         ],
                       ))
                 ],
@@ -2102,7 +2131,7 @@ class GigsComponents {
                               height: AppSizes.height * 0.03,
                             ),
 
-                            CommonWidgets.getSignUpButton(context:context,text:"SUBMIT RATING", onPress: (){hideLoader(context);}),
+                            CommonWidgets.getSignUpButton(context:context,text:"Submit Rating", onPress: (){hideLoader(context);}),
 
                             SizedBox(
                               height: AppSizes.height * 0.04,

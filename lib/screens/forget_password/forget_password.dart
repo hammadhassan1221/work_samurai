@@ -34,14 +34,14 @@ class _ForgetPasswordState extends State<ForgetPassword> {
       body: Container(
         height: AppSizes.height,
         width: AppSizes.width,
-        color: AppColors.clr_field,
+        color: AppColors.clr_bg,
         child: Column(
           children: [
 
             CommonWidgets.getAppBar(text: "Forgot Password", context: context),
             _forgetPasswordComponents.getConfirmationText(),
 
-            _forgetPasswordComponents.getInputField(backgroundColor: AppColors.clr_field, borderColor: AppColors.clr_bg_grey, textColor: AppColors.clr_bg_black2, text: "Email", imagePath: Assets.mail,controller: _email),
+            CommonWidgets.getInputField(backgroundColor: AppColors.transparentColor,isPassword: false ,borderColor: AppColors.clr_bg_grey, textColor: AppColors.clr_bg_black2, text: "Email", imagePath: Assets.mail,controller: _email),
 
             Expanded(child: CommonWidgets.getSignUpButton(context: context, onPress: (){}, text: "Reset My Password")),
             /*_forgetPasswordComponents.getSignUpButton(context: context, onPress: (){

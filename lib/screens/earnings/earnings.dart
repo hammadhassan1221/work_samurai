@@ -54,7 +54,7 @@ class _EarningsState extends State<Earnings> with TickerProviderStateMixin{
                             color: AppColors.clr_bg_black,
                             borderRadius: BorderRadius.circular(15),
                           ),
-                          child: Text("Daily Payments",style: TextStyle(fontSize: 14,fontFamily:'MuliBold',color: AppColors.clr_white),),
+                          child: Text("Daily Earnings",style: TextStyle(fontSize: 14,fontFamily:'MuliBold',color: AppColors.clr_white),),
                         ),
                         Container(
                           padding: EdgeInsets.all(AppSizes.width*0.025,),
@@ -63,7 +63,7 @@ class _EarningsState extends State<Earnings> with TickerProviderStateMixin{
                             color: AppColors.clr_bg_black,
                             borderRadius: BorderRadius.circular(15),
                           ),
-                          child: Text("Monthly Payments",style: TextStyle(fontSize: 14,fontFamily:'MuliBold',color: AppColors.clr_white),),
+                          child: Text("Monthly Earnings",style: TextStyle(fontSize: 14,fontFamily:'MuliBold',color: AppColors.clr_white),),
                         ),
                         Container(
                           padding: EdgeInsets.all(AppSizes.width*0.025,),
@@ -73,7 +73,7 @@ class _EarningsState extends State<Earnings> with TickerProviderStateMixin{
                             color: AppColors.clr_bg_black,
                             borderRadius: BorderRadius.circular(15),
                           ),
-                          child: Text("All Payments",style: TextStyle(fontSize: 14,fontFamily:'MuliBold',color: AppColors.clr_white),),
+                          child: Text("All Earnings",style: TextStyle(fontSize: 14,fontFamily:'MuliBold',color: AppColors.clr_white),),
                         ),
                       ],
                     ),

@@ -142,7 +142,7 @@ class AccountComponent {
               ),
             ),
             SizedBox(
-              width: AppSizes.width * 0.03,
+              width: AppSizes.width * 0.015,
             ),
             Container(
                 padding: EdgeInsets.only(left: 5.0, right: 5.0),
@@ -152,13 +152,16 @@ class AccountComponent {
                       color: AppColors.clr_bg_black2,
                     )
                 ),
-                child: Text(
-                    rating,
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontFamily: 'MuliRegular',
-                      color: AppColors.clr_bg_black2,
-                    )
+                child: Container(
+                  margin: EdgeInsets.only(top:3),
+                  child: Text(
+                      rating,
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontFamily: 'MuliRegular',
+                        color: AppColors.clr_bg_black2,
+                      )
+                  ),
                 )
             ),
           ],
@@ -265,7 +268,7 @@ class AccountComponent {
                     width: AppSizes.width * 0.02,
                   ),
                   Container(
-                      padding: EdgeInsets.all(2.0),
+                      padding: EdgeInsets.all(3.0),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10.0),
                           border: Border.all(
@@ -286,7 +289,7 @@ class AccountComponent {
                               style: TextStyle(
                                 fontSize: 12,
                                 fontFamily: 'MuliRegular',
-                                color: AppColors.clr_bg_grey,
+                                color: AppColors.clr_bg_black,
                               )
                           )
                         ],

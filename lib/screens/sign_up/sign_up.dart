@@ -70,7 +70,7 @@ class _SignUpState extends State<SignUp> {
       body: Container(
           height: AppSizes.height,
           width: AppSizes.width,
-          color: AppColors.clr_field,
+          color: AppColors.clr_bg,
           child: Column(
             children: [
               CommonWidgets.getAppBarWithout(text: "Sign Up"),

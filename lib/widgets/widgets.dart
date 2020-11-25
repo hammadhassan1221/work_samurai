@@ -205,8 +205,7 @@ class CommonWidgets {
       }) {
     return Container(
         alignment: Alignment.bottomCenter,
-        padding:EdgeInsets.only(left: AppSizes.width*0.025),
-        margin: EdgeInsets.only(top:AppSizes.height*0.015,left:AppSizes.height*0.03,right:AppSizes.height*0.03,),
+        margin: EdgeInsets.only(top:AppSizes.height*0.015,left:AppSizes.width*0.03,right:AppSizes.width*0.03,),
         decoration: BoxDecoration(
           border: Border.all(
             color: borderColor,
@@ -248,7 +247,7 @@ class CommonWidgets {
       }) {
     return Container(
         alignment: Alignment.bottomCenter,
-        padding:EdgeInsets.only(left: AppSizes.width*0.025),
+
         margin: EdgeInsets.only(left:AppSizes.height*0.03,right:AppSizes.height*0.03,),
         decoration: BoxDecoration(
           border: Border.all(
@@ -280,9 +279,7 @@ class CommonWidgets {
   }
 
    static Widget getAppBar({@required String text , @required BuildContext context}) {
-
     return Container(
-      height: AppSizes.height * 0.09,
       width: AppSizes.width,
       decoration: BoxDecoration(
         color: AppColors.clr_white,
@@ -298,6 +295,8 @@ class CommonWidgets {
       padding: EdgeInsets.all(AppSizes.width * 0.035 ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+
         children: [
           GestureDetector(
               onTap:(){
@@ -308,13 +307,18 @@ class CommonWidgets {
           SizedBox(
             width: AppSizes.width * 0.02,
           ),
-          Text(
-            text,
-            style: TextStyle(
-              color: AppColors.clr_bg_black,
-                decoration: TextDecoration.none,
-                fontSize: 22,
-                fontFamily: 'MuliSemiBold'),
+          Container(
+            padding: EdgeInsets.only(bottom:AppSizes.width*0.01),
+            child: Text(
+              text,
+              style: TextStyle(
+                color: AppColors.clr_bg_black,
+                  decoration: TextDecoration.none,
+                  fontSize: 22,
+                  fontWeight: FontWeight.w400,
+                  fontFamily: 'MuliSemiBold',
+              ),
+            ),
           )
         ],
       ),
@@ -326,7 +330,6 @@ class CommonWidgets {
     @required String text,
   }) {
     return Container(
-      height: AppSizes.height * 0.09,
       width: AppSizes.width,
       decoration: BoxDecoration(
         color: AppColors.clr_white,
@@ -340,12 +343,16 @@ class CommonWidgets {
         ],
       ),
       padding: EdgeInsets.all(AppSizes.width * 0.038),
-      child: Text(
-        text,
-        style: TextStyle(
-            decoration: TextDecoration.none,
-            fontSize: 22,
-            fontFamily: 'MuliBold'),
+      child: Container(
+        padding: EdgeInsets.only(top: 15),
+        child: Text(
+          text,
+          textAlign: TextAlign.justify,
+          style: TextStyle(
+              decoration: TextDecoration.none,
+              fontSize: 22,
+              fontFamily: 'MuliBold'),
+        ),
       ),
     );
   }
@@ -354,16 +361,18 @@ class CommonWidgets {
     @required String text,
   }) {
     return Container(
-      height: AppSizes.height * 0.09,
       width: AppSizes.width,
       color: AppColors.clr_white,
       padding: EdgeInsets.all(AppSizes.width * 0.038),
-      child: Text(
-        text,
-        style: TextStyle(
-            decoration: TextDecoration.none,
-            fontSize: 22,
-            fontFamily: 'MuliBold'),
+      child: Container(
+        padding: EdgeInsets.only(top: 15),
+        child: Text(
+          text,
+          style: TextStyle(
+              decoration: TextDecoration.none,
+              fontSize: 22,
+              fontFamily: 'MuliBold'),
+        ),
       ),
     );
   }

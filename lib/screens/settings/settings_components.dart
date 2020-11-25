@@ -34,7 +34,15 @@ class SettingsComponents {
         padding: EdgeInsets.only(left: AppSizes.width*0.025,right: AppSizes.width*0.03,),
         margin: EdgeInsets.only(left: AppSizes.width*0.03,right: AppSizes.width*0.03),
         decoration: BoxDecoration(
-          color: AppColors.clr_field,
+            boxShadow: [
+        BoxShadow(
+        color: Colors.grey.withOpacity(0.25),
+        spreadRadius: 1.5,
+        blurRadius: 2,
+        offset: Offset(0, 0), // changes position of shadow
+      ),],
+          color: AppColors.clr_bg,
+          border: Border.all(color: AppColors.clr_bg_grey),
           borderRadius: BorderRadius.circular(5),
         ),
         child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -43,7 +51,7 @@ class SettingsComponents {
             fontFamily: 'MuliRegular',
             fontSize: 16
           ),),
-          Icon(iconData),
+          Icon(iconData,color: AppColors.clr_bg_black2,),
         ],),
       ),
 

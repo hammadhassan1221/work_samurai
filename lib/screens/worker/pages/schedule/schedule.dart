@@ -118,6 +118,10 @@ class _ScheduleState extends State<Schedule> {
                 height: AppSizes.height * 0.02,
               ),
               _scheduleComponents.getDayTime(day: "Sun", time: "Available All Day"),
+
+              SizedBox(
+                height: AppSizes.height * 0.02,
+              ),
             ],
           ),
         )
