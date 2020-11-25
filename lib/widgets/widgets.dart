@@ -236,6 +236,49 @@ class CommonWidgets {
     );
   }
 
+
+  static   Widget phoneField(
+      {@required Color backgroundColor,
+        @required Color borderColor,
+        @required Color textColor,
+        @required String text,
+        @required IconData iconData,
+        @required TextEditingController controller,
+        @required bool isPassword,
+      }) {
+    return Container(
+        alignment: Alignment.bottomCenter,
+        padding:EdgeInsets.only(left: AppSizes.width*0.025),
+        margin: EdgeInsets.only(left:AppSizes.height*0.03,right:AppSizes.height*0.03,),
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: borderColor,
+          ),
+          borderRadius: BorderRadius.circular(5),
+          color: backgroundColor,
+        ),
+
+        child:TextField(
+          cursorColor: AppColors.clr_bg_black2,
+          //cursorHeight: 12,
+          obscureText: isPassword,
+          controller: controller,
+          decoration: InputDecoration(
+              labelText: text,
+              labelStyle: TextStyle(fontSize: 12,
+                color: AppColors.clr_bg_black2,
+                fontFamily: 'MuliRegular',),
+              border: InputBorder.none,
+              prefixIcon: Padding(
+                padding:EdgeInsets.all(AppSizes.width*0.03),
+                child: Icon(iconData,color: AppColors.clr_bg_black2,),
+              )
+
+          ),
+        )
+    );
+  }
+
    static Widget getAppBar({@required String text , @required BuildContext context}) {
 
     return Container(
@@ -284,7 +327,7 @@ class CommonWidgets {
   }) {
     return Container(
       height: AppSizes.height * 0.09,
-
+      width: AppSizes.width,
       decoration: BoxDecoration(
         color: AppColors.clr_white,
         boxShadow: [
@@ -297,17 +340,30 @@ class CommonWidgets {
         ],
       ),
       padding: EdgeInsets.all(AppSizes.width * 0.038),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Text(
-            text,
-            style: TextStyle(
-                decoration: TextDecoration.none,
-                fontSize: 22,
-                fontFamily: 'MuliBold'),
-          )
-        ],
+      child: Text(
+        text,
+        style: TextStyle(
+            decoration: TextDecoration.none,
+            fontSize: 22,
+            fontFamily: 'MuliBold'),
+      ),
+    );
+  }
+
+  static Widget getGigsAppBar({
+    @required String text,
+  }) {
+    return Container(
+      height: AppSizes.height * 0.09,
+      width: AppSizes.width,
+      color: AppColors.clr_white,
+      padding: EdgeInsets.all(AppSizes.width * 0.038),
+      child: Text(
+        text,
+        style: TextStyle(
+            decoration: TextDecoration.none,
+            fontSize: 22,
+            fontFamily: 'MuliBold'),
       ),
     );
   }

@@ -188,12 +188,12 @@ class _SignUpState extends State<SignUp> {
                           ),
                         ],
                       )),
-                  CommonWidgets.getInputField(
+                  CommonWidgets.phoneField(
                     backgroundColor: AppColors.transparentColor,
                     borderColor: AppColors.sign_field,
                     textColor: AppColors.clr_bg_black,
                     text: "Phone Number",
-                    imagePath: Assets.phone,
+                    iconData: Icons.local_phone,
                     controller: _phoneNumber,
                     isPassword: false,
                   ),

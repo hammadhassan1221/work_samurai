@@ -1018,11 +1018,8 @@ class GigsComponents {
           Align(
             alignment: Alignment.center,
             child: GestureDetector(
-              onTap: (){DatePicker.showTime12hPicker(context, showTitleActions: true, onChanged: (date) {
-                print('change $date in time zone ' + date.timeZoneOffset.inHours.toString());
-              }, onConfirm: (date) {
-                print('confirm $date');
-              }, currentTime: DateTime.now());
+              onTap: (){
+                _requestBreakContainer(context: context);
               } ,
               child: Container(
                 width: AppSizes.width,
@@ -2148,8 +2145,51 @@ class GigsComponents {
           ),
         ));
   }
-
   hideLoader(BuildContext context) {
     Navigator.of(context).pop();
+  }
+
+  _requestBreakContainer({context}){
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return Container(
+            padding: EdgeInsets.all(AppSizes.height*0.03),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Break Duration",
+                      style: TextStyle(
+                        fontSize: 22,
+                          fontFamily: 'MuliSemiBold',
+                          decoration: TextDecoration.none,
+                          color: AppColors.clr_bg_black
+                      ),),
+                    Text("15 mins",
+                      style: TextStyle(
+                          fontFamily: 'MuliSemiBold',
+                          decoration: TextDecoration.none,
+                          color: AppColors.clr_bg_black2
+                      ),)
+                  ],
+                ),
+                SizedBox(height: AppSizes.height*0.075,),
+                Container(
+                  height: AppSizes.height*0.2,
+                  child: CupertinoDatePicker(
+                      mode: CupertinoDatePickerMode.time,
+                      onDateTimeChanged: (dateTime) {
+                      }
+                  ),
+                ),
+
+                Expanded(child: CommonWidgets.getSignUpButton(context: context, onPress: (){}, text: "Request Break"))
+              ],
+            ),
+          );
+        });
+
   }
 }

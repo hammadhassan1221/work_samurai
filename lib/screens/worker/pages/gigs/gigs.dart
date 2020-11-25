@@ -46,34 +46,49 @@ class _GigsState extends State<Gigs> with SingleTickerProviderStateMixin {
       height: AppSizes.height,
       width: AppSizes.width,
       color: AppColors.clr_bg,
-      child: Column(children: [
-        CommonWidgets.getAppBarWithout(text: "Gigs"),
+      child: Column(
+          crossAxisAlignment:CrossAxisAlignment.start,
+          children: [
+        CommonWidgets.getGigsAppBar(text: "Gigs"),
         Container(
-          margin: EdgeInsets.only(top: AppSizes.height*0.0075,),
-          padding: EdgeInsets.only(left: AppSizes.width*0.05),
+
           decoration: BoxDecoration(
               color: AppColors.clr_white,
           ),
           width: AppSizes.width,
-          child: TabBar(
-            controller: _tabController,
-            labelStyle: TextStyle(fontFamily: 'MuliSemiBold'),
-            indicatorColor: AppColors.clr_bg_grey,
-            labelColor: AppColors.clr_bg_black,
-            unselectedLabelColor: AppColors.clr_bg_black3,
-            indicator: BoxDecoration(
-                color: AppColors.clr_white,
-                border: Border(
-                    bottom: BorderSide(
-                  color: AppColors.clr_bg_black,
-                  width: 3.0,
-                ))),
-            isScrollable: true,
-            tabs: <Widget>[
-              _tabBar("Offers"),
-              _tabBar("In-Progress"),
-              _tabBar("Confirmed"),
-            ],
+          child: Container(
+            decoration: BoxDecoration(
+              color: AppColors.clr_white,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.25),
+                  spreadRadius: 0.7,
+                  blurRadius: 1,
+                  offset: Offset(0, 1), // changes position of shadow
+                ),
+              ],
+            ),
+            padding: EdgeInsets.only(left: AppSizes.width*0.01),
+            child: TabBar(
+              controller: _tabController,
+              labelStyle: TextStyle(fontFamily: 'MuliSemiBold'),
+              indicatorColor: AppColors.clr_bg_grey,
+              labelColor: AppColors.clr_bg_black,
+              unselectedLabelColor: AppColors.clr_bg_black3,
+              indicator: BoxDecoration(
+                  color: AppColors.clr_white,
+                  border: Border(
+                      bottom: BorderSide(
+                    color: AppColors.clr_bg_black,
+                    width: 3.0,
+                  ))),
+              isScrollable: true,
+              tabs: <Widget>[
+                _tabBar("Offers"),
+                _tabBar("In-Progress"),
+                _tabBar("Confirmed"),
+              ],
+            ),
           ),
         ),
         SizedBox(
@@ -96,11 +111,8 @@ class _GigsState extends State<Gigs> with SingleTickerProviderStateMixin {
   }
 
   _tabBar(String tabName) {
-    return Container(
-
-      child: Tab(
-        text: tabName,
-      ),
+    return Tab(
+      text: tabName,
     );
   }
 }
