@@ -42,10 +42,11 @@ class SplashProvider extends ChangeNotifier {
       seconds: 4,
     ));
 
-    if (PreferenceUtils.getBoolean(Strings.IS_LOGGED_IN) == true) {
-      Navigator.pushReplacement(context, SlideRightRoute(page: Worker()));
-    } else {
-      Navigator.pushReplacement(context, SlideRightRoute(page: Login()));
-    }
+    // if (PreferenceUtils.getBoolean(Strings.IS_LOGGED_IN) == true) {
+    //   Navigator.pushReplacement(context, SlideRightRoute(page: Worker()));
+    // } else {
+    //   Navigator.pushReplacement(context, SlideRightRoute(page: Login()));
+    // }
+    Navigator.pushReplacement(context, SlideRightRoute(page:Login()));
   }
 }

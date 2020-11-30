@@ -98,7 +98,7 @@ class _GigsState extends State<Gigs> with SingleTickerProviderStateMixin {
             child: TabBarView(
               controller: _tabController,
               children: <Widget>[
-                _gigsComponents.getOffersContainer(context: context),
+                _gigsComponents.getOffersContainer(context: context, jobTitle: "Waiter", dateTime: "23 Nov, 2020", location: "Crown Hotel, New York", totalAmount: "140", amountHour: "20"),
                 _gigsComponents.getInProgressContainer(context: context),
                 _gigsComponents.getConfirmedContainer(context: context),
               ],

@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 
@@ -15,9 +16,17 @@ class AllEarningsComponents{
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                margin: EdgeInsets.only(top: AppSizes.height*0.03,left: AppSizes.width*0.03,right: AppSizes.width*0.03),
+                margin: EdgeInsets.all(AppSizes.height*0.03,),
                 padding: EdgeInsets.all(10),
                 decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.25),
+                        spreadRadius: 2,
+                        blurRadius: 2,
+                        offset: Offset(0,0), // changes position of shadow
+                      ),
+                    ],
                     color: AppColors.clr_white,
                     borderRadius: BorderRadius.circular(6)),
                 child: Column(

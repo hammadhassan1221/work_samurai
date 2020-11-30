@@ -7,6 +7,7 @@ import 'package:work_samurai/screens/worker/pages/schedule/schedule_provider.dar
 import 'package:work_samurai/widgets/widgets.dart';
 
 class ScheduleComponents {
+   bool onClick = false;
   Widget getDistance({
     @required String imagePath,
     @required String text,
@@ -120,18 +121,37 @@ class ScheduleComponents {
             height: AppSizes.height,
             child: Column(
               children: [
-                CommonWidgets.getScheduleRow("Monday", scheduleProviders),
-                CommonWidgets.getAvailability(
-                    text: "10:00 am",
-                    onPress: () {
-                      DatePicker.showTime12hPicker(context,
-                          showTitleActions: true, onChanged: (date) {
-                        print('change $date in time zone ' +
-                            date.timeZoneOffset.inHours.toString());
-                      }, onConfirm: (date) {
-                        print('confirm $date');
-                      }, currentTime: DateTime.now());
-                    }),
+            Container(
+            margin: EdgeInsets.only(
+            top: AppSizes.height * 0.01, bottom: AppSizes.height * 0.01),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Monday",
+                    style: TextStyle(
+                        color: AppColors.clr_bg_black,
+                        fontSize: 20,
+                        fontFamily: 'MuliBold'),
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        "All Day",
+                        style: TextStyle(fontFamily: 'MuliRegular', fontSize: 14),
+                      ),
+                      CupertinoSwitch(
+                          value: onClick,
+                          onChanged: (bool value){
+                            onClick = !onClick;
+                          }
+
+                      ),
+                    ],
+                  ),
+                ],
+              )),
+                CommonWidgets.getAvailability(text1: "Available From", text: "10:00 am", onPress: (){}),
                 SizedBox(
                   height: AppSizes.height * 0.01,
                 ),
@@ -148,13 +168,7 @@ class ScheduleComponents {
                     text1: "Available to",
                     text: "5:00 pm",
                     onPress: () {
-                      DatePicker.showTime12hPicker(context,
-                          showTitleActions: true, onChanged: (date) {
-                        print('change $date in time zone ' +
-                            date.timeZoneOffset.inHours.toString());
-                      }, onConfirm: (date) {
-                        print('confirm $date');
-                      }, currentTime: DateTime.now());
+
                     }),
                 SizedBox(
                   height: AppSizes.height * 0.035,
@@ -177,12 +191,14 @@ class ScheduleComponents {
                       color: AppColors.clr_field,
                       borderRadius: BorderRadius.circular(3)),
                 ),
-                CommonWidgets.getSignUpButton(
-                    context: context,
-                    onPress: () {
-                      hideLoader(context);
-                    },
-                    text: "Save Availability")
+                Expanded(
+                  child: CommonWidgets.getSignUpButton(
+                      context: context,
+                      onPress: () {
+                        hideLoader(context);
+                      },
+                      text: "Save Availability"),
+                )
               ],
             ),
           );

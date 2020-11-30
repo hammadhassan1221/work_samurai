@@ -20,6 +20,47 @@ class DocumentComponents{
     );
   }
 
+  Widget getUserInfo2({@required Function onPress,@required String text,@required IconData iconData, @required Color colors}){
+    return GestureDetector(
+      onTap:onPress,
+      child: Container(
+        height: AppSizes.height*0.1,
+        margin: EdgeInsets.only(left: AppSizes.width*0.03,right: AppSizes.width*0.03,top: AppSizes.height*0.02),
+        width: AppSizes.width,
+        padding: EdgeInsets.all(AppSizes.width*0.03),
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.25),
+              spreadRadius: 0.5,
+              blurRadius: 1,
+              offset: Offset(0, 1), // changes position of shadow
+            ),
+          ],
+          color: AppColors.clr_white,
+          borderRadius: BorderRadius.circular(5),
+          border: Border.all(color: AppColors.transparentColor),
+        ),
+
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              text,
+              style: TextStyle(
+                  fontSize: 15,
+                  fontFamily: 'MuliRegular',
+                  color: AppColors.clr_bg_black
+              ),),
+
+            Icon(iconData,color: colors,),
+          ],
+        ),
+      ),
+    );
+  }
+
+
   Widget getUserInfo({@required Function onPress,@required String text,@required String text1,@required IconData iconData, @required Color colors}){
     return GestureDetector(
       onTap:onPress,
@@ -27,7 +68,7 @@ class DocumentComponents{
         height: AppSizes.height*0.1,
         margin: EdgeInsets.only(left: AppSizes.width*0.03,right: AppSizes.width*0.03,top: AppSizes.height*0.02),
         width: AppSizes.width,
-        padding: EdgeInsets.only(left: AppSizes.width*0.03,right: AppSizes.width*0.03),
+        padding: EdgeInsets.all(AppSizes.width*0.03),
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
@@ -56,7 +97,7 @@ class DocumentComponents{
                       fontFamily: 'MuliRegular',
                       color: AppColors.clr_bg_black
                   ),),
-                SizedBox(height: AppSizes.height*0.007,),
+
                 Text(
                   text,
                   style: TextStyle(
@@ -64,10 +105,12 @@ class DocumentComponents{
                     fontFamily: 'MuliRegular',
                     color: AppColors.clr_bg_black
                 ),),
+
               ],
             ),
 
             Icon(iconData,color: colors,),
+
           ],
         ),
       ),

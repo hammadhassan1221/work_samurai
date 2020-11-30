@@ -89,7 +89,7 @@ class _AccountState extends State<Account> {
                   text: "Document Verification",
                   imagePath: Assets.sign),
               _accountComponent.getVerification(
-                  onPress: (){Navigator.push(context, SlideRightRoute(page: CardDetails()));}, text: "Card Details", imagePath: Assets.card),
+                  onPress: (){Navigator.push(context, SlideRightRoute(page: CardDetails()));}, text: "Bank Details", imagePath: Assets.card),
               _accountComponent.getVerification(onPress: (){Navigator.push(context, SlideRightRoute(page: Earnings()));}, text: "Earnings", imagePath: Assets.payment),
               SizedBox(
                 height: AppSizes.height * 0.015,
@@ -129,7 +129,7 @@ class _AccountState extends State<Account> {
                   text1: "Waiter",
                   text2: "Bartender",
                   text3: "Barista",
-                  text4: "Receptionist"),
+                  text4: "Receptionist",),
               SizedBox(
                 height: AppSizes.height * 0.03,
               ),

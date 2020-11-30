@@ -59,7 +59,7 @@ class LoginProvider extends ChangeNotifier {
         throw "Unauthorized";
       }
       if (_response.statusCode == 200) {
-        _loader.hideLoader(context);
+      //  _loader.hideLoader(context);
         _loginResponse = LoginResponse.fromJson(_response.data);
         PreferenceUtils.setLoginResponse(_loginResponse);
         print(_loginResponse.accessToken);
@@ -67,7 +67,7 @@ class LoginProvider extends ChangeNotifier {
         ApplicationToast.getSuccessToast(
             durationTime: 3,
             heading: "Success",
-            subHeading: "Login Successfully");
+            subHeading: "Login Successful");
         Navigator.pushReplacement(context, SlideRightRoute(page: Worker()));
       }
     } catch (e) {
@@ -87,14 +87,14 @@ class LoginProvider extends ChangeNotifier {
         ApplicationToast.getWarningToast(
             durationTime: 3,
             heading: "Error",
-            subHeading: "Password should not be empty");
+            subHeading: "Password is empty");
       }
     } else {
       ApplicationToast.getWarningToast(
           durationTime: 3,
           heading: "Error",
           subHeading:
-              "Email should not be empty and it should be valid email address");
+              "Email is Empty");
     }
   }
 }

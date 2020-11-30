@@ -49,10 +49,10 @@ class _LoginState extends State<Login> {
           height: AppSizes.height,
           width: AppSizes.width,
           color: AppColors.clr_bg,
-          child: SingleChildScrollView(
+          child: Center(
             child: Column(
               children: [
-                _loginComponents.getImageContainer(Assets.logo, 300, 300),
+                _loginComponents.getImageContainer(Assets.logo, 270, 270),
                 CommonWidgets.getInputField(
                     backgroundColor: AppColors.transparentColor,
                     borderColor: AppColors.clr_bg_grey,
@@ -117,16 +117,20 @@ class _LoginState extends State<Login> {
                         )
                       ],
                     )),
-                CommonWidgets.getSignUpButton(
-                    context: context,
-                    onPress: () {
-                      Navigator.push(context, SlideRightRoute(page: Worker()));
-                      /*_loginProvider.callLoginAPI(
-                          context: context,
-                          email: _email.text.toString(),
-                          password: _password.text.toString());*/
-                    },
-                    text: "Login"),
+                InkWell(
+                  splashColor: Colors.lightGreenAccent,
+                  focusColor: Colors.red,
+                  child: CommonWidgets.getSignUpButton(
+                      context: context,
+                      onPress: () {
+                        //Navigator.push(context, SlideRightRoute(page: Worker()));
+                        _loginProvider.callLoginAPI(
+                            context: context,
+                            email: _email.text.toString(),
+                            password: _password.text.toString());
+                      },
+                      text: "Login"),
+                ),
                 SizedBox(
                   height: AppSizes.height * 0.025,
                 ),
@@ -146,9 +150,6 @@ class _LoginState extends State<Login> {
                     onPress: () {
                       Navigator.push(context, SlideRightRoute(page: SignUp()));
                     }),
-                SizedBox(
-                  height: AppSizes.height * 0.1,
-                ),
               ],
             ),
           ),

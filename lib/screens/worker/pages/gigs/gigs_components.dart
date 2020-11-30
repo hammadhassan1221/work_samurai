@@ -409,7 +409,7 @@ class GigsComponents {
   }
 */
 
-  Widget getOffersContainer({@required BuildContext context}) {
+  Widget getOffersContainer({@required BuildContext context,@required String jobTitle, @required String dateTime,@required String location,@required String totalAmount,@required String amountHour}) {
     return Column(children: [
       Expanded(
           child: ListView(
@@ -444,7 +444,7 @@ class GigsComponents {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Waiter",
+                                  jobTitle,
                                   style: TextStyle(
                                     fontSize: 22,
                                     fontFamily: "MuliSemiBold",
@@ -453,7 +453,7 @@ class GigsComponents {
                                 ),
                                 SizedBox(height: AppSizes.height * 0.005),
                                 Text(
-                                  "Wed,Sep 23",
+                                  dateTime,
                                   style: TextStyle(
                                     fontFamily: 'MuliRegular',
                                     fontSize: 15,
@@ -462,7 +462,7 @@ class GigsComponents {
                                 ),
                                 SizedBox(height: AppSizes.height * 0.03),
                                 Text(
-                                  "Crown Hotel New York",
+                                  location,
                                   style: TextStyle(
                                     fontFamily: 'MuliRegular',
                                     fontSize: 15,
@@ -486,7 +486,7 @@ class GigsComponents {
                                 ),
                                 SizedBox(height: AppSizes.height * 0.016),
                                 Text(
-                                  "\$140",
+                                  "\$" + totalAmount,
                                   style: TextStyle(
                                     fontSize: 20,
                                     fontFamily: 'MuliBold',
@@ -494,7 +494,7 @@ class GigsComponents {
                                   ),
                                 ),
                                 Text(
-                                  "\$20/h",
+                                  "\$" + amountHour +"/h",
                                   style: TextStyle(
                                       fontSize: 16,
                                       fontFamily: 'MuliRegular',
@@ -536,7 +536,7 @@ class GigsComponents {
                                     Assets.cancelgig,
                                     height: 20,
                                     width: 20,
-                                    color: AppColors.clr_bg_black,
+                                    color: AppColors.clr_red,
                                   ),
                                   SizedBox(
                                     width: AppSizes.width * 0.01,
@@ -545,7 +545,7 @@ class GigsComponents {
                                       style: TextStyle(
                                         fontSize: 14,
                                         fontFamily: 'MuliRegular',
-                                        color: AppColors.clr_bg_black,
+                                        color: AppColors.clr_red,
                                       )),
                                 ],
                               )),
@@ -581,7 +581,7 @@ class GigsComponents {
                       )),
                 ],
               )),
-          SizedBox(
+/*          SizedBox(
             height: AppSizes.height * 0.02,
           ),
           Container(
@@ -705,7 +705,7 @@ class GigsComponents {
                                     Assets.cancelgig,
                                     height: 20,
                                     width: 20,
-                                    color: AppColors.clr_bg_black,
+                                    color: AppColors.clr_red,
                                   ),
                                   SizedBox(
                                     width: AppSizes.width * 0.01,
@@ -714,7 +714,7 @@ class GigsComponents {
                                       style: TextStyle(
                                         fontSize: 14,
                                         fontFamily: 'MuliRegular',
-                                        color: AppColors.clr_bg_black,
+                                        color: AppColors.clr_red,
                                       )),
                                 ],
                               )),
@@ -873,7 +873,7 @@ class GigsComponents {
                                     Assets.cancelgig,
                                     height: 20,
                                     width: 20,
-                                    color: AppColors.clr_bg_black,
+                                    color: AppColors.clr_red,
                                   ),
                                   SizedBox(
                                     width: AppSizes.width * 0.01,
@@ -882,7 +882,7 @@ class GigsComponents {
                                       style: TextStyle(
                                         fontSize: 14,
                                         fontFamily: 'MuliRegular',
-                                        color: AppColors.clr_bg_black,
+                                        color: AppColors.clr_red,
                                       )),
                                 ],
                               )),
@@ -916,7 +916,7 @@ class GigsComponents {
 
           SizedBox(
             height: AppSizes.height * 0.030,
-          ),
+          ),*/
         ],
       ))
     ]);
@@ -1094,7 +1094,7 @@ class GigsComponents {
     ]);
   }
 
-  Widget getConfirmedContainer({@required BuildContext context}) {
+  Widget getConfirmedContainer({@required BuildContext context,@required String jobTitle, @required String dateTime,@required String location,@required String totalAmount,@required String amountHour}) {
     return Column(children: [
       Expanded(
           child: ListView(

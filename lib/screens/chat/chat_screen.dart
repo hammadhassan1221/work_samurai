@@ -185,15 +185,18 @@ class _ChatScreenState extends State<ChatScreen> {
                     ),
                   ),
                   Container(
-                      alignment: Alignment.bottomLeft,
+
                       color: AppColors.clr_white,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           _textFieldContainer(),
+                          SizedBox(
+                            width: AppSizes.width * 0.015,
+                          ),
                           Icon(Icons.attach_file),
                           SizedBox(
-                            width: AppSizes.width * 0.01,
+                            width: AppSizes.width * 0.03,
                           ),
                           Icon(Icons.send),
                         ],
@@ -205,8 +208,8 @@ class _ChatScreenState extends State<ChatScreen> {
 
   _textFieldContainer() {
     return Container(
-      height: AppSizes.height * 0.07,
-      width: AppSizes.width / 1.3,
+      height: AppSizes.height * 0.075,
+      width: AppSizes.width / 1.4,
       margin: EdgeInsets.all(10),
       padding: EdgeInsets.all(8),
       decoration: BoxDecoration(
@@ -233,7 +236,6 @@ class _ChatScreenState extends State<ChatScreen> {
       onTap: () {},
       child: Container(
           height: AppSizes.height * 0.07,
-          width: AppSizes.width / 6,
           margin: EdgeInsets.all(12),
           padding: EdgeInsets.all(10),
           decoration: BoxDecoration(

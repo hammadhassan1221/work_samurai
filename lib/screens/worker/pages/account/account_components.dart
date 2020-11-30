@@ -153,9 +153,11 @@ class AccountComponent {
                     )
                 ),
                 child: Container(
+                  alignment: Alignment.center,
                   margin: EdgeInsets.only(top:3),
                   child: Text(
                       rating,
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 12,
                         fontFamily: 'MuliRegular',
@@ -169,7 +171,7 @@ class AccountComponent {
     );
   }
 
-  Widget getPositionContainer({@required String text1,@required String text2,@required String text3,@required String text4}){
+  Widget getPositionContainer({@required String text1,@required String text2,@required String text3,@required String text4,}){
     return Container(
         child: Wrap(
           children: [
@@ -242,7 +244,41 @@ class AccountComponent {
                       color: AppColors.clr_bg_black,
                     )
                 )
-            )
+            ),
+
+            SizedBox(
+              width: AppSizes.width * 0.025,
+            ),
+
+            _getAddPosition(),
+
+
+          ],
+        )
+    );
+  }
+
+  _getAddPosition(){
+    return Container(
+      width: AppSizes.width*0.45,
+        padding: EdgeInsets.all(10.0,),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20.0),
+          color: AppColors.clr_field,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Icon(Icons.add_circle_outline,color: AppColors.clr_bg_black,size: 18,),
+//            SizedBox(width: AppSizes.width*0.015,),
+            Text(
+                "Add Positions",
+                style: TextStyle(
+                  fontSize: 15,
+                  fontFamily: 'MuliRegular',
+                  color: AppColors.clr_bg_black,
+                )
+            ),
           ],
         )
     );

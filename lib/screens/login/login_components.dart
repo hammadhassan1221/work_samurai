@@ -19,7 +19,6 @@ class LoginComponents {
       onTap: onPress,
       child: Container(
           alignment: Alignment.bottomCenter,
-
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

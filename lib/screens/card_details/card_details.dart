@@ -32,7 +32,7 @@ class _CardDetailsState extends State<CardDetails> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CommonWidgets.getAppBar(text: "Card Details", context: context),
+                CommonWidgets.getAppBar(text: "Bank Details", context: context),
                 Expanded(child: ListView(children: [ _cardComponents.getHeading(text: "Card Number"),
                   _cardComponents.getSubHeading(text: "6473 xxxx xxxx 3213"),
                   _cardComponents.getHeading(text: "Expiry Date"),

@@ -125,7 +125,7 @@ class _SignUpState extends State<SignUp> {
                     backgroundColor: AppColors.transparentColor,
                     borderColor: AppColors.sign_field,
                     textColor: AppColors.clr_bg_black,
-                    text: "Country",
+                    text: "Skill",
                     imagePath: Assets.city,
                     isPassword: false,
                   ),
@@ -237,7 +237,7 @@ class _SignUpState extends State<SignUp> {
                   SizedBox(
                     height: AppSizes.height * 0.025,
                   ),
-                 /* _signUpComponents.getSignUpButton(
+                  CommonWidgets.getSignUpButton(
                     context: context,
                     onPress: () {
                       _makeSignUpModel();
@@ -251,9 +251,10 @@ class _SignUpState extends State<SignUp> {
                       );
                     },
                     text: "Sign Up",
-                  ),*/
-                  CommonWidgets.getSignUpButton(
-                      context: context, onPress: () {Navigator.push(context, SlideRightRoute(page: Worker()));}, text: "Sign Up")
+                  ),
+                //   CommonWidgets.getSignUpButton(
+                //       context: context, onPress: () {Navigator.push(context, SlideRightRoute(page: Worker()));}, text: "Sign Up")
+                //
                 ],
               )),
             ],
