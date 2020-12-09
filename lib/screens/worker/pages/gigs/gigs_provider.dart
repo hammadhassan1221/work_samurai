@@ -43,7 +43,7 @@ class GigsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  /*Future _getFutureJobs({@required BuildContext context}) async {
+  Future _getFutureJobs({@required BuildContext context}) async {
     try {
       _loader.showLoader(context: context);
 
@@ -119,5 +119,5 @@ class GigsProvider extends ChangeNotifier {
   void setInProgress(bool value) {
     this._inProgress = value;
     notifyListeners();
-  }*/
+  }
 }

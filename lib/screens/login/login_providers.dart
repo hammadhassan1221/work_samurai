@@ -1,20 +1,16 @@
-import 'dart:convert';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:work_samurai/animations/slide_right.dart';
 import 'package:work_samurai/commons/utils.dart';
 import 'package:work_samurai/generic_decode_encode/generic.dart';
-import 'package:work_samurai/helper/helper.dart';
 import 'package:work_samurai/models/api_models/login_screen/login_response.dart';
 import 'package:work_samurai/network/api_urls.dart';
 import 'package:work_samurai/network/network_helper.dart';
 import 'package:work_samurai/network/network_helper_impl.dart';
-import 'package:http/http.dart' as http;
 import 'package:work_samurai/screens/worker/worker.dart';
-import 'package:work_samurai/widgets/toast.dart';
-import 'package:dio/dio.dart';
-
 import 'package:work_samurai/utilities/utilities.dart';
+import 'package:work_samurai/widgets/toast.dart';
 
 import '../../widgets/loader.dart';
 

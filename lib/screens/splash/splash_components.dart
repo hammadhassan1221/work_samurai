@@ -14,4 +14,21 @@ class SplashComponents{
       ),
     );
   }
+
+  Widget getVersionText({String versionNumber}) {
+    var white;
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: AppSizes.width * 0.04),
+        child: Text(
+          "Version : " + versionNumber,
+          style: TextStyle(
+            color: AppColors.clr_white,
+          ),
+        ),
+      ),
+    );
+  }
+
 }

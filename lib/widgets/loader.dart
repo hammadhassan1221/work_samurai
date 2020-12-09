@@ -2,7 +2,6 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:work_samurai/res/assets.dart';
 
 import '../res/colors.dart';
 import '../res/sizes.dart';
@@ -24,7 +23,7 @@ class Loader {
                 shape: BoxShape.rectangle,
                 image: DecorationImage(
                   image: AssetImage(
-                    Assets.logo,
+                    "assets/json/api_loader",
                   ),
                   fit: BoxFit.fill,
                   scale: 1.3,

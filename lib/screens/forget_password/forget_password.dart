@@ -5,6 +5,7 @@ import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/widgets/widgets.dart';
+
 import 'forget_password_components.dart';
 import 'forget_password_provider.dart';
 
@@ -44,6 +45,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
             CommonWidgets.getInputField(backgroundColor: AppColors.transparentColor,isPassword: false ,borderColor: AppColors.clr_bg_grey, textColor: AppColors.clr_bg_black2, text: "Email", imagePath: Assets.mail,controller: _email),
 
             Expanded(child: CommonWidgets.getSignUpButton(context: context, onPress: (){}, text: "Reset My Password")),
+            SizedBox(height: AppSizes.height*0.025,)
             /*_forgetPasswordComponents.getSignUpButton(context: context, onPress: (){
               _forgetPasswordProvider.callForgetPasswordAPI(context: context, email: _email.text.toString());
             }, text: "Reset my Password",)*/

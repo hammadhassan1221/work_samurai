@@ -46,10 +46,17 @@ class Assets{
   static const String cancelgig = "assets/png/cancel_gig@3x.png";
   static const String mails = "assets/png/mail@3x.png";
   static const String files = "assets/png/add-file@3x.png";
-
-
-
   static const String edit = "assets/png/icon_edit.png";
+
+
+  static const String user = "assets/png/usercircle@3x.png";
+  static const String credit = "assets/png/credit_card@3x.png";
+  static const String logout = "assets/png/log_out@3x.png";
+  static const String basicMail = "assets/png/basic-mail@3x.png";
+  static const String flag = "assets/png/Flag_outline@3x.png";
+  static const String slider = "assets/png/slider_02@3x.png";
+  static const String earning = "assets/png/credit_card_alt@3x.png";
+  static const String userCard = "assets/png/id_card@3x.png";
 
  //jpg
   static const String google = "assets/jpg/GoogleMaps.jpg";

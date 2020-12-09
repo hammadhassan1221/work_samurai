@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:work_samurai/animations/slide_right.dart';
 import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
@@ -30,7 +29,7 @@ class AccountComponent {
     );
   }
 
-  Widget getUserEdit({@required String imagePath,@required String text,@required Function onPress}) {
+  Widget getUserEdit({@required String imagePath,@required String text,@required Function onPress, @required String imagePath1}) {
     return Container(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -43,23 +42,32 @@ class AccountComponent {
                 width: 100,
               ),
             ),
-            GestureDetector(
-              onTap: onPress,
-              child: Container(
-                alignment: Alignment.topRight,
-                decoration : BoxDecoration(
-                    border: Border(
-                        bottom: BorderSide( color: AppColors.clr_bg_black)
-                    ),
-            ),
-                  child: Text(text,
-                  textAlign: TextAlign.right,
-                  style: TextStyle(
-                    // decoration: TextDecoration.underline,
-                    fontSize: 18,
-                    fontFamily: 'MuliBold',
-                  )),
+            Row(
+
+
+              children: [
+                Container(margin: EdgeInsets.only(bottom: AppSizes.height*0.1,),child: Image.asset(imagePath1,height: 25,width: 25,)),
+                SizedBox(width: AppSizes.width*0.0125,),
+                GestureDetector(
+                  onTap: onPress,
+                  child: Container(
+                    margin: EdgeInsets.only(bottom: AppSizes.height*0.105),
+                    alignment: Alignment.topRight,
+                    decoration : BoxDecoration(
+                        border: Border(
+                            bottom: BorderSide( color: AppColors.clr_bg_black)
+                        ),
+                ),
+                      child: Text(text,
+                      textAlign: TextAlign.right,
+                      style: TextStyle(
+                        // decoration: TextDecoration.underline,
+                        fontSize: 18,
+                        fontFamily: 'MuliBold',
+                      )),
     )),
+              ],
+            ),
           ],
         ));
   }

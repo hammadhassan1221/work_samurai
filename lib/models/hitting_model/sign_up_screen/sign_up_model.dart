@@ -17,6 +17,14 @@ class SignUpModel{
   String _facebook;
   String _twitter;
   String _instagram;
+  String _skillId;
+
+
+  String get skillId => _skillId;
+
+  set skillId(String value) {
+    _skillId = value;
+  }
 
   String get emailAddress => _emailAddress;
 

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-class DailyEarningProviders extends ChangeNotifier{
+class EarningDetailsProviders extends ChangeNotifier{
   BuildContext context;
 
   init({@required BuildContext context}) {
