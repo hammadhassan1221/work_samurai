@@ -29,7 +29,7 @@ class SignUpProvider extends ChangeNotifier {
 
   callSignUpAPI({@required SignUpModel signUpModel,@required BuildContext context, @required String confirmPassword, @required String male, @required String female, @required onCheck}){
     if(signUpModel.firstName.isNotEmpty){
-      if(signUpModel.lastName.isNotEmpty){
+      if(signUpModel.lastName.isNotEmpty) {
         if(signUpModel.emailAddress.isNotEmpty && signUpModel.emailAddress.toString().validateEmail()){
           if(signUpModel.password.isNotEmpty){
             if(confirmPassword.isNotEmpty){
@@ -75,8 +75,9 @@ class SignUpProvider extends ChangeNotifier {
       Response _response = await _networkHelper.post(
           signUpURL,
           headers: {
-            "Authorization" : "Bearer KH87NJi0KdODA9KpXZQkrXbDWEFokc1PxYRbv+vV+ogYmCp4PJNALryPllpjNNzY/0r2fTA8a91DGXoa9cRpDkI1EI4v5lPfpqpImF2kssumZ9Y/n3wkCZF8Qqd2HAdCE=",
-            "Content-Type" : "multipart/form-data",
+  "Authorization":
+            "Bearer KH87NJi0KdODA9KpXZQkrXbDWEFokc1PxYRbv+vV+ogYmCp4PJNALryPllpjNNzY/0r2fTA8a91DGXoa9cRpDkI1EI4v5lPfpqpImF2kssumZ9Y/n3wkCZF8Qqd2HAdCE=",
+        "Content-Type" : "multipart/form-data",
             "DeviceID" : "A580E6FE-DA99-4066-AFC7-C939104AED7F"
           },
           body: {
