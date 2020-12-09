@@ -1,14 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:work_samurai/animations/slide_right.dart';
 import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
-import 'package:work_samurai/screens/card_details/card_details.dart';
-import 'package:work_samurai/screens/documents/documents.dart';
-import 'package:work_samurai/screens/earnings/earnings.dart';
-import 'package:work_samurai/screens/earnings/tab_bar_view/daily_earning/daily_earnings.dart';
 import 'package:work_samurai/screens/settings/settings.dart';
+import 'package:work_samurai/screens/worker/pages/account/account_provider.dart';
 
 import 'account_components.dart';
 
@@ -19,27 +17,35 @@ class Account extends StatefulWidget {
 
 class _AccountState extends State<Account> {
   AccountComponent _accountComponent;
+  AccountProviders _accountProviders;
+
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     _accountComponent = AccountComponent();
+    _accountProviders = Provider.of<AccountProviders>(context, listen: false);
+    _accountProviders.init(context: context);
   }
 
   @override
   Widget build(BuildContext context) {
+    _accountProviders = Provider.of<AccountProviders>(context, listen: true);
+
     return SafeArea(
         child: Scaffold(
       body: Container(
-          height: AppSizes.height * 0.9,
-          width: AppSizes.width * 0.95,
           color: AppColors.clr_bg,
-          padding: EdgeInsets.only(left: AppSizes.width * 0.040),
+          margin: EdgeInsets.all(AppSizes.width*0.03),
           child: ListView(
             children: [
-              _accountComponent.getUserEdit(
-                  imagePath: Assets.support, text: "Settings",onPress:(){Navigator.push(context, SlideRightRoute(page: Settings()));}),
+              Align(
+                alignment: Alignment.topRight,
+                child: _accountComponent.getUserEdit(
+                      imagePath: Assets.support,imagePath1: Assets.user, text: "Account",onPress:(){Navigator.push(context, SlideRightRoute(page: Settings()));}),
+              ),
+                //  imagePath: Assets.support, text: "Settings",onPress:(){}),
               SizedBox(
                 height: AppSizes.height * 0.01,
               ),
@@ -79,33 +85,12 @@ class _AccountState extends State<Account> {
                     color: AppColors.clr_field,
                     borderRadius: BorderRadius.circular(3)),
               ),
-              _accountComponent.getHeadings(text: "Account Info"),
 
-              SizedBox(
-                height: AppSizes.height * 0.015,
-              ),
-              _accountComponent.getVerification(
-                  onPress: () {Navigator.push(context, SlideRightRoute(page: DocumentVerification()));},
-                  text: "Document Verification",
-                  imagePath: Assets.sign),
-              _accountComponent.getVerification(
-                  onPress: (){Navigator.push(context, SlideRightRoute(page: CardDetails()));}, text: "Bank Details", imagePath: Assets.card),
-              _accountComponent.getVerification(onPress: (){Navigator.push(context, SlideRightRoute(page: Earnings()));}, text: "Earnings", imagePath: Assets.payment),
-              SizedBox(
-                height: AppSizes.height * 0.015,
-              ),
-              Container(
-                height: AppSizes.height * 0.0025,
-                decoration: BoxDecoration(
-                    color: AppColors.clr_field,
-                    borderRadius: BorderRadius.circular(3)),
-              ),
               _accountComponent.getHeadings(text: "Completed Jobs"),
               SizedBox(
                 height: AppSizes.height * 0.01,
               ),
               Container(
-                  width: AppSizes.width * 0.85,
                   child: Text("4",
                       style: TextStyle(
                         fontSize: 18,

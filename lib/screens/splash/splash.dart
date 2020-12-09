@@ -15,13 +15,14 @@ class _SplashState extends State<Splash> {
   SplashProvider _provider;
   SplashComponents _components;
 
+  // String text = "";
+
   @override
   void initState() {
     super.initState();
     _provider = Provider.of<SplashProvider>(context, listen: false);
     _provider.init(context: context);
     _provider.navigateToNextRoute(context);
-    _provider.getVersionNumber();
     _components = SplashComponents();
   }
 
@@ -37,7 +38,9 @@ class _SplashState extends State<Splash> {
           _components.getMainContainer(Assets.logo, 400, 400),
           Align(
             alignment: Alignment.bottomCenter,
-//            child: Text(_provider.versionNumber),
+            child: Text(
+              _provider.versionNumber,
+            ),
           ),
         ],
       ),

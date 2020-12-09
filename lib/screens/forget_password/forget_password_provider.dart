@@ -9,9 +9,9 @@ import 'package:work_samurai/network/api_urls.dart';
 import 'package:work_samurai/network/network_helper.dart';
 import 'package:work_samurai/network/network_helper_impl.dart';
 import 'package:work_samurai/screens/login/login.dart';
+import 'package:work_samurai/utilities/utilities.dart';
 import 'package:work_samurai/widgets/loader.dart';
 import 'package:work_samurai/widgets/toast.dart';
-import 'package:work_samurai/utilities/utilities.dart';
 
 class ForgetPasswordProvider extends ChangeNotifier {
   BuildContext context;

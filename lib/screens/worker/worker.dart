@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:work_samurai/screens/worker/pages/account/account.dart';
 import 'package:work_samurai/screens/worker/pages/alerts/alerts.dart';
 import 'package:work_samurai/screens/worker/pages/gigs/gigs.dart';
@@ -14,7 +13,6 @@ import 'package:work_samurai/screens/worker/pages/messages/messages.dart';
 import 'package:work_samurai/screens/worker/pages/schedule/schedule.dart';
 import 'package:work_samurai/screens/worker/worker_components.dart';
 import 'package:work_samurai/screens/worker/worker_provider.dart';
-import 'package:work_samurai/widgets/widgets.dart';
 
 class Worker extends StatefulWidget {
   @override

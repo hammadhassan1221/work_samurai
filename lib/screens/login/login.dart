@@ -9,8 +9,6 @@ import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/screens/forget_password/forget_password.dart';
 import 'package:work_samurai/screens/login/login_components.dart';
 import 'package:work_samurai/screens/sign_up/sign_up.dart';
-import 'package:work_samurai/screens/worker/worker.dart';
-import 'package:work_samurai/widgets/toast.dart';
 import 'package:work_samurai/widgets/widgets.dart';
 
 import '../../res/sizes.dart';
@@ -22,10 +20,12 @@ class Login extends StatefulWidget {
 }
 
 bool onCheck = false;
-class _LoginState extends State<Login> {
+class _LoginState extends State<Login> with SingleTickerProviderStateMixin{
   LoginComponents _loginComponents;
   LoginProvider _loginProvider;
   TextEditingController _email, _password;
+  AnimationController _animationController;
+  double _scale;
   FocusNode _focusNode;
 
 
@@ -38,13 +38,32 @@ class _LoginState extends State<Login> {
     _loginProvider = LoginProvider();
     _email = TextEditingController();
     _password = TextEditingController();
+    _animationController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 200),
+      lowerBound: 0.0,
+      upperBound: 0.1,
+    )..addListener(() {
+      setState(() {});
+    });
   }
-
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+  void _tapDown(TapDownDetails details) {
+    _animationController.forward();
+  }
+  void _tapUp(TapUpDetails details) {
+    _animationController.reverse();
+  }
   @override
   Widget build(BuildContext context) {
+    _scale = 1 - _animationController.value;
     Provider.of<LoginProvider>(context, listen: true);
     return Scaffold(
-        resizeToAvoidBottomInset: true,
+        resizeToAvoidBottomInset: false,
         body: Container(
           height: AppSizes.height,
           width: AppSizes.width,
@@ -117,20 +136,19 @@ class _LoginState extends State<Login> {
                         )
                       ],
                     )),
-                InkWell(
-                  splashColor: Colors.lightGreenAccent,
-                  focusColor: Colors.red,
-                  child: CommonWidgets.getSignUpButton(
-                      context: context,
-                      onPress: () {
-                        //Navigator.push(context, SlideRightRoute(page: Worker()));
-                        _loginProvider.callLoginAPI(
-                            context: context,
-                            email: _email.text.toString(),
-                            password: _password.text.toString());
-                      },
-                      text: "Login"),
-                ),
+                CommonWidgets.getSignUpButton(
+                  onTapDown: _tapDown,
+                  onTapUp: _tapUp,
+                  animationController: _animationController,
+                    context: context,
+                    onPress: () {
+                      //Navigator.push(context, SlideRightRoute(page: Worker()));
+                      _loginProvider.callLoginAPI(
+                          context: context,
+                          email: _email.text.toString(),
+                          password: _password.text.toString());
+                    },
+                    text: "Login"),
                 SizedBox(
                   height: AppSizes.height * 0.025,
                 ),

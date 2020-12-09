@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
-import 'package:work_samurai/screens/worker/pages/schedule/schedule_provider.dart';
 
 class CommonWidgets {
   static Widget getRow(String text, bool value, Function onPress) {
@@ -33,8 +32,8 @@ class CommonWidgets {
 
   static Widget getAvailability(
       {@required String text1,
-        @required String text,
-        @required Function onPress}) {
+      @required String text,
+      @required Function onPress}) {
     return GestureDetector(
       onTap: onPress,
       child: Row(
@@ -79,6 +78,7 @@ class CommonWidgets {
       ),
     );
   }
+
   static Widget getAvailability2(
       {@required String text1,
       @required String text,
@@ -128,53 +128,69 @@ class CommonWidgets {
     );
   }
 
- static Widget getSignUpButton({@required BuildContext context, @required Function onPress,@required String text}) {
-   return InkWell(
-     child: Align(
-       alignment: Alignment.bottomCenter,
-       child: GestureDetector(
-         onTap: onPress,
-         child: Container(
-           margin: EdgeInsets.only(left:AppSizes.width*0.03,right:AppSizes.width*0.03,),
-           alignment: Alignment.center,
-           height: AppSizes.height * 0.08,
-           width: AppSizes.width,
-           decoration: BoxDecoration(
-             borderRadius: BorderRadius.circular(
-               5,
-             ),
-             border: Border.all(
-               color: AppColors.clr_bg_black,
-             ),
-             color: AppColors.clr_bg_black,
-           ),
-           child: Text(
-             text,
-             style: TextStyle(
-               decoration: TextDecoration.none,
-                 fontSize: 16.0,
-                 fontFamily: 'MuliRegular',
-                 color: AppColors.clr_white),
-           ),
-         ),
-       ),
-     ),
-   );
- }
-
-
-  static   Widget getInputField(
-      {@required Color backgroundColor,
-        @required Color borderColor,
-        @required Color textColor,
-        @required String text,
-        @required String imagePath,
-        @required TextEditingController controller,
-        @required bool isPassword,
+  static Widget getSignUpButton(
+      {AnimationController animationController,
+        Function onTapUp,
+        Function onTapDown,
+        @required BuildContext context,
+      @required Function onPress,
+      @required String text,
       }) {
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: InkWell(
+        splashColor: AppColors.clr_white,
+        child: Container(
+          margin: EdgeInsets.only(
+            left: AppSizes.width * 0.03,
+            right: AppSizes.width * 0.03,
+          ),
+          alignment: Alignment.center,
+          height: AppSizes.height * 0.08,
+          width: AppSizes.width,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(
+              5,
+            ),
+            border: Border.all(
+              color: AppColors.clr_bg_black,
+            ),
+            color: AppColors.clr_bg_black,
+          ),
+          child: SizedBox.expand(
+            child: FlatButton(
+              onPressed: onPress,
+              child: Text(
+                text,
+                style: TextStyle(
+                    decoration: TextDecoration.none,
+                    fontSize: 16.0,
+                    fontFamily: 'MuliRegular',
+                    color: AppColors.clr_white),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  static Widget getInputField({
+    @required Color backgroundColor,
+    @required Color borderColor,
+    @required Color textColor,
+    @required String text,
+    @required String imagePath,
+    @required TextEditingController controller,
+    @required bool isPassword,
+  }) {
     return Container(
         alignment: Alignment.bottomCenter,
-        margin: EdgeInsets.only(top:AppSizes.height*0.015,left:AppSizes.width*0.03,right:AppSizes.width*0.03,),
+        margin: EdgeInsets.only(
+          top: AppSizes.height * 0.015,
+          left: AppSizes.width * 0.03,
+          right: AppSizes.width * 0.03,
+        ),
         decoration: BoxDecoration(
           border: Border.all(
             color: borderColor,
@@ -182,42 +198,41 @@ class CommonWidgets {
           borderRadius: BorderRadius.circular(5),
           color: backgroundColor,
         ),
-
-        child:TextField(
+        child: TextField(
           cursorColor: AppColors.clr_bg_black2,
           //cursorHeight: 12,
           obscureText: isPassword,
           controller: controller,
           decoration: InputDecoration(
               labelText: text,
-              labelStyle: TextStyle(fontSize: 12,
+              labelStyle: TextStyle(
+                fontSize: 12,
                 color: AppColors.clr_bg_black2,
-                fontFamily: 'MuliRegular',),
+                fontFamily: 'MuliRegular',
+              ),
               border: InputBorder.none,
               prefixIcon: Padding(
-                padding:EdgeInsets.all(AppSizes.width*0.03),
-                child: Image.asset(imagePath,height: 25,width :25),
-              )
-
-          ),
-        )
-    );
+                padding: EdgeInsets.all(AppSizes.width * 0.03),
+                child: Image.asset(imagePath, height: 25, width: 25),
+              )),
+        ));
   }
 
-
-  static   Widget phoneField(
-      {@required Color backgroundColor,
-        @required Color borderColor,
-        @required Color textColor,
-        @required String text,
-        @required IconData iconData,
-        @required TextEditingController controller,
-        @required bool isPassword,
-      }) {
+  static Widget phoneField({
+    @required Color backgroundColor,
+    @required Color borderColor,
+    @required Color textColor,
+    @required String text,
+    @required IconData iconData,
+    @required TextEditingController controller,
+    @required bool isPassword,
+  }) {
     return Container(
         alignment: Alignment.bottomCenter,
-
-        margin: EdgeInsets.only(left:AppSizes.height*0.03,right:AppSizes.height*0.03,),
+        margin: EdgeInsets.only(
+          left: AppSizes.height * 0.03,
+          right: AppSizes.height * 0.03,
+        ),
         decoration: BoxDecoration(
           border: Border.all(
             color: borderColor,
@@ -225,29 +240,31 @@ class CommonWidgets {
           borderRadius: BorderRadius.circular(5),
           color: backgroundColor,
         ),
-
-        child:TextField(
+        child: TextField(
           cursorColor: AppColors.clr_bg_black2,
           //cursorHeight: 12,
           obscureText: isPassword,
           controller: controller,
           decoration: InputDecoration(
               labelText: text,
-              labelStyle: TextStyle(fontSize: 12,
+              labelStyle: TextStyle(
+                fontSize: 12,
                 color: AppColors.clr_bg_black2,
-                fontFamily: 'MuliRegular',),
+                fontFamily: 'MuliRegular',
+              ),
               border: InputBorder.none,
               prefixIcon: Padding(
-                padding:EdgeInsets.all(AppSizes.width*0.03),
-                child: Icon(iconData,color: AppColors.clr_bg_black2,),
-              )
-
-          ),
-        )
-    );
+                padding: EdgeInsets.all(AppSizes.width * 0.03),
+                child: Icon(
+                  iconData,
+                  color: AppColors.clr_bg_black2,
+                ),
+              )),
+        ));
   }
 
-   static Widget getAppBar({@required String text , @required BuildContext context}) {
+  static Widget getAppBar(
+      {@required String text, @required BuildContext context}) {
     return Container(
       width: AppSizes.width,
       decoration: BoxDecoration(
@@ -261,38 +278,39 @@ class CommonWidgets {
           ),
         ],
       ),
-      padding: EdgeInsets.all(AppSizes.width * 0.035 ),
+      padding: EdgeInsets.all(AppSizes.width * 0.035),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
-
         children: [
           GestureDetector(
-              onTap:(){
+              onTap: () {
                 Navigator.pop(context);
               },
-              child: Image.asset(Assets.barArrow,height: 20,width: 20,)),
-
+              child: Image.asset(
+                Assets.barArrow,
+                height: 20,
+                width: 20,
+              )),
           SizedBox(
             width: AppSizes.width * 0.02,
           ),
           Container(
-            padding: EdgeInsets.only(bottom:AppSizes.width*0.01),
+            padding: EdgeInsets.only(bottom: AppSizes.width * 0.01),
             child: Text(
               text,
               style: TextStyle(
                 color: AppColors.clr_bg_black,
-                  decoration: TextDecoration.none,
-                  fontSize: 22,
-                  fontWeight: FontWeight.w400,
-                  fontFamily: 'MuliSemiBold',
+                decoration: TextDecoration.none,
+                fontSize: 22,
+                fontWeight: FontWeight.w400,
+                fontFamily: 'MuliSemiBold',
               ),
             ),
           )
         ],
       ),
     );
-
   }
 
   static Widget getAppBarWithout({
@@ -366,7 +384,7 @@ class CommonWidgets {
                 offset: Offset(0, 1), // changes position of shadow
               ),
             ],
-          color: AppColors.clr_bg,
+            color: AppColors.clr_bg,
             borderRadius: BorderRadius.circular(6),
             border: Border.all(
               color: AppColors.clr_bg_grey,

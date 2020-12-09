@@ -1,12 +1,12 @@
+
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:work_samurai/animations/slide_right.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 
-class DailyEarningComponents{
-
-  Widget getDailyPayment({@required BuildContext buildContext,@required String jobDesc,@required String job,@required Function onPress,@required String value}) {
+class EarningDetailsComponents{
+  Widget getPayment({@required BuildContext buildContext,@required String jobDesc,@required String job,@required Function onPress,@required String value}) {
     return
       GestureDetector(
         onTap: onPress,
@@ -40,7 +40,7 @@ class DailyEarningComponents{
                             color: AppColors.clr_bg_black,
                             decoration: TextDecoration.none,
                             fontSize: 20,
-                            fontFamily: 'MuliBold'
+                            fontFamily: 'MuliSemiBold'
                         )),
                     SizedBox(
                       height: AppSizes.height * 0.02,

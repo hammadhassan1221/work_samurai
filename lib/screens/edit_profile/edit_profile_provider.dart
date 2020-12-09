@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-class AllEarningProviders extends ChangeNotifier{
+class EditProfileProviders extends ChangeNotifier{
   BuildContext context;
 
   init({@required BuildContext context}) {
