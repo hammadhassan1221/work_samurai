@@ -225,7 +225,7 @@ class CommonWidgets {
     @required String text,
     @required IconData iconData,
     @required TextEditingController controller,
-    @required bool isPassword,
+    @required bool isPassword,e
   }) {
     return Container(
         alignment: Alignment.bottomCenter,
@@ -420,6 +420,33 @@ class CommonWidgets {
                 ),
               ],
             )
+          ],
+        ),
+      ),
+    );
+  }
+
+  static Widget getAlertContainer({@required Function onPress}){
+   return GestureDetector(
+      onTap: onPress,
+      child: Container(
+        width: AppSizes.width,
+        padding: EdgeInsets.all(AppSizes.width*0.03),
+        color: Colors.orangeAccent,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text("Your Profile Inactive",style: TextStyle(
+                color: AppColors.clr_white,
+                fontSize: 18,
+                fontFamily: 'MuliSemiBold'
+            ),),
+            SizedBox(height: AppSizes.height*0.005,),
+            Text("Please see the alerts for verifying your profile and start receiving the jobs",style: TextStyle(
+              color: AppColors.clr_white,
+              fontSize: 11,
+            ),)
+
           ],
         ),
       ),

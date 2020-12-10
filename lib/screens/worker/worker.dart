@@ -35,7 +35,7 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
     Alerts(),
   ];
 
-  int _currentIndex = 0;
+
 
 
   @override
@@ -53,30 +53,26 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        body: children[_currentIndex],
+        body: Container(child:_currentPage()),
         bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _currentIndex,
+          currentIndex: workerProvider.currentIndex,
           backgroundColor: AppColors.clr_white,
           type: BottomNavigationBarType.fixed,
           onTap: (index) {
             setState(() {
-              _currentIndex = index;
+              workerProvider.setCurrentIndex(index);
             });
           },
           items: [
             BottomNavigationBarItem(
               icon: GestureDetector(
-                child:Icon(LineariconsFree.briefcase,color: _currentIndex == 0
+                child:Icon(LineariconsFree.briefcase,color: workerProvider.currentIndex == 0
                     ? AppColors.clr_bg_black
-                    : AppColors.clr_bg_black2,size: 20,) /*Image.asset(Assets.gigs,
-                  height: 20,width: 20,
-                  color: _currentIndex == 0
-                      ? AppColors.clr_bg_black
-                      : AppColors.clr_bg_black2,),*/
+                    : AppColors.clr_bg_black2,size: 20,)
               ),
               title: Text(
                 "Gigs",style: TextStyle(
-                color: _currentIndex == 0
+                color: workerProvider.currentIndex == 0
                     ? AppColors.clr_bg_black
                     : AppColors.clr_bg_black2,
               ),
@@ -84,13 +80,13 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
             ),
             BottomNavigationBarItem(
               icon: GestureDetector(
-                child: Image.asset(Assets.schedule,height: 20,width: 20, color: _currentIndex == 1
+                child: Image.asset(Assets.schedule,height: 20,width: 20, color: workerProvider.currentIndex == 1
                     ? AppColors.clr_bg_black
                     : AppColors.clr_bg_black2,),
               ),
               title: Text(
                 "Schedule",style: TextStyle(
-                color: _currentIndex == 1
+                color: workerProvider.currentIndex == 1
                     ? AppColors.clr_bg_black
                     : AppColors.clr_bg_black2,
               ),
@@ -98,13 +94,13 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
             ),
             BottomNavigationBarItem(
               icon: GestureDetector(
-                child: Image.asset(Assets.msgs,height: 20,width: 20, color: _currentIndex == 2
+                child: Image.asset(Assets.msgs,height: 20,width: 20, color: workerProvider.currentIndex == 2
                     ? AppColors.clr_bg_black
                     : AppColors.clr_bg_black2,),
               ),
               title: Text(
                 "Messages",style: TextStyle(
-                color: _currentIndex == 2
+                color: workerProvider.currentIndex == 2
                     ? AppColors.clr_bg_black
                     : AppColors.clr_bg_black2,
               ),
@@ -112,13 +108,13 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
             ),
             BottomNavigationBarItem(
               icon: GestureDetector(
-                child: Image.asset(Assets.profile,height: 20,width: 20, color: _currentIndex == 3
+                child: Image.asset(Assets.profile,height: 20,width: 20, color: workerProvider.currentIndex == 3
                     ? AppColors.clr_bg_black
                     : AppColors.clr_bg_black2,),
               ),
               title: Text(
                 "Profile",style: TextStyle(
-                color: _currentIndex == 3
+                color: workerProvider.currentIndex == 3
                     ? AppColors.clr_bg_black
                     : AppColors.clr_bg_black2,
               ),
@@ -126,13 +122,13 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
             ),
             BottomNavigationBarItem(
               icon: GestureDetector(
-                child: Image.asset(Assets.alerts,height: 20,width: 20, color: _currentIndex == 4
+                child: Image.asset(Assets.alerts,height: 20,width: 20, color: workerProvider.currentIndex == 4
                     ? AppColors.clr_bg_black
                     : AppColors.clr_bg_black2,),
               ),
               title: Text(
                 "Alerts",style: TextStyle(
-                color: _currentIndex == 4
+                color: workerProvider.currentIndex == 4
                     ? AppColors.clr_bg_black
                     : AppColors.clr_bg_black2,
               ),
@@ -144,4 +140,17 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
     );
   }
 
+  _currentPage(){
+    if(workerProvider.currentIndex == 0){
+      return Gigs();
+    }if(workerProvider.currentIndex == 1){
+      return Schedule();
+    }if(workerProvider.currentIndex == 2){
+      return WorkerChatRoom();
+    }if(workerProvider.currentIndex == 3){
+      return Account();
+    }if(workerProvider.currentIndex == 4){
+      return Alerts();
+    }
+  }
 }

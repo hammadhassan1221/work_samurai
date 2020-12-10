@@ -12,6 +12,8 @@ import 'package:work_samurai/widgets/loader.dart';
 class WorkerProvider extends ChangeNotifier {
   BuildContext context;
   RangeValues values;
+  int currentIndex = 0;
+
 
   NetworkHelper _networkHelper = NetworkHelperImpl();
   FutureJobsResponse futureJobsResponse = FutureJobsResponse.empty();
@@ -27,6 +29,11 @@ class WorkerProvider extends ChangeNotifier {
   bool inProgress = false;
   init({@required BuildContext context}) async{
     this.context = context;
+  }
+
+  setCurrentIndex(int index){
+    this.currentIndex = index;
+    notifyListeners();
   }
 
 
