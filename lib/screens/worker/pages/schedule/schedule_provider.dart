@@ -11,6 +11,6 @@ class ScheduleProviders extends ChangeNotifier{
 
   void setToggleButton(bool value){
     this.value = !value;
-    notifyListeners();
+
   }
 }

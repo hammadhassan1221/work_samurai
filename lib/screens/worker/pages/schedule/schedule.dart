@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:work_samurai/animations/slide_right.dart';
 import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
+import 'package:work_samurai/screens/worker/pages/alerts/alerts.dart';
 import 'package:work_samurai/screens/worker/pages/schedule/schedule_components.dart';
 import 'package:work_samurai/screens/worker/pages/schedule/schedule_provider.dart';
 import 'package:work_samurai/widgets/widgets.dart';
@@ -36,10 +38,12 @@ class _ScheduleState extends State<Schedule> {
       color: AppColors.clr_bg,
       child: Column(children: [
         CommonWidgets.getAppBarWithout(text: "Your Schedule"),
-        SizedBox(
-          height: AppSizes.height * 0.02,
-        ),
 
+        CommonWidgets.getAlertContainer(onPress: (){Navigator.push(context, SlideRightRoute(page:Alerts()));}),
+
+        SizedBox(
+          height: AppSizes.height * 0.01,
+        ),
 
         Expanded(
           child: ListView(
@@ -118,6 +122,10 @@ class _ScheduleState extends State<Schedule> {
                 height: AppSizes.height * 0.02,
               ),
               _scheduleComponents.getDayTime(day: "Sun", time: "Available All Day"),
+
+              SizedBox(
+                height: AppSizes.height * 0.02,
+              ),
             ],
           ),
         )

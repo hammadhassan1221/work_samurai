@@ -47,7 +47,7 @@ CommonWidgets.getAppBar(text: "Document Verification", context: context),
                     width: 160,
                   ),
                 ),
-                CommonWidgets.getSignUpButton(context: context, onPress: (){}, text: "Choose File")
+                Expanded(child: CommonWidgets.getSignUpButton(context: context, onPress: (){}, text: "Choose File"))
 
               ],
             ),

@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
@@ -9,10 +10,19 @@ class MessageComponents{
     return GestureDetector(
       onTap: onPress,
       child: Container(
+
         margin: EdgeInsets.only(left: AppSizes.width*0.03,right: AppSizes.width*0.03),
         height: AppSizes.height * 0.12,
         padding: EdgeInsets.all(10.0),
         decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.25),
+                spreadRadius: 1.5,
+                blurRadius: 1,
+                offset: Offset(0, 1), // changes position of shadow
+              ),
+            ],
             borderRadius: BorderRadius.circular(8),
             color: AppColors.clr_white
         ),

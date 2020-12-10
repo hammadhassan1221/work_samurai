@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:work_samurai/animations/slide_right.dart';
 import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
@@ -30,7 +29,7 @@ class AccountComponent {
     );
   }
 
-  Widget getUserEdit({@required String imagePath,@required String text,@required Function onPress}) {
+  Widget getUserEdit({@required String imagePath,@required String text,@required Function onPress, @required String imagePath1}) {
     return Container(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -43,19 +42,32 @@ class AccountComponent {
                 width: 100,
               ),
             ),
-            GestureDetector(
-              onTap: onPress,
-              child: Container(
-                  width: AppSizes.width * 0.6,
-                  height: AppSizes.height / 8,
-                  child: Text(text,
+            Row(
+
+
+              children: [
+                Container(margin: EdgeInsets.only(bottom: AppSizes.height*0.1,),child: Image.asset(imagePath1,height: 25,width: 25,)),
+                SizedBox(width: AppSizes.width*0.0125,),
+                GestureDetector(
+                  onTap: onPress,
+                  child: Container(
+                    margin: EdgeInsets.only(bottom: AppSizes.height*0.105),
+                    alignment: Alignment.topRight,
+                    decoration : BoxDecoration(
+                        border: Border(
+                            bottom: BorderSide( color: AppColors.clr_bg_black)
+                        ),
+                ),
+                      child: Text(text,
                       textAlign: TextAlign.right,
                       style: TextStyle(
-                       // decoration: TextDecoration.underline,
+                        // decoration: TextDecoration.underline,
                         fontSize: 18,
                         fontFamily: 'MuliBold',
-                      ))),
-            )
+                      )),
+    )),
+              ],
+            ),
           ],
         ));
   }
@@ -138,7 +150,7 @@ class AccountComponent {
               ),
             ),
             SizedBox(
-              width: AppSizes.width * 0.03,
+              width: AppSizes.width * 0.015,
             ),
             Container(
                 padding: EdgeInsets.only(left: 5.0, right: 5.0),
@@ -148,13 +160,18 @@ class AccountComponent {
                       color: AppColors.clr_bg_black2,
                     )
                 ),
-                child: Text(
-                    rating,
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontFamily: 'MuliRegular',
-                      color: AppColors.clr_bg_black2,
-                    )
+                child: Container(
+                  alignment: Alignment.center,
+                  margin: EdgeInsets.only(top:3),
+                  child: Text(
+                      rating,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontFamily: 'MuliRegular',
+                        color: AppColors.clr_bg_black2,
+                      )
+                  ),
                 )
             ),
           ],
@@ -162,7 +179,7 @@ class AccountComponent {
     );
   }
 
-  Widget getPositionContainer({@required String text1,@required String text2,@required String text3,@required String text4}){
+  Widget getPositionContainer({@required String text1,@required String text2,@required String text3,@required String text4,}){
     return Container(
         child: Wrap(
           children: [
@@ -235,7 +252,41 @@ class AccountComponent {
                       color: AppColors.clr_bg_black,
                     )
                 )
-            )
+            ),
+
+            SizedBox(
+              width: AppSizes.width * 0.025,
+            ),
+
+            _getAddPosition(),
+
+
+          ],
+        )
+    );
+  }
+
+  _getAddPosition(){
+    return Container(
+      width: AppSizes.width*0.45,
+        padding: EdgeInsets.all(10.0,),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20.0),
+          color: AppColors.clr_field,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Icon(Icons.add_circle_outline,color: AppColors.clr_bg_black,size: 18,),
+//            SizedBox(width: AppSizes.width*0.015,),
+            Text(
+                "Add Positions",
+                style: TextStyle(
+                  fontSize: 15,
+                  fontFamily: 'MuliRegular',
+                  color: AppColors.clr_bg_black,
+                )
+            ),
           ],
         )
     );
@@ -261,7 +312,7 @@ class AccountComponent {
                     width: AppSizes.width * 0.02,
                   ),
                   Container(
-                      padding: EdgeInsets.all(2.0),
+                      padding: EdgeInsets.all(3.0),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10.0),
                           border: Border.all(
@@ -282,7 +333,7 @@ class AccountComponent {
                               style: TextStyle(
                                 fontSize: 12,
                                 fontFamily: 'MuliRegular',
-                                color: AppColors.clr_bg_grey,
+                                color: AppColors.clr_bg_black,
                               )
                           )
                         ],

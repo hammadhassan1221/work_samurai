@@ -1,15 +1,12 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:work_samurai/animations/slide_right.dart';
 import 'package:work_samurai/models/hitting_model/sign_up_screen/sign_up_model.dart';
 import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/screens/sign_up/sign_up_providers.dart';
 import 'package:work_samurai/screens/sign_up/signup_components.dart';
-import 'package:work_samurai/screens/worker/worker.dart';
 import 'package:work_samurai/widgets/widgets.dart';
 
 class SignUp extends StatefulWidget {
@@ -18,6 +15,7 @@ class SignUp extends StatefulWidget {
 }
 
 SignUpComponents _signUpComponents;
+String _selectedSkillId;
 
 class _SignUpState extends State<SignUp> {
   bool onCheck = false;
@@ -27,12 +25,16 @@ class _SignUpState extends State<SignUp> {
       _confirmPassword,
       _phoneNumber,
       _firstName,
+      _skillId,
       _lastName;
   SignUpProvider _signUpProvider;
+  String _selectedValue;
 
   String male, female;
   FocusNode _focusNode;
 
+  DateTime _selectedDate;
+  int _currentYear;
   int _selectedIndex;
 
   @override
@@ -53,6 +55,7 @@ class _SignUpState extends State<SignUp> {
     _signUpProvider = Provider.of<SignUpProvider>(context, listen: false);
     _signUpProvider.init(context: context);
     _selectedIndex = 0;
+    _skillId = TextEditingController();
   }
 
   onSelect(value) {
@@ -70,14 +73,14 @@ class _SignUpState extends State<SignUp> {
       body: Container(
           height: AppSizes.height,
           width: AppSizes.width,
-          color: AppColors.clr_field,
+          color: AppColors.clr_bg,
           child: Column(
             children: [
               CommonWidgets.getAppBarWithout(text: "Sign Up"),
               Expanded(
                   child: ListView(
                 children: [
-                  _signUpComponents.getInputField(
+                  CommonWidgets.getInputField(
                     backgroundColor: AppColors.transparentColor,
                     borderColor: AppColors.sign_field,
                     textColor: AppColors.clr_bg_black,
@@ -86,7 +89,7 @@ class _SignUpState extends State<SignUp> {
                     controller: _firstName,
                     isPassword: false,
                   ),
-                  _signUpComponents.getInputField(
+                  CommonWidgets.getInputField(
                     backgroundColor: AppColors.transparentColor,
                     borderColor: AppColors.sign_field,
                     textColor: AppColors.clr_bg_black,
@@ -95,7 +98,7 @@ class _SignUpState extends State<SignUp> {
                     controller: _lastName,
                     isPassword: false,
                   ),
-                  _signUpComponents.getInputField(
+                  CommonWidgets.getInputField(
                     backgroundColor: AppColors.transparentColor,
                     borderColor: AppColors.sign_field,
                     textColor: AppColors.clr_bg_black,
@@ -104,7 +107,7 @@ class _SignUpState extends State<SignUp> {
                     controller: _email,
                     isPassword: false,
                   ),
-                  _signUpComponents.getInputField(
+                  CommonWidgets.getInputField(
                     backgroundColor: AppColors.transparentColor,
                     borderColor: AppColors.sign_field,
                     textColor: AppColors.clr_bg_black,
@@ -113,26 +116,59 @@ class _SignUpState extends State<SignUp> {
                     controller: _password,
                     isPassword: true,
                   ),
-                  _signUpComponents.getInputField(
-                      backgroundColor: AppColors.transparentColor,
-                      borderColor: AppColors.sign_field,
-                      textColor: AppColors.clr_bg_black,
-                      text: "Confirm Password",
-                      imagePath: Assets.lock,
-                      controller: _confirmPassword,
-                      isPassword: true),
-                  _signUpComponents.getInputField(
+                  CommonWidgets.getInputField(
                     backgroundColor: AppColors.transparentColor,
                     borderColor: AppColors.sign_field,
                     textColor: AppColors.clr_bg_black,
-                    text: "Country",
-                    imagePath: Assets.city,
-                    isPassword: false,
+                    text: "Confirm Password",
+                    imagePath: Assets.lock,
+                    controller: _confirmPassword,
+                    isPassword: true,
                   ),
+                  _signUpProvider.isDataFetched
+                      ? Container(
+                          padding: EdgeInsets.only(
+                            left: AppSizes.width * 0.03,
+                            right: AppSizes.width * 0.03,
+                          ),
+                          height: AppSizes.height * 0.07,
+                          width: AppSizes.width,
+                          decoration: BoxDecoration(
+                              border: Border.all(color: AppColors.sign_field),
+                              borderRadius: BorderRadius.circular(8)),
+                          margin: EdgeInsets.only(
+                            left: AppSizes.width * 0.03,
+                            right: AppSizes.width * 0.03,
+                            top: AppSizes.width * 0.03,
+                          ),
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton<String>(
+                              isExpanded: true,
+                              value: _selectedValue,
+                              hint: Text("Select job skill"),
+                              items: _signUpProvider.skills
+                                  .map<DropdownMenuItem<String>>(
+                                      (String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                              onChanged: (String value) {
+                                setState(() {
+                                  _selectedValue = value;
+                                  _selectedSkillId = _signUpProvider.skillIDs[
+                                      _signUpProvider.skills.indexOf(value)];
+                                });
+                              },
+                            ),
+                          ),
+                        )
+                      : Container(),
                   Container(
                       margin: EdgeInsets.only(
-                          top: AppSizes.height * 0.01,
-                          left: AppSizes.width * 0.05,
+                          top: AppSizes.height * 0.02,
+                          left: AppSizes.height * 0.03,
                           right: AppSizes.width * 0.03),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -188,12 +224,12 @@ class _SignUpState extends State<SignUp> {
                           ),
                         ],
                       )),
-                  _signUpComponents.getInputField(
+                  CommonWidgets.phoneField(
                     backgroundColor: AppColors.transparentColor,
                     borderColor: AppColors.sign_field,
                     textColor: AppColors.clr_bg_black,
                     text: "Phone Number",
-                    imagePath: Assets.phone,
+                    iconData: Icons.local_phone,
                     controller: _phoneNumber,
                     isPassword: false,
                   ),
@@ -215,45 +251,69 @@ class _SignUpState extends State<SignUp> {
                               });
                             },
                           ),
-                          Text('I accept the  ',
+                          Text(
+                            'I accept the  ',
                             style: TextStyle(
                                 fontFamily: 'MuliRegular',
                                 color: AppColors.clr_bg_black,
-                                fontSize: 13),),
+                                fontSize: 13),
+                          ),
                           Container(
                             decoration: BoxDecoration(
-                              border: Border(bottom: BorderSide(color: AppColors.clr_bg_black))
-                            ),
-                            child: Text('Term and Conditions.',
+                                border: Border(
+                                    bottom: BorderSide(
+                                        color: AppColors.clr_bg_black))),
+                            child: Text(
+                              'Terms and Conditions.',
                               style: TextStyle(
                                 color: AppColors.clr_bg_black,
                                 fontSize: 14,
                                 fontFamily: 'MuliSemiBold',
-                              ),),
+                              ),
+                            ),
                           ),
-
                         ],
                       )),
                   SizedBox(
                     height: AppSizes.height * 0.025,
                   ),
-                 /* _signUpComponents.getSignUpButton(
+                  CommonWidgets.getSignUpButton(
                     context: context,
                     onPress: () {
-                      _makeSignUpModel();
-                      _signUpProvider.callSignUpAPI(
-                        signUpModel: _signUpModel,
-                        context: context,
-                        confirmPassword: _confirmPassword.text.toString(),
-                        male: male,
-                        female: female,
-                        onCheck: onCheck,
-                      );
+                      if (_firstName.text.isNotEmpty) {
+                        if (_lastName.text.isNotEmpty) {
+                          if (_email.text.isNotEmpty) {
+                            if (_password.text.isNotEmpty &&
+                                _confirmPassword.text.isNotEmpty &&
+                                (_password.text == _confirmPassword.text)) {
+                              if (_selectedSkillId != null) {
+                                if (getGenderText() != null) {
+                                  if (_phoneNumber.text.isNotEmpty) {
+                                    _signUpProvider.userSignUp(
+                                      context: context,
+                                      firstName: _firstName.text,
+                                      lastName: _lastName.text,
+                                      email: _email.text,
+                                      password:_password.text,
+                                      phone: _phoneNumber.text,
+                                      skill: _selectedSkillId,
+                                    );
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
                     },
                     text: "Sign Up",
-                  ),*/
-                  CommonWidgets.getSignUpButton(
-                      context: context, onPress: () {Navigator.push(context, SlideRightRoute(page: Worker()));}, text: "Sign Up")
+                  ),
+                  SizedBox(
+                    height: AppSizes.height * 0.025,
+                  ),
+                  //   CommonWidgets.getSignUpButton(
+                  //       context: context, onPress: () {Navigator.push(context, SlideRightRoute(page: Worker()));}, text: "Sign Up")
+                  //
                 ],
               )),
             ],
@@ -261,7 +321,8 @@ class _SignUpState extends State<SignUp> {
     ));
   }
 
-  _makeSignUpModel() {
+  SignUpModel _makeSignUpModel() {
+    _signUpModel.skillId = _selectedSkillId;
     _signUpModel.emailAddress = _email.text.toString();
     _signUpModel.password = _password.text.toString();
     _signUpModel.firstName = _firstName.text.toString();

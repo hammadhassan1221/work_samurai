@@ -32,7 +32,11 @@ dependencies:
   fluttertoastalert: ^1.0.3
   shared_preferences: ^0.5.8
   dio: ^3.0.10
-
+  font_awesome: ^5.10.1
+  fluttericon: ^1.0.7
+  syncfusion_flutter_calendar: ^18.3.52
+  dotted_border: ^1.0.7
+  image_picker: ^0.6.6+5
 
 
   # The following adds the Cupertino Icons font to your application.

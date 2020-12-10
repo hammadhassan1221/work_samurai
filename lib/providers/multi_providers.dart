@@ -3,13 +3,13 @@ import 'package:work_samurai/screens/app_settings/app_settings_provider.dart';
 import 'package:work_samurai/screens/card_details/card_details_provider.dart';
 import 'package:work_samurai/screens/chat/chat_providers.dart';
 import 'package:work_samurai/screens/documents/documents_provider.dart';
+import 'package:work_samurai/screens/earning_details/earning_details_provider.dart';
 import 'package:work_samurai/screens/earnings/earnings_providers.dart';
-import 'package:work_samurai/screens/earnings/tab_bar_view/all_earnings/all_earnings_provider.dart';
-import 'package:work_samurai/screens/earnings/tab_bar_view/daily_earning/daily_earning_provider.dart';
-import 'package:work_samurai/screens/earnings/tab_bar_view/monthly_earning/monthly_provider.dart';
+import 'package:work_samurai/screens/edit_profile/edit_profile_provider.dart';
 import 'package:work_samurai/screens/forget_password/forget_password_provider.dart';
-
+import 'package:work_samurai/screens/job_roles/job_roles_providers.dart';
 import 'package:work_samurai/screens/login/login_providers.dart';
+import 'package:work_samurai/screens/password/password_providers.dart';
 import 'package:work_samurai/screens/settings/settings_provider.dart';
 import 'package:work_samurai/screens/sign_up/sign_up_providers.dart';
 import 'package:work_samurai/screens/splash/splash_providers.dart';
@@ -66,20 +66,12 @@ final multiProviders=[
     create: (_) => EarningProviders(),
     lazy: true,
   ),
-  ChangeNotifierProvider<DailyEarningProviders>(
-    create: (_) => DailyEarningProviders(),
+  ChangeNotifierProvider<EarningDetailsProviders>(
+    create: (_) => EarningDetailsProviders(),
     lazy: true,
   ),
-  ChangeNotifierProvider<MonthlyProviders>(
-    create: (_) => MonthlyProviders(),
-    lazy: true,
-  ),
-  ChangeNotifierProvider<AllEarningProviders>(
-    create: (_) => AllEarningProviders(),
-    lazy: true,
-  ),
-  ChangeNotifierProvider<SettingsProviders>(
-    create: (_) => SettingsProviders(),
+  ChangeNotifierProvider<EditProfileProviders>(
+    create: (_) => EditProfileProviders(),
     lazy: true,
   ),
   ChangeNotifierProvider<UpdateDocumentProviders>(
@@ -100,6 +92,18 @@ final multiProviders=[
   ),
   ChangeNotifierProvider<ScheduleProviders>(
     create: (_) => ScheduleProviders(),
+    lazy: true,
+  ),
+  ChangeNotifierProvider<SettingsProviders>(
+    create: (_) => SettingsProviders(),
+    lazy: true,
+  ),
+  ChangeNotifierProvider<PasswordProviders>(
+    create: (_) => PasswordProviders(),
+    lazy: true,
+  ),
+  ChangeNotifierProvider<JobRolesProviders>(
+    create: (_) => JobRolesProviders(),
     lazy: true,
   ),
 ];

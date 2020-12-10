@@ -19,5 +19,6 @@ class _AlertsState extends State<Alerts> {
   @override
   Widget build(BuildContext context) {
     return _alertsComponents.getAlerts();
+
   }
 }

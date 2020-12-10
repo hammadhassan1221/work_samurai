@@ -18,7 +18,7 @@ class _ChatScreenState extends State<ChatScreen> {
             resizeToAvoidBottomInset: true,
             //resizeToAvoidBottomPadding: true,
             body: Container(
-              color: AppColors.clr_bg,
+              color: AppColors.clr_white,
               height: AppSizes.height,
               width: AppSizes.width,
               child: Column(
@@ -45,7 +45,7 @@ class _ChatScreenState extends State<ChatScreen> {
                             children: [
                               Image.asset(Assets.support),
                               SizedBox(
-                                width: AppSizes.width * 0.015,
+                                width: AppSizes.width * 0.03,
                               ),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,8 +83,17 @@ class _ChatScreenState extends State<ChatScreen> {
                                 margin: EdgeInsets.all(12),
                                 padding: EdgeInsets.all(10),
                                 width: AppSizes.width * 0.60,
+
                                 decoration: BoxDecoration(
-                                    color: AppColors.clr_bg_grey,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.withOpacity(0.25),
+                                        spreadRadius: 0.5,
+                                        blurRadius: 1,
+                                        offset: Offset(0, 1), // changes position of shadow
+                                      ),
+                                    ],
+                                    color: AppColors.clr_bg,
                                     borderRadius: BorderRadius.circular(8)),
                                 child: Text(
                                   "Morbi pretium, massa non ornare fringilla, odio eros euismod nibh, venenatis commodo orci diam in sapien. Curabitur ut massa odio.",
@@ -103,7 +112,15 @@ class _ChatScreenState extends State<ChatScreen> {
                                 padding: EdgeInsets.all(10),
                                 width: AppSizes.width * 0.25,
                                 decoration: BoxDecoration(
-                                    color: AppColors.clr_bg_grey,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.withOpacity(0.25),
+                                        spreadRadius: 0.5,
+                                        blurRadius: 1,
+                                        offset: Offset(0, 1), // changes position of shadow
+                                      ),
+                                    ],
+                                    color: AppColors.clr_bg,
                                     borderRadius: BorderRadius.circular(8)),
                                 child: Text(
                                   "Aliquam!",
@@ -118,11 +135,11 @@ class _ChatScreenState extends State<ChatScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Container(
-                                margin: EdgeInsets.all(6),
-                                height: AppSizes.height * 0.06,
+                                margin: EdgeInsets.only(top: 3),
                                 padding: EdgeInsets.all(10),
                                 width: AppSizes.width * 0.25,
                                 decoration: BoxDecoration(
+
                                     color: AppColors.transparentColor,
                                     borderRadius: BorderRadius.circular(8)),
                                 child: Text(
@@ -143,6 +160,14 @@ class _ChatScreenState extends State<ChatScreen> {
                                 padding: EdgeInsets.all(10),
                                 width: AppSizes.width * 0.60,
                                 decoration: BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.withOpacity(0.25),
+                                        spreadRadius: 0.5,
+                                        blurRadius: 1,
+                                        offset: Offset(0, 1), // changes position of shadow
+                                      ),
+                                    ],
                                     color: AppColors.clr_bg_black,
                                     borderRadius: BorderRadius.circular(8)),
                                 child: Text(
@@ -160,15 +185,18 @@ class _ChatScreenState extends State<ChatScreen> {
                     ),
                   ),
                   Container(
-                      alignment: Alignment.bottomLeft,
-                      color: AppColors.clr_field,
+
+                      color: AppColors.clr_white,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           _textFieldContainer(),
+                          SizedBox(
+                            width: AppSizes.width * 0.015,
+                          ),
                           Icon(Icons.attach_file),
                           SizedBox(
-                            width: AppSizes.width * 0.01,
+                            width: AppSizes.width * 0.03,
                           ),
                           Icon(Icons.send),
                         ],
@@ -180,12 +208,20 @@ class _ChatScreenState extends State<ChatScreen> {
 
   _textFieldContainer() {
     return Container(
-      height: AppSizes.height * 0.07,
-      width: AppSizes.width / 1.3,
+      height: AppSizes.height * 0.075,
+      width: AppSizes.width / 1.4,
       margin: EdgeInsets.all(10),
       padding: EdgeInsets.all(8),
       decoration: BoxDecoration(
-          color: AppColors.clr_white, borderRadius: BorderRadius.circular(6)),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.25),
+              spreadRadius: 1.5,
+              blurRadius: 1,
+              offset: Offset(0, 0), // changes position of shadow
+            ),
+          ],
+          color: AppColors.clr_bg, borderRadius: BorderRadius.circular(6)),
       child: TextField(
         decoration: InputDecoration(
             border: InputBorder.none,
@@ -200,7 +236,6 @@ class _ChatScreenState extends State<ChatScreen> {
       onTap: () {},
       child: Container(
           height: AppSizes.height * 0.07,
-          width: AppSizes.width / 6,
           margin: EdgeInsets.all(12),
           padding: EdgeInsets.all(10),
           decoration: BoxDecoration(

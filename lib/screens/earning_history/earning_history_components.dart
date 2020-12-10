@@ -1,7 +1,6 @@
 
 
 import 'package:flutter/cupertino.dart';
-import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 
@@ -15,7 +14,7 @@ class EarningHistoryComponents{
               fontSize: 20,
               decoration:TextDecoration.none,
               color: AppColors.clr_bg_black,
-              fontFamily: 'MulisSemiBold',
+              fontFamily: 'MuliRegular',
             )
         )
     );
@@ -29,6 +28,7 @@ class EarningHistoryComponents{
             style:TextStyle(
               decoration:TextDecoration.none,
               fontSize: 15,
+              fontWeight: FontWeight.w400,
               color: AppColors.clr_bg_black2,
               fontFamily: 'MuliRegular',
             ),

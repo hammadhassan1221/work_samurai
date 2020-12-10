@@ -1,4 +1,5 @@
 import 'dart:async' show Future;
+
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:work_samurai/models/api_models/login_screen/login_response.dart';
 import 'package:work_samurai/res/strings.dart';
@@ -47,5 +48,10 @@ class PreferenceUtils {
 
   static int getInt(String key, [int defValue]) {
     return _prefsInstance.getInt(key) ?? defValue ?? 0;
+  }
+
+  static void reset() {
+      _prefsInstance.clear();
+
   }
 }
