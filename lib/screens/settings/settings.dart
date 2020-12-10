@@ -72,7 +72,7 @@ class _SettingsState extends State<Settings> {
                      Navigator.push(context, SlideRightRoute(page:AppSettings()));
                    }),
 
-                   _settingsComponents.getHeadings(imagePath:Assets.logout,text: "Logout", onPress: (){_showDialog();/**/}),
+                   _settingsComponents.getHeadings(imagePath:Assets.logout,text: "Logout", onPress: (){_showDialog();}),
 
                  ],
                )))
@@ -87,10 +87,10 @@ class _SettingsState extends State<Settings> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          content:  Text("Do you want to Sign out ?"),
+          content:  Text("Do you want to Log out ?"),
           actions: <Widget>[
             FlatButton(
-              child:  Text("Sign Out"),
+              child:  Text("Log Out"),
               onPressed: () {
                 _settingsProviders.signout(context: context);
               },

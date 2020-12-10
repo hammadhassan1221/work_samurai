@@ -1,11 +1,15 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:work_samurai/animations/slide_right.dart';
 import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/screens/chat/chat_screen.dart';
+import 'package:work_samurai/screens/worker/pages/alerts/alerts.dart';
 import 'package:work_samurai/screens/worker/pages/messages/messages_components.dart';
 import 'package:work_samurai/widgets/widgets.dart';
+
+import '../../worker_provider.dart';
 
 class WorkerChatRoom extends StatefulWidget {
   @override
@@ -14,6 +18,7 @@ class WorkerChatRoom extends StatefulWidget {
 
 class _WorkerChatRoomState extends State<WorkerChatRoom> {
 
+  WorkerProvider _workerProvider;
   MessageComponents _messageComponents;
 
   @override
@@ -21,6 +26,8 @@ class _WorkerChatRoomState extends State<WorkerChatRoom> {
     // TODO: implement initState
     super.initState();
     _messageComponents= MessageComponents();
+    _workerProvider = WorkerProvider();
+
   }
   @override
   Widget build(BuildContext context) {
@@ -29,10 +36,12 @@ class _WorkerChatRoomState extends State<WorkerChatRoom> {
       width: AppSizes.width,
       color: AppColors.clr_bg,
       child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
 
             CommonWidgets.getAppBarWithout(text: "Messages",),
+
+            CommonWidgets.getAlertContainer(onPress: (){_workerProvider.setCurrentIndex(4);}),
 
             SizedBox(
               height: AppSizes.height * 0.02,
