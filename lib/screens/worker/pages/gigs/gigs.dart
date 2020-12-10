@@ -28,6 +28,7 @@ class _GigsState extends State<Gigs> with SingleTickerProviderStateMixin {
     super.initState();
     _gigsComponents = GigsComponents();
     gigsProvider = Provider.of<GigsProvider>(context, listen: false);
+
     Future.delayed(Duration.zero, () {
       gigsProvider.init(context: context);
     });

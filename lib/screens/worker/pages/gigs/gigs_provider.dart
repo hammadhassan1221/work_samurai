@@ -24,14 +24,16 @@ class GigsProvider extends ChangeNotifier {
 
   bool _isFutureJobsFetched = false;
   bool _inProgress = false;
+  bool _profileData = false;
   String _token;
 
   init({@required BuildContext context}) async {
     try {
       this.context = context;
       _token = PreferenceUtils.getString(Strings.ACCESS_TOKEN);
-     // await _getFutureJobs(context: context);
-     // await _getJobsInProgress(context: context);
+      await _getProfileData(context: context);
+      // await _getFutureJobs(context: context);
+      // await _getJobsInProgress(context: context);
     } catch (e) {
       print(e.toString());
     }
@@ -48,7 +50,8 @@ class GigsProvider extends ChangeNotifier {
       _loader.showLoader(context: context);
 
       Response _response = await _networkHelper.post(getFutureJobURL, headers: {
-        "Authorization": "Bearer " + _token,
+        "Authorization":
+            "Bearer pds1BCxnnEyfbGoxLa9fdhwRTW/GXDlm7QA7pEiAkI4Flw3Io+ojrgUAMRzkPsPnff7SbYaxmLmu06DmLCemuk7641nAdqz1wwjsv1VivPKleNBKXuBRBoAwyhfhxwQQIfDVlNbIHsY0GpL5A2kRzFrjrWRvmVNwEGtC3GLfP5zIln3oc+E56sQ8NYDUY7lLsngG1XPO40SSHaTOAXtYd9wOrapbyo6vonKpOl/Tzc9oesLpaPnFQr5yqKJU5FSGV0sS85z8aUedYQ0UVLHucClQPc1skVeTePY6VBzBQx9yQ=",
         "DeviceID": "Device Id goes here",
       }, body: {});
 
@@ -64,6 +67,37 @@ class GigsProvider extends ChangeNotifier {
         _isFutureJobsFetched = true;
 
         if (_futureJobsResponse.data != null) {
+          notifyListeners();
+        }
+      }
+    } catch (e) {
+      _loader.hideLoader(context);
+      print(e.toString());
+    }
+  }
+
+  Future _getProfileData({@required BuildContext context}) async {
+    try {
+      _loader.showLoader(context: context);
+      Response _response = await _networkHelper.post(getData, headers: {
+        "Authorization": "Bearer " + _token,
+        "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
+        "Scope":
+            "profile,useraddress,preferences,userskills,usersettings,userverifications,usercompliments,userrating,CompletedJobs,supporttickets,company,companyaddress,companycompliments,companyrating,verificationmethods,compliments,systemskills,AccountVerified,paymentdetails",
+      }, body: {});
+
+      if (_response.statusCode != 200) {
+        _loader.hideLoader(context);
+        throw ("couldn't get the data");
+      }
+      if (_response.statusCode == 200) {
+        _loader.hideLoader(context);
+        _futureJobsResponse = FutureJobsResponse.fromJson(
+            _genericDecodeEncode.decodeJson(Helper.getString(_response)));
+        _isFutureJobsFetched = true;
+
+        if (_futureJobsResponse.data != null) {
+          _profileData = true;
           notifyListeners();
         }
       }
@@ -102,6 +136,10 @@ class GigsProvider extends ChangeNotifier {
 
   getFutureJobResponse() {
     return this._futureJobsResponse;
+  }
+
+  getProfileData() {
+    return this._profileData;
   }
 
   getFutureJobFetched() {

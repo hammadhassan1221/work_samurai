@@ -10,3 +10,7 @@ const String getForgetPasswordURL = "$baseUrl/Job/FutureWorks";
 const String getAppDataAPI = "$baseUrl/GetAppData";
 const String getBankDetailURL = "$baseUrl/User/BankAccount/Save";
 const String getUserVerificationAPI = "$baseUrl/User/Verification/Save";
+
+const String getData = "$baseUrl/GetData";
+
+
