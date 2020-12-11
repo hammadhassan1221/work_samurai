@@ -20,8 +20,8 @@ class EditProfileComponents {
       {@required Color backgroundColor,
         @required Color borderColor,
         @required Color textColor,
-
         @required String text,
+        @required String value,
         // @required TextEditingController controller,
         @required bool isPassword,
       }) {
@@ -90,6 +90,7 @@ class EditProfileComponents {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(text,style: TextStyle(color:textColor),),
                 Text(text1,style: TextStyle(color: AppColors.clr_bg_black2),),

@@ -98,6 +98,8 @@ class GigsProvider extends ChangeNotifier {
 
         String userData = Helper.getString(_response);
 
+        PreferenceUtils.setUserData(userData);
+
 
         _userWholeData = UserWholeData.fromJson(
             _genericDecodeEncode.decodeJson(Helper.getString(_response)));

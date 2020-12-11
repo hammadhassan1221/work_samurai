@@ -12,5 +12,6 @@ const String getBankDetailURL = "$baseUrl/User/BankAccount/Save";
 const String getUserVerificationAPI = "$baseUrl/User/Verification/Save";
 
 const String getData = "$baseUrl/GetData";
+const String getVerifyEmail = "$baseUrl/User/Verify/Email";
 
 
