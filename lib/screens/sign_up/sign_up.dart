@@ -7,6 +7,7 @@ import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/screens/sign_up/sign_up_providers.dart';
 import 'package:work_samurai/screens/sign_up/signup_components.dart';
+import 'package:work_samurai/widgets/toast.dart';
 import 'package:work_samurai/widgets/widgets.dart';
 
 class SignUp extends StatefulWidget {
@@ -55,6 +56,7 @@ class _SignUpState extends State<SignUp> {
     _signUpProvider = Provider.of<SignUpProvider>(context, listen: false);
     _signUpProvider.init(context: context);
     _selectedIndex = 0;
+
     _skillId = TextEditingController();
   }
 
@@ -294,27 +296,59 @@ class _SignUpState extends State<SignUp> {
                                       firstName: _firstName.text,
                                       lastName: _lastName.text,
                                       email: _email.text,
-                                      password:_password.text,
+                                      password: _password.text,
                                       phone: _phoneNumber.text,
                                       skill: _selectedSkillId,
                                       gender: getGenderText(),
                                     );
+                                  } else {
+                                    ApplicationToast.getWarningToast(
+                                        durationTime: 3,
+                                        heading: "Error",
+                                        subHeading: "Phone Number is empty");
                                   }
+                                } else {
+                                  ApplicationToast.getWarningToast(
+                                      durationTime: 3,
+                                      heading: "Error",
+                                      subHeading: "Gender is empty");
                                 }
+                              } else {
+                                ApplicationToast.getWarningToast(
+                                    durationTime: 3,
+                                    heading: "Error",
+                                    subHeading: "Select skill");
                               }
+                            } else {
+                              ApplicationToast.getWarningToast(
+                                  durationTime: 3,
+                                  heading: "Error",
+                                  subHeading:
+                                      "Password and Confirm Password should be equal");
                             }
+                          } else {
+                            ApplicationToast.getWarningToast(
+                                durationTime: 3,
+                                heading: "Error",
+                                subHeading: "Email is empty");
                           }
+                        } else {
+                          ApplicationToast.getWarningToast(
+                              durationTime: 3,
+                              heading: "Error",
+                              subHeading: "Last Name is Empty is empty");
                         }
+                      } else {
+                        ApplicationToast.getWarningToast(
+                            durationTime: 3,
+                            heading: "Error",
+                            subHeading: "First Name is Empty");
                       }
-                    },
-                    text: "Sign Up",
+                    },text: "Sign Up"
                   ),
                   SizedBox(
                     height: AppSizes.height * 0.025,
                   ),
-                  //   CommonWidgets.getSignUpButton(
-                  //       context: context, onPress: () {Navigator.push(context, SlideRightRoute(page: Worker()));}, text: "Sign Up")
-                  //
                 ],
               )),
             ],

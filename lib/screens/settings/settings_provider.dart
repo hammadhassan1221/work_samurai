@@ -52,7 +52,7 @@ class SettingsProviders extends ChangeNotifier{
 
 
         Navigator.push(_context, SlideRightRoute(page: Login()));
-        ApplicationToast.getSuccessToast(durationTime: 3, heading: "Congratulation", subHeading: "User sign out successfully");
+        ApplicationToast.getSuccessToast(durationTime: 3, heading: "", subHeading: "Sign Out Successful");
 
       }
     }

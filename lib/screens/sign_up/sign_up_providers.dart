@@ -107,13 +107,16 @@ class SignUpProvider extends ChangeNotifier {
         _loader.hideLoader(context);
         _loginResponse = LoginResponse.fromJson(_response.data);
         print(_loginResponse.accessToken);
-
-        ApplicationToast.getSuccessToast(
-            durationTime: 3,
-            heading: "Success",
-            subHeading: "Sign up successful");
-        Navigator.pushReplacement(context, SlideRightRoute(page: Worker()));
-      }
+        if (_loginResponse.accessToken != null){
+          PreferenceUtils.setLoginResponse(_loginResponse);
+          print(_loginResponse.accessToken);
+          ApplicationToast.getSuccessToast(
+              durationTime: 3,
+              heading: "Success",
+              subHeading: "Sign up successful");
+          Navigator.pushReplacement(context, SlideRightRoute(page: Worker()));
+        }
+    }
     } catch (e) {
       _loader.hideLoader(context);
       print(e.toString());

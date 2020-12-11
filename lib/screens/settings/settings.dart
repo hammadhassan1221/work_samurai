@@ -71,7 +71,6 @@ class _SettingsState extends State<Settings> {
                    _settingsComponents.getHeadings(imagePath:Assets.slider,text: "App Settings", onPress: (){
                      Navigator.push(context, SlideRightRoute(page:AppSettings()));
                    }),
-
                    _settingsComponents.getHeadings(imagePath:Assets.logout,text: "Logout", onPress: (){_showDialog();}),
 
                  ],
@@ -86,17 +85,28 @@ class _SettingsState extends State<Settings> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return AlertDialog(
-          content:  Text("Do you want to Log out ?"),
+        return CupertinoAlertDialog(
+          title: Text("SIGN OUT"),
           actions: <Widget>[
-            FlatButton(
-              child:  Text("Log Out",style: TextStyle(
-                color: AppColors.clr_bg_black
-              ),),
+            // FlatButton(
+            //   child:  Text("Log Out",style: TextStyle(
+            //     color: AppColors.clr_bg_black
+            //   ),),
+            //   onPressed: () {
+            //     _settingsProviders.signout(context: context);
+            //   },
+            // ),
+            CupertinoButton(
+                child: Text('Cancel'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                }),
+            CupertinoButton(
+              child: Text('Sign Out'),
               onPressed: () {
                 _settingsProviders.signout(context: context);
               },
-            ),
+            )
           ],
         );
       },

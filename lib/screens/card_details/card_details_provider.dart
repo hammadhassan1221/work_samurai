@@ -1,12 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:work_samurai/animations/slide_right.dart';
+import 'package:work_samurai/commons/utils.dart';
 import 'package:work_samurai/generic_decode_encode/generic.dart';
 import 'package:work_samurai/main.dart';
 import 'package:work_samurai/models/api_models/bank_detail/bank_detail_response.dart';
 import 'package:work_samurai/network/api_urls.dart';
 import 'package:work_samurai/network/network_helper.dart';
 import 'package:work_samurai/network/network_helper_impl.dart';
+import 'package:work_samurai/res/strings.dart';
 import 'package:work_samurai/screens/worker/worker.dart';
 import 'package:work_samurai/widgets/loader.dart';
 import 'package:work_samurai/widgets/toast.dart';
@@ -14,9 +16,11 @@ import 'package:http/http.dart' as http;
 
 class CardDetailsProvider extends ChangeNotifier {
   BuildContext context;
+  String _token;
 
   init({@required BuildContext context}) {
     this.context = context;
+    _token = PreferenceUtils.getString(Strings.ACCESS_TOKEN);
   }
 
   NetworkHelper _networkHelper = NetworkHelperImpl();
@@ -45,7 +49,7 @@ class CardDetailsProvider extends ChangeNotifier {
         options: Options(
           contentType: Headers.formUrlEncodedContentType,
           headers: {
-            "Authorization": "Bearer EK4mqiGSPqKbNKKuXy0ULc+Mce8+u7BKwWKKITcbDwMKRoNMqsfNJayRbRut2FMegNZGh/p9Ot3DOG6DFUpG1gUuFpxNbj8ixDf0nczIZ7UdAKebRyi7XUDgCzTt6CscktYJVwIpJBhcAOzznaMXDOyZkkr8mZJpewhj2t8fI0FwOeNtORpQ6MiXI0k0uIm3W0/7j7rJC1VhRwzxHd6bMAAGRZTVYrTAOpfNwazBfEa2er2SV3qkR/u+GUha09yAWU8/EerM3GqSuT14MpRCFpGZVJKHy2Yx9uTA6UBwIhePc=",
+            "Authorization": "Bearer " + _token,
             "DeviceId" : "A580E6FE-DA99-4066-AFC7-C939104AED7F",
           },
         ),
@@ -58,10 +62,7 @@ class CardDetailsProvider extends ChangeNotifier {
       }
       if (_response.statusCode == 200) {
         _loader.hideLoader(context);
-        print('name123');
-
         _bankDetailResponse = BankDetailResponse.fromJson(_response.data);
-        // print(_bankDetailResponse.data);
 
         ApplicationToast.getSuccessToast(
             durationTime: 3, heading: "Successfully Updated", subHeading: "");
