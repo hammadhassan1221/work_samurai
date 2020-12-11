@@ -1,3 +1,4 @@
+
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -104,6 +105,7 @@ class SignUpProvider extends ChangeNotifier {
         throw "Unauthorized";
       }
       if (_response.statusCode == 200) {
+
         _loader.hideLoader(context);
         _loginResponse = LoginResponse.fromJson(_response.data);
         print(_loginResponse.accessToken);
