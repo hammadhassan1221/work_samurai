@@ -1,4 +1,3 @@
-
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:work_samurai/animations/slide_right.dart';
@@ -37,7 +36,7 @@ class LoginProvider extends ChangeNotifier {
       var formData = Map<String, dynamic>();
       formData['EmailAddress'] = email;
       formData['Password'] = password;
-      formData['DeviceID'] = "Device Id comes here";
+      formData['DeviceID'] = "A580E6FE-DA99-4066-AFC7-C939104AED7F";
       dio.options.contentType = Headers.formUrlEncodedContentType;
 
       Response _response = await dio.post(
@@ -55,16 +54,23 @@ class LoginProvider extends ChangeNotifier {
         throw "Unauthorized";
       }
       if (_response.statusCode == 200) {
-      //  _loader.hideLoader(context);
+        //  _loader.hideLoader(context);
         _loginResponse = LoginResponse.fromJson(_response.data);
-        PreferenceUtils.setLoginResponse(_loginResponse);
-        print(_loginResponse.accessToken);
+        if (_loginResponse.accessToken != null) {
+          PreferenceUtils.setLoginResponse(_loginResponse);
+          print(_loginResponse.accessToken);
 
-        ApplicationToast.getSuccessToast(
-            durationTime: 3,
-            heading: "Success",
-            subHeading: "Login Successful");
-        Navigator.pushReplacement(context, SlideRightRoute(page: Worker()));
+          ApplicationToast.getSuccessToast(
+              durationTime: 3,
+              heading: "Success",
+              subHeading: "Login Successful");
+          Navigator.pushReplacement(context, SlideRightRoute(page: Worker()));
+        } else {
+          ApplicationToast.getErrorToast(
+              durationTime: 3,
+              heading: "Oops",
+              subHeading: "Please enter valid credentials");
+        }
       }
     } catch (e) {
       _loader.hideLoader(context);
@@ -81,16 +87,11 @@ class LoginProvider extends ChangeNotifier {
         _login(context: context, email: email, password: password);
       } else {
         ApplicationToast.getWarningToast(
-            durationTime: 3,
-            heading: "Error",
-            subHeading: "Password is empty");
+            durationTime: 3, heading: "Error", subHeading: "Password is empty");
       }
     } else {
       ApplicationToast.getWarningToast(
-          durationTime: 3,
-          heading: "Error",
-          subHeading:
-              "Email is Empty");
+          durationTime: 3, heading: "Error", subHeading: "Email is Empty");
     }
   }
 }

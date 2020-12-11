@@ -297,6 +297,7 @@ class _SignUpState extends State<SignUp> {
                                       password:_password.text,
                                       phone: _phoneNumber.text,
                                       skill: _selectedSkillId,
+                                      gender: getGenderText(),
                                     );
                                   }
                                 }
