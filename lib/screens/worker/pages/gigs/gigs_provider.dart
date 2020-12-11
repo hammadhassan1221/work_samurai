@@ -6,11 +6,13 @@ import 'package:work_samurai/generic_decode_encode/generic.dart';
 import 'package:work_samurai/helper/helper.dart';
 import 'package:work_samurai/models/api_models/worker_screen/gigs_screen/future_jobs_response.dart';
 import 'package:work_samurai/models/api_models/worker_screen/gigs_screen/jobs_in_progress_response.dart';
+import 'package:work_samurai/models/get_data/UserWholeData.dart';
 import 'package:work_samurai/network/api_urls.dart';
 import 'package:work_samurai/network/network_helper.dart';
 import 'package:work_samurai/network/network_helper_impl.dart';
 import 'package:work_samurai/res/strings.dart';
 import 'package:work_samurai/widgets/loader.dart';
+import 'package:work_samurai/widgets/toast.dart';
 
 class GigsProvider extends ChangeNotifier {
   BuildContext context;
@@ -19,6 +21,7 @@ class GigsProvider extends ChangeNotifier {
   NetworkHelper _networkHelper = NetworkHelperImpl();
   FutureJobsResponse _futureJobsResponse = FutureJobsResponse.empty();
   JobsInProgressResponse _jobsInResponse = JobsInProgressResponse();
+  UserWholeData _userWholeData = UserWholeData();
   GenericDecodeEncode _genericDecodeEncode = GenericDecodeEncode();
   Loader _loader = Loader();
 
@@ -92,13 +95,18 @@ class GigsProvider extends ChangeNotifier {
       }
       if (_response.statusCode == 200) {
         _loader.hideLoader(context);
-        _futureJobsResponse = FutureJobsResponse.fromJson(
-            _genericDecodeEncode.decodeJson(Helper.getString(_response)));
-        _isFutureJobsFetched = true;
 
-        if (_futureJobsResponse.data != null) {
-          _profileData = true;
-          notifyListeners();
+        String userData = Helper.getString(_response);
+
+
+        _userWholeData = UserWholeData.fromJson(
+            _genericDecodeEncode.decodeJson(Helper.getString(_response)));
+
+        if (_userWholeData.data.accountVerified == false) {
+          ApplicationToast.getErrorToast(
+              durationTime: 3,
+              heading: "Success",
+              subHeading: "Account not verified");
         }
       }
     } catch (e) {
