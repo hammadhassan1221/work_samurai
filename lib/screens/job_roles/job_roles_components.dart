@@ -98,6 +98,7 @@ class JobRolesComponents{
 
       child:Text(job,style: TextStyle(
         fontSize: 22,
+        fontWeight: FontWeight.w400,
         fontFamily: 'MuliSemiBold',
 
       ),),

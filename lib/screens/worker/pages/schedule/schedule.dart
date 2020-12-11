@@ -8,6 +8,7 @@ import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/screens/worker/pages/alerts/alerts.dart';
 import 'package:work_samurai/screens/worker/pages/schedule/schedule_components.dart';
 import 'package:work_samurai/screens/worker/pages/schedule/schedule_provider.dart';
+import 'package:work_samurai/screens/worker/worker_provider.dart';
 import 'package:work_samurai/widgets/widgets.dart';
 
 class Schedule extends StatefulWidget {
@@ -20,6 +21,7 @@ class _ScheduleState extends State<Schedule> {
   double _value = 0.0;
   ScheduleComponents _scheduleComponents;
   ScheduleProviders _scheduleProviders;
+  WorkerProvider _workerProvider;
 
   @override
   void initState() {
@@ -28,18 +30,20 @@ class _ScheduleState extends State<Schedule> {
 
     _scheduleComponents = ScheduleComponents();
     _scheduleProviders = Provider.of<ScheduleProviders>(context, listen:false);
+    _workerProvider = Provider.of<WorkerProvider>(context,listen: false);
   }
 
   @override
   Widget build(BuildContext context) {
     Provider.of<ScheduleProviders>(context, listen:true);
+    Provider.of<WorkerProvider>(context,listen: true);
     return Container(
       width: AppSizes.width,
       color: AppColors.clr_bg,
       child: Column(children: [
         CommonWidgets.getAppBarWithout(text: "Your Schedule"),
 
-        CommonWidgets.getAlertContainer(onPress: (){Navigator.push(context, SlideRightRoute(page:Alerts()));}),
+        CommonWidgets.getAlertContainer(onPress: (){_workerProvider.setCurrentIndex(4);}),
 
         SizedBox(
           height: AppSizes.height * 0.01,

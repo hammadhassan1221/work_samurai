@@ -45,7 +45,7 @@ class CardDetailsProvider extends ChangeNotifier {
         options: Options(
           contentType: Headers.formUrlEncodedContentType,
           headers: {
-            "Authorization": "Bearer Own6WFxRuePbeeM80X9aHfocfDOUHCN9yC3CWMLqLEgRLQhzbpeBoET70GbxB6lbthXg/l3WwCJmp4X5bXIaAMmI4GxWoJqtQL4AhzOQjAz2SmIofZs8FmBgf3TTPUaoIuKS8gGP0vOJQq2Cv8SiXyG3EuCmK+t49gJnFKysrBfgOPbtHImoS+0wZXZpfh8dLjMjJN3n8bbnEj+GloDd7OgzGaOWF5zN9b+ezlp1n2rkPX/0HRFh/wc3wdFykFGqC4oH8fzRGcnIfbDQ/CurRLZuJLMTicpRij4Ih9XXriq6o=",
+            "Authorization": "Bearer EK4mqiGSPqKbNKKuXy0ULc+Mce8+u7BKwWKKITcbDwMKRoNMqsfNJayRbRut2FMegNZGh/p9Ot3DOG6DFUpG1gUuFpxNbj8ixDf0nczIZ7UdAKebRyi7XUDgCzTt6CscktYJVwIpJBhcAOzznaMXDOyZkkr8mZJpewhj2t8fI0FwOeNtORpQ6MiXI0k0uIm3W0/7j7rJC1VhRwzxHd6bMAAGRZTVYrTAOpfNwazBfEa2er2SV3qkR/u+GUha09yAWU8/EerM3GqSuT14MpRCFpGZVJKHy2Yx9uTA6UBwIhePc=",
             "DeviceId" : "A580E6FE-DA99-4066-AFC7-C939104AED7F",
           },
         ),
@@ -61,11 +61,7 @@ class CardDetailsProvider extends ChangeNotifier {
         print('name123');
 
         _bankDetailResponse = BankDetailResponse.fromJson(_response.data);
-        print('name');
-        print(_bankDetailResponse.data.accountNumber);
-        print('name');
-        //PreferenceUtils.setLoginResponse(_bankDetailResponse);
-        // print(_loginResponse.accessToken);
+        // print(_bankDetailResponse.data);
 
         ApplicationToast.getSuccessToast(
             durationTime: 3, heading: "Successfully Updated", subHeading: "");

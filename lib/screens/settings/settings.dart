@@ -90,7 +90,9 @@ class _SettingsState extends State<Settings> {
           content:  Text("Do you want to Log out ?"),
           actions: <Widget>[
             FlatButton(
-              child:  Text("Log Out"),
+              child:  Text("Log Out",style: TextStyle(
+                color: AppColors.clr_bg_black
+              ),),
               onPressed: () {
                 _settingsProviders.signout(context: context);
               },

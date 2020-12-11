@@ -26,7 +26,7 @@ class SettingsComponents{
               child: Text(
                   text,
                   style: TextStyle(
-                    fontSize: 15,
+                    fontSize: 18,
                     color: AppColors.clr_bg_black,
                     fontFamily: 'MuliSemiBold',
                   )
