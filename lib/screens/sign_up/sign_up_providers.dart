@@ -66,15 +66,16 @@ class SignUpProvider extends ChangeNotifier {
     }
   }
 
-  Future userSignUp(
-      {@required BuildContext context,
-      @required String firstName,
-      @required String lastName,
-      @required String email,
-      @required String password,
-      @required String phone,
-      @required String skill,
-      }) async {
+  Future userSignUp({
+    @required BuildContext context,
+    @required String firstName,
+    @required String lastName,
+    @required String email,
+    @required String password,
+    @required String phone,
+    @required String skill,
+    @required String gender,
+  }) async {
     try {
       _loader.showLoader(context: context);
       var formData = Map<String, dynamic>();
@@ -82,9 +83,10 @@ class SignUpProvider extends ChangeNotifier {
       formData['Lastname'] = lastName;
       formData['EmailAddress'] = email;
       formData['Password'] = password;
-      formData['Phone'] = phone;
+      formData['Gender'] = gender;
+      formData['Mobile'] = phone;
+      formData['TNCAccepted'] = true;
       formData['SkillID'] = int.parse(skill);
-      formData['DeviceID'] = "Device Id comes here";
       dio.options.contentType = Headers.formUrlEncodedContentType;
 
       Response _response = await dio.post(
@@ -92,6 +94,7 @@ class SignUpProvider extends ChangeNotifier {
         data: formData,
         options: Options(
           contentType: Headers.formUrlEncodedContentType,
+          headers: {"DeviceID": "Device Id goes here"},
         ),
       );
       if (_response.statusCode != 200) {
