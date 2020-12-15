@@ -1,3 +1,4 @@
+import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:work_samurai/animations/slide_right.dart';
@@ -36,6 +37,9 @@ class CardDetailsProvider extends ChangeNotifier {
       @required String accountNumber,
       @required String bsbNum}) async {
     try {
+      var connectivityResult = await (Connectivity().checkConnectivity());
+      connectivityResult == ConnectivityResult.none;
+      if(connectivityResult != ConnectivityResult.none){
       var formData = Map<String, dynamic>();
       formData['BankName'] = "HBL";
       formData['HolderName'] = accountHolder;
@@ -68,7 +72,7 @@ class CardDetailsProvider extends ChangeNotifier {
             durationTime: 3, heading: "Successfully Updated", subHeading: "");
         Navigator.pushReplacement(context, SlideRightRoute(page: Worker()));
       }
-    } catch (e) {
+    }} catch (e) {
       print(e.toString());
     }
   }

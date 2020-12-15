@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:work_samurai/commons/utils.dart';
 import 'package:work_samurai/generic_decode_encode/generic.dart';
-import 'package:work_samurai/helper/helper.dart';
 import 'package:work_samurai/models/get_data/UserWholeData.dart';
 import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
@@ -21,7 +20,7 @@ class ProfileSettings extends StatefulWidget {
 
 class _ProfileSettingsState extends State<ProfileSettings> {
   EditProfileComponents _editProfileComponents;
-  bool _verifyEmail,_verifyPhone;
+  bool _verifyEmail, _verifyPhone;
   EditProfileProviders _editProfileProviders;
 
   UserWholeData _userWholeData;
@@ -33,19 +32,24 @@ class _ProfileSettingsState extends State<ProfileSettings> {
     super.initState();
 
     _editProfileComponents = EditProfileComponents();
-    _editProfileProviders= Provider.of<EditProfileProviders>(context,listen :false);
+    _editProfileProviders =
+        Provider.of<EditProfileProviders>(context, listen: false);
+    _editProfileProviders.init(context: context);
     String userDataFromPrefs = PreferenceUtils.getString(Strings.USER_DATA);
 
-    _userWholeData = UserWholeData.fromJson(
-        _genericDecodeEncode.decodeJson(userDataFromPrefs));
+    if (userDataFromPrefs.isNotEmpty) {
+      _verifyEmail = _verifyPhone = false;
+      _userWholeData = UserWholeData.fromJson(
+          _genericDecodeEncode.decodeJson(userDataFromPrefs));
+      _verifyEmail = _userWholeData.data.user.emailVerified;
+      _verifyPhone = _userWholeData.data.user.phoneVerified;
 
-    _verifyEmail = _userWholeData.data.user.emailVerified;
-    _verifyPhone = _userWholeData.data.user.phoneVerified;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    Provider.of<EditProfileProviders>(context,listen :true);
+    Provider.of<EditProfileProviders>(context, listen: true);
     return SafeArea(
       child: Scaffold(
         body: Container(
@@ -71,32 +75,21 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                         borderColor: AppColors.sign_field,
                         textColor: AppColors.clr_bg_black,
                         text: _userWholeData.data.user.firstname.toString(),
-                        /*controller: null,*/
+                        //controller: _firstName,
                         isPassword: false),
                     _editProfileComponents.getInputField(
                         backgroundColor: AppColors.clr_bg,
                         borderColor: AppColors.sign_field,
                         textColor: AppColors.clr_bg_black,
                         text: _userWholeData.data.user.lastname.toString(),
-                        /*controller: null,*/
+                        //controller: _lastName ,
                         isPassword: false),
                     _verifyEmail
                         ? _editProfileComponents.getVerificationContainer(
-                            onPress: () {},
-                            backgroundColor: AppColors.clr_bg,
-                            borderColor: AppColors.sign_field,
-                            textColor: AppColors.clr_bg_black2,
-                            text: "Email",
-                            text1: _userWholeData.data.user.emailAddress
-                                .toString(),
-                            isPassword: false,
-                            iconData: Icons.arrow_forward_ios,
-                            verify: "Unverified",
-                            verifyColor: Colors.orangeAccent)
-                        : _editProfileComponents.getVerificationContainer(
                             onPress: () {
-                             // _emailSheet(context);
-                              _editProfileProviders.getVerifiedEmail(context: context);
+                              //_emailSheet(context);
+                              _editProfileProviders.getVerifiedEmail(
+                                  context: context);
                             },
                             backgroundColor: AppColors.clr_bg,
                             borderColor: AppColors.sign_field,
@@ -107,33 +100,52 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                             isPassword: false,
                             iconData: Icons.check_circle,
                             verify: "Verified",
-                            verifyColor: Colors.green),
-                   _verifyPhone ? _editProfileComponents.getVerificationContainer(
-                       onPress: () {},
-                       backgroundColor: AppColors.clr_bg,
-                       borderColor: AppColors.sign_field,
-                       textColor: AppColors.clr_bg_black2,
-                       text: "Phone",
-                       text1: _userWholeData.data.user.mobile
-                           .toString(),
-                       isPassword: false,
-                       iconData: Icons.arrow_forward_ios,
-                       verify: "Unverified",
-                       verifyColor: Colors.orangeAccent)
-                       : _editProfileComponents.getVerificationContainer(
-                       onPress: () {
-                         _phoneSheet(context);
-                       },
-                       backgroundColor: AppColors.clr_bg,
-                       borderColor: AppColors.sign_field,
-                       textColor: AppColors.clr_bg_black2,
-                       text: "Phone",
-                       text1: _userWholeData.data.user.mobile
-                           .toString(),
-                       isPassword: false,
-                       iconData: Icons.check_circle,
-                       verify: "Verified",
-                       verifyColor: Colors.green),
+                            verifyColor: Colors.green)
+                        : _editProfileComponents.getVerificationContainer(
+                            onPress: () {
+                              _emailSheet(context);
+                            },
+                            backgroundColor: AppColors.clr_bg,
+                            borderColor: AppColors.sign_field,
+                            textColor: AppColors.clr_bg_black2,
+                            text: "Email",
+                            text1: _userWholeData.data.user.emailAddress
+                                .toString(),
+                            isPassword: false,
+                            iconData: Icons.arrow_forward_ios,
+                            verify: "Unverified",
+                            verifyColor: Colors.orangeAccent),
+                    _verifyPhone
+                        ? _editProfileComponents.getVerificationContainer(
+                            onPress: () {
+                              //_phoneSheet(context);
+                              _editProfileProviders.getVerifiedPhone(
+                                  context: context);
+                            },
+                            backgroundColor: AppColors.clr_bg,
+                            borderColor: AppColors.sign_field,
+                            textColor: AppColors.clr_bg_black2,
+                            text: "Phone",
+                            text1: _userWholeData.data.user.mobile.toString(),
+                            isPassword: false,
+                            iconData: Icons.check_circle,
+                            verify: "Verified",
+                            verifyColor: Colors.green)
+                        : _editProfileComponents.getVerificationContainer(
+                            onPress: () {
+                              //_phoneSheet(context);
+                              _editProfileProviders.getVerifiedPhone(
+                                  context: context);
+                            },
+                            backgroundColor: AppColors.clr_bg,
+                            borderColor: AppColors.sign_field,
+                            textColor: AppColors.clr_bg_black2,
+                            text: "Phone",
+                            text1: _userWholeData.data.user.mobile.toString(),
+                            isPassword: false,
+                            iconData: Icons.arrow_forward_ios,
+                            verify: "Unverified",
+                            verifyColor: Colors.orangeAccent),
                     _editProfileComponents.getDescriptionContainer(
                         heading: "About You", desc: ""),
                     SizedBox(
@@ -154,7 +166,6 @@ class _ProfileSettingsState extends State<ProfileSettings> {
     );
   }
 
-
   _emailSheet(context) {
     showModalBottomSheet(
         context: context,
@@ -168,7 +179,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                 Text(
                   "Email Verification",
                   style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 18,
                       fontFamily: 'MuliSemiBold',
                       color: AppColors.clr_bg_black),
                 ),
@@ -179,7 +190,10 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                   child: Container(
                     height: 100,
                     width: 100,
-                    color: AppColors.clr_bg_black,
+                    child: Image.asset(
+                      Assets.basicMail,
+                      fit: BoxFit.fill,
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -188,7 +202,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                 Text(
                   "An email has been sent with the email verification link. Check your Spam or Junk Mail folder for the verification email.",
                   style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 14,
                       fontFamily: 'MuliRegular',
                       color: AppColors.clr_bg_black),
                 ),
@@ -221,7 +235,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                 Text(
                   "Mobile Verification",
                   style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 18,
                       fontFamily: 'MuliSemiBold',
                       color: AppColors.clr_bg_black),
                 ),
@@ -261,7 +275,8 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                   height: AppSizes.height * 0.025,
                 ),
                 Text(
-                  "Please enter the verification code which is sent on  " + _userWholeData.data.user.mobile + "   Alternatively you can retry in 10 secs.",
+                  "Please enter the verification code which is sent on  " + /*_userWholeData.data.user.mobile +*/
+                      "   Alternatively you can retry in 10 secs.",
                   style: TextStyle(
                       fontSize: 14,
                       fontFamily: 'MuliRegular',
@@ -281,4 +296,3 @@ class _ProfileSettingsState extends State<ProfileSettings> {
         });
   }
 }
-

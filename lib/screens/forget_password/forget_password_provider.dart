@@ -1,3 +1,4 @@
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
@@ -38,12 +39,14 @@ class ForgetPasswordProvider extends ChangeNotifier {
   Future _forgetPassword(
       {@required BuildContext context, @required String email}) async {
     try {
+      var connectivityResult = await (Connectivity().checkConnectivity());
+      if(connectivityResult != ConnectivityResult.none){
       _loader.showLoader(context: context);
+
       Response _response = await _networkHelper.post(
         getForgetPasswordURL,
         headers: {
-          "Authorization":
-          "Bearer " + _token,
+          "Authorization": "Bearer V6U20yUktw/QnZXR9/IBfTAntE76fiSb8f+TyKK4JEQX9+kep3QsNkBElP6QVOl83KUeZe/8ce+gHQEov+yG3U3Ob5PhRZfSwlhjYECDZEzXt3RF7DvhFbrQnLtfwB/Swn90YJaKBLSYwm19bsn0RNfTzh8R0hemwArWiVhX4jcEPZbiXMvprO7DowVGdCwhu10lH17633ZWbQSghqkOEnERV5tO56kLnvEXpCDjF382s1JeZFMK8yHWfY59p1coB4ivYOjtyJJMESp1rYzY2IEiXaS7Z+7F03bwKLAL7BViA=" /*+ _token*/,
           "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
           "Content-Type": "multipart/form-data",
         },
@@ -66,7 +69,7 @@ class ForgetPasswordProvider extends ChangeNotifier {
             subHeading: "Email Sent Successfully");
         Navigator.pushReplacement(context, SlideRightRoute(page: Login()));
       }
-    } catch (e) {
+    } }catch (e) {
       _loader.hideLoader(context);
       print(e.toString());
     }

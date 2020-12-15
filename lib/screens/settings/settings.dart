@@ -81,21 +81,13 @@ class _SettingsState extends State<Settings> {
 
         ));
   }
-  void _showDialog() {
+   _showDialog() {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return CupertinoAlertDialog(
           title: Text("SIGN OUT"),
           actions: <Widget>[
-            // FlatButton(
-            //   child:  Text("Log Out",style: TextStyle(
-            //     color: AppColors.clr_bg_black
-            //   ),),
-            //   onPressed: () {
-            //     _settingsProviders.signout(context: context);
-            //   },
-            // ),
             CupertinoButton(
                 child: Text('Cancel'),
                 onPressed: () {
