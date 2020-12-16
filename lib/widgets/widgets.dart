@@ -47,6 +47,7 @@ class CommonWidgets {
                 width: AppSizes.width * 0.03,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
+
                   color: AppColors.clr_green,
                 ),
               ),

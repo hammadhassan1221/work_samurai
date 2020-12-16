@@ -38,6 +38,7 @@ dependencies:
   dotted_border: ^1.0.7
   image_picker: ^0.6.6+5
   connectivity: ^2.0.2
+  intl: ^0.15.7
 
 
 

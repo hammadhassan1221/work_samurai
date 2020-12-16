@@ -31,7 +31,6 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin{
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _loginComponents = LoginComponents();
     _loginProvider = Provider.of<LoginProvider>(context, listen: false);
