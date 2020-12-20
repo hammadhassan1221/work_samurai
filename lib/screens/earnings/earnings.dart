@@ -21,7 +21,6 @@ class _EarningsState extends State<Earnings> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _earningComponents = EarningComponents();
     _selectedDate = DateTime.now();

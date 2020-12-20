@@ -35,9 +35,6 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
     Alerts(),
   ];
 
-
-
-
   @override
   void initState() {
     super.initState();

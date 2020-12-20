@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:work_samurai/animations/slide_right.dart';
 import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
@@ -26,11 +27,13 @@ class _WorkerChatRoomState extends State<WorkerChatRoom> {
     // TODO: implement initState
     super.initState();
     _messageComponents= MessageComponents();
-    _workerProvider = WorkerProvider();
+    _workerProvider = Provider.of<WorkerProvider>(context,listen:false);
 
   }
   @override
   Widget build(BuildContext context) {
+    Provider.of<WorkerProvider>(context, listen: true);
+
     return Container(
       height: AppSizes.height,
       width: AppSizes.width,

@@ -1,3 +1,5 @@
+
+import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -41,6 +43,9 @@ class SignUpProvider extends ChangeNotifier {
     BuildContext context,
   }) async {
     try {
+     var connectivityResult = await (Connectivity().checkConnectivity());
+      connectivityResult == ConnectivityResult.none;
+      if(connectivityResult != ConnectivityResult.none){
       http.Response _response = await _networkHelper.post(
         getAppDataAPI,
       );
@@ -61,7 +66,7 @@ class SignUpProvider extends ChangeNotifier {
         isDataFetched = true;
         notifyListeners();
       }
-    } catch (e) {
+    } }catch (e) {
       debugPrint(e.toString());
     }
   }
@@ -77,6 +82,9 @@ class SignUpProvider extends ChangeNotifier {
     @required String gender,
   }) async {
     try {
+      var connectivityResult = await (Connectivity().checkConnectivity());
+      connectivityResult == ConnectivityResult.none;
+      if(connectivityResult != ConnectivityResult.none){
       _loader.showLoader(context: context);
       var formData = Map<String, dynamic>();
       formData['Firstname'] = firstName;
@@ -104,17 +112,21 @@ class SignUpProvider extends ChangeNotifier {
         throw "Unauthorized";
       }
       if (_response.statusCode == 200) {
+
         _loader.hideLoader(context);
         _loginResponse = LoginResponse.fromJson(_response.data);
         print(_loginResponse.accessToken);
-
-        ApplicationToast.getSuccessToast(
-            durationTime: 3,
-            heading: "Success",
-            subHeading: "Sign up successful");
-        Navigator.pushReplacement(context, SlideRightRoute(page: Worker()));
-      }
-    } catch (e) {
+        if (_loginResponse.accessToken != null){
+          PreferenceUtils.setLoginResponse(_loginResponse);
+          print(_loginResponse.accessToken);
+          ApplicationToast.getSuccessToast(
+              durationTime: 3,
+              heading: "Success",
+              subHeading: "Sign up successful");
+          Navigator.pushReplacement(context, SlideRightRoute(page: Worker()));
+        }
+    }
+    }} catch (e) {
       _loader.hideLoader(context);
       print(e.toString());
     }

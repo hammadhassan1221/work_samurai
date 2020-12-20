@@ -39,11 +39,16 @@ class PreferenceUtils {
     prefs.setInt(Strings.TOKEN_RESPONSE, loginResponse.tokenResponse);
   }
 
+  static Future setUserData(String userData) async {
+    var prefs = await _instance;
+
+    prefs.setString(Strings.USER_DATA, userData);
+  }
+
   static Future<bool> setInt(String key, int value) async {
     var prefs = await _instance;
 
     return prefs?.setInt(key, value) ?? Future.value(null);
-
   }
 
   static int getInt(String key, [int defValue]) {
@@ -51,7 +56,6 @@ class PreferenceUtils {
   }
 
   static void reset() {
-      _prefsInstance.clear();
-
+    _prefsInstance.clear();
   }
 }

@@ -47,6 +47,7 @@ class CommonWidgets {
                 width: AppSizes.width * 0.03,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
+
                   color: AppColors.clr_green,
                 ),
               ),
@@ -438,13 +439,14 @@ class CommonWidgets {
           children: [
             Text("Your Profile Inactive",style: TextStyle(
                 color: AppColors.clr_white,
-                fontSize: 18,
+                fontSize: 14,
                 fontFamily: 'MuliSemiBold'
             ),),
             SizedBox(height: AppSizes.height*0.005,),
             Text("Please see the alerts for verifying your profile and start receiving the jobs",style: TextStyle(
               color: AppColors.clr_white,
-              fontSize: 11,
+              fontSize: 10,
+              fontFamily: 'MuliRegular'
             ),)
 
           ],

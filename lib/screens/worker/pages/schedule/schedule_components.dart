@@ -1,12 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/screens/worker/pages/schedule/schedule_provider.dart';
+import 'package:work_samurai/widgets/toast.dart';
 import 'package:work_samurai/widgets/widgets.dart';
-
 class ScheduleComponents {
-   bool onClick = false;
+  bool onClick = false;
+
+  String fromDate =  "09:00 AM";
+  String toDate = "05:00 PM" ;
+  bool isFromDateSelected = true;
+
   Widget getDistance({
     @required String imagePath,
     @required String text,
@@ -114,92 +120,131 @@ class ScheduleComponents {
     showModalBottomSheet(
         context: context,
         builder: (BuildContext buildContext) {
-          return Container(
-            padding: EdgeInsets.only(
-                left: AppSizes.width * 0.03, right: AppSizes.width * 0.03),
-            height: AppSizes.height,
-            child: Column(
-              children: [
-            Container(
-            margin: EdgeInsets.only(
-            top: AppSizes.height * 0.01, bottom: AppSizes.height * 0.01),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Monday",
-                    style: TextStyle(
-                        color: AppColors.clr_bg_black,
-                        fontSize: 20,
-                        fontFamily: 'MuliBold'),
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        "All Day",
-                        style: TextStyle(fontFamily: 'MuliRegular', fontSize: 14),
-                      ),
-                      CupertinoSwitch(
-                          value: onClick,
-                          onChanged: (bool value){
-                            onClick = !onClick;
-                          }
+          return StatefulBuilder(
+            builder: (context, setState) {
+              return Container(
+                padding: EdgeInsets.only(
+                    left: AppSizes.width * 0.03, right: AppSizes.width * 0.03),
+                height: AppSizes.height,
+                child: Column(
+                  children: [
+                    Container(
+                        margin: EdgeInsets.only(
+                            top: AppSizes.height * 0.01,
+                            bottom: AppSizes.height * 0.01),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Monday",
+                              style: TextStyle(
+                                  color: AppColors.clr_bg_black,
+                                  fontSize: 20,
+                                  fontFamily: 'MuliBold'),
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  "All Day",
+                                  style: TextStyle(
+                                      fontFamily: 'MuliRegular', fontSize: 14),
+                                ),
+                                CupertinoSwitch(
+                                    value: onClick,
+                                    onChanged: (bool value) {
+                                      setState((){
+                                        onClick = !onClick;
+                                      });
+                                    }),
+                              ],
+                            ),
+                          ],
+                        )),
+                    isFromDateSelected ? CommonWidgets.getAvailability(
+                        text1: "Available From",
+                        text: fromDate,
+                        onPress: () {
+                            isFromDateSelected = true;
+                        }):CommonWidgets.getAvailability2(
+                        text1: "Available From",
+                        text: fromDate,
+                        onPress: () {
+                          setState((){
+                            isFromDateSelected = true;
+                          });
+                        })
+                    ,
+                    SizedBox(
+                      height: AppSizes.height * 0.01,
+                    ),
+                    Container(
+                      height: AppSizes.height * 0.0025,
+                      decoration: BoxDecoration(
+                          color: AppColors.clr_field,
+                          borderRadius: BorderRadius.circular(3)),
+                    ),
+                    SizedBox(
+                      height: AppSizes.height * 0.01,
+                    ),
+                    isFromDateSelected ? CommonWidgets.getAvailability2(
+                        text1: "Available to",
+                        //isChecked: !isFromDateSelected,
+                        text: toDate, onPress: () {
+                          setState((){
+                            isFromDateSelected = false;
+                          });
 
-                      ),
-                    ],
-                  ),
-                ],
-              )),
-                CommonWidgets.getAvailability(text1: "Available From", text: "10:00 am", onPress: (){}),
-                SizedBox(
-                  height: AppSizes.height * 0.01,
-                ),
-                Container(
-                  height: AppSizes.height * 0.0025,
-                  decoration: BoxDecoration(
-                      color: AppColors.clr_field,
-                      borderRadius: BorderRadius.circular(3)),
-                ),
-                SizedBox(
-                  height: AppSizes.height * 0.01,
-                ),
-                CommonWidgets.getAvailability2(
-                    text1: "Available to",
-                    text: "5:00 pm",
-                    onPress: () {
-
+                    }):
+                    CommonWidgets.getAvailability(
+                        text1: "Available to",
+                        //isChecked: !isFromDateSelected,
+                        text: toDate, onPress: () {
+                      isFromDateSelected = false;
                     }),
-                SizedBox(
-                  height: AppSizes.height * 0.035,
-                ),
+                    SizedBox(
+                      height: AppSizes.height * 0.035,
+                    ),
+                    Container(
+                      height: AppSizes.height * 0.15,
+                      child: CupertinoDatePicker(
+                          mode: CupertinoDatePickerMode.time,
+                          onDateTimeChanged: (dateTime) {
+                            final DateFormat formatter = DateFormat('hh:mm aa');
+                            final String selectedTime = formatter.format(dateTime);
+                            setState((){
+                              if(isFromDateSelected){
+                                fromDate = selectedTime;
+                              }
+                              else toDate = selectedTime;
+                            });
 
-                Container(
-                  height: AppSizes.height*0.15,
-                  child: CupertinoDatePicker(
-                      mode: CupertinoDatePickerMode.time,
-                      onDateTimeChanged: (dateTime) {
-                      }
-                  ),
+                            // ApplicationToast.getSuccessToast(durationTime: 3, heading: null, subHeading: formatted);
+                          }),
+                    ),
+                    SizedBox(
+                      height: AppSizes.height * 0.01,
+                    ),
+                    Container(
+                      height: AppSizes.height * 0.0025,
+                      decoration: BoxDecoration(
+                          color: AppColors.clr_field,
+                          borderRadius: BorderRadius.circular(3)),
+                    ),
+                    Expanded(
+                      child: CommonWidgets.getSignUpButton(
+                          context: context,
+                          onPress: () {
+                            hideLoader(context);
+
+
+                            //ApplicationToast.getSuccessToast(durationTime: 3, heading: "null", subHeading: "curr time is: "+ this.fromDate..toString());
+                          },
+                          text: "Save Availability"),
+                    )
+                  ],
                 ),
-                SizedBox(
-                  height: AppSizes.height * 0.01,
-                ),
-                Container(
-                  height: AppSizes.height * 0.0025,
-                  decoration: BoxDecoration(
-                      color: AppColors.clr_field,
-                      borderRadius: BorderRadius.circular(3)),
-                ),
-                Expanded(
-                  child: CommonWidgets.getSignUpButton(
-                      context: context,
-                      onPress: () {
-                        hideLoader(context);
-                      },
-                      text: "Save Availability"),
-                )
-              ],
-            ),
+              );
+            },
           );
         });
   }
@@ -293,6 +338,4 @@ class ScheduleComponents {
       ),
     );
   }
-
-
 }

@@ -34,7 +34,7 @@ class GigsProvider extends ChangeNotifier {
     try {
       this.context = context;
       _token = PreferenceUtils.getString(Strings.ACCESS_TOKEN);
-      await _getProfileData(context: context);
+     await _getProfileData(context: context);
       // await _getFutureJobs(context: context);
       // await _getJobsInProgress(context: context);
     } catch (e) {
@@ -97,6 +97,8 @@ class GigsProvider extends ChangeNotifier {
         _loader.hideLoader(context);
 
         String userData = Helper.getString(_response);
+
+        PreferenceUtils.setUserData(userData);
 
 
         _userWholeData = UserWholeData.fromJson(

@@ -42,7 +42,7 @@ class PasswordComponents{
           //  controller: controller,
           decoration: InputDecoration(
             labelText: text,
-            labelStyle: TextStyle(fontSize: 12,
+            labelStyle: TextStyle(fontSize: 15,
               color: AppColors.clr_bg_black2,
               fontFamily: 'MuliRegular',),
             border: InputBorder.none,

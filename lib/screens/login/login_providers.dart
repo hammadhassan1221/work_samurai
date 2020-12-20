@@ -1,3 +1,4 @@
+import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:work_samurai/animations/slide_right.dart';
@@ -20,6 +21,7 @@ class LoginProvider extends ChangeNotifier {
   LoginResponse _loginResponse = LoginResponse();
   GenericDecodeEncode _genericDecodeEncode = GenericDecodeEncode();
   Loader _loader = Loader();
+  var connectivityResult;
 
   Dio dio = Dio();
 
@@ -32,45 +34,48 @@ class LoginProvider extends ChangeNotifier {
       @required String email,
       @required String password}) async {
     try {
-      _loader.showLoader(context: context);
-      var formData = Map<String, dynamic>();
-      formData['EmailAddress'] = email;
-      formData['Password'] = password;
-      formData['DeviceID'] = "A580E6FE-DA99-4066-AFC7-C939104AED7F";
-      dio.options.contentType = Headers.formUrlEncodedContentType;
+      connectivityResult = await (Connectivity().checkConnectivity());
+      if(connectivityResult != ConnectivityResult.none){
+        _loader.showLoader(context: context);
+        var formData = Map<String, dynamic>();
+        formData['EmailAddress'] = email;
+        formData['Password'] = password;
+        formData['DeviceID'] = "A580E6FE-DA99-4066-AFC7-C939104AED7F";
+        dio.options.contentType = Headers.formUrlEncodedContentType;
 
-      Response _response = await dio.post(
-        loginURL,
-        data: formData,
-        options: Options(
-          contentType: Headers.formUrlEncodedContentType,
-        ),
-      );
+        Response _response = await dio.post(
+          loginURL,
+          data: formData,
+          options: Options(
+            contentType: Headers.formUrlEncodedContentType,
+          ),
+        );
 
-      if (_response.statusCode != 200) {
-        _loader.hideLoader(context);
-        ApplicationToast.getErrorToast(
-            durationTime: 3, heading: "Error", subHeading: "Please try again");
-        throw "Unauthorized";
-      }
-      if (_response.statusCode == 200) {
-        //  _loader.hideLoader(context);
-        _loginResponse = LoginResponse.fromJson(_response.data);
-        if (_loginResponse.accessToken != null) {
-          PreferenceUtils.setLoginResponse(_loginResponse);
-          print(_loginResponse.accessToken);
-
-          ApplicationToast.getSuccessToast(
-              durationTime: 3,
-              heading: "Success",
-              subHeading: "Login Successful");
-          Navigator.pushReplacement(context, SlideRightRoute(page: Worker()));
-        } else {
+        if (_response.statusCode != 200) {
+          _loader.hideLoader(context);
           ApplicationToast.getErrorToast(
-              durationTime: 3,
-              heading: "Oops",
-              subHeading: "Please enter valid credentials");
+              durationTime: 3, heading: "Error", subHeading: "Please try again");
+          throw "Unauthorized";
         }
+        if (_response.statusCode == 200) {
+          //  _loader.hideLoader(context);
+          _loginResponse = LoginResponse.fromJson(_response.data);
+          if (_loginResponse.accessToken != null) {
+            PreferenceUtils.setLoginResponse(_loginResponse);
+            print(_loginResponse.accessToken);
+
+            ApplicationToast.getSuccessToast(
+                durationTime: 3,
+                heading: "Success",
+                subHeading: "Login Successful");
+            Navigator.pushReplacement(context, SlideRightRoute(page: Worker()));
+          } else {
+            ApplicationToast.getErrorToast(
+                durationTime: 3,
+                heading: "Oops",
+                subHeading: "Please enter valid credentials");
+          }
+      }
       }
     } catch (e) {
       _loader.hideLoader(context);
