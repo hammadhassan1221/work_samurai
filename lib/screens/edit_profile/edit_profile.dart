@@ -22,6 +22,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
   EditProfileComponents _editProfileComponents;
   bool _verifyEmail, _verifyPhone;
   EditProfileProviders _editProfileProviders;
+  //TextEditingController _firstName,_lastName;
 
   UserWholeData _userWholeData;
   GenericDecodeEncode _genericDecodeEncode = GenericDecodeEncode();
@@ -31,6 +32,8 @@ class _ProfileSettingsState extends State<ProfileSettings> {
     // TODO: implement initState
     super.initState();
 
+    // _firstName = TextEditingController();
+    // _lastName = TextEditingController();
     _editProfileComponents = EditProfileComponents();
     _editProfileProviders =
         Provider.of<EditProfileProviders>(context, listen: false);
@@ -74,29 +77,31 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                         backgroundColor: AppColors.clr_bg,
                         borderColor: AppColors.sign_field,
                         textColor: AppColors.clr_bg_black,
-                        text: _userWholeData.data.user.firstname.toString(),
-                        //controller: _firstName,
+                        text: _userWholeData.data.user.firstname,
+                        //controller: ,
+                        text1:"",
                         isPassword: false),
                     _editProfileComponents.getInputField(
                         backgroundColor: AppColors.clr_bg,
                         borderColor: AppColors.sign_field,
                         textColor: AppColors.clr_bg_black,
-                        text: _userWholeData.data.user.lastname.toString(),
-                        //controller: _lastName ,
+                        text: _userWholeData.data.user.lastname,
+                        text1:"",
+                      //  controller: _lastName ,
                         isPassword: false),
                     _verifyEmail
                         ? _editProfileComponents.getVerificationContainer(
                             onPress: () {
-                              //_emailSheet(context);
-                              _editProfileProviders.getVerifiedEmail(
-                                  context: context);
+                              _emailSheet(context);
+                             /* _editProfileProviders.getVerifiedEmail(
+                                  context: context);*/
                             },
                             backgroundColor: AppColors.clr_bg,
                             borderColor: AppColors.sign_field,
                             textColor: AppColors.clr_bg_black2,
                             text: "Email",
-                            text1: _userWholeData.data.user.emailAddress
-                                .toString(),
+                            text1: ""/*_userWholeData.data.user.emailAddress
+                                .toString()*/,
                             isPassword: false,
                             iconData: Icons.check_circle,
                             verify: "Verified",
@@ -126,7 +131,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                             borderColor: AppColors.sign_field,
                             textColor: AppColors.clr_bg_black2,
                             text: "Phone",
-                            text1: _userWholeData.data.user.mobile.toString(),
+                            text1: "",/*_userWholeData.data.user.mobile.toString(),*/
                             isPassword: false,
                             iconData: Icons.check_circle,
                             verify: "Verified",

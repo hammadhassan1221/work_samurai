@@ -20,8 +20,6 @@ class Worker extends StatefulWidget {
 }
 
 class _WorkerState extends State<Worker> with TickerProviderStateMixin{
-  TabController _tabController;
-  double _value = 0.0;
 
   var pickedTime;
   WorkerProvider workerProvider;

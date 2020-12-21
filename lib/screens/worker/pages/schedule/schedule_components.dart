@@ -41,16 +41,11 @@ class ScheduleComponents {
               ),
             ],
           ),
-          Container(
-            decoration: BoxDecoration(
-                border:
-                    Border(bottom: BorderSide(color: AppColors.clr_bg_black))),
-            child: Text(
-              text1,
-              style: TextStyle(
-                fontSize: 15,
-                fontFamily: 'MuliRegular',
-              ),
+          Text(
+            text1,
+            style: TextStyle(
+              fontSize: 15,
+              fontFamily: 'MuliRegular',
             ),
           )
         ],
@@ -62,48 +57,53 @@ class ScheduleComponents {
     @required String imagePath,
     @required String text,
     @required String text1,
+    @required onPress,
   }) {
-    return Container(
-      margin: EdgeInsets.only(
-        left: AppSizes.width * 0.04,
-        right: AppSizes.width * 0.04,
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Image.asset(
-                imagePath,
-                height: 25,
-                width: 25,
-                fit: BoxFit.fill,
-              ),
-              SizedBox(
-                width: AppSizes.width * 0.02,
-              ),
-              Text(
-                text,
-                style: TextStyle(
-                  fontSize: 15,
-                  fontFamily: 'MuliRegular',
+    return GestureDetector(
+      onTap: onPress,
+      child: Container(
+        margin: EdgeInsets.only(
+          left: AppSizes.width * 0.04,
+          right: AppSizes.width * 0.04,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Image.asset(
+                  imagePath,
+                  height: 25,
+                  width: 25,
+                  fit: BoxFit.fill,
                 ),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              Text(
+                SizedBox(
+                  width: AppSizes.width * 0.02,
+                ),
+                Text(
+                  text,
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontFamily: 'MuliRegular',
+                  ),
+                ),
+              ],
+            ),
+            Container(
+              decoration: BoxDecoration(
+                  border:
+                  Border(bottom: BorderSide(color: AppColors.clr_bg_black))),
+              child: Text(
                 text1,
                 style: TextStyle(
                   fontSize: 15,
                   fontFamily: 'MuliRegular',
                 ),
-              )
-            ],
-          )
-        ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
@@ -230,7 +230,7 @@ class ScheduleComponents {
             color: Colors.grey.withOpacity(0.25),
             spreadRadius: 1.5,
             blurRadius: 1,
-            offset: Offset(0, 1), // changes position of shadow
+            offset: Offset(0, 0), // changes position of shadow
           ),
         ], borderRadius: BorderRadius.circular(8), color: AppColors.clr_white),
         child: Row(

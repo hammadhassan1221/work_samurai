@@ -83,7 +83,6 @@ class SignUpProvider extends ChangeNotifier {
   }) async {
     try {
       var connectivityResult = await (Connectivity().checkConnectivity());
-      connectivityResult == ConnectivityResult.none;
       if(connectivityResult != ConnectivityResult.none){
       _loader.showLoader(context: context);
       var formData = Map<String, dynamic>();

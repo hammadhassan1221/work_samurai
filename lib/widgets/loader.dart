@@ -20,10 +20,10 @@ class Loader {
               height: AppSizes.height*0.30,
               width: AppSizes.width*0.50,
               decoration: BoxDecoration(
-                shape: BoxShape.rectangle,
+               // shape: BoxShape.rectangle,
                 image: DecorationImage(
                   image: AssetImage(
-                    "assets/json/api_loader",
+                    "assets/json/resolve",
                   ),
                   fit: BoxFit.fill,
                   scale: 1.3,

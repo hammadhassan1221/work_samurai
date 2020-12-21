@@ -71,7 +71,7 @@ class _SignUpState extends State<SignUp> {
     _signUpProvider = Provider.of<SignUpProvider>(context, listen: true);
     return SafeArea(
         child: Scaffold(
-      resizeToAvoidBottomInset: true,
+          resizeToAvoidBottomPadding: true,
       body: Container(
           height: AppSizes.height,
           width: AppSizes.width,
@@ -336,7 +336,7 @@ class _SignUpState extends State<SignUp> {
                           ApplicationToast.getWarningToast(
                               durationTime: 3,
                               heading: "Error",
-                              subHeading: "Last Name is Empty is empty");
+                              subHeading: "Last Name is Empty");
                         }
                       } else {
                         ApplicationToast.getWarningToast(

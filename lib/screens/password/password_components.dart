@@ -21,7 +21,7 @@ class PasswordComponents{
         @required Color borderColor,
         @required Color textColor,
         @required String text,
-        // @required TextEditingController controller,
+        @required TextEditingController controller,
         @required bool isPassword,
       }) {
     return Container(
@@ -39,7 +39,7 @@ class PasswordComponents{
           cursorColor: AppColors.clr_bg_black2,
           //cursorHeight: 12,
           obscureText: isPassword,
-          //  controller: controller,
+          controller: controller,
           decoration: InputDecoration(
             labelText: text,
             labelStyle: TextStyle(fontSize: 15,

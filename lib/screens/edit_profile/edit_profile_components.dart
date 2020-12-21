@@ -21,9 +21,9 @@ class EditProfileComponents {
         @required Color borderColor,
         @required Color textColor,
         @required String text,
-       // @required String text1,
+        @required String text1,
         @required String value,
-        @required TextEditingController controller,
+       // @required TextEditingController controller,
         @required bool isPassword,
       }) {
     return Container(
@@ -41,7 +41,7 @@ class EditProfileComponents {
           cursorColor: AppColors.clr_bg_black2,
           //cursorHeight: 12,
           obscureText: isPassword,
-           controller: controller,
+           //controller: controller,
           decoration: InputDecoration(
             labelText: text,
             labelStyle: TextStyle(

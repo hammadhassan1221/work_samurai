@@ -38,7 +38,6 @@ class CardDetailsProvider extends ChangeNotifier {
       @required String bsbNum}) async {
     try {
       var connectivityResult = await (Connectivity().checkConnectivity());
-      connectivityResult == ConnectivityResult.none;
       if(connectivityResult != ConnectivityResult.none){
       var formData = Map<String, dynamic>();
       formData['BankName'] = "HBL";

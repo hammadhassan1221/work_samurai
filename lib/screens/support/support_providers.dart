@@ -1,10 +1,11 @@
 import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:fluttericon/zocial_icons.dart';
 import 'package:work_samurai/animations/slide_right.dart';
 import 'package:work_samurai/commons/utils.dart';
 import 'package:work_samurai/generic_decode_encode/generic.dart';
-import 'package:work_samurai/models/api_models/password/new_password.dart';
+import 'package:work_samurai/models/api_models/support_screen/support_screen.dart';
 import 'package:work_samurai/models/generic_response/GenericResponse.dart';
 import 'package:work_samurai/models/get_data/UserWholeData.dart';
 import 'package:work_samurai/network/api_urls.dart';
@@ -15,38 +16,40 @@ import 'package:work_samurai/screens/worker/worker.dart';
 import 'package:work_samurai/widgets/loader.dart';
 import 'package:work_samurai/widgets/toast.dart';
 
-class PasswordProviders extends ChangeNotifier{
+class SupportProviders extends ChangeNotifier{
+
   BuildContext context;
   NetworkHelper _networkHelper = NetworkHelperImpl();
   UserWholeData _userWholeData = UserWholeData();
-  NewPasswordResponse _newPasswordResponse = NewPasswordResponse();
+  SupportTicketResponse _supportTicketResponse = SupportTicketResponse();
   GenericDecodeEncode _genericDecodeEncode = GenericDecodeEncode();
   Loader _loader = Loader();
+
   Dio dio = Dio();
   String _token;
 
-  init({@required BuildContext context})async {
+  init({@required BuildContext context}) async
+  {
     try {
       this.context = context;
       _token = PreferenceUtils.getString(Strings.ACCESS_TOKEN);
-      await callPasswordAPI(context: context,);
-
+      await callSupportTicket(context: context,);
     } catch (e) {
       print(e.toString());
     }
   }
 
-  Future _newPassword({@required BuildContext context,@required String newPassword,})async{
+  Future _supportTicket({@required BuildContext context , @required String title})async{
     try{
       var connectivityResult = await (Connectivity().checkConnectivity());
       if (connectivityResult != ConnectivityResult.none) {
         _loader.showLoader(context: context);
         var formData = Map<String, dynamic>();
-        formData['NewPassword'] = newPassword;
+        formData['Title'] = title;
         dio.options.contentType = Headers.formUrlEncodedContentType;
 
         Response _response = await dio.post(
-          getNewPassword,
+          getSupportTicket,
           data: formData,
           options: Options(
             contentType: Headers.formUrlEncodedContentType,
@@ -68,7 +71,7 @@ class PasswordProviders extends ChangeNotifier{
           ApplicationToast.getSuccessToast(
               durationTime: 3,
               heading: "Success",
-              subHeading: "Login Successful");
+              subHeading: "Ticket Generated");
           Navigator.pushReplacement(context, SlideRightRoute(page: Worker()));
         }
       }
@@ -78,34 +81,12 @@ class PasswordProviders extends ChangeNotifier{
     }
   }
 
-  callPasswordAPI({
-    @required BuildContext context,
-    @required String confirmPassword,
-    @required String newPassword,
-    @required String currentPassword,
-  }) {
-    if (currentPassword.isNotEmpty) {
-      if (newPassword.isNotEmpty) {
-        if (confirmPassword.isNotEmpty && confirmPassword == newPassword){
-          _newPassword(context: context,newPassword: newPassword,);
-        } else {
-          ApplicationToast.getWarningToast(
-              durationTime: 3,
-              heading: "Error",
-              subHeading: "Confirm Password is empty");
-        }
-      } else {
-        ApplicationToast.getWarningToast(
-            durationTime: 3,
-            heading: "Error",
-            subHeading: "New Password is empty");
-      }
+  callSupportTicket({@required BuildContext context,
+    @required String supportTicket,}) {
+    if (supportTicket.isNotEmpty) {
+      _supportTicket(context: context, title: supportTicket,);
     } else {
-      ApplicationToast.getWarningToast(
-          durationTime: 3,
-          heading: "Error",
-          subHeading: "Current Password is empty");
+      ApplicationToast.getSupportTicketToast(
+          context: context, text: "Ticket Generated", onNavigate: () {});
     }
-  }
-
-}
+  }}

@@ -5,6 +5,7 @@ import 'package:work_samurai/animations/slide_right.dart';
 import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
+import 'package:work_samurai/screens/location_details/location_details.dart';
 import 'package:work_samurai/screens/worker/pages/alerts/alerts.dart';
 import 'package:work_samurai/screens/worker/pages/schedule/schedule_components.dart';
 import 'package:work_samurai/screens/worker/pages/schedule/schedule_provider.dart';
@@ -46,14 +47,14 @@ class _ScheduleState extends State<Schedule> {
         CommonWidgets.getAlertContainer(onPress: (){_workerProvider.setCurrentIndex(4);}),
 
         SizedBox(
-          height: AppSizes.height * 0.01,
+          height: AppSizes.height * 0.025,
         ),
 
         Expanded(
           child: ListView(
             children: [
+              _scheduleComponents.getLocation(imagePath: Assets.location, text: "Location", text1: "New York,USA",onPress: (){Navigator.push(context, SlideRightRoute(page: LocationDetails()));}),
 
-              _scheduleComponents.getDistance(imagePath: Assets.location, text: "Location", text1: "New York,USA"),
               Container(
                 margin: EdgeInsets.only(
                   top: AppSizes.height*0.01,
@@ -63,7 +64,9 @@ class _ScheduleState extends State<Schedule> {
                 color: AppColors.clr_field
                 ,),
               SizedBox(height: AppSizes.height*0.02,),
-              _scheduleComponents.getLocation(imagePath: Assets.distance, text: "Max Distance", text1: "40km"),
+
+              _scheduleComponents.getDistance(imagePath: Assets.distance, text: "Max Distance", text1: "40km"),
+
               SliderTheme(
                 data: SliderTheme.of(context).copyWith(
                   activeTrackColor: AppColors.clr_bg_black,

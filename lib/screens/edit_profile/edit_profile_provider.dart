@@ -27,12 +27,13 @@ class EditProfileProviders extends ChangeNotifier {
       this.context = context;
       _token = PreferenceUtils.getString(Strings.ACCESS_TOKEN);
       await getVerifiedEmail(context: context);
+      await getVerifiedPhone(context: context);
     } catch (e) {
       print(e.toString());
     }
   }
 
-  Future getVerifiedPhone({@required BuildContext context}) async {
+  Future getVerifiedPhone({@required BuildContext context,@required String newPassword}) async {
     try {
       var connectivityResult = await (Connectivity().checkConnectivity());
       if (connectivityResult != ConnectivityResult.none) {
@@ -46,6 +47,7 @@ class EditProfileProviders extends ChangeNotifier {
               "Authorization": "Bearer " + _token,
               "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
             },
+
           ),
         );
 

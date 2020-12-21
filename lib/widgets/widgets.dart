@@ -379,9 +379,9 @@ class CommonWidgets {
             boxShadow: [
               BoxShadow(
                 color: Colors.grey.withOpacity(0.25),
-                spreadRadius: 0.8,
+                spreadRadius: 0.5,
                 blurRadius: 0.5,
-                offset: Offset(0, 1), // changes position of shadow
+                offset: Offset(0, 0), // changes position of shadow
               ),
             ],
             color: AppColors.clr_bg,
