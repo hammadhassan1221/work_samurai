@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -7,12 +6,10 @@ import 'package:work_samurai/routes/routes.dart';
 import 'providers/multi_providers.dart';
 
 void main() {
-
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     //to lock screen orientation
@@ -22,16 +19,25 @@ class MyApp extends StatelessWidget {
     ]);
     return MultiProvider(
       providers: multiProviders,
-      child: MaterialApp(
-        title: 'Work Samurai',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
+      child: GestureDetector(
+        onTap: () {
+          //to dismiss keyboard when user tap on screen other than input field
+          FocusScopeNode currentFocus = FocusScope.of(context);
 
+          if (!currentFocus.hasPrimaryFocus) {
+            currentFocus.unfocus();
+          }
+        },
+        child: MaterialApp(
+          title: 'Work Samurai',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+          ),
+          debugShowCheckedModeBanner: false,
+          routes: Routes.routes,
+          initialRoute: Routes.splash,
         ),
-        debugShowCheckedModeBanner: false,
-        routes: Routes.routes,
-        initialRoute: Routes.splash,
       ),
     );
   }

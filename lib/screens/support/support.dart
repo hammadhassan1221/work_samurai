@@ -63,7 +63,7 @@ class _SupportState extends State<Support> {
                 elevation: 0.0,
                 child:  Icon(Icons.add),
                 backgroundColor:  AppColors.clr_bg_black,
-                onPressed: (){_supportProviders.callSupportTicket(context: context, supportTicket: "asdfghh",);}
+                onPressed: (){_supportProviders.callSupportTicket(context: context, supportTicket: "New Ticket",);}
             )
         )
         );
