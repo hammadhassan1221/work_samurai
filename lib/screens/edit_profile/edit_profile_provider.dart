@@ -69,7 +69,7 @@ class EditProfileProviders extends ChangeNotifier {
 
         if (_genericResponse.responseCode == 1) {
           ProfileSettings _profileSettings = ProfileSettings();
-          _profileSettings._emailSheet(context);
+//          _profileSettings._emailSheet(context);
         }
       }
     } catch (e) {
