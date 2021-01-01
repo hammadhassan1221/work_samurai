@@ -176,7 +176,7 @@ class ScheduleComponents {
                 Container(
                   height: AppSizes.height*0.15,
                   child: CupertinoDatePicker(
-                      mode: CupertinoDatePickerMode.time,
+                      mode: CupertinoDatePickerMode.dateAndTime,
                       onDateTimeChanged: (dateTime) {
                       }
                   ),
