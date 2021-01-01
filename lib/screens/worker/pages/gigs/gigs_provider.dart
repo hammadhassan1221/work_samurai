@@ -54,7 +54,7 @@ class GigsProvider extends ChangeNotifier {
 
       Response _response = await _networkHelper.post(getFutureJobURL, headers: {
         "Authorization":
-            "Bearer pds1BCxnnEyfbGoxLa9fdhwRTW/GXDlm7QA7pEiAkI4Flw3Io+ojrgUAMRzkPsPnff7SbYaxmLmu06DmLCemuk7641nAdqz1wwjsv1VivPKleNBKXuBRBoAwyhfhxwQQIfDVlNbIHsY0GpL5A2kRzFrjrWRvmVNwEGtC3GLfP5zIln3oc+E56sQ8NYDUY7lLsngG1XPO40SSHaTOAXtYd9wOrapbyo6vonKpOl/Tzc9oesLpaPnFQr5yqKJU5FSGV0sS85z8aUedYQ0UVLHucClQPc1skVeTePY6VBzBQx9yQ=",
+        "Bearer pds1BCxnnEyfbGoxLa9fdhwRTW/GXDlm7QA7pEiAkI4Flw3Io+ojrgUAMRzkPsPnff7SbYaxmLmu06DmLCemuk7641nAdqz1wwjsv1VivPKleNBKXuBRBoAwyhfhxwQQIfDVlNbIHsY0GpL5A2kRzFrjrWRvmVNwEGtC3GLfP5zIln3oc+E56sQ8NYDUY7lLsngG1XPO40SSHaTOAXtYd9wOrapbyo6vonKpOl/Tzc9oesLpaPnFQr5yqKJU5FSGV0sS85z8aUedYQ0UVLHucClQPc1skVeTePY6VBzBQx9yQ=",
         "DeviceID": "Device Id goes here",
       }, body: {});
 
@@ -86,7 +86,7 @@ class GigsProvider extends ChangeNotifier {
         "Authorization": "Bearer " + _token,
         "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
         "Scope":
-            "profile,useraddress,preferences,userskills,usersettings,userverifications,usercompliments,userrating,CompletedJobs,supporttickets,company,companyaddress,companycompliments,companyrating,verificationmethods,compliments,systemskills,AccountVerified,paymentdetails",
+        "profile,useraddress,preferences,userskills,usersettings,userverifications,usercompliments,userrating,CompletedJobs,supporttickets,company,companyaddress,companycompliments,companyrating,verificationmethods,compliments,systemskills,AccountVerified,paymentdetails",
       }, body: {});
 
       if (_response.statusCode != 200) {
