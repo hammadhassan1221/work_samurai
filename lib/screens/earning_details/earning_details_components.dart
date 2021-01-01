@@ -40,6 +40,7 @@ class EarningDetailsComponents{
                             color: AppColors.clr_bg_black,
                             decoration: TextDecoration.none,
                             fontSize: 20,
+                            fontWeight: FontWeight.w400,
                             fontFamily: 'MuliSemiBold'
                         )),
                     SizedBox(
@@ -53,6 +54,7 @@ class EarningDetailsComponents{
                             decoration: TextDecoration.none,
                             fontSize: 15,
                             color: AppColors.pay_field,
+                            fontWeight: FontWeight.w400,
                             fontFamily: 'MuliRegular'
                         )),
 
@@ -69,6 +71,8 @@ class EarningDetailsComponents{
                                 color: AppColors.clr_bg_black2,
                                 decoration: TextDecoration.none,
                                 fontSize: 14,
+                                fontWeight: FontWeight.w400,
+
                                 fontFamily: 'MuliRegular'
                             )),
                         Text(value,
@@ -77,6 +81,8 @@ class EarningDetailsComponents{
                                 color: AppColors.clr_bg_black,
                                 decoration: TextDecoration.none,
                                 fontSize: 14,
+                                fontWeight: FontWeight.w400,
+
                                 fontFamily: 'MuliSemiBold'
                             )),
 

@@ -23,6 +23,9 @@ class _CardDetailsState extends State<CardDetails> {
     // TODO: implement initState
     super.initState();
     _cardDetailsComponents = CardDetailsComponents();
+    Future.delayed(Duration.zero, () {
+      _cardDetailsProvider.init(context: context);
+    });
     _cardDetailsProvider = Provider.of<CardDetailsProvider>(context, listen : false);
     _accountHolder = TextEditingController();
     _accountName = TextEditingController();

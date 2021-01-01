@@ -1,3 +1,4 @@
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart';
 import 'package:work_samurai/animations/slide_right.dart';
@@ -26,6 +27,9 @@ class SettingsProviders extends ChangeNotifier{
   Future signout(
       {@required BuildContext context}) async {
     try{
+      var connectivityResult = await (Connectivity().checkConnectivity());
+      connectivityResult == ConnectivityResult.none;
+      if(connectivityResult != ConnectivityResult.none){
       _loader.showLoader(context: context);
       _token = PreferenceUtils.getString(Strings.ACCESS_TOKEN);
 
@@ -52,10 +56,10 @@ class SettingsProviders extends ChangeNotifier{
 
 
         Navigator.push(_context, SlideRightRoute(page: Login()));
-        ApplicationToast.getSuccessToast(durationTime: 3, heading: "Congratulation", subHeading: "User sign out successfully");
+        ApplicationToast.getSuccessToast(durationTime: 3, heading: "", subHeading: "Sign Out Successful");
 
       }
-    }
+    }}
     catch(e){
       _loader.hideLoader(context);
       print(e.toString());

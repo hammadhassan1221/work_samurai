@@ -37,11 +37,11 @@ class _GigsState extends State<Gigs> with SingleTickerProviderStateMixin {
       gigsProvider.init(context: context);
     });
     _workerProvider = Provider.of<WorkerProvider>(context,listen: false);
-    _tabController = new TabController(length: 3, vsync: this);
+    _tabController =  TabController(length: 3, vsync: this);
     _tabController.addListener(() {
-      /*  if (_tabController.index == 1) {
+        if (_tabController.index == 1) {
         gigsProvider.setInProgress(true);
-      }*/
+      }
     });
   }
 

@@ -36,7 +36,8 @@ class _EarningHistoryState extends State<EarningHistory> {
               _earningHistoryComponents.getSubHeading(text: "Donec dapibus mauris id odio ornare tempus amet accumsan justo, quis tempor ligula. Qui haretra felis. Ut quis consequat orci, at conseq Suspendisse auctor laoreet placerat. Nam et r lacus dignissim lacinia sit amet nec eros. Null quis libero pharetra varius. Nulla tellus nunc, ada at scelerisque eget, cursus at eros. Maec ntesque lacus quis erat eleifend sagittis. Sed v us ante, quis mattis neque. Nullam dapibus er ulla cursus accumsan. Nulla volutpat libero la natis sodales. Ut in pellentesque velit."),
               _earningHistoryComponents.getHeadings(text: "Job Payment"),
               _earningHistoryComponents.getSubHeading(text: "Price: \$ 2000."),
-              Expanded(child: CommonWidgets.getSignUpButton(context: context, onPress: (){}, text: "Download Pdf"))
+              Expanded(child: CommonWidgets.getSignUpButton(context: context, onPress: (){}, text: "Download Pdf"),),
+              SizedBox(height: AppSizes.height*0.025,)
             ],
           ),
         ),

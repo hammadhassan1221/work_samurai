@@ -379,9 +379,9 @@ class CommonWidgets {
             boxShadow: [
               BoxShadow(
                 color: Colors.grey.withOpacity(0.25),
-                spreadRadius: 0.8,
+                spreadRadius: 0.5,
                 blurRadius: 0.5,
-                offset: Offset(0, 1), // changes position of shadow
+                offset: Offset(0, 0), // changes position of shadow
               ),
             ],
             color: AppColors.clr_bg,
@@ -438,13 +438,14 @@ class CommonWidgets {
           children: [
             Text("Your Profile Inactive",style: TextStyle(
                 color: AppColors.clr_white,
-                fontSize: 18,
+                fontSize: 14,
                 fontFamily: 'MuliSemiBold'
             ),),
             SizedBox(height: AppSizes.height*0.005,),
             Text("Please see the alerts for verifying your profile and start receiving the jobs",style: TextStyle(
               color: AppColors.clr_white,
-              fontSize: 11,
+              fontSize: 10,
+              fontFamily: 'MuliRegular'
             ),)
 
           ],

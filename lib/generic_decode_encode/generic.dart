@@ -8,7 +8,7 @@ class GenericDecodeEncode{
     return json.decode(response);
   }
 
-  dynamic encodeJson(String reponse){
-    return json.encode(reponse);
+  dynamic encodeJson(String response){
+    return json.encode(response);
   }
 }
