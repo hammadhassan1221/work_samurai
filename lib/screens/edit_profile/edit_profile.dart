@@ -62,6 +62,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
           child: Column(
             children: [
               CommonWidgets.getAppBar(text: "Edit Profile", context: context),
+              //index == 1 ? showToast : SizedBox.shrink(),
               SizedBox(
                 height: AppSizes.height * 0.05,
               ),

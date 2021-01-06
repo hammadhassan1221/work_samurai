@@ -11,6 +11,7 @@ import 'package:work_samurai/screens/forget_password/forget_password.dart';
 import 'package:work_samurai/screens/login/login_components.dart';
 import 'package:work_samurai/screens/sign_up/sign_up.dart';
 import 'package:work_samurai/screens/worker/worker.dart';
+import 'package:work_samurai/widgets/spacer.dart';
 import 'package:work_samurai/widgets/widgets.dart';
 
 import '../../res/sizes.dart';
@@ -79,15 +80,16 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
               children: [
                 _loginComponents.getImageContainer(Assets.logo, 270, 270),
                 CommonWidgets.getInputField(
-                    backgroundColor: AppColors.transparentColor,
-                    borderColor: AppColors.clr_bg_grey,
-                    textColor: AppColors.clr_bg_black2,
-                    text: "Username",
-                    isPassword: false,
-                    controller: _email,
-                    imagePath: Assets.mail),
+                  backgroundColor: AppColors.transparentColor,
+                  borderColor: AppColors.clr_bg_grey,
+                  textColor: AppColors.clr_bg_black2,
+                  text: "Username",
+                  isPassword: false,
+                  controller: _email,
+                  imagePath: Assets.mail,
+                ),
                 SizedBox(
-                  height: AppSizes.height * 0.02,
+                  height: 10,
                 ),
                 CommonWidgets.getInputField(
                   backgroundColor: AppColors.transparentColor,
@@ -98,79 +100,70 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                   isPassword: true,
                   imagePath: Assets.lock,
                 ),
-                SizedBox(
-                  height: AppSizes.height * 0.02,
-                ),
                 Container(
-                    margin: EdgeInsets.only(
-                        right: AppSizes.height * 0.03,
-                        bottom: AppSizes.height * 0.03),
-                    alignment: Alignment.topLeft,
-                    child: Row(
-                      children: [
-                        Checkbox(
-                          checkColor: AppColors.clr_white,
-                          activeColor: AppColors.clr_bg_black,
-                          value: onCheck,
-                          onChanged: (bool value) {
-                            setState(() {
-                              onCheck = value;
-                            });
-                          },
-                        ),
-                        RichText(
-                          text: TextSpan(
-                              text: '',
+                  alignment: Alignment.topLeft,
+                  child: Row(
+                    children: [
+                      Checkbox(
+                        checkColor: AppColors.clr_white,
+                        activeColor: AppColors.clr_bg_black,
+                        value: onCheck,
+                        onChanged: (bool value) {
+                          setState(() {
+                            onCheck = value;
+                          });
+                        },
+                      ),
+                      RichText(
+                        text: TextSpan(
+                          text: '',
+                          style: TextStyle(
+                              fontFamily: 'MuliRegular',
+                              color: AppColors.clr_bg_black,
+                              fontSize: 13),
+                          children: <TextSpan>[
+                            TextSpan(
+                              text: 'Remember Me',
                               style: TextStyle(
-                                  fontFamily: 'MuliRegular',
-                                  color: AppColors.clr_bg_black,
-                                  fontSize: 13),
-                              children: <TextSpan>[
-                                TextSpan(
-                                    text: 'Remember Me',
-                                    style: TextStyle(
-                                      color: AppColors.clr_bg_black,
-                                      fontSize: 14,
-                                      fontFamily: 'MuliRegular',
-                                    ),
-                                    recognizer: TapGestureRecognizer()
-                                      ..onTap = () {
-                                        // navigate to desired screen
-                                      })
-                              ]),
-                        )
-                      ],
-                    )),
-                BouncingWidget(
-                  duration: Duration(milliseconds: 100),
-                  scaleFactor: 0.5,
-                  onPressed: () {
-                    Navigator.push(context, SlideRightRoute(page: Worker()));
+                                color: AppColors.clr_bg_black,
+                                fontSize: 14,
+                                fontFamily: 'MuliRegular',
+                              ),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  // navigate to desired screen
+                                },
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                CommonWidgets.getBottomButton(
+                  name: "Login",
+                  onButtonClick: () {
                     _loginProvider.callLoginAPI(
-                        context: context,
-                        email: _email.text.toString(),
-                        password: _password.text.toString());
-
-                  },
-                  child: CommonWidgets.getSignUpButton(
                       context: context,
-                      onPress: () {
-                      },
-                      text: "Login"),
+                      email: _email.text.toString(),
+                      password: _password.text.toString(),
+                    );
+                  },
                 ),
-                SizedBox(
-                  height: AppSizes.height * 0.025,
-                ),
+                verticalSpacer(10.0,),
                 _loginComponents.getRichText1(
-                    text1: "Forgot Password?",
-                    text2: "",
-                    onPress: () {
-                      Navigator.push(
-                          context, SlideRightRoute(page: ForgetPassword()));
-                    }),
-                SizedBox(
-                  height: AppSizes.height * 0.025,
+                  text1: "Forgot Password?",
+                  text2: "",
+                  onPress: () {
+                    Navigator.push(
+                      context,
+                      SlideRightRoute(
+                        page: ForgetPassword(),
+                      ),
+                    );
+                  },
                 ),
+                verticalSpacer(77.5,),
                 BouncingWidget(
                   duration: Duration(milliseconds: 200),
                   scaleFactor: 1,

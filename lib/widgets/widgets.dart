@@ -1,4 +1,3 @@
-import 'package:bouncing_widget/bouncing_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:work_samurai/res/assets.dart';
@@ -155,14 +154,15 @@ class CommonWidgets {
             ),
             color: AppColors.clr_bg_black,
           ),
-          child: SizedBox.expand(
+          child: Center(
             child: Text(
               text,
               style: TextStyle(
                   decoration: TextDecoration.none,
                   fontSize: 16.0,
                   fontFamily: 'MuliRegular',
-                  color: AppColors.clr_white),
+                  color: AppColors.clr_white,
+              ),
             ),
           ),
         ),
@@ -436,7 +436,8 @@ class CommonWidgets {
               style: TextStyle(
                   color: AppColors.clr_white,
                   fontSize: 14,
-                  fontFamily: 'MuliSemiBold'),
+                  fontFamily: 'MuliSemiBold',
+              ),
             ),
             SizedBox(
               height: AppSizes.height * 0.005,
@@ -446,9 +447,42 @@ class CommonWidgets {
               style: TextStyle(
                   color: AppColors.clr_white,
                   fontSize: 10,
-                  fontFamily: 'MuliRegular'),
+                  fontFamily: 'MuliRegular',
+              ),
             )
           ],
+        ),
+      ),
+    );
+  }
+
+  static Widget getBottomButton({@required String name, Function onButtonClick}){
+    return Container(
+      width: double.infinity,
+      margin: EdgeInsets.symmetric(
+        horizontal: 10.0,
+      ),
+      child: FlatButton(
+        shape: new RoundedRectangleBorder(
+          borderRadius: new BorderRadius.circular(5.0),
+        ),
+        disabledColor: AppColors.clr_bg_black,
+        color: AppColors.clr_bg_black,
+        splashColor: AppColors.clr_red.withOpacity(0.4),
+        focusColor: AppColors.clr_red.withOpacity(0.2),
+        onPressed: onButtonClick,
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            vertical: 18,
+          ),
+          child: Text(
+            "$name",
+            style: TextStyle(
+              color: AppColors.clr_white,
+              fontSize: 16,
+              fontFamily: 'MuliRegular',
+            ),
+          ),
         ),
       ),
     );

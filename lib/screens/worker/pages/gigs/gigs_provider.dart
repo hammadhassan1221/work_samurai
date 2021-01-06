@@ -31,12 +31,13 @@ class GigsProvider extends ChangeNotifier {
   String _token;
 
   init({@required BuildContext context}) async {
+    _isFutureJobsFetched = false;
+    _inProgress = false;
+    _profileData = false;
     try {
       this.context = context;
       _token = PreferenceUtils.getString(Strings.ACCESS_TOKEN);
      await _getProfileData(context: context);
-      // await _getFutureJobs(context: context);
-      // await _getJobsInProgress(context: context);
     } catch (e) {
       print(e.toString());
     }

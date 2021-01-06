@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:work_samurai/commons/utils.dart';
 import 'package:work_samurai/res/assets.dart';
+import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/screens/splash/splash_components.dart';
 import 'package:work_samurai/screens/splash/splash_providers.dart';
-import 'package:work_samurai/widgets/toast.dart';
 
 class Splash extends StatefulWidget {
   @override
@@ -34,8 +34,7 @@ class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
     PreferenceUtils.init();
-    // _firebaseMessaging.getToken().then((value) => debugPrint(value));
-
+    AppSizes.initializeSize(context);
     Provider.of<SplashProvider>(context, listen: true);
     _provider.initializeResources(context);
     return Scaffold(
