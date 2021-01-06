@@ -1,7 +1,6 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 import '../res/colors.dart';
 import '../res/sizes.dart';
@@ -17,18 +16,9 @@ class Loader {
           color: AppColors.clr_bg_grey.withOpacity(0.5),
           child: Center(
             child: Container(
-              height: AppSizes.height*0.30,
-              width: AppSizes.width*0.50,
-              decoration: BoxDecoration(
-                shape: BoxShape.rectangle,
-                image: DecorationImage(
-                  image: AssetImage(
-                    "assets/json/api_loader",
-                  ),
-                  fit: BoxFit.fill,
-                  scale: 1.3,
-                ),
-              ),
+              height: AppSizes.height * 0.30,
+              width: AppSizes.width * 0.50,
+              child: Lottie.asset("assets/json/new_api.json"),
             ),
           ),
         );

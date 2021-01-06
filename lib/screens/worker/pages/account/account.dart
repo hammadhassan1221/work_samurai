@@ -41,17 +41,6 @@ class _AccountState extends State<Account> {
           child: ListView(
             children: [
 
-              // Container(
-              //   height: AppSizes.height * 0.1,
-              //   child: Marquee(
-              //     text:
-              //     'KINDLY VERIFY YOUR DOCUMENTS          ',
-              //     style: TextStyle(
-              //         color: AppColors.clr_red,
-              //         fontWeight: FontWeight.bold,
-              //         fontSize: 20),
-              //   ),
-              // ),
               Align(
                 alignment: Alignment.topRight,
                 child: _accountComponent.getUserEdit(

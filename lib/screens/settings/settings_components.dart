@@ -15,7 +15,7 @@ class SettingsComponents{
               width: 1.5, // This would be the width of the underline
             ))),
         padding: EdgeInsets.only(bottom: AppSizes.height*0.02),
-        margin: EdgeInsets.only(top:AppSizes.height*0.05,left: AppSizes.width*0.04,right: AppSizes.width*0.04,),
+        margin: EdgeInsets.only(top:AppSizes.height*0.035,left: AppSizes.width*0.04,right: AppSizes.width*0.04,),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -26,7 +26,7 @@ class SettingsComponents{
               child: Text(
                   text,
                   style: TextStyle(
-                    fontSize: 15,
+                    fontSize: 14,
                     color: AppColors.clr_bg_black,
                     fontFamily: 'MuliSemiBold',
                   )

@@ -1,3 +1,4 @@
+import 'package:bouncing_widget/bouncing_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:work_samurai/res/assets.dart';
@@ -128,14 +129,11 @@ class CommonWidgets {
     );
   }
 
-  static Widget getSignUpButton(
-      {AnimationController animationController,
-        Function onTapUp,
-        Function onTapDown,
-        @required BuildContext context,
-      @required Function onPress,
-      @required String text,
-      }) {
+  static Widget getSignUpButton({
+    @required BuildContext context,
+    @required Function onPress,
+    @required String text,
+  }) {
     return Align(
       alignment: Alignment.bottomCenter,
       child: InkWell(
@@ -158,16 +156,13 @@ class CommonWidgets {
             color: AppColors.clr_bg_black,
           ),
           child: SizedBox.expand(
-            child: FlatButton(
-              onPressed: onPress,
-              child: Text(
-                text,
-                style: TextStyle(
-                    decoration: TextDecoration.none,
-                    fontSize: 16.0,
-                    fontFamily: 'MuliRegular',
-                    color: AppColors.clr_white),
-              ),
+            child: Text(
+              text,
+              style: TextStyle(
+                  decoration: TextDecoration.none,
+                  fontSize: 16.0,
+                  fontFamily: 'MuliRegular',
+                  color: AppColors.clr_white),
             ),
           ),
         ),
@@ -218,15 +213,15 @@ class CommonWidgets {
         ));
   }
 
-  static Widget phoneField({
-    @required Color backgroundColor,
-    @required Color borderColor,
-    @required Color textColor,
-    @required String text,
-    @required IconData iconData,
-    @required TextEditingController controller,
-    @required bool isPassword,e
-  }) {
+  static Widget phoneField(
+      {@required Color backgroundColor,
+      @required Color borderColor,
+      @required Color textColor,
+      @required String text,
+      @required IconData iconData,
+      @required TextEditingController controller,
+      @required bool isPassword,
+      e}) {
     return Container(
         alignment: Alignment.bottomCenter,
         margin: EdgeInsets.only(
@@ -379,9 +374,9 @@ class CommonWidgets {
             boxShadow: [
               BoxShadow(
                 color: Colors.grey.withOpacity(0.25),
-                spreadRadius: 0.8,
+                spreadRadius: 0.5,
                 blurRadius: 0.5,
-                offset: Offset(0, 1), // changes position of shadow
+                offset: Offset(0, 0), // changes position of shadow
               ),
             ],
             color: AppColors.clr_bg,
@@ -426,27 +421,33 @@ class CommonWidgets {
     );
   }
 
-  static Widget getAlertContainer({@required Function onPress}){
-   return GestureDetector(
+  static Widget getAlertContainer({@required Function onPress}) {
+    return GestureDetector(
       onTap: onPress,
       child: Container(
         width: AppSizes.width,
-        padding: EdgeInsets.all(AppSizes.width*0.03),
+        padding: EdgeInsets.all(AppSizes.width * 0.03),
         color: Colors.orangeAccent,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Your Profile Inactive",style: TextStyle(
-                color: AppColors.clr_white,
-                fontSize: 18,
-                fontFamily: 'MuliSemiBold'
-            ),),
-            SizedBox(height: AppSizes.height*0.005,),
-            Text("Please see the alerts for verifying your profile and start receiving the jobs",style: TextStyle(
-              color: AppColors.clr_white,
-              fontSize: 11,
-            ),)
-
+            Text(
+              "Your Profile Inactive",
+              style: TextStyle(
+                  color: AppColors.clr_white,
+                  fontSize: 14,
+                  fontFamily: 'MuliSemiBold'),
+            ),
+            SizedBox(
+              height: AppSizes.height * 0.005,
+            ),
+            Text(
+              "Please see the alerts for verifying your profile and start receiving the jobs",
+              style: TextStyle(
+                  color: AppColors.clr_white,
+                  fontSize: 10,
+                  fontFamily: 'MuliRegular'),
+            )
           ],
         ),
       ),

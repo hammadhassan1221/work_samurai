@@ -18,6 +18,7 @@ class _EarningsState extends State<Earnings> {
   DateTime _selectedDate;
   DateTime _fromDate;
   int _currentYear;
+  TextEditingController _totalAmount;
 
   @override
   void initState() {

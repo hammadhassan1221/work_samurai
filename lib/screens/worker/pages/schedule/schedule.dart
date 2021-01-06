@@ -5,9 +5,11 @@ import 'package:work_samurai/animations/slide_right.dart';
 import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
+import 'package:work_samurai/screens/location_details/location_details.dart';
 import 'package:work_samurai/screens/worker/pages/alerts/alerts.dart';
 import 'package:work_samurai/screens/worker/pages/schedule/schedule_components.dart';
 import 'package:work_samurai/screens/worker/pages/schedule/schedule_provider.dart';
+import 'package:work_samurai/screens/worker/worker_provider.dart';
 import 'package:work_samurai/widgets/widgets.dart';
 
 class Schedule extends StatefulWidget {
@@ -20,6 +22,7 @@ class _ScheduleState extends State<Schedule> {
   double _value = 0.0;
   ScheduleComponents _scheduleComponents;
   ScheduleProviders _scheduleProviders;
+  WorkerProvider _workerProvider;
 
   @override
   void initState() {
@@ -28,28 +31,30 @@ class _ScheduleState extends State<Schedule> {
 
     _scheduleComponents = ScheduleComponents();
     _scheduleProviders = Provider.of<ScheduleProviders>(context, listen:false);
+    _workerProvider = Provider.of<WorkerProvider>(context,listen: false);
   }
 
   @override
   Widget build(BuildContext context) {
     Provider.of<ScheduleProviders>(context, listen:true);
+    Provider.of<WorkerProvider>(context,listen: true);
     return Container(
       width: AppSizes.width,
       color: AppColors.clr_bg,
       child: Column(children: [
         CommonWidgets.getAppBarWithout(text: "Your Schedule"),
 
-        CommonWidgets.getAlertContainer(onPress: (){Navigator.push(context, SlideRightRoute(page:Alerts()));}),
+        CommonWidgets.getAlertContainer(onPress: (){_workerProvider.setCurrentIndex(4);}),
 
         SizedBox(
-          height: AppSizes.height * 0.01,
+          height: AppSizes.height * 0.025,
         ),
 
         Expanded(
           child: ListView(
             children: [
+              _scheduleComponents.getLocation(imagePath: Assets.location, text: "Location", text1: "New York,USA",onPress: (){Navigator.push(context, SlideRightRoute(page: LocationDetails()));}),
 
-              _scheduleComponents.getDistance(imagePath: Assets.location, text: "Location", text1: "New York,USA"),
               Container(
                 margin: EdgeInsets.only(
                   top: AppSizes.height*0.01,
@@ -59,7 +64,9 @@ class _ScheduleState extends State<Schedule> {
                 color: AppColors.clr_field
                 ,),
               SizedBox(height: AppSizes.height*0.02,),
-              _scheduleComponents.getLocation(imagePath: Assets.distance, text: "Max Distance", text1: "40km"),
+
+              _scheduleComponents.getDistance(imagePath: Assets.distance, text: "Max Distance", text1: "40km"),
+
               SliderTheme(
                 data: SliderTheme.of(context).copyWith(
                   activeTrackColor: AppColors.clr_bg_black,

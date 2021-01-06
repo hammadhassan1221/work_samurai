@@ -37,6 +37,13 @@ dependencies:
   syncfusion_flutter_calendar: ^18.3.52
   dotted_border: ^1.0.7
   image_picker: ^0.6.6+5
+  file_picker: ^2.0.0
+  connectivity: ^2.0.0
+  firebase_core: ^0.5.3
+  firebase_messaging: ^7.0.3
+  aes_crypt: ^0.1.1
+  bouncing_widget: ^1.2.0
+  lottie: ^0.7.0+1
 
 
 
@@ -61,6 +68,7 @@ flutter:
   assets:
     - assets/png/
     - assets/jpg/
+    - assets/json/
   fonts:
     - family: MuliRegular
       fonts:

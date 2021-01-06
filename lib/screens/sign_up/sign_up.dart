@@ -1,3 +1,4 @@
+import 'package:bouncing_widget/bouncing_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -7,6 +8,7 @@ import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/screens/sign_up/sign_up_providers.dart';
 import 'package:work_samurai/screens/sign_up/signup_components.dart';
+import 'package:work_samurai/widgets/toast.dart';
 import 'package:work_samurai/widgets/widgets.dart';
 
 class SignUp extends StatefulWidget {
@@ -55,6 +57,7 @@ class _SignUpState extends State<SignUp> {
     _signUpProvider = Provider.of<SignUpProvider>(context, listen: false);
     _signUpProvider.init(context: context);
     _selectedIndex = 0;
+
     _skillId = TextEditingController();
   }
 
@@ -69,7 +72,7 @@ class _SignUpState extends State<SignUp> {
     _signUpProvider = Provider.of<SignUpProvider>(context, listen: true);
     return SafeArea(
         child: Scaffold(
-      resizeToAvoidBottomInset: true,
+      resizeToAvoidBottomPadding: true,
       body: Container(
           height: AppSizes.height,
           width: AppSizes.width,
@@ -277,9 +280,10 @@ class _SignUpState extends State<SignUp> {
                   SizedBox(
                     height: AppSizes.height * 0.025,
                   ),
-                  CommonWidgets.getSignUpButton(
-                    context: context,
-                    onPress: () {
+                  BouncingWidget(
+                    duration: Duration(milliseconds: 100),
+                    scaleFactor: 0.5,
+                    onPressed: () {
                       if (_firstName.text.isNotEmpty) {
                         if (_lastName.text.isNotEmpty) {
                           if (_email.text.isNotEmpty) {
@@ -294,27 +298,61 @@ class _SignUpState extends State<SignUp> {
                                       firstName: _firstName.text,
                                       lastName: _lastName.text,
                                       email: _email.text,
-                                      password:_password.text,
+                                      password: _password.text,
                                       phone: _phoneNumber.text,
                                       skill: _selectedSkillId,
                                       gender: getGenderText(),
                                     );
+                                  } else {
+                                    ApplicationToast.getWarningToast(
+                                        durationTime: 3,
+                                        heading: "Error",
+                                        subHeading: "Phone Number is empty");
                                   }
+                                } else {
+                                  ApplicationToast.getWarningToast(
+                                      durationTime: 3,
+                                      heading: "Error",
+                                      subHeading: "Gender is empty");
                                 }
+                              } else {
+                                ApplicationToast.getWarningToast(
+                                    durationTime: 3,
+                                    heading: "Error",
+                                    subHeading: "Select skill");
                               }
+                            } else {
+                              ApplicationToast.getWarningToast(
+                                  durationTime: 3,
+                                  heading: "Error",
+                                  subHeading:
+                                  "Password and Confirm Password should be equal");
                             }
+                          } else {
+                            ApplicationToast.getWarningToast(
+                                durationTime: 3,
+                                heading: "Error",
+                                subHeading: "Email is empty");
                           }
+                        } else {
+                          ApplicationToast.getWarningToast(
+                              durationTime: 3,
+                              heading: "Error",
+                              subHeading: "Last Name is Empty");
                         }
+                      } else {
+                        ApplicationToast.getWarningToast(
+                            durationTime: 3,
+                            heading: "Error",
+                            subHeading: "First Name is Empty");
                       }
                     },
-                    text: "Sign Up",
+                    child: CommonWidgets.getSignUpButton(
+                        context: context, text: "Sign Up"),
                   ),
                   SizedBox(
                     height: AppSizes.height * 0.025,
                   ),
-                  //   CommonWidgets.getSignUpButton(
-                  //       context: context, onPress: () {Navigator.push(context, SlideRightRoute(page: Worker()));}, text: "Sign Up")
-                  //
                 ],
               )),
             ],
