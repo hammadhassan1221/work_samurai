@@ -1,3 +1,4 @@
+import 'package:aes_crypt/aes_crypt.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
@@ -38,6 +39,8 @@ class LoginProvider extends ChangeNotifier {
       if(connectivityResult != ConnectivityResult.none){
         _loader.showLoader(context: context);
         var formData = Map<String, dynamic>();
+
+        var encryptedPass = AesCrypt(password);
         formData['EmailAddress'] = email;
         formData['Password'] = password;
         formData['DeviceID'] = "A580E6FE-DA99-4066-AFC7-C939104AED7F";
@@ -58,7 +61,7 @@ class LoginProvider extends ChangeNotifier {
           throw "Unauthorized";
         }
         if (_response.statusCode == 200) {
-          //  _loader.hideLoader(context);
+           _loader.hideLoader(context);
           _loginResponse = LoginResponse.fromJson(_response.data);
           if (_loginResponse.accessToken != null) {
             PreferenceUtils.setLoginResponse(_loginResponse);

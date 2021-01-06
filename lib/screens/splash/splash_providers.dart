@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:get_version/get_version.dart';
@@ -9,15 +10,12 @@ import 'package:work_samurai/screens/login/login.dart';
 import 'package:work_samurai/screens/worker/worker.dart';
 
 class SplashProvider extends ChangeNotifier {
-  String versionNumber;
+  String versionNumber="";
 
   BuildContext context;
 
   init({@required BuildContext context}) async{
     await getVersionNumber();
-    print("end");
-    print("end");
-    print("end");
     this.context = context;
   }
 

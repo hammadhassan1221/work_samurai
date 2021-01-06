@@ -33,7 +33,8 @@ class EditProfileProviders extends ChangeNotifier {
     }
   }
 
-  Future getVerifiedPhone({@required BuildContext context,@required String newPassword}) async {
+  Future getVerifiedPhone(
+      {@required BuildContext context, @required String newPassword}) async {
     try {
       var connectivityResult = await (Connectivity().checkConnectivity());
       if (connectivityResult != ConnectivityResult.none) {
@@ -47,7 +48,6 @@ class EditProfileProviders extends ChangeNotifier {
               "Authorization": "Bearer " + _token,
               "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
             },
-
           ),
         );
 
@@ -58,7 +58,8 @@ class EditProfileProviders extends ChangeNotifier {
         if (_response.statusCode == 200) {
           _loader.hideLoader(context);
 
-          GenericResponse _genericResponse = GenericResponse.fromJson(_response.data);
+          GenericResponse _genericResponse =
+              GenericResponse.fromJson(_response.data);
         }
       }
     } catch (e) {
@@ -91,7 +92,8 @@ class EditProfileProviders extends ChangeNotifier {
         if (_response.statusCode == 200) {
           _loader.hideLoader(context);
 
-          GenericResponse _genericResponse = GenericResponse.fromJson(_response.data);
+          GenericResponse _genericResponse =
+              GenericResponse.fromJson(_response.data);
         }
       }
     } catch (e) {

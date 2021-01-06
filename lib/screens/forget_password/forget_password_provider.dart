@@ -78,10 +78,6 @@ class ForgetPasswordProvider extends ChangeNotifier {
   callForgetPasswordAPI(
       {@required BuildContext context, @required String email}) {
     if (email.toString().validateEmail()) {
-      ApplicationToast.getWarningToast(
-          durationTime: 3,
-          heading: "Testing",
-          subHeading: "email is: " + email);
       _forgetPassword(context: context, email: email);
     } else {
       ApplicationToast.getWarningToast(

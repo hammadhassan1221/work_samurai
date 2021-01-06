@@ -1,3 +1,4 @@
+import 'package:bouncing_widget/bouncing_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -71,7 +72,7 @@ class _SignUpState extends State<SignUp> {
     _signUpProvider = Provider.of<SignUpProvider>(context, listen: true);
     return SafeArea(
         child: Scaffold(
-          resizeToAvoidBottomPadding: true,
+      resizeToAvoidBottomPadding: true,
       body: Container(
           height: AppSizes.height,
           width: AppSizes.width,
@@ -279,9 +280,10 @@ class _SignUpState extends State<SignUp> {
                   SizedBox(
                     height: AppSizes.height * 0.025,
                   ),
-                  CommonWidgets.getSignUpButton(
-                    context: context,
-                    onPress: () {
+                  BouncingWidget(
+                    duration: Duration(milliseconds: 100),
+                    scaleFactor: 0.5,
+                    onPressed: () {
                       if (_firstName.text.isNotEmpty) {
                         if (_lastName.text.isNotEmpty) {
                           if (_email.text.isNotEmpty) {
@@ -324,7 +326,7 @@ class _SignUpState extends State<SignUp> {
                                   durationTime: 3,
                                   heading: "Error",
                                   subHeading:
-                                      "Password and Confirm Password should be equal");
+                                  "Password and Confirm Password should be equal");
                             }
                           } else {
                             ApplicationToast.getWarningToast(
@@ -344,7 +346,9 @@ class _SignUpState extends State<SignUp> {
                             heading: "Error",
                             subHeading: "First Name is Empty");
                       }
-                    },text: "Sign Up"
+                    },
+                    child: CommonWidgets.getSignUpButton(
+                        context: context, text: "Sign Up"),
                   ),
                   SizedBox(
                     height: AppSizes.height * 0.025,

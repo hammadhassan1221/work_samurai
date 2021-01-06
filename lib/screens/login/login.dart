@@ -1,3 +1,4 @@
+import 'package:bouncing_widget/bouncing_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/screens/forget_password/forget_password.dart';
 import 'package:work_samurai/screens/login/login_components.dart';
 import 'package:work_samurai/screens/sign_up/sign_up.dart';
+import 'package:work_samurai/screens/worker/worker.dart';
 import 'package:work_samurai/widgets/widgets.dart';
 
 import '../../res/sizes.dart';
@@ -20,14 +22,14 @@ class Login extends StatefulWidget {
 }
 
 bool onCheck = false;
-class _LoginState extends State<Login> with SingleTickerProviderStateMixin{
+
+class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
   LoginComponents _loginComponents;
   LoginProvider _loginProvider;
   TextEditingController _email, _password;
   AnimationController _animationController;
   double _scale;
   FocusNode _focusNode;
-
 
   @override
   void initState() {
@@ -44,20 +46,24 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin{
       lowerBound: 0.0,
       upperBound: 0.1,
     )..addListener(() {
-      setState(() {});
-    });
+        setState(() {});
+      });
   }
+
   @override
   void dispose() {
     _animationController.dispose();
     super.dispose();
   }
+
   void _tapDown(TapDownDetails details) {
     _animationController.forward();
   }
+
   void _tapUp(TapUpDetails details) {
     _animationController.reverse();
   }
+
   @override
   Widget build(BuildContext context) {
     _scale = 1 - _animationController.value;
@@ -84,22 +90,21 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin{
                   height: AppSizes.height * 0.02,
                 ),
                 CommonWidgets.getInputField(
-                    backgroundColor: AppColors.transparentColor,
-                    borderColor: AppColors.clr_bg_grey,
-                    textColor: AppColors.clr_bg_black2,
-                    text: "Password",
-                    controller: _password,
-                    isPassword: true,
-                    imagePath: Assets.lock,),
+                  backgroundColor: AppColors.transparentColor,
+                  borderColor: AppColors.clr_bg_grey,
+                  textColor: AppColors.clr_bg_black2,
+                  text: "Password",
+                  controller: _password,
+                  isPassword: true,
+                  imagePath: Assets.lock,
+                ),
                 SizedBox(
                   height: AppSizes.height * 0.02,
                 ),
                 Container(
                     margin: EdgeInsets.only(
-
-                      right: AppSizes.height * 0.03,
-                      bottom: AppSizes.height*0.03
-                    ),
+                        right: AppSizes.height * 0.03,
+                        bottom: AppSizes.height * 0.03),
                     alignment: Alignment.topLeft,
                     child: Row(
                       children: [
@@ -136,19 +141,23 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin{
                         )
                       ],
                     )),
-                CommonWidgets.getSignUpButton(
-                  onTapDown: _tapDown,
-                  onTapUp: _tapUp,
-                  animationController: _animationController,
-                    context: context,
-                    onPress: () {
-                      //Navigator.push(context, SlideRightRoute(page: Worker()));
-                      _loginProvider.callLoginAPI(
-                          context: context,
-                          email: _email.text.toString(),
-                          password: _password.text.toString());
-                    },
-                    text: "Login"),
+                BouncingWidget(
+                  duration: Duration(milliseconds: 100),
+                  scaleFactor: 0.5,
+                  onPressed: () {
+                    Navigator.push(context, SlideRightRoute(page: Worker()));
+                    _loginProvider.callLoginAPI(
+                        context: context,
+                        email: _email.text.toString(),
+                        password: _password.text.toString());
+
+                  },
+                  child: CommonWidgets.getSignUpButton(
+                      context: context,
+                      onPress: () {
+                      },
+                      text: "Login"),
+                ),
                 SizedBox(
                   height: AppSizes.height * 0.025,
                 ),
@@ -162,12 +171,17 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin{
                 SizedBox(
                   height: AppSizes.height * 0.025,
                 ),
-                _loginComponents.getRichText(
-                    text1: "Don't have an account?",
-                    text2: "Sign Up",
-                    onPress: () {
-                      Navigator.push(context, SlideRightRoute(page: SignUp()));
-                    }),
+                BouncingWidget(
+                  duration: Duration(milliseconds: 200),
+                  scaleFactor: 1,
+                  child: _loginComponents.getRichText(
+                      text1: "Don't have an account?",
+                      text2: "Sign Up",
+                      onPress: () {
+                        Navigator.push(
+                            context, SlideRightRoute(page: SignUp()));
+                      }),
+                ),
               ],
             ),
           ),
