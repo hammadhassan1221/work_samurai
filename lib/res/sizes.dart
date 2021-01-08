@@ -7,6 +7,10 @@ class AppSizes{
   static Size _screenSize;
   static double width;
   static double height;
+  static double widthRatio;
+  static double heightRatio;
+  static bool isPhone;
+  static double fontRatio;
 
   static AppSizes _appSizes;
 
@@ -14,8 +18,15 @@ class AppSizes{
     _context = context;
     _screenSize = MediaQuery.of(_context).size;
 
+    isPhone = _screenSize.shortestSide < 600;
     width = _screenSize.width;
     height = _screenSize.height;
+    fontRatio =
+    (isPhone && _screenSize.width <= 360) ? _screenSize.width / 360 : 1.0;
+    widthRatio = isPhone ? _screenSize.width / 360 : _screenSize.width / 900;
+    heightRatio =
+    isPhone ? _screenSize.height / 720 : _screenSize.height / 1200;
+
   }
 
   static refreshSize(){
