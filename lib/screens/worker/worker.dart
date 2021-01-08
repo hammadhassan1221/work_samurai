@@ -138,6 +138,7 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
 
   _currentPage(){
     if(workerProvider.currentIndex == 0){
+
       return Gigs();
     }if(workerProvider.currentIndex == 1){
       return Schedule();
