@@ -1,0 +1,32 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
+
+import '../res/colors.dart';
+import '../res/sizes.dart';
+
+class Loader {
+  showLoader({
+    BuildContext context,
+  }) {
+    showDialog(
+      context: context,
+      builder: (_) {
+        return Material(
+          color: AppColors.clr_bg_grey.withOpacity(0.5),
+          child: Center(
+            child: Container(
+              height: AppSizes.height * 0.30,
+              width: AppSizes.width * 0.50,
+              child: Lottie.asset("assets/json/new_api.json"),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  hideLoader(BuildContext context) {
+    Navigator.of(context).pop();
+  }
+}

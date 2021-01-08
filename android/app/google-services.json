@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "45309268657",
+    "firebase_url": "https://worksamurai-e3eb0.firebaseio.com",
+    "project_id": "worksamurai-e3eb0",
+    "storage_bucket": "worksamurai-e3eb0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:45309268657:android:66094229f8623ca4cc4890",
+        "android_client_info": {
+          "package_name": "com.jinnbyte.work_samurai"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "45309268657-40f68nok9vvspdsmkktcb486bu7u35im.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxBzba_srvA-PJBBF2JEaqswGUibpzeNQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "45309268657-40f68nok9vvspdsmkktcb486bu7u35im.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "45309268657-ibbtodagv5334pb9smmkksnj4rmeml4e.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.jinnbyte.workSamurai"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
