@@ -8,6 +8,7 @@ import 'package:work_samurai/screens/worker/worker_provider.dart';
 
 class Worker extends StatefulWidget {
   @override
+
   _WorkerState createState() => _WorkerState();
 }
 
