@@ -12,7 +12,7 @@ import 'package:work_samurai/widgets/loader.dart';
 class WorkerProvider extends ChangeNotifier {
   BuildContext context;
   RangeValues values;
-  int currentIndex = 0;
+  int   currentIndex = 0;
 
 
   NetworkHelper _networkHelper = NetworkHelperImpl();

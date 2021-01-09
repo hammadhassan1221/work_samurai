@@ -10,6 +10,7 @@ import 'package:work_samurai/screens/worker/pages/alerts/alerts.dart';
 import 'package:work_samurai/screens/worker/pages/gigs/gigs_components.dart';
 import 'package:work_samurai/screens/worker/pages/gigs/gigs_provider.dart';
 import 'package:work_samurai/screens/worker/worker_provider.dart';
+import 'package:work_samurai/widgets/spacer.dart';
 import 'package:work_samurai/widgets/widgets.dart';
 
 class Gigs extends StatefulWidget {
@@ -68,43 +69,42 @@ class _GigsState extends State<Gigs> with SingleTickerProviderStateMixin {
             ],
           ),
           CommonWidgets.getAlertContainer(
-            onPress: () => Navigator.push(context,SlideRightRoute(page: ProfileSettings(),),
+            onPress: () => Navigator.push(
+              context,
+              SlideRightRoute(
+                page: ProfileSettings(),
+              ),
             ),
           ),
-          SizedBox(
-            height: AppSizes.height * 0.01,
-          ),
-          Container(
-            height: AppSizes.height*0.60,
-            child: Flexible(
-              child: TabBarView(
-                children: <Widget>[
-                  _gigsComponents.getOffersContainer(
-                    context: context,
-                    jobTitle: "Waiter",
-                    dateTime: "23 Nov, 2020",
-                    location: "Crown Hotel, New York",
-                    totalAmount: "140",
-                    amountHour: "20",
-                  ),
-                  _gigsComponents.getInProgressContainer(
-                    context: context,
-                    jobTitle: "Bartender",
-                    dateTime: "23 Nov, 2020",
-                    location: "Crown Hotel, New York",
-                    totalAmount: "350",
-                    amountHour: "25",
-                  ),
-                  _gigsComponents.getConfirmedContainer(
-                    context: context,
-                    jobTitle: "Receptionist",
-                    dateTime: "23 Nov, 2020",
-                    location: "Crown Hotel, New York",
-                    totalAmount: "240",
-                    amountHour: "20",
-                  ),
-                ],
-              ),
+          verticalSpacer(20.0,),
+          Expanded(
+            child: TabBarView(
+              children: <Widget>[
+                _gigsComponents.getOffersContainer(
+                  context: context,
+                  jobTitle: "Waiter",
+                  dateTime: "23 Nov, 2020",
+                  location: "Crown Hotel, New York",
+                  totalAmount: "140",
+                  amountHour: "20",
+                ),
+                _gigsComponents.getInProgressContainer(
+                  context: context,
+                  jobTitle: "Bartender",
+                  dateTime: "23 Nov, 2020",
+                  location: "Crown Hotel, New York",
+                  totalAmount: "350",
+                  amountHour: "25",
+                ),
+                _gigsComponents.getConfirmedContainer(
+                  context: context,
+                  jobTitle: "Receptionist",
+                  dateTime: "23 Nov, 2020",
+                  location: "Crown Hotel, New York",
+                  totalAmount: "240",
+                  amountHour: "20",
+                ),
+              ],
             ),
           )
         ],

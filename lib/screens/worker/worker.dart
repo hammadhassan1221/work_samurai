@@ -19,11 +19,11 @@ class Worker extends StatefulWidget {
   _WorkerState createState() => _WorkerState();
 }
 
-class _WorkerState extends State<Worker> with TickerProviderStateMixin{
-
+class _WorkerState extends State<Worker> with TickerProviderStateMixin {
   var pickedTime;
   WorkerProvider workerProvider;
   WorkerComponents workerComponents;
+  int currentIndex;
 
   final List<Widget> children = [
     Gigs(),
@@ -36,9 +36,9 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
   @override
   void initState() {
     super.initState();
+    currentIndex = 0;
     workerProvider = Provider.of<WorkerProvider>(context, listen: false);
     workerComponents = WorkerComponents();
-
   }
 
   @override
@@ -48,85 +48,115 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        body: Container(child:_currentPage()),
+        body: Container(
+          child: children[currentIndex],
+        ),
         bottomNavigationBar: BottomNavigationBar(
-          currentIndex: workerProvider.currentIndex,
+          currentIndex: currentIndex,
           backgroundColor: AppColors.clr_white,
           type: BottomNavigationBarType.fixed,
           onTap: (index) {
             setState(() {
-              workerProvider.setCurrentIndex(index);
+              currentIndex = index;
             });
           },
           items: [
             BottomNavigationBarItem(
               icon: GestureDetector(
-                child:Icon(LineariconsFree.briefcase,color: workerProvider.currentIndex == 0
-                    ? AppColors.clr_bg_black
-                    : AppColors.clr_bg_black2,size: 20,)
-              ),
-              title: Text(
-                "Gigs",style: TextStyle(
+                  child: Icon(
+                LineariconsFree.briefcase,
                 color: workerProvider.currentIndex == 0
                     ? AppColors.clr_bg_black
                     : AppColors.clr_bg_black2,
-              ),
+                size: 20,
+              )),
+              title: Text(
+                "Gigs",
+                style: TextStyle(
+                  color: workerProvider.currentIndex == 0
+                      ? AppColors.clr_bg_black
+                      : AppColors.clr_bg_black2,
+                ),
               ),
             ),
             BottomNavigationBarItem(
               icon: GestureDetector(
-                child: Image.asset(Assets.schedule,height: 20,width: 20, color: workerProvider.currentIndex == 1
-                    ? AppColors.clr_bg_black
-                    : AppColors.clr_bg_black2,),
+                child: Image.asset(
+                  Assets.schedule,
+                  height: 20,
+                  width: 20,
+                  color: workerProvider.currentIndex == 1
+                      ? AppColors.clr_bg_black
+                      : AppColors.clr_bg_black2,
+                ),
               ),
               title: Text(
-                "Schedule",style: TextStyle(
-                color: workerProvider.currentIndex == 1
-                    ? AppColors.clr_bg_black
-                    : AppColors.clr_bg_black2,
-              ),
+                "Schedule",
+                style: TextStyle(
+                  color: workerProvider.currentIndex == 1
+                      ? AppColors.clr_bg_black
+                      : AppColors.clr_bg_black2,
+                ),
               ),
             ),
             BottomNavigationBarItem(
               icon: GestureDetector(
-                child: Image.asset(Assets.msgs,height: 20,width: 20, color: workerProvider.currentIndex == 2
-                    ? AppColors.clr_bg_black
-                    : AppColors.clr_bg_black2,),
+                child: Image.asset(
+                  Assets.msgs,
+                  height: 20,
+                  width: 20,
+                  color: workerProvider.currentIndex == 2
+                      ? AppColors.clr_bg_black
+                      : AppColors.clr_bg_black2,
+                ),
               ),
               title: Text(
-                "Messages",style: TextStyle(
-                color: workerProvider.currentIndex == 2
-                    ? AppColors.clr_bg_black
-                    : AppColors.clr_bg_black2,
-              ),
+                "Messages",
+                style: TextStyle(
+                  color: workerProvider.currentIndex == 2
+                      ? AppColors.clr_bg_black
+                      : AppColors.clr_bg_black2,
+                ),
               ),
             ),
             BottomNavigationBarItem(
               icon: GestureDetector(
-                child: Image.asset(Assets.profile,height: 20,width: 20, color: workerProvider.currentIndex == 3
-                    ? AppColors.clr_bg_black
-                    : AppColors.clr_bg_black2,),
+                child: Image.asset(
+                  Assets.profile,
+                  height: 20,
+                  width: 20,
+                  color: workerProvider.currentIndex == 3
+                      ? AppColors.clr_bg_black
+                      : AppColors.clr_bg_black2,
+                ),
               ),
               title: Text(
-                "Profile",style: TextStyle(
-                color: workerProvider.currentIndex == 3
-                    ? AppColors.clr_bg_black
-                    : AppColors.clr_bg_black2,
-              ),
+                "Profile",
+                style: TextStyle(
+                  color: workerProvider.currentIndex == 3
+                      ? AppColors.clr_bg_black
+                      : AppColors.clr_bg_black2,
+                ),
               ),
             ),
             BottomNavigationBarItem(
               icon: GestureDetector(
-                child: Image.asset(Assets.alerts,height: 20,width: 20, color: workerProvider.currentIndex == 4
-                    ? AppColors.clr_bg_black
-                    : AppColors.clr_bg_black2,),
+                child: Image.asset(
+                  Assets.alerts,
+                  height: 20,
+                  width: 20,
+                  color: workerProvider.currentIndex == 4
+                      ? AppColors.clr_bg_black
+                      : AppColors.clr_bg_black2,
+                ),
               ),
               title: Text(
-                "Alerts",style: TextStyle(
-                color: workerProvider.currentIndex == 4
-                    ? AppColors.clr_bg_black
-                    : AppColors.clr_bg_black2,
-              ),
+                "Alerts",
+                style: TextStyle(
+                  color: workerProvider.currentIndex == 4
+                      ? AppColors.clr_bg_black
+                      : AppColors.clr_bg_black2,
+                ),
               ),
             ),
           ],
@@ -135,16 +165,20 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
     );
   }
 
-  _currentPage(){
-    if(workerProvider.currentIndex == 0){
+  _currentPage() {
+    if (workerProvider.currentIndex == 0) {
       return Gigs();
-    }if(workerProvider.currentIndex == 1){
+    }
+    if (workerProvider.currentIndex == 1) {
       return Schedule();
-    }if(workerProvider.currentIndex == 2){
+    }
+    if (workerProvider.currentIndex == 2) {
       return WorkerChatRoom();
-    }if(workerProvider.currentIndex == 3){
+    }
+    if (workerProvider.currentIndex == 3) {
       return Account();
-    }if(workerProvider.currentIndex == 4){
+    }
+    if (workerProvider.currentIndex == 4) {
       return Alerts();
     }
   }
