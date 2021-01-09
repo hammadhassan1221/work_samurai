@@ -30,6 +30,22 @@ class CommonWidgets {
         ));
   }
 
+  static Widget onNullData({@required String text}){
+    return Container(
+      // margin: EdgeInsets.only(top: 10, bottom: 25),
+      child: Center(
+        child: Text(
+          text,
+          style: TextStyle(
+              decoration: TextDecoration.none,
+            fontSize: 15,
+            fontFamily: 'MuliSemiBold',
+          ),
+        ),
+      ),
+    );
+  }
+
   static Widget getAvailability(
       {@required String text1,
       @required String text,
