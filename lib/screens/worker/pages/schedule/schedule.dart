@@ -10,6 +10,7 @@ import 'package:work_samurai/screens/worker/pages/alerts/alerts.dart';
 import 'package:work_samurai/screens/worker/pages/schedule/schedule_components.dart';
 import 'package:work_samurai/screens/worker/pages/schedule/schedule_provider.dart';
 import 'package:work_samurai/screens/worker/worker_provider.dart';
+import 'package:work_samurai/widgets/toast.dart';
 import 'package:work_samurai/widgets/widgets.dart';
 
 class Schedule extends StatefulWidget {
@@ -26,7 +27,6 @@ class _ScheduleState extends State<Schedule> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     _scheduleComponents = ScheduleComponents();
@@ -104,31 +104,46 @@ class _ScheduleState extends State<Schedule> {
                 ,),
               SizedBox(height: AppSizes.height*0.02,),
 
-              _scheduleComponents.getDayTime(day: "Mon", time: "10:00 am - 5:00pm",buildContext: context, scheduleProviders: _scheduleProviders),
+              _scheduleComponents.getDayTime(day: "Monday", time: "Select Time",buildContext: context, scheduleProviders: _scheduleProviders),
               SizedBox(
                 height: AppSizes.height * 0.02,
               ),
-              _scheduleComponents.getDayTime(day: "Tues", time: "10:00 am - 5:00pm",buildContext: context, scheduleProviders: _scheduleProviders),
+              _scheduleComponents.getDayTime(day: "Tuesday", time: "Select Time",buildContext: context, scheduleProviders: _scheduleProviders),
               SizedBox(
                 height: AppSizes.height * 0.02,
               ),
-              _scheduleComponents.getWedThur(day: "Wed", time: "10:00 am - 5:00pm"),
+              _scheduleComponents.getDayTime(day: "Wednesday", time: "Select Time",buildContext: context, scheduleProviders: _scheduleProviders),
               SizedBox(
                 height: AppSizes.height * 0.02,
               ),
-              _scheduleComponents.getWedThur(day: "Thur", time: "10:00 am - 5:00pm"),
+              _scheduleComponents.getDayTime(day: "Thursday", time: "Select Time",buildContext: context, scheduleProviders: _scheduleProviders),
               SizedBox(
                 height: AppSizes.height * 0.02,
               ),
-              _scheduleComponents.getDayTime(day: "Fri", time: "10:00 am - 5:00pm"),
+              _scheduleComponents.getDayTime(day: "Friday", time: "Select Time",buildContext: context, scheduleProviders: _scheduleProviders),
               SizedBox(
                 height: AppSizes.height * 0.02,
               ),
-              _scheduleComponents.getDayTime(day: "Sat", time: "Available All Day"),
+              _scheduleComponents.getDayTime(day: "Saturday", time: "Select Time",buildContext: context, scheduleProviders: _scheduleProviders),
               SizedBox(
                 height: AppSizes.height * 0.02,
               ),
-              _scheduleComponents.getDayTime(day: "Sun", time: "Available All Day"),
+              _scheduleComponents.getDayTime(day: "Sunday", time: "Select Time",buildContext: context, scheduleProviders: _scheduleProviders),
+              SizedBox(
+                height: AppSizes.height * 0.02,
+              ),
+
+              CommonWidgets.getBottomButton(name: "Save schedule",onButtonClick: ((){
+                if(ScheduleComponents.scheduleMap.length >= 14){
+                  //all days selected
+                  // ApplicationToast.getSuccessToast(durationTime: 3, heading: "null", subHeading: ScheduleComponents.scheduleMap.length.toString());
+                  ScheduleComponents.scheduleMap["JobRadius"] = 30;
+                  _scheduleProviders.sendShedule(ScheduleComponents.scheduleMap,context);
+                }
+                else{
+                  ApplicationToast.getErrorToast(durationTime: 3, heading: "Error", subHeading: "Please select time for all days");
+                }
+              })),
 
               SizedBox(
                 height: AppSizes.height * 0.02,
@@ -138,5 +153,12 @@ class _ScheduleState extends State<Schedule> {
         )
       ]),
     );
+  }
+  onSaveSchedule(){
+    if(ScheduleComponents.scheduleMap.length == 14){
+      //all days filled
+
+    }
+
   }
 }
