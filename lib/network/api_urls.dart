@@ -13,6 +13,7 @@ const String getVerifyEmail = "$baseUrl/User/Verify/Email";
 const String getVerifyPhone = "$baseUrl/User/Verify/Mobile";
 const String getNewPassword = "$baseUrl/User/Password/Save";
 const String getSupportTicket = "$baseUrl/Support/Create";
+const String addUserSkillUrl = "$baseUrl/User/Skill/Save";
 
 
 
