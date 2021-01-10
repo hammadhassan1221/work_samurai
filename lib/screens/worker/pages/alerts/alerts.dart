@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
 import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/screens/worker/pages/alerts/alerts_components.dart';
+import 'package:work_samurai/screens/worker/pages/alerts/alerts_provider.dart';
 import 'package:work_samurai/widgets/widgets.dart';
 
 class Alerts extends StatefulWidget {
@@ -13,16 +15,19 @@ class Alerts extends StatefulWidget {
 class _AlertsState extends State<Alerts> {
 
   AlertsComponents _alertsComponents;
+  AlertProviders _alertProviders;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     _alertsComponents = AlertsComponents();
+    _alertProviders = Provider.of<AlertProviders>(context, listen: false);
+    _alertProviders.init(context: context);
   }
   @override
   Widget build(BuildContext context) {
-    // return _alertsComponents.getAlerts();
+    Provider.of<AlertProviders>(context, listen: true);
     return Container(
       width: AppSizes.width,
       color: AppColors.clr_bg,

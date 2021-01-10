@@ -56,7 +56,7 @@ class _DocumentVerificationState extends State<DocumentVerification> {
                      ],
                    ),
                  ),
-                  CommonWidgets.getBottomButton(name: "AddDocument", onButtonClick: (){
+                  CommonWidgets.getBottomButton(name: "Add Document", onButtonClick: (){
                     Navigator.push(context, SlideRightRoute(page: AddDocument()));
                   }),
                   SizedBox(height:AppSizes.height*0.015),

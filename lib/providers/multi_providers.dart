@@ -1,4 +1,5 @@
 import 'package:provider/provider.dart';
+import 'package:work_samurai/screens/add_document/add_document_provider.dart';
 import 'package:work_samurai/screens/app_settings/app_settings_provider.dart';
 import 'package:work_samurai/screens/card_details/card_details_provider.dart';
 import 'package:work_samurai/screens/chat/chat_providers.dart';
@@ -126,4 +127,11 @@ final multiProviders=[
     create: (_) => SupportProviders(),
     lazy: true,
   ),
+
+  // Rizwan
+  ChangeNotifierProvider<AddDocumentProviders>(
+    create: (_) => AddDocumentProviders(),
+    lazy: true,
+  ),
+  //
 ];

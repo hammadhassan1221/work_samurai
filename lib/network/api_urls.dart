@@ -16,6 +16,13 @@ const String getSupportTicket = "$baseUrl/Support/Create";
 
 
 
+// Rizwan api urls
+const String addDocumentVerificationURL = "$baseUrl/User/Verification/Save";
+const String getAlertsURL = "$baseUrl/Alerts/Get";
+//
+
+
+
 // deprecated
 const String getFutureJobURL = "$baseUrl/Job/FutureWorks";
 const String getInProgressJobURL = "$baseUrl/Job/FutureWorks";
