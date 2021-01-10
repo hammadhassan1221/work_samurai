@@ -120,7 +120,9 @@ class JobRolesProviders extends ChangeNotifier{
   Future addUserSkill({@required BuildContext context, @required desc, @required userSkillId}) async {
     try {
      String fileName = file.path.split("/").last;
-     fileName = fileName.substring(fileName.length - 40);
+     if (fileName.length >= 41) {
+       fileName = fileName.substring(fileName.length - 40);
+     }
       _loader.showLoader(context: context);
       FormData formData = FormData.fromMap({
         "Document.Attachment": await MultipartFile.fromFile(

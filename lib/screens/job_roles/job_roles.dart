@@ -130,7 +130,7 @@ class _JobRoleState extends State<JobRole> {
                           Column(
                             children: <Widget>[
                               Padding(
-                                padding: const EdgeInsets.only(top: 25 , left: 25),
+                                padding: const EdgeInsets.only(top: 15 , left: 25),
                                 child: Align(
                                   alignment: Alignment.topLeft,
                                   child: GestureDetector(
@@ -138,8 +138,8 @@ class _JobRoleState extends State<JobRole> {
                                       Navigator.pop(context);
                                     },
                                     child: Container(
-                                      height: 24,
-                                      width: 24,
+                                      height: 20,
+                                      width: 20,
                                       decoration: BoxDecoration(
                                         image: DecorationImage(
                                           image: AssetImage(
@@ -152,7 +152,7 @@ class _JobRoleState extends State<JobRole> {
                                   ),
                                 ),
                               ),
-                              SizedBox(height: 0),
+                              SizedBox(height: 10),
                               Column(
                                 children: [
                                   // Container(
@@ -329,16 +329,17 @@ class _JobRoleState extends State<JobRole> {
                                   color: AppColors.clr_bg_black,
                                   child: FlatButton(
                                     onPressed: () async {
-                                      if(desc.text.isNotEmpty){
+                                      if(desc.text.isNotEmpty && jobRolesProviders.result != null && _selectedSkillId.isNotEmpty ){
                                         await jobRolesProviders.addUserSkill(context: context, desc: desc.text, userSkillId: _selectedSkillId);
-                                        // email.clear();
-                                        // password.clear();
-                                      //  Navigator.pop(context);
+                                         desc.clear();
+
+                                       Navigator.pop(context);
+
                                       }else{
                                         // email.clear();
                                         // password.clear();
                                         // forgotEmail.clear();
-                                        ApplicationToast.getErrorToast(durationTime: 3, heading: "Error", subHeading: "Provide valid email");
+                                        ApplicationToast.getErrorToast(durationTime: 3, heading: "Error", subHeading: "Please Provide all fields ");
                                       }
                                     },
                                     child: Text(
