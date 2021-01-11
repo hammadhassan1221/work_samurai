@@ -32,9 +32,9 @@ class _JobRoleState extends State<JobRole> {
     _jobRolesComponents = JobRolesComponents();
     desc = TextEditingController();
     jobRolesProviders = Provider.of<JobRolesProviders>(context, listen: false);
-    Future.delayed(Duration.zero, () {
-      jobRolesProviders.init(context);
-      jobRolesProviders.result = null;
+    Future.delayed(Duration.zero, () async {
+       await jobRolesProviders.init(context);
+       jobRolesProviders.result = null;
     });
     _value = null;
     usertypeId = 0;
@@ -55,7 +55,8 @@ class _JobRoleState extends State<JobRole> {
                 CommonWidgets.getAppBar(text: "Job Roles", context: context),
                 // _jobRolesComponents.getHeading(text: "Worker Job Role"),
                 Container(
-                  height: AppSizes.height*0.7,
+                  height: AppSizes.height*0.76
+                  ,
                   child: ListView.builder(
                       itemCount: jobRolesProviders.getUserSkilllsResponse.data.userSkills.length,
                       itemBuilder: (context, index){
@@ -96,20 +97,32 @@ class _JobRoleState extends State<JobRole> {
                 //     textColor: AppColors.clr_bg_black,
                 //     job: "Chef",
                 //     verify: "Verified"),
-                Expanded(
+                // Expanded(
+                //   child: CommonWidgets.getSignUpButton(
+                //       context: context, onPress: () {
+                //     jobRolesProviders.result = null;
+                //     _onButtonPressed();
+                //   }, text: "Add a Role"),
+                // ),
+
+                Container(
+                  height: 50,
+                  margin: EdgeInsets.only(top: 0),
                   child: CommonWidgets.getSignUpButton(
                       context: context, onPress: () {
-                    jobRolesProviders.result = null;
+                    // jobRolesProviders.result = null;
                     _onButtonPressed();
-                  }, text: "Add a Role"),
+                  }, text: "Add Job Roles "),
                 ),
-                SizedBox(
-                  height: AppSizes.height * 0.025,
-                ),
+
               ],
-            ): Container(),
+            ): Container(
+
+            ),
+
           ),
-        ));
+        )
+    );
   }
   void _onButtonPressed() {
     showModalBottomSheet(
