@@ -2,6 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:work_samurai/commons/utils.dart';
 import 'package:work_samurai/generic_decode_encode/generic.dart';
+import 'package:work_samurai/models/api_models/alerts/alerts_response.dart';
 import 'package:work_samurai/network/api_urls.dart';
 import 'package:work_samurai/network/network_helper.dart';
 import 'package:work_samurai/network/network_helper_impl.dart';
@@ -15,7 +16,7 @@ class AlertProviders extends ChangeNotifier{
 
   NetworkHelper _networkHelper = NetworkHelperImpl();
   GenericDecodeEncode _genericDecodeEncode = GenericDecodeEncode();
-
+  AlertsResponse _alertsResponse = AlertsResponse.empty();
   Loader _loader = Loader();
   String _token;
   bool _isDataFetched = false;
@@ -41,17 +42,16 @@ class AlertProviders extends ChangeNotifier{
       }
       if (_response.statusCode == 200) {
         _loader.hideLoader(context);
-        ApplicationToast.getSuccessToast(durationTime: 3, heading: "Success", subHeading: "Alert Api Success");
-        // _userWholeData = UserWholeData.fromJson(
-        //     _genericDecodeEncode.decodeJson(Helper.getString(_response)));
-        // if(_userWholeData.responseCode ==1){
-        //   print('Profile api called');
+        _alertsResponse = AlertsResponse.fromJson(
+            _genericDecodeEncode.decodeJson(_response.body));
+        if(_alertsResponse.responseCode ==1){
           _isDataFetched = true;
           notifyListeners();
         }
         else{
           ApplicationToast.getErrorToast(durationTime: 3, heading: "Error", subHeading: "Something went wronge");
         }
+      }
     } catch (e) {
       _loader.hideLoader(context);
       print(e.toString());
@@ -64,6 +64,10 @@ class AlertProviders extends ChangeNotifier{
 
   setIsDataFetched({bool isFetch}){
     this._isDataFetched = isFetch;
+  }
+
+  AlertsResponse getAlerts(){
+    return this._alertsResponse;
   }
 
 }

@@ -13,7 +13,6 @@ class Alerts extends StatefulWidget {
 }
 
 class _AlertsState extends State<Alerts> {
-
   AlertsComponents _alertsComponents;
   AlertProviders _alertProviders;
 
@@ -25,6 +24,7 @@ class _AlertsState extends State<Alerts> {
     _alertProviders = Provider.of<AlertProviders>(context, listen: false);
     _alertProviders.init(context: context);
   }
+
   @override
   Widget build(BuildContext context) {
     Provider.of<AlertProviders>(context, listen: true);
@@ -35,20 +35,22 @@ class _AlertsState extends State<Alerts> {
         children: [
           CommonWidgets.getAppBarWithout(text: "Alerts"),
           SizedBox(height: AppSizes.height * 0.01),
-          Expanded(
-            child: ListView.builder(
-              itemCount: 15,
-                itemBuilder: (context, index){
-              return _alertsComponents.getNotificationsContainer(
-                  leftIcon: Assets.support,
-                  userName: "Rizwan",
-                  message: "Your Delivey Is successfully done.",
-                  time: "5:30");
-            }),
-          )
+          _alertProviders.getIsDataFetched()
+              ? Expanded(
+                  child: _alertProviders.getAlerts().data.length > 0
+                      ? ListView.builder(
+                          itemCount: _alertProviders.getAlerts().data.length,
+                          itemBuilder: (context, index) {
+                            return _alertsComponents.getNotificationsContainer(
+                                leftIcon: Assets.support,
+                                userName: _alertProviders.getAlerts().data[index].title,
+                                message:_alertProviders.getAlerts().data[index].body,
+                                time: _alertProviders.getAlerts().data[index].createdDate);
+                          })
+                      : CommonWidgets.onNullData(text: "No Alerts"))
+              : Container()
         ],
       ),
     );
-
   }
 }

@@ -5,8 +5,10 @@ import 'package:http/http.dart' as http;
 import 'package:work_samurai/animations/slide_right.dart';
 import 'package:work_samurai/commons/utils.dart';
 import 'package:work_samurai/generic_decode_encode/generic.dart';
+import 'package:work_samurai/helper/helper.dart';
 import 'package:work_samurai/models/api_models/add_document/user_verification_response.dart';
 import 'package:work_samurai/models/api_models/add_document_verifications/add_document_verification_response.dart';
+import 'package:work_samurai/models/api_models/verification_methods/verfication_methods_response.dart';
 import 'package:work_samurai/network/api_urls.dart';
 import 'package:work_samurai/network/network_helper.dart';
 import 'package:work_samurai/network/network_helper_impl.dart';
@@ -29,19 +31,24 @@ class AddDocumentProviders extends ChangeNotifier {
   GenericDecodeEncode _genericDecodeEncode = GenericDecodeEncode();
   UserVerificationResponse _userVerificationResponse = UserVerificationResponse.empty();
   AddDocumentVerificationResponse _documentVerificationResponse = AddDocumentVerificationResponse.empty();
-  bool isDataFetched = false;
+  VerficationMethodsResponse _verficationMethodsResponse = VerficationMethodsResponse.empty();
+  bool _isDataFetched = false;
   List<String> skills = List<String>();
   File file;
   FilePickerResult result;
   String _token;
   Dio _dio = Dio();
   bool _isPicked = false;
-  init({@required BuildContext context}) {
+  List<dynamic> dataList = List<dynamic>();
+  
+  init({@required BuildContext context}) async{
     this.context = context;
     _isPicked = false;
-    _token = PreferenceUtils.getString(Strings.ACCESS_TOKEN);
+    dataList = [];
+    _token = await PreferenceUtils.getString(Strings.ACCESS_TOKEN);
     result = null;
     file = null;
+    await _getVerificationMethods(context: context);
   }
 
   pickFile () async{
@@ -64,10 +71,13 @@ class AddDocumentProviders extends ChangeNotifier {
     @required BuildContext context,
     @required String desc,
     @required int systemUserId,
-    @required int verificationMethodId,
+    @required String verificationMethodId,
   }) async {
     try {
-      if(desc.isEmpty){
+      if(verificationMethodId == null){
+        ApplicationToast.getErrorToast(durationTime: 3, heading: "Error", subHeading: "Please Select Verification Type");
+      }
+      else if(desc.isEmpty){
         ApplicationToast.getErrorToast(durationTime: 3, heading: "Error", subHeading: "Please Enter Description");
       }
       else if(file == null){
@@ -130,6 +140,57 @@ class AddDocumentProviders extends ChangeNotifier {
     return this._isPicked;
   }
 
+
+  Future _getVerificationMethods({@required BuildContext context}) async {
+    try {
+      _loader.showLoader(context: context);
+      http.Response _response = await _networkHelper.post(getData, headers: {
+        "Authorization": "Bearer " + _token,
+        "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
+        "Scope":
+        "verificationmethods",
+      }, body: {});
+
+      if (_response.statusCode != 200) {
+        _loader.hideLoader(context);
+        throw ("couldn't get the data");
+      }
+      if (_response.statusCode == 200) {
+        _loader.hideLoader(context);
+        _verficationMethodsResponse = VerficationMethodsResponse.fromJson(
+            _genericDecodeEncode.decodeJson(_response.body));
+        if(_verficationMethodsResponse.responseCode ==1){
+          print('Verification Methods api called');
+          print(_verficationMethodsResponse.data.verificationMethods[0]);
+
+          for(int i = 0; i < _verficationMethodsResponse.data.verificationMethods.length; i++){
+            dataList.add(_verficationMethodsResponse.data.verificationMethods[i]);
+          }
+          // print(data[0].na)
+
+          _isDataFetched = true;
+          notifyListeners();
+        }
+        else{
+          ApplicationToast.getErrorToast(durationTime: 3, heading: "Error", subHeading: "Something went wronge");
+        }
+      }
+    } catch (e) {
+      _loader.hideLoader(context);
+      print(e.toString());
+    }
+  }
+
+  getIsDataFetched(){
+    return this._isDataFetched;
+  }
+
+  setIsDataFetched({bool isFetch}){
+    this._isDataFetched = isFetch;
+  }
+  VerficationMethodsResponse getVerificationMethods(){
+    return this._verficationMethodsResponse;
+  }
 
 
 

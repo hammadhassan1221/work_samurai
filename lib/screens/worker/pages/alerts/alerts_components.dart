@@ -1,17 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 
-class AlertsComponents{
-  Widget getAlerts(){
-    return Container(
-        child: Center(
-        child: Text("Pending on API"),
-    ),
-    );
-  }
+class AlertsComponents {
 
   Widget getNotificationsContainer({
     @required String leftIcon,
@@ -20,7 +14,8 @@ class AlertsComponents{
     @required String time,
   }) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: AppSizes.width * 0.05, vertical: AppSizes.height * 0.005),
+      margin: EdgeInsets.symmetric(
+          horizontal: AppSizes.width * 0.05, vertical: AppSizes.height * 0.005),
       padding: EdgeInsets.all(AppSizes.width * 0.02),
       width: AppSizes.width,
       decoration: BoxDecoration(
@@ -54,41 +49,56 @@ class AlertsComponents{
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      userName,
-                      style: TextStyle(
-                          fontSize: 12,
-                          // fontFamily: Assets.poppinsRegular,
-                          // color: AppColors.colorBlack,
-                          fontWeight: FontWeight.bold),
+                    Row(
+                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          width: AppSizes.width * 0.39,
+                          child: Text(
+                            userName,
+                            maxLines: 1,
+                            style: TextStyle(
+                                fontSize: 12,
+                                // fontFamily: Assets.poppinsRegular,
+                                // color: AppColors.colorBlack,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        Container(
+                          width: AppSizes.width * 0.3,
+                          child: Text(
+                            time,
+                            maxLines: 1,
+                            style: TextStyle(
+                              fontSize: 10,
+                              // fontFamily: Assets.poppinsLight,
+                              // color: AppColors.colorBlack,
+                            ),
+                          ),
+                        )
+                      ],
                     ),
                     SizedBox(
-                      height: AppSizes.height * 0.01,
+                      height: AppSizes.height * 0.015,
                     ),
-                    Text(
-                      message,
-                      style: TextStyle(
-                        fontSize: 10,
-                        // fontFamily: Assets.poppinsLight,
-                        // color: AppColors.colorBlack,
-                        // fontWeight: FontWeight.bold
+
+                    Container(
+                      width: AppSizes.width * 0.68,
+                      child: Text(
+                        message,
+                        maxLines: 1,
+                        style: TextStyle(
+                          fontSize: 10,
+                          // fontFamily: Assets.poppinsLight,
+                          // color: AppColors.colorBlack,
+                          // fontWeight: FontWeight.bold
+                        ),
                       ),
                     ),
                   ],
                 ),
               ),
             ],
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: AppSizes.height * 0.01),
-            child: Text(
-              time,
-              style: TextStyle(
-                fontSize: 10,
-                // fontFamily: Assets.poppinsLight,
-                // color: AppColors.colorBlack,
-              ),
-            ),
           ),
         ],
       ),

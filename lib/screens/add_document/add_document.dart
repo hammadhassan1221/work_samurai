@@ -30,7 +30,6 @@ class _AddDocumentState extends State<AddDocument> {
   TextEditingController _description;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _addDocumentComponents = AddDocumentComponents();
     _addDocumentProviders = Provider.of<AddDocumentProviders>(context, listen: false);
@@ -104,27 +103,22 @@ class _AddDocumentState extends State<AddDocument> {
                     right: AppSizes.width * 0.03,
                     top: AppSizes.width * 0.03,
                   ),
-                  child: DropdownButton<String>(
+                  child: DropdownButton<dynamic>(
                     isExpanded: true,
                     underline: Container(),
                     value: _selectedValue,
                     hint: Text("Verification Type"),
-                    items: <String>[
-                      'VEVO Check',
-                      'Police Lodgement',
-                      'Driver Licence',
-                      'Tesla',
-                      'Criminal Background Check'
-                    ].map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
+                    items:_addDocumentProviders.dataList.map((item){
+                      return new DropdownMenuItem(
+                          child: new Text(item.name),
+                        value: item.id.toString(),
                       );
                     }).toList(),
-                    onChanged: (String value) {
+                    onChanged: (value) {
                       setState(() {
                         _selectedValue = value;
                       });
+                      print(value);
                     },
                   ),
                 ),
@@ -132,7 +126,7 @@ class _AddDocumentState extends State<AddDocument> {
                     heading: "Description", desc: _description),
                 SizedBox(height: AppSizes.height * 0.025),
                 _addDocumentComponents.getDottedContainer(
-                  text: _addDocumentProviders.getIsPicked()? "Atteched":"Add File",
+                  text: _addDocumentProviders.getIsPicked()? "Attached":"Add File",
                     onPress: () => _addDocumentProviders.pickFile()),
               ],
             )),
@@ -141,7 +135,7 @@ class _AddDocumentState extends State<AddDocument> {
                 context: context,
                 desc: _description.text,
                 systemUserId: 1011,
-                verificationMethodId: 2,
+                verificationMethodId: _selectedValue,
               );
             }),
             SizedBox(height: AppSizes.height * 0.025)
