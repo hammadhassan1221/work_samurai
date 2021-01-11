@@ -8,11 +8,12 @@ import 'package:work_samurai/widgets/toast.dart';
 import 'package:work_samurai/widgets/widgets.dart';
 import 'package:intl/intl.dart';
 
-class ScheduleComponents {
+class ScheduleComponents  with ChangeNotifier{
   bool onClick = false;
   String fromDate = "09:00 AM";
   String toDate = "05:00 PM";
   static Map<String, dynamic> scheduleMap = Map<String, dynamic>();
+  bool isAllday = false;
 
 
   bool isFromDateSelected = true;
@@ -120,8 +121,8 @@ class ScheduleComponents {
 
   _alertDialogueContainer(
       {@required BuildContext context,
-      @required ScheduleProviders scheduleProviders,
-      @required String day}) {
+        @required ScheduleProviders scheduleProviders,
+        @required String day}) {
     showModalBottomSheet(
         context: context,
         builder: (BuildContext buildContext) {
@@ -155,97 +156,38 @@ class ScheduleComponents {
                                       fontFamily: 'MuliRegular', fontSize: 14),
                                 ),
                                 CupertinoSwitch(
-                                    value: onClick,
+                                    value: isAllday,
                                     onChanged: (bool value) {
                                       setState(() {
                                         onClick = !onClick;
+                                        isAllday = value;
                                       });
                                     }),
                               ],
                             ),
                           ],
                         )),
-                    isFromDateSelected
-                        ? CommonWidgets.getAvailability(
-                            text1: "Available From",
-                            text: fromDate,
-                            onPress: () {
-                              isFromDateSelected = true;
-                            })
-                        : CommonWidgets.getAvailability2(
-                            text1: "Available From",
-                            text: fromDate,
-                            onPress: () {
-                              setState(() {
-                                isFromDateSelected = true;
-                              });
-                            }),
-                    SizedBox(
-                      height: AppSizes.height * 0.01,
-                    ),
-                    Container(
-                      height: AppSizes.height * 0.0025,
-                      decoration: BoxDecoration(
-                          color: AppColors.clr_field,
-                          borderRadius: BorderRadius.circular(3)),
-                    ),
-                    SizedBox(
-                      height: AppSizes.height * 0.01,
-                    ),
-                    isFromDateSelected
-                        ? CommonWidgets.getAvailability2(
-                            text1: "Available to",
-                            //isChecked: !isFromDateSelected,
-                            text: toDate,
-                            onPress: () {
-                              setState(() {
-                                isFromDateSelected = false;
-                              });
-                            })
-                        : CommonWidgets.getAvailability(
-                            text1: "Available to",
-                            //isChecked: !isFromDateSelected,
-                            text: toDate,
-                            onPress: () {
-                              isFromDateSelected = false;
-                            }),
-                    SizedBox(
-                      height: AppSizes.height * 0.035,
-                    ),
-                    Container(
-                      height: AppSizes.height * 0.15,
-                      child: CupertinoDatePicker(
-                          mode: CupertinoDatePickerMode.time,
-                          onDateTimeChanged: (dateTime) {
-                            final DateFormat formatter = DateFormat('hh:mm aa');
-                            final String selectedTime =
-                                formatter.format(dateTime);
-                            setState(() {
-                              if (isFromDateSelected) {
-                                fromDate = selectedTime;
-                              } else
-                                toDate = selectedTime;
-                            });
-                          }),
-                    ),
-                    SizedBox(
-                      height: AppSizes.height * 0.01,
-                    ),
-                    Container(
-                      height: AppSizes.height * 0.0025,
-                      decoration: BoxDecoration(
-                          color: AppColors.clr_field,
-                          borderRadius: BorderRadius.circular(3)),
-                    ),
+                    isAllday ? Container() : _mainContentWidget(setState),
+                    SizedBox(height: 20,),
                     CommonWidgets.getBottomButton(
                         onButtonClick: (() {
                           // ApplicationToast.getSuccessToast(durationTime: 3, heading: null, subHeading: "null");
+                          if(isAllday){
+                            scheduleMap[day+"From"] = "12:00 AM";
+                            scheduleMap[day+"To"] = "12:00 PM";
+                            notifyListeners();
+                          }
+                          else{
+                            String dayfrom = day+"From";
+                            String dayto = day+"To";
+                            scheduleMap[dayfrom] = fromDate;
+                            scheduleMap[dayto] = toDate;
+                            notifyListeners();
+                          }
 
-                          String dayfrom = day+"From";
-                          String dayto = day+"To";
-                          scheduleMap[dayfrom] = fromDate;
-                          scheduleMap[dayto] = toDate;
+                          isAllday = false;
                           Navigator.pop(context);
+
                           // ApplicationToast.getSuccessToast(durationTime: 3, heading: "null", subHeading: scheduleMap.toString());
                         }),
                         name: "DONE")
@@ -263,9 +205,9 @@ class ScheduleComponents {
 
   Widget getDayTime(
       {@required BuildContext buildContext,
-      @required String day,
-      @required String time,
-      @required ScheduleProviders scheduleProviders}) {
+        @required String day,
+        @required String time,
+        @required ScheduleProviders scheduleProviders}) {
     return GestureDetector(
       onTap: () {
         _alertDialogueContainer(
@@ -297,7 +239,9 @@ class ScheduleComponents {
                   color: AppColors.clr_bg_black),
             ),
             Text(
-              ("${scheduleMap["${day}From"]} - ${scheduleMap["${day}To"]}") == "null - null" ?time :("${scheduleMap["${day}From"]} - ${scheduleMap["${day}To"]}"),
+              ("${scheduleMap["${day}From"]} - ${scheduleMap["${day}To"]}") == "null - null"
+                  ? time
+                  :("${scheduleMap["${day}From"]} - ${scheduleMap["${day}To"]}"),
               style: TextStyle(
                 fontSize: 18,
                 color: AppColors.clr_bg_black,
@@ -310,40 +254,119 @@ class ScheduleComponents {
     );
   }
 
-  // Widget getWedThur({@required String day, @required String time}) {
-  //   return GestureDetector(
-  //     onTap: () {
-  //       // _alertDialogueContainer();
-  //     },
-  //     child: Container(
-  //       height: AppSizes.height * 0.08,
-  //       margin: EdgeInsets.only(
-  //         left: AppSizes.width * 0.04,
-  //         right: AppSizes.width * 0.04,
-  //       ),
-  //       padding: EdgeInsets.all(10.0),
-  //       decoration: BoxDecoration(
-  //           borderRadius: BorderRadius.circular(8), color: AppColors.clr_white),
-  //       child: Row(
-  //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //         children: [
-  //           Text(
-  //             day,
-  //             style: TextStyle(
-  //                 fontSize: 18,
-  //                 fontFamily: 'MuliSemiBold',
-  //                 color: AppColors.clr_field),
-  //           ),
-  //           Text(
-  //             time,
-  //             style: TextStyle(
-  //                 fontSize: 18,
-  //                 fontFamily: 'MuliRegular',
-  //                 color: AppColors.clr_field),
-  //           )
-  //         ],
-  //       ),
-  //     ),
-  //   );
-  // }
+  Widget _mainContentWidget(Function setState){
+    return Column(
+      children: [
+        isFromDateSelected
+            ? CommonWidgets.getAvailability(
+            text1: "Available From",
+            text: fromDate,
+            onPress: () {
+              isFromDateSelected = true;
+            })
+            : CommonWidgets.getAvailability2(
+            text1: "Available From",
+            text: fromDate,
+            onPress: () {
+              setState(() {
+                isFromDateSelected = true;
+              });
+            }),
+        SizedBox(
+          height: AppSizes.height * 0.01,
+        ),
+        Container(
+          height: AppSizes.height * 0.0025,
+          decoration: BoxDecoration(
+              color: AppColors.clr_field,
+              borderRadius: BorderRadius.circular(3)),
+        ),
+        SizedBox(
+          height: AppSizes.height * 0.01,
+        ),
+        isFromDateSelected
+            ? CommonWidgets.getAvailability2(
+            text1: "Available to",
+            //isChecked: !isFromDateSelected,
+            text: toDate,
+            onPress: () {
+              setState(() {
+                isFromDateSelected = false;
+              });
+            })
+            : CommonWidgets.getAvailability(
+            text1: "Available to",
+            //isChecked: !isFromDateSelected,
+            text: toDate,
+            onPress: () {
+              isFromDateSelected = false;
+            }),
+        SizedBox(
+          height: AppSizes.height * 0.035,
+        ),
+        Container(
+          height: AppSizes.height * 0.15,
+          child: CupertinoDatePicker(
+              mode: CupertinoDatePickerMode.time,
+              onDateTimeChanged: (dateTime) {
+                final DateFormat formatter = DateFormat('hh:mm aa');
+                final String selectedTime =
+                formatter.format(dateTime);
+                setState(() {
+                  if (isFromDateSelected) {
+                    fromDate = selectedTime;
+                  } else
+                    toDate = selectedTime;
+                });
+              }),
+        ),
+        SizedBox(
+          height: AppSizes.height * 0.01,
+        ),
+        Container(
+          height: AppSizes.height * 0.0025,
+          decoration: BoxDecoration(
+              color: AppColors.clr_field,
+              borderRadius: BorderRadius.circular(3)),
+        ),
+      ],
+    );
+  }
+
+// Widget getWedThur({@required String day, @required String time}) {
+//   return GestureDetector(
+//     onTap: () {
+//       // _alertDialogueContainer();
+//     },
+//     child: Container(
+//       height: AppSizes.height * 0.08,
+//       margin: EdgeInsets.only(
+//         left: AppSizes.width * 0.04,
+//         right: AppSizes.width * 0.04,
+//       ),
+//       padding: EdgeInsets.all(10.0),
+//       decoration: BoxDecoration(
+//           borderRadius: BorderRadius.circular(8), color: AppColors.clr_white),
+//       child: Row(
+//         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//         children: [
+//           Text(
+//             day,
+//             style: TextStyle(
+//                 fontSize: 18,
+//                 fontFamily: 'MuliSemiBold',
+//                 color: AppColors.clr_field),
+//           ),
+//           Text(
+//             time,
+//             style: TextStyle(
+//                 fontSize: 18,
+//                 fontFamily: 'MuliRegular',
+//                 color: AppColors.clr_field),
+//           )
+//         ],
+//       ),
+//     ),
+//   );
+// }
 }

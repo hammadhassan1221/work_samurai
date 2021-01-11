@@ -12,6 +12,9 @@ import 'package:work_samurai/screens/worker/pages/schedule/schedule_provider.dar
 import 'package:work_samurai/screens/worker/worker_provider.dart';
 import 'package:work_samurai/widgets/toast.dart';
 import 'package:work_samurai/widgets/widgets.dart';
+import 'package:geocoder/geocoder.dart';
+import 'package:google_maps_webservice/places.dart';
+import 'package:flutter_google_places/flutter_google_places.dart';
 
 class Schedule extends StatefulWidget {
   @override
@@ -20,15 +23,41 @@ class Schedule extends StatefulWidget {
 
 class _ScheduleState extends State<Schedule> {
 
-  double _value = 0.0;
+  double _value = 1.0;
   ScheduleComponents _scheduleComponents;
   ScheduleProviders _scheduleProviders;
   WorkerProvider _workerProvider;
+  String _apiKey = "AIzaSyCn30TymjA7mf96UR4eNg9LN6NnsY-v92Q";
+  String locationText = "Select address";
+  GoogleMapsPlaces _places = GoogleMapsPlaces();
+  double gpsLat, gpsLong;
+  String addressLine,city,state,country;
+  int postalCode;
 
+  Future<Null> displayPrediction(Prediction p) async {
+    if (p != null) {
+      PlacesDetailsResponse detail =
+      await _places.getDetailsByPlaceId(p.placeId);
+      gpsLat = detail.result.geometry.location.lat;
+      gpsLong = detail.result.geometry.location.lng;
+      var address = await Geocoder.local.findAddressesFromQuery(p.description);
+
+      this.addressLine = address.first.addressLine ?? "";
+      this.city = address.first.locality ?? "";
+      this.state = address.first.adminArea ?? "";
+      this.country = address.first.countryName ?? "";
+      this.postalCode = address.first.postalCode == null ? 0 : int.parse(address.first.postalCode) ;
+      setState(() {
+        this.locationText = address.first.locality == null ? address.first.countryName :address.first.locality+", " + address.first.countryName;
+      });
+    } else {
+      print("prediction is null");
+    }
+  }
   @override
   void initState() {
     super.initState();
-
+    _places = GoogleMapsPlaces(apiKey: _apiKey);
     _scheduleComponents = ScheduleComponents();
     _scheduleProviders = Provider.of<ScheduleProviders>(context, listen:false);
     _workerProvider = Provider.of<WorkerProvider>(context,listen: false);
@@ -38,6 +67,7 @@ class _ScheduleState extends State<Schedule> {
   Widget build(BuildContext context) {
     Provider.of<ScheduleProviders>(context, listen:true);
     Provider.of<WorkerProvider>(context,listen: true);
+    _scheduleComponents.addListener((){setState((){});});
     return Container(
       width: AppSizes.width,
       color: AppColors.clr_bg,
@@ -53,7 +83,12 @@ class _ScheduleState extends State<Schedule> {
         Expanded(
           child: ListView(
             children: [
-              _scheduleComponents.getLocation(imagePath: Assets.location, text: "Location", text1: "New York,USA",onPress: (){Navigator.push(context, SlideRightRoute(page: LocationDetails()));}),
+              _scheduleComponents.getLocation(imagePath: Assets.location, text: "Location", text1: locationText,onPress: () async{
+                Prediction p = await PlacesAutocomplete.show(
+                    context: context, apiKey: _apiKey);
+                displayPrediction(p);
+                //Navigator.push(context, SlideRightRoute(page: LocationDetails()));
+              }),
 
               Container(
                 margin: EdgeInsets.only(
@@ -65,7 +100,7 @@ class _ScheduleState extends State<Schedule> {
                 ,),
               SizedBox(height: AppSizes.height*0.02,),
 
-              _scheduleComponents.getDistance(imagePath: Assets.distance, text: "Max Distance", text1: "40km"),
+              _scheduleComponents.getDistance(imagePath: Assets.distance, text: "Max Distance", text1: _value.ceil().toString()+" km"),
 
               SliderTheme(
                 data: SliderTheme.of(context).copyWith(
@@ -84,8 +119,8 @@ class _ScheduleState extends State<Schedule> {
                   width: AppSizes.width,
                   child: Slider(
                     value: _value,
-                    max: 4,
-                    min: 0,
+                    max: 50.0,
+                    min: 0.0,
                     onChanged: (value) {
                       setState(() {
                         _value = value;
@@ -137,12 +172,22 @@ class _ScheduleState extends State<Schedule> {
                 if(ScheduleComponents.scheduleMap.length >= 14){
                   //all days selected
                   // ApplicationToast.getSuccessToast(durationTime: 3, heading: "null", subHeading: ScheduleComponents.scheduleMap.length.toString());
-                  ScheduleComponents.scheduleMap["JobRadius"] = 30;
+                  ScheduleComponents.scheduleMap["JobRadius"] = _value.ceil().toString();
                   _scheduleProviders.sendShedule(ScheduleComponents.scheduleMap,context);
                 }
                 else{
                   ApplicationToast.getErrorToast(durationTime: 3, heading: "Error", subHeading: "Please select time for all days");
                 }
+                Map<String, dynamic> locationData = Map<String, dynamic>();
+                locationData["AddressLine"] = this.addressLine;
+                locationData["City"] = this.city;
+                locationData["State"] = this.state;
+                locationData["Postcode"] = this.postalCode;
+                locationData["Country"] = this.country;
+                locationData["GPSLat"] = this.gpsLat;
+                locationData["GPSLong"] = this.gpsLong;
+
+                _scheduleProviders.sendLocation(locationData, context);
               })),
 
               SizedBox(
@@ -154,11 +199,5 @@ class _ScheduleState extends State<Schedule> {
       ]),
     );
   }
-  onSaveSchedule(){
-    if(ScheduleComponents.scheduleMap.length == 14){
-      //all days filled
 
-    }
-
-  }
 }
