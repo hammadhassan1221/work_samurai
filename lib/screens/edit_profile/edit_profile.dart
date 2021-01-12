@@ -9,6 +9,9 @@ import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/res/strings.dart';
 import 'package:work_samurai/screens/edit_profile/edit_profile_provider.dart';
+import 'package:work_samurai/commons/utils.dart';
+import 'package:work_samurai/widgets/toast.dart';
+
 import 'package:work_samurai/widgets/widgets.dart';
 
 import 'edit_profile_components.dart';
@@ -22,6 +25,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
   EditProfileComponents _editProfileComponents;
   bool _verifyEmail, _verifyPhone;
   EditProfileProviders _editProfileProviders;
+  TextEditingController _aboutController = TextEditingController();
   //TextEditingController _firstName,_lastName;
 
   UserWholeData _userWholeData;
@@ -153,12 +157,34 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                             verify: "Unverified",
                             verifyColor: Colors.orangeAccent),
                     _editProfileComponents.getDescriptionContainer(
-                        heading: "About You", desc: ""),
+                        heading: "About You", desc: "",controllor: _aboutController),
                     SizedBox(
                       height: AppSizes.height * 0.05,
                     ),
                     CommonWidgets.getSignUpButton(
-                        context: context, onPress: () {}, text: "Update"),
+                        context: context, onPress: () {
+                          String firstName = _userWholeData.data.user.firstname ?? "";
+                          String lastName = _userWholeData.data.user.lastname ?? "";
+                          String salutation =_userWholeData.data.user.salutation ?? "Mr.";
+                          String proTitle = _userWholeData.data.user.professionalTitle ?? "";
+                          String dob = _userWholeData.data.user.dob ?? "";
+                          String placeOfBirth = _userWholeData.data.user.lastname ?? "";
+                          String gender = _userWholeData.data.user.gender.toString() ?? "";
+                          String description = _aboutController?.text?.toString() ?? "";
+
+                          Map<String,dynamic> formData = Map<String,dynamic>();
+                          formData["Firstname"] = firstName;
+                          formData["Lastname"] = lastName;
+                          formData["Salutation"] = salutation;
+                          formData["ProfessionalTitle"] = proTitle;
+                          formData["DOB"] = dob;
+                          formData["PlaceOfBirth"] = placeOfBirth;
+                          formData["Gender"] = gender;
+                          formData["Description"] = description;
+
+                          _editProfileProviders.sendUpdate(formData, context);
+
+                    }, text: "Update"),
                     SizedBox(
                       height: AppSizes.height * 0.05,
                     ),

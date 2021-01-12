@@ -116,7 +116,7 @@ class EditProfileComponents {
     );
   }
 
-  Widget getDescriptionContainer({@required String heading, @required String desc}){
+  Widget getDescriptionContainer({@required String heading, @required String desc,@required controllor}){
     return Container(
       height: AppSizes.height*0.18,
       margin: EdgeInsets.only(top:AppSizes.height*0.015,left:AppSizes.width*0.03,right:AppSizes.width*0.03,),
@@ -129,6 +129,7 @@ class EditProfileComponents {
       ),
       padding: EdgeInsets.only(left: AppSizes.width*0.03),
       child:TextField(
+        controller: controllor,
         cursorColor: AppColors.clr_bg_black2,
         keyboardType: TextInputType.multiline,
         maxLines: null,
