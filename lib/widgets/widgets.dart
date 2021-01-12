@@ -154,7 +154,8 @@ class CommonWidgets {
             ),
             color: AppColors.clr_bg_black,
           ),
-          child: Center(
+          child: FlatButton(
+            onPressed: ((){onPress();}),
             child: Text(
               text,
               style: TextStyle(
