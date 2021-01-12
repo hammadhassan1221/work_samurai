@@ -49,6 +49,7 @@ class AddDocumentProviders extends ChangeNotifier {
     result = null;
     file = null;
     await _getVerificationMethods(context: context);
+
   }
 
   pickFile () async{
