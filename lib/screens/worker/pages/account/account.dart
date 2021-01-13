@@ -32,7 +32,6 @@ class _AccountState extends State<Account> {
   @override
   Widget build(BuildContext context) {
     _accountProviders = Provider.of<AccountProviders>(context, listen: true);
-
     return SafeArea(
         child: Scaffold(
       body: Container(

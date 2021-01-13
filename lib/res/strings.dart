@@ -14,6 +14,6 @@ class Strings {
   static const String ACCESS_EXPIRY = "AccessExpiry";
   static const String REFRESH_TOKEN = "RefreshToken";
   static const String TOKEN_RESPONSE = "TokenResponse";
-
+  static const String IS_ACCOUNT_VERIFIED = "isAccountVerified";
   static const String USER_DATA = "UserData";
 }

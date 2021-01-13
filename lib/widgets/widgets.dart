@@ -136,6 +136,7 @@ class CommonWidgets {
     return Align(
       alignment: Alignment.bottomCenter,
       child: InkWell(
+        onTap: () => onPress(),
         splashColor: AppColors.clr_white,
         child: Container(
           margin: EdgeInsets.only(

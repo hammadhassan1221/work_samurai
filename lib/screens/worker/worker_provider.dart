@@ -13,20 +13,6 @@ class WorkerProvider extends ChangeNotifier {
   BuildContext context;
   RangeValues values;
   int   currentIndex = 0;
-
-
-  NetworkHelper _networkHelper = NetworkHelperImpl();
-  FutureJobsResponse futureJobsResponse = FutureJobsResponse.empty();
-  JobsInProgressResponse jobsInProgressResponse = JobsInProgressResponse();
-  GenericDecodeEncode _genericDecodeEncode = GenericDecodeEncode();
-  FutureJobsResponse _futureJobsResponse = FutureJobsResponse.empty();
-  Loader _loader = Loader();
-
-  bool _isFutureJobsFetched = false;
-
-
-  bool isOfferFetched = false;
-  bool inProgress = false;
   init({@required BuildContext context}) async{
     this.context = context;
   }

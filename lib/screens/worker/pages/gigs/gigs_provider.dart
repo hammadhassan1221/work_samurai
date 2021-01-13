@@ -34,18 +34,13 @@ class GigsProvider extends ChangeNotifier {
     _isFutureJobsFetched = false;
     _inProgress = false;
     _profileData = false;
-    try {
-      this.context = context;
-      _token = PreferenceUtils.getString(Strings.ACCESS_TOKEN);
-     await _getProfileData(context: context);
-    } catch (e) {
-      print(e.toString());
-    }
+    this.context = context;
+    _token = PreferenceUtils.getString(Strings.ACCESS_TOKEN);
+    await _getProfileData(context: context);
   }
 
   void setValue(RangeValues values) {
     this.values = values;
-
     notifyListeners();
   }
 
@@ -55,11 +50,10 @@ class GigsProvider extends ChangeNotifier {
 
       Response _response = await _networkHelper.post(getFutureJobURL, headers: {
         "Authorization":
-        "Bearer pds1BCxnnEyfbGoxLa9fdhwRTW/GXDlm7QA7pEiAkI4Flw3Io+ojrgUAMRzkPsPnff7SbYaxmLmu06DmLCemuk7641nAdqz1wwjsv1VivPKleNBKXuBRBoAwyhfhxwQQIfDVlNbIHsY0GpL5A2kRzFrjrWRvmVNwEGtC3GLfP5zIln3oc+E56sQ8NYDUY7lLsngG1XPO40SSHaTOAXtYd9wOrapbyo6vonKpOl/Tzc9oesLpaPnFQr5yqKJU5FSGV0sS85z8aUedYQ0UVLHucClQPc1skVeTePY6VBzBQx9yQ=",
+            "Bearer pds1BCxnnEyfbGoxLa9fdhwRTW/GXDlm7QA7pEiAkI4Flw3Io+ojrgUAMRzkPsPnff7SbYaxmLmu06DmLCemuk7641nAdqz1wwjsv1VivPKleNBKXuBRBoAwyhfhxwQQIfDVlNbIHsY0GpL5A2kRzFrjrWRvmVNwEGtC3GLfP5zIln3oc+E56sQ8NYDUY7lLsngG1XPO40SSHaTOAXtYd9wOrapbyo6vonKpOl/Tzc9oesLpaPnFQr5yqKJU5FSGV0sS85z8aUedYQ0UVLHucClQPc1skVeTePY6VBzBQx9yQ=",
         "DeviceID": "Device Id goes here",
-      }, body: {});
-
-      //        "Authorization": "Bearer" + _token,
+      }, body: {},
+      );
       if (_response.statusCode != 200) {
         _loader.hideLoader(context);
         throw ("couldn't get the data");
@@ -82,30 +76,24 @@ class GigsProvider extends ChangeNotifier {
 
   Future _getProfileData({@required BuildContext context}) async {
     try {
-      _loader.showLoader(context: context);
-      Response _response = await _networkHelper.post(getData, headers: {
-        "Authorization": "Bearer " + _token,
-        "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
-        "Scope":
-        "profile,useraddress,preferences,userskills,usersettings,userverifications,usercompliments,userrating,CompletedJobs,supporttickets,company,companyaddress,companycompliments,companyrating,verificationmethods,compliments,systemskills,AccountVerified,paymentdetails",
-      }, body: {});
+      Response _response = await _networkHelper.post(
+        getData,
+        headers: {
+          "Authorization": "Bearer " + _token,
+          "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
+          "Scope":"profile,useraddress,preferences,userskills,usersettings,userverifications,usercompliments,userrating,CompletedJobs,supporttickets,company,companyaddress,companycompliments,companyrating,verificationmethods,compliments,systemskills,AccountVerified,paymentdetails",
+        },
+        body: {},
+      );
 
       if (_response.statusCode != 200) {
-        _loader.hideLoader(context);
         throw ("couldn't get the data");
       }
       if (_response.statusCode == 200) {
-        _loader.hideLoader(context);
-
-        String userData = Helper.getString(_response);
-
-        PreferenceUtils.setUserData(userData);
-
-
         _userWholeData = UserWholeData.fromJson(
             _genericDecodeEncode.decodeJson(Helper.getString(_response)));
-
-        if (_userWholeData.data.accountVerified == false) {
+        PreferenceUtils.setBool(Strings.IS_ACCOUNT_VERIFIED, _userWholeData.data.accountVerified);
+        if (!_userWholeData.data.accountVerified) {
           ApplicationToast.getErrorToast(
               durationTime: 3,
               heading: "Success",
@@ -113,7 +101,6 @@ class GigsProvider extends ChangeNotifier {
         }
       }
     } catch (e) {
-      _loader.hideLoader(context);
       print(e.toString());
     }
   }

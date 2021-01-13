@@ -2,21 +2,23 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:work_samurai/animations/slide_right.dart';
+import 'package:work_samurai/commons/utils.dart';
 import 'package:work_samurai/models/api_models/worker_screen/gigs_screen/future_jobs_response.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
+import 'package:work_samurai/res/strings.dart';
 import 'package:work_samurai/screens/edit_profile/edit_profile.dart';
 import 'package:work_samurai/screens/worker/pages/alerts/alerts.dart';
 import 'package:work_samurai/screens/worker/pages/gigs/gigs_components.dart';
 import 'package:work_samurai/screens/worker/pages/gigs/gigs_provider.dart';
+import 'package:work_samurai/screens/worker/pages/gigs/offers/offers_page.dart';
 import 'package:work_samurai/screens/worker/worker_provider.dart';
 import 'package:work_samurai/widgets/spacer.dart';
 import 'package:work_samurai/widgets/widgets.dart';
 
-class Gigs extends StatefulWidget {
-  final FutureJobsResponse jobsResponse;
+import 'in_progress/in_progress.dart';
 
-  Gigs({@required this.jobsResponse});
+class Gigs extends StatefulWidget {
 
   @override
   _GigsState createState() => _GigsState();
@@ -34,11 +36,9 @@ class _GigsState extends State<Gigs> with SingleTickerProviderStateMixin {
     super.initState();
     _gigsComponents = GigsComponents();
     gigsProvider = Provider.of<GigsProvider>(context, listen: false);
-
     Future.delayed(Duration.zero, () {
       gigsProvider.init(context: context);
     });
-    _workerProvider = Provider.of<WorkerProvider>(context, listen: false);
     _tabController = TabController(length: 3, vsync: this);
     _tabController.addListener(() {
       if (_tabController.index == 1) {
@@ -68,34 +68,13 @@ class _GigsState extends State<Gigs> with SingleTickerProviderStateMixin {
               _tabBar("Confirmed"),
             ],
           ),
-          CommonWidgets.getAlertContainer(
-            onPress: () => Navigator.push(
-              context,
-              SlideRightRoute(
-                page: ProfileSettings(),
-              ),
-            ),
-          ),
-          verticalSpacer(20.0,),
+          _gigsComponents.isAccountVerified(context: context),
+          verticalSpacer(16.0,),
           Expanded(
             child: TabBarView(
               children: <Widget>[
-                _gigsComponents.getOffersContainer(
-                  context: context,
-                  jobTitle: "Waiter",
-                  dateTime: "23 Nov, 2020",
-                  location: "Crown Hotel, New York",
-                  totalAmount: "140",
-                  amountHour: "20",
-                ),
-                _gigsComponents.getInProgressContainer(
-                  context: context,
-                  jobTitle: "Bartender",
-                  dateTime: "23 Nov, 2020",
-                  location: "Crown Hotel, New York",
-                  totalAmount: "350",
-                  amountHour: "25",
-                ),
+                OffersPage(),
+                InProgressPage(),
                 _gigsComponents.getConfirmedContainer(
                   context: context,
                   jobTitle: "Receptionist",

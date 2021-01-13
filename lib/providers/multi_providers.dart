@@ -19,6 +19,8 @@ import 'package:work_samurai/screens/update_documents/update_document_providers.
 import 'package:work_samurai/screens/worker/pages/account/account_provider.dart';
 import 'package:work_samurai/screens/worker/pages/alerts/alerts_provider.dart';
 import 'package:work_samurai/screens/worker/pages/gigs/gigs_provider.dart';
+import 'package:work_samurai/screens/worker/pages/gigs/in_progress/in_progress_provider.dart';
+import 'package:work_samurai/screens/worker/pages/gigs/offers/offers_provider.dart';
 import 'package:work_samurai/screens/worker/pages/messages/messages_provider.dart';
 import 'package:work_samurai/screens/worker/pages/messages/pages/archive/archive_providers.dart';
 import 'package:work_samurai/screens/worker/pages/messages/pages/completed/complete_providers.dart';
@@ -124,6 +126,14 @@ final multiProviders=[
   ),
   ChangeNotifierProvider<SupportProviders>(
     create: (_) => SupportProviders(),
+    lazy: true,
+  ),
+  ChangeNotifierProvider<OffersProvider>(
+    create: (_) => OffersProvider(),
+    lazy: true,
+  ),
+  ChangeNotifierProvider<InProgressProvider>(
+    create: (_) => InProgressProvider(),
     lazy: true,
   ),
 ];

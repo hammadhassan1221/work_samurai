@@ -24,16 +24,23 @@ class _SplashState extends State<Splash> {
   @override
   void initState() {
     super.initState();
-
     _provider = Provider.of<SplashProvider>(context, listen: false);
-    _provider.init(context: context);
+    Future.delayed(Duration.zero, (){
+      _provider.init(context: context);
+    });
     _provider.navigateToNextRoute(context);
     _components = SplashComponents();
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+  }
+
+  @override
   Widget build(BuildContext context) {
     PreferenceUtils.init();
+    PreferenceUtils.setInt("counter", 1);
     AppSizes.initializeSize(context);
     Provider.of<SplashProvider>(context, listen: true);
     _provider.initializeResources(context);

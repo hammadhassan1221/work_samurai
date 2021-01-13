@@ -36,7 +36,7 @@ class LoginProvider extends ChangeNotifier {
       @required String password}) async {
     try {
       connectivityResult = await (Connectivity().checkConnectivity());
-      if(connectivityResult != ConnectivityResult.none){
+      if (connectivityResult != ConnectivityResult.none) {
         _loader.showLoader(context: context);
         var formData = Map<String, dynamic>();
 
@@ -57,28 +57,33 @@ class LoginProvider extends ChangeNotifier {
         if (_response.statusCode != 200) {
           _loader.hideLoader(context);
           ApplicationToast.getErrorToast(
-              durationTime: 3, heading: "Error", subHeading: "Please try again");
+              durationTime: 3,
+              heading: "Error",
+              subHeading: "Please try again",
+          );
           throw "Unauthorized";
         }
         if (_response.statusCode == 200) {
-           _loader.hideLoader(context);
+          _loader.hideLoader(context);
           _loginResponse = LoginResponse.fromJson(_response.data);
           if (_loginResponse.accessToken != null) {
             PreferenceUtils.setLoginResponse(_loginResponse);
             print(_loginResponse.accessToken);
-
             ApplicationToast.getSuccessToast(
                 durationTime: 3,
                 heading: "Success",
                 subHeading: "Login Successful");
-            Navigator.pushReplacement(context, SlideRightRoute(page: Worker()));
+            Navigator.pushReplacement(
+              context,
+              SlideRightRoute(page: Worker()),
+            );
           } else {
             ApplicationToast.getErrorToast(
                 durationTime: 3,
                 heading: "Oops",
                 subHeading: "Please enter valid credentials");
           }
-      }
+        }
       }
     } catch (e) {
       _loader.hideLoader(context);

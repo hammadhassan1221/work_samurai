@@ -45,6 +45,7 @@ dependencies:
   bouncing_widget: ^1.2.0
   lottie: ^0.7.0+1
   material_design_icons_flutter: ^4.0.5755
+  infinite_scroll_pagination: ^2.2.4
 
 
 

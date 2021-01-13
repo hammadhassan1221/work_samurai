@@ -1,30 +1,47 @@
-import 'package:firebase_core/firebase_core.dart';
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:get_version/get_version.dart';
 import 'package:work_samurai/animations/slide_right.dart';
 import 'package:work_samurai/commons/utils.dart';
+import 'package:work_samurai/generic_decode_encode/generic.dart';
+import 'package:work_samurai/helper/helper.dart';
+import 'package:work_samurai/models/api_models/worker_screen/gigs_screen/future_jobs_response.dart';
+import 'package:work_samurai/models/api_models/worker_screen/gigs_screen/jobs_in_progress_response.dart';
+import 'package:work_samurai/models/get_data/UserWholeData.dart';
+import 'package:work_samurai/network/api_urls.dart';
+import 'package:work_samurai/network/network_helper.dart';
+import 'package:work_samurai/network/network_helper_impl.dart';
 import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/res/strings.dart';
 import 'package:work_samurai/screens/login/login.dart';
 import 'package:work_samurai/screens/worker/worker.dart';
+import 'package:work_samurai/widgets/loader.dart';
+import 'package:http/http.dart' as http;
+import 'package:work_samurai/widgets/toast.dart';
 
 class SplashProvider extends ChangeNotifier {
   String versionNumber="";
 
   BuildContext context;
   FirebaseMessaging _fcm = FirebaseMessaging();
+  NetworkHelper _networkHelper = NetworkHelperImpl();
+  FutureJobsResponse _futureJobsResponse = FutureJobsResponse.empty();
+  JobsInProgressResponse _jobsInResponse = JobsInProgressResponse();
+  UserWholeData _userWholeData = UserWholeData();
+  GenericDecodeEncode _genericDecodeEncode = GenericDecodeEncode();
+  Loader _loader = Loader();
+  bool loading = true;
 
   init({@required BuildContext context}) async{
-    await getVersionNumber();
+    await _getVersionNumber();
     this.context = context;
   }
 
 
   void getToken()async{
     final token = await _fcm.getToken();
-
     debugPrint('$token');
   }
 
@@ -32,7 +49,7 @@ class SplashProvider extends ChangeNotifier {
     AppSizes.initializeSize(context);
   }
 
-  getVersionNumber() async {
+  Future<void> _getVersionNumber() async {
     try {
       versionNumber = await GetVersion.platformVersion;
     } on PlatformException {
