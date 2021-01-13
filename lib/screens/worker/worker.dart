@@ -16,6 +16,7 @@ import 'package:work_samurai/screens/worker/worker_provider.dart';
 
 class Worker extends StatefulWidget {
   @override
+
   _WorkerState createState() => _WorkerState();
 }
 
@@ -137,9 +138,13 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
 
   _currentPage(){
     if(workerProvider.currentIndex == 0){
+
+
       return Gigs();
     }if(workerProvider.currentIndex == 1){
       return Schedule();
+
+
     }if(workerProvider.currentIndex == 2){
       return WorkerChatRoom();
     }if(workerProvider.currentIndex == 3){

@@ -75,7 +75,7 @@ class _GigsState extends State<Gigs> with SingleTickerProviderStateMixin {
             height: AppSizes.height * 0.01,
           ),
           Container(
-            height: AppSizes.height*0.60,
+            height: AppSizes.height*0.59,
             child: Flexible(
               child: TabBarView(
                 children: <Widget>[

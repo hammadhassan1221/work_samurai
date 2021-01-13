@@ -63,8 +63,18 @@ class SupportComponents {
                 ),
               ],
             ),
-
+          SizedBox(width: AppSizes.width*0.35,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Icon(
+                Icons.arrow_forward_ios,
+                size: 15,
+              ),
+            ],
+          )
         ],
+
       ),
     );
   }

@@ -15,6 +15,7 @@ import 'package:work_samurai/screens/password/password_providers.dart';
 import 'package:work_samurai/screens/settings/settings_provider.dart';
 import 'package:work_samurai/screens/sign_up/sign_up_providers.dart';
 import 'package:work_samurai/screens/splash/splash_providers.dart';
+import 'package:work_samurai/screens/support/support_messages_provider.dart';
 import 'package:work_samurai/screens/support/support_providers.dart';
 import 'package:work_samurai/screens/update_documents/update_document_providers.dart';
 import 'package:work_samurai/screens/worker/pages/account/account_provider.dart';
@@ -125,6 +126,14 @@ final multiProviders=[
   ),
   ChangeNotifierProvider<SupportProviders>(
     create: (_) => SupportProviders(),
+    lazy: true,
+  ),
+  ChangeNotifierProvider<SupportMessagesProvider>(
+    create: (_) => SupportMessagesProvider(),
+    lazy: true,
+  ),
+  ChangeNotifierProvider<MessageProviders>(
+    create: (_) => MessageProviders(),
     lazy: true,
   ),
 
