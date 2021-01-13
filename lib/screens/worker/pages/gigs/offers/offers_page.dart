@@ -94,7 +94,7 @@ class _OffersPageState extends State<OffersPage> {
                 final response = await _provider.acceptJob(
                     context: this.context, jobId: item.iD);
 
-                // _component.alertDialogueContainer(context);
+                //_component.alertDialogueContainer(context);
               },
               rejectJob: () async {
                 final respons = await _provider.rejectJob(
