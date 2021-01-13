@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/screens/add_document/add_document_components.dart';
+import 'package:work_samurai/screens/add_document/add_document_provider.dart';
 import 'package:work_samurai/widgets/widgets.dart';
-import 'package:flutter/services.dart';
 import 'package:file_picker/file_picker.dart';
 
 class AddDocument extends StatefulWidget {
@@ -25,12 +26,16 @@ class _AddDocumentState extends State<AddDocument> {
   bool _multiPick = false;
   FileType _pickingType = FileType.any;
   TextEditingController _controller = TextEditingController();
+  AddDocumentProviders _addDocumentProviders;
+  TextEditingController _description;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _addDocumentComponents = AddDocumentComponents();
+    _addDocumentProviders = Provider.of<AddDocumentProviders>(context, listen: false);
+    _addDocumentProviders.init(context: context);
     _controller.addListener(() => _extension = _controller.text);
+    _description = TextEditingController();
   }
 
   void _openFileExplorer() async {
@@ -65,6 +70,7 @@ class _AddDocumentState extends State<AddDocument> {
 
   @override
   Widget build(BuildContext context) {
+    Provider.of<AddDocumentProviders>(context, listen: true);
     return SafeArea(
         child: Scaffold(
       body: Container(
@@ -97,38 +103,41 @@ class _AddDocumentState extends State<AddDocument> {
                     right: AppSizes.width * 0.03,
                     top: AppSizes.width * 0.03,
                   ),
-                  child: DropdownButton<String>(
+                  child: DropdownButton<dynamic>(
                     isExpanded: true,
                     underline: Container(),
                     value: _selectedValue,
                     hint: Text("Verification Type"),
-                    items: <String>[
-                      'VEVO Check',
-                      'Police Lodgement',
-                      'Driver Licence',
-                      'Tesla',
-                      'Criminal Background Check'
-                    ].map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
+                    items:_addDocumentProviders.dataList.map((item){
+                      return new DropdownMenuItem(
+                          child: new Text(item.name),
+                        value: item.id.toString(),
                       );
                     }).toList(),
-                    onChanged: (String value) {
+                    onChanged: (value) {
                       setState(() {
                         _selectedValue = value;
                       });
+                      print(value);
                     },
                   ),
                 ),
                 _addDocumentComponents.getDescriptionContainer(
-                    heading: "Description", desc: ""),
+                    heading: "Description", desc: _description),
                 SizedBox(height: AppSizes.height * 0.025),
-                _addDocumentComponents.getDottedContainer(onPress: () => _openFileExplorer(),),
+                _addDocumentComponents.getDottedContainer(
+                  text: _addDocumentProviders.getIsPicked()? "Attached":"Add File",
+                    onPress: () => _addDocumentProviders.pickFile()),
               ],
             )),
-            CommonWidgets.getSignUpButton(
-                context: context, onPress: () {}, text: "Save"),
+            CommonWidgets.getBottomButton(name: "Save", onButtonClick: (){
+              _addDocumentProviders.onUploadDocument(
+                context: context,
+                desc: _description.text,
+                systemUserId: 1011,
+                verificationMethodId: _selectedValue,
+              );
+            }),
             SizedBox(height: AppSizes.height * 0.025)
           ],
         ),

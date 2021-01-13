@@ -31,7 +31,7 @@ class _UpdateDocumentsState extends State<UpdateDocuments> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-CommonWidgets.getAppBar(text: "Document Verification", context: context),
+                CommonWidgets.getAppBar(text: "Document Verification", context: context),
                 _updateComponents.getHeadings(text: "Add Your Documentation"),
                 SizedBox(height: AppSizes.height*0.025,),
 
