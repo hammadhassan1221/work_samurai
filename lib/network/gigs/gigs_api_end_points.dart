@@ -6,3 +6,4 @@ const String acceptJobEndPoint = "$baseUrl/Job/Accept";
 const String rejectJobEndPoint = "$baseUrl/Job/Reject";
 const String requestBreakEndPoint = "$baseUrl/Job/Break/Request";
 const String endBreakEndPoint = "$baseUrl/Job/Break/End";
+const String InProgressEndPoint = "$baseUrl/Job/Get/Type";

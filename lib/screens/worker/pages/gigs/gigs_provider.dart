@@ -44,35 +44,6 @@ class GigsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future _getFutureJobs({@required BuildContext context}) async {
-    try {
-      _loader.showLoader(context: context);
-
-      Response _response = await _networkHelper.post(getFutureJobURL, headers: {
-        "Authorization":
-            "Bearer pds1BCxnnEyfbGoxLa9fdhwRTW/GXDlm7QA7pEiAkI4Flw3Io+ojrgUAMRzkPsPnff7SbYaxmLmu06DmLCemuk7641nAdqz1wwjsv1VivPKleNBKXuBRBoAwyhfhxwQQIfDVlNbIHsY0GpL5A2kRzFrjrWRvmVNwEGtC3GLfP5zIln3oc+E56sQ8NYDUY7lLsngG1XPO40SSHaTOAXtYd9wOrapbyo6vonKpOl/Tzc9oesLpaPnFQr5yqKJU5FSGV0sS85z8aUedYQ0UVLHucClQPc1skVeTePY6VBzBQx9yQ=",
-        "DeviceID": "Device Id goes here",
-      }, body: {},
-      );
-      if (_response.statusCode != 200) {
-        _loader.hideLoader(context);
-        throw ("couldn't get the data");
-      }
-      if (_response.statusCode == 200) {
-        _loader.hideLoader(context);
-        _futureJobsResponse = FutureJobsResponse.fromJson(
-            _genericDecodeEncode.decodeJson(Helper.getString(_response)));
-        _isFutureJobsFetched = true;
-
-        if (_futureJobsResponse.data != null) {
-          notifyListeners();
-        }
-      }
-    } catch (e) {
-      _loader.hideLoader(context);
-      print(e.toString());
-    }
-  }
 
   Future _getProfileData({@required BuildContext context}) async {
     try {
@@ -93,44 +64,12 @@ class GigsProvider extends ChangeNotifier {
         _userWholeData = UserWholeData.fromJson(
             _genericDecodeEncode.decodeJson(Helper.getString(_response)));
         PreferenceUtils.setBool(Strings.IS_ACCOUNT_VERIFIED, _userWholeData.data.accountVerified);
-        if (!_userWholeData.data.accountVerified) {
-          ApplicationToast.getErrorToast(
-              durationTime: 3,
-              heading: "Success",
-              subHeading: "Account not verified");
-        }
       }
     } catch (e) {
       print(e.toString());
     }
   }
 
-  Future _getJobsInProgress({@required BuildContext context}) async {
-    try {
-      _loader.showLoader(context: context);
-      Response _response = await _networkHelper.post(getInProgressJobURL,
-          headers: {
-            "Authorization": "Bearer " + _token,
-            "DeviceID": "Device Id goes here "
-          },
-          body: {});
-
-      if (_response.statusCode != 200) {
-        throw ("Unauthorized");
-      }
-      if (_response.statusCode == 200) {
-        _loader.hideLoader(context);
-        _jobsInResponse = JobsInProgressResponse.fromJson(
-            _genericDecodeEncode.decodeJson(Helper.getString(_response)));
-        if (_jobsInResponse.data != null) {
-          notifyListeners();
-        }
-        _inProgress = true;
-      }
-    } catch (e) {
-      print(e.toString());
-    }
-  }
 
   getFutureJobResponse() {
     return this._futureJobsResponse;

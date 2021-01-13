@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:timer_count_down/timer_count_down.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/widgets/spacer.dart';
-import 'package:work_samurai/widgets/widgets.dart';
 
 class InProgressComponents {
   int minutes = 0;
@@ -15,8 +15,11 @@ class InProgressComponents {
     @required String location,
     @required String totalAmount,
     @required String amountHour,
+    @required double timer,
     @required Function requestBreak,
     @required Function endShift,
+    @required int startTime,
+    @required Function onTimeFinish,
   }) {
     return Container(
       margin: EdgeInsets.symmetric(
@@ -164,15 +167,19 @@ class InProgressComponents {
                 verticalSpacer(
                   16.0,
                 ),
-                Center(
-                  child: Text(
-                    '04 : 22 : 53',
-                    style: TextStyle(
-                      fontSize: 40,
-                      fontFamily: "MuliBold",
-                      color: AppColors.clr_bg_black,
+                Countdown(
+                  seconds: startTime,
+                  build: (BuildContext context, startTime) => Center(
+                    child: Text(
+                      "${startTime.round().toInt()}" + "   Minutes Left",
+                      style: TextStyle(
+                        color: AppColors.clr_bg_black,
+                        fontSize: 40.0,
+                      ),
                     ),
                   ),
+                  interval: Duration(microseconds: 23,),
+                  onFinished: onTimeFinish,
                 ),
                 verticalSpacer(
                   16.0,
@@ -334,7 +341,9 @@ class InProgressComponents {
               ),
               Container(
                 margin: EdgeInsets.symmetric(
-                  vertical: verticalValue(48.0,),
+                  vertical: verticalValue(
+                    48.0,
+                  ),
                 ),
                 child: FlatButton(
                   shape: new RoundedRectangleBorder(
