@@ -30,6 +30,22 @@ class CommonWidgets {
         ));
   }
 
+  static Widget onNullData({@required String text}){
+    return Container(
+      // margin: EdgeInsets.only(top: 10, bottom: 25),
+      child: Center(
+        child: Text(
+          text,
+          style: TextStyle(
+              decoration: TextDecoration.none,
+            fontSize: 15,
+            fontFamily: 'MuliSemiBold',
+          ),
+        ),
+      ),
+    );
+  }
+
   static Widget getAvailability(
       {@required String text1,
       @required String text,
@@ -156,15 +172,16 @@ class CommonWidgets {
               ),
               color: AppColors.clr_bg_black,
             ),
-            child: Center(
-              child: Text(
-                text,
-                style: TextStyle(
-                    decoration: TextDecoration.none,
-                    fontSize: 16.0,
-                    fontFamily: 'MuliRegular',
-                    color: AppColors.clr_white,
-                ),
+
+          child: FlatButton(
+            onPressed: ((){onPress();}),
+            child: Text(
+              text,
+              style: TextStyle(
+                  decoration: TextDecoration.none,
+                  fontSize: 16.0,
+                  fontFamily: 'MuliRegular',
+                  color: AppColors.clr_white,
               ),
             ),
           ),

@@ -19,6 +19,17 @@ const String sendSupportMessage = "$baseUrl/Support/Message/Save";
 const String getAllUserMessage = "$baseUrl/Messages";
 const String getAllJobMessages = "$baseUrl/Job/Messages";
 const String sendJobMessages = "$baseUrl/Job/Message/Send";
+const String savePreferences = "$baseUrl/User/Preference/Save";
+const String updateUserAddress = "$baseUrl/User/Address/Save";
+const String getUserEarnings = "$baseUrl/User/Earning";
+const String updateProfile = "$baseUrl/User/Save";
+
+
+
+// Rizwan api urls
+const String addDocumentVerificationURL = "$baseUrl/User/Verification/Save";
+const String getAlertsURL = "$baseUrl/Alerts/Get";
+//
 
 
 
