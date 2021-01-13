@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
@@ -180,9 +181,9 @@ class _SupportMessagesState extends State<SupportMessages>{
                     ),
                   ) : Expanded(
                     child: Container (
-                        child: Text(
-                           ''
-                        )
+                        height: 100,
+                      width: 100,
+                      child: Lottie.asset(Assets.loader),
                     ),
                   ),
                   Container(

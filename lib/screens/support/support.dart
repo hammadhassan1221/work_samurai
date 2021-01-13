@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:work_samurai/animations/slide_right.dart';
 import 'package:work_samurai/commons/utils.dart';
@@ -62,8 +63,9 @@ class _SupportState extends State<Support> {
               children: [
                 CommonWidgets.getAppBar(text: "Support", context: context),
                 SizedBox(height: AppSizes.height*0.025,),
-                _supportProviders.isDataFetched == true ? Container(
-                  height: AppSizes.height*0.74,
+
+                _supportProviders.isDataFetched == true  ? Expanded(
+
                   child: ListView.builder(
                       itemCount: _supportProviders.supportTicketsModel.data.supportTickets.length,
                       itemBuilder: (context, index){
@@ -82,24 +84,20 @@ class _SupportState extends State<Support> {
                                     title: _supportProviders.supportTicketsModel.data.supportTickets[index].title,),
                                 ),
                               ),
-
-                              //upper container design should be like lower container
-
-                              // _jobRolesComponents.getJobRolesContainer(
-                              //     backgroundColor: AppColors.clr_white,
-                              //     borderColor: AppColors.transparentColor,
-                              //     textColor: AppColors.clr_bg_black,
-                              //     job:  jobRolesProviders.getUserSkilllsResponse.data.userSkills[index].skill.name,
-                              //     verify: "verified"),
                               SizedBox(height: AppSizes.height * 0.025),
                             ],
                           );
-
-
                       }
                   ),
-                ): Container(
-
+                ): Align(
+                  alignment: Alignment.center,
+                  child: Expanded(
+                    child: Container(
+                      height: 200,
+                      width: 200,
+                      child: Lottie.asset(Assets.loader),
+                    ),
+                  ),
                 ),
                 Container(
                   height: 50,

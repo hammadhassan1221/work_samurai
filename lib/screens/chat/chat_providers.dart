@@ -68,7 +68,7 @@ class ChatProviders extends ChangeNotifier{
         notifyListeners();
       }
     } catch (e) {
-      _loader.hideLoader(context);
+     // _loader.hideLoader(context);
       print(e.toString());
     }
   }

@@ -48,7 +48,7 @@ class SupportProviders extends ChangeNotifier {
 
   Future getSupportTickets({@required BuildContext context}) async {
     try {
-      _loader.showLoader(context: context);
+    //  _loader.showLoader(context: context);
       http.Response _response = await _networkHelper.post(getData, headers: {
         "Authorization": "Bearer " + _token,
         "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
@@ -56,18 +56,18 @@ class SupportProviders extends ChangeNotifier {
       }, body: {});
 
       if (_response.statusCode != 200) {
-        _loader.hideLoader(context);
+       // _loader.hideLoader(context);
         throw ("couldn't get the data");
       }
       if (_response.statusCode == 200) {
-        _loader.hideLoader(context);
+       // _loader.hideLoader(context);
         supportTicketsModel = SupportTicketsModel.fromJson(
             _genericDecodeEncode.decodeJson(Helper.getString(_response)));
         isDataFetched = true;
         notifyListeners();
       }
     } catch (e) {
-      _loader.hideLoader(context);
+     // _loader.hideLoader(context);
       print(e.toString());
     }
   }
