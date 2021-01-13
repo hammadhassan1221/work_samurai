@@ -3,6 +3,8 @@ import 'package:http/http.dart';
 import 'package:work_samurai/animations/slide_right.dart';
 import 'package:work_samurai/commons/utils.dart';
 import 'package:work_samurai/generic_decode_encode/generic.dart';
+import 'package:work_samurai/helper/helper.dart';
+import 'package:work_samurai/models/get_data/UserWholeData.dart';
 import 'package:work_samurai/network/api_urls.dart';
 import 'package:work_samurai/network/network_helper.dart';
 import 'package:work_samurai/network/network_helper_impl.dart';
@@ -16,11 +18,16 @@ class AccountProviders extends ChangeNotifier{
 
   NetworkHelper _networkHelper = NetworkHelperImpl();
   GenericDecodeEncode _genericDecodeEncode = GenericDecodeEncode();
+  UserWholeData _userWholeData = UserWholeData();
   Loader _loader = Loader();
   String _token;
+  bool _isDataFetched = false;
 
-  init({@required BuildContext context}) {
+  init({@required BuildContext context}) async{
     this._context = context;
+    _isDataFetched = false;
+    _token = await PreferenceUtils.getString(Strings.ACCESS_TOKEN);
+    await _getProfileData(context: context);
   }
 
 
@@ -62,5 +69,49 @@ class AccountProviders extends ChangeNotifier{
       print(e.toString());
     }
 
+  }
+
+  Future _getProfileData({@required BuildContext context}) async {
+    try {
+      _loader.showLoader(context: context);
+      Response _response = await _networkHelper.post(getData, headers: {
+        "Authorization": "Bearer " + _token,
+        "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
+        "Scope":
+        "profile,useraddress,userrating,CompletedJobs,userverifications,usercompliments",
+      }, body: {});
+
+      if (_response.statusCode != 200) {
+        _loader.hideLoader(context);
+        throw ("couldn't get the data");
+      }
+      if (_response.statusCode == 200) {
+        _loader.hideLoader(context);
+        _userWholeData = UserWholeData.fromJson(
+            _genericDecodeEncode.decodeJson(Helper.getString(_response)));
+        if(_userWholeData.responseCode ==1){
+          print('Profile api called');
+            _isDataFetched = true;
+            notifyListeners();
+        }
+        else{
+          ApplicationToast.getErrorToast(durationTime: 3, heading: "Error", subHeading: "Something went wronge");
+        }
+      }
+    } catch (e) {
+      _loader.hideLoader(context);
+      print(e.toString());
+    }
+  }
+
+  getIsDataFetched(){
+    return this._isDataFetched;
+  }
+
+  setIsDataFetched({bool isFetch}){
+    this._isDataFetched = isFetch;
+  }
+  UserWholeData getUserWholeData(){
+    return this._userWholeData;
   }
 }

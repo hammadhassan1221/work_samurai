@@ -1,42 +1,42 @@
 {
   "project_info": {
-    "project_number": "45309268657",
-    "firebase_url": "https://worksamurai-e3eb0.firebaseio.com",
-    "project_id": "worksamurai-e3eb0",
-    "storage_bucket": "worksamurai-e3eb0.appspot.com"
+    "project_number": "405702089294",
+    "project_id": "work-samurai",
+    "storage_bucket": "work-samurai.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:45309268657:android:66094229f8623ca4cc4890",
+        "mobilesdk_app_id": "1:405702089294:android:7419a9260565a71a82811f",
         "android_client_info": {
           "package_name": "com.jinnbyte.work_samurai"
         }
       },
       "oauth_client": [
         {
-          "client_id": "45309268657-40f68nok9vvspdsmkktcb486bu7u35im.apps.googleusercontent.com",
+          "client_id": "405702089294-81r0k4o2f4g39kf6v8i9497t5247e0ab.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jinnbyte.work_samurai",
+            "certificate_hash": "0c6ebe3aab08b698df3fa0905828fb4ff4cc13cb"
+          }
+        },
+        {
+          "client_id": "405702089294-9hphch9vjc4m3b3gmbecn72ktpu5uq0o.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBxBzba_srvA-PJBBF2JEaqswGUibpzeNQ"
+          "current_key": "AIzaSyCn30TymjA7mf96UR4eNg9LN6NnsY-v92Q"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "45309268657-40f68nok9vvspdsmkktcb486bu7u35im.apps.googleusercontent.com",
+              "client_id": "405702089294-9hphch9vjc4m3b3gmbecn72ktpu5uq0o.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "45309268657-ibbtodagv5334pb9smmkksnj4rmeml4e.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.jinnbyte.workSamurai"
-              }
             }
           ]
         }

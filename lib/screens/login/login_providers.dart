@@ -9,6 +9,7 @@ import 'package:work_samurai/models/api_models/login_screen/login_response.dart'
 import 'package:work_samurai/network/api_urls.dart';
 import 'package:work_samurai/network/network_helper.dart';
 import 'package:work_samurai/network/network_helper_impl.dart';
+import 'package:work_samurai/res/strings.dart';
 import 'package:work_samurai/screens/worker/worker.dart';
 import 'package:work_samurai/utilities/utilities.dart';
 import 'package:work_samurai/widgets/toast.dart';
@@ -49,9 +50,13 @@ class LoginProvider extends ChangeNotifier {
         Response _response = await dio.post(
           loginURL,
           data: formData,
-          options: Options(
-            contentType: Headers.formUrlEncodedContentType,
-          ),
+            options: Options(
+              contentType: Headers.formUrlEncodedContentType,
+              headers: {
+                "Authorization": "Bearer " + PreferenceUtils.getString(Strings.ACCESS_TOKEN),
+                "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
+              },
+            ),
         );
 
         if (_response.statusCode != 200) {

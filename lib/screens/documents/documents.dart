@@ -56,7 +56,9 @@ class _DocumentVerificationState extends State<DocumentVerification> {
                      ],
                    ),
                  ),
-                  CommonWidgets.getSignUpButton(context: context, onPress: (){Navigator.push(context, SlideRightRoute(page: AddDocument()));}, text: "Add a Document"),
+                  CommonWidgets.getBottomButton(name: "Add Document", onButtonClick: (){
+                    Navigator.push(context, SlideRightRoute(page: AddDocument()));
+                  }),
                   SizedBox(height:AppSizes.height*0.015),
                 ]),
           ),
