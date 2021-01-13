@@ -5,10 +5,13 @@ import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/screens/support/support_messages_provider.dart';
+import 'package:work_samurai/widgets/toast.dart';
+
 import 'package:work_samurai/widgets/widgets.dart';
 
 class SupportMessages extends StatefulWidget {
   int ticketId;
+
   SupportMessages({@required int this.ticketId});
 
   @override
@@ -17,22 +20,34 @@ class SupportMessages extends StatefulWidget {
 }
 
 
-class _SupportMessagesState extends State<SupportMessages> {
-
+class _SupportMessagesState extends State<SupportMessages>{
+  var _controller = ScrollController();
   SupportMessagesProvider _supportMessagesProvider;
+  TextEditingController msgBody;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-
+    msgBody = TextEditingController();
     _supportMessagesProvider = Provider.of<SupportMessagesProvider>(context, listen:false);
-
     _supportMessagesProvider.init (context, widget.ticketId);
+
+  }
+  void scrollToEnd(){
+    try {
+      _controller.animateTo(
+        _controller.position.maxScrollExtent,
+        duration: Duration(seconds: 1),
+        curve: Curves.fastOutSlowIn,
+      );
+    } catch (e) {
+      print(e);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     Provider.of<SupportMessagesProvider>(context, listen:true);
+    WidgetsBinding.instance.addPostFrameCallback((_) => scrollToEnd());
 
     return SafeArea(
         child: Scaffold(
@@ -49,6 +64,7 @@ class _SupportMessagesState extends State<SupportMessages> {
                       text: "Chat with Support", context: context),
                   _supportMessagesProvider.isDataFetched == true ? Expanded(
                     child: ListView.builder(
+                      controller: _controller,
                         itemCount: _supportMessagesProvider.getSupportMessage.data.length,
                         itemBuilder: (context, index) {
                           return Column(
@@ -73,7 +89,7 @@ class _SupportMessagesState extends State<SupportMessages> {
                                           color: AppColors.clr_bg,
                                           borderRadius: BorderRadius.circular(8)),
                                       child: Text(
-                                        "Morbi pretium, massa non ornare fringilla, odio eros euismod nibh, venenatis commodo orci diam in sapien. Curabitur ut massa odio.",
+                                       _supportMessagesProvider.getSupportMessage.data[index].body,
                                         style: TextStyle(
                                             letterSpacing: 0.15,
                                             fontSize: 15,
@@ -162,10 +178,12 @@ class _SupportMessagesState extends State<SupportMessages> {
                           );
                         }
                     ),
-                  ) : Container (
-                      child: Text(
-                          'No messages available'
-                      )
+                  ) : Expanded(
+                    child: Container (
+                        child: Text(
+                           ''
+                        )
+                    ),
                   ),
                   Container(
 
@@ -181,15 +199,28 @@ class _SupportMessagesState extends State<SupportMessages> {
                           SizedBox(
                             width: AppSizes.width * 0.03,
                           ),
-                          Icon(Icons.send),
+                          GestureDetector(
+                              onTap: () async {
+                                if(msgBody.text.isNotEmpty) {
+                                  await _supportMessagesProvider.sendSupportMessages(context: context, body: msgBody.text, ticketId: widget.ticketId);
+                                msgBody.clear();
+                                  FocusScope.of(context).requestFocus(FocusNode());
+                                  _supportMessagesProvider.getSupportMessages(context: context, ticketId: widget.ticketId);
+                                }
+                              else {
+                                ApplicationToast.getWarningToast(durationTime: 2, heading: null, subHeading: "Please type msg first");
+                                }
+                              },
+                              child:
+                          Icon(Icons.send)),
                         ],
                       )),
                 ],
               ),
             )));
   }
-
   _textFieldContainer() {
+
     return Container(
       height: AppSizes.height * 0.075,
       width: AppSizes.width / 1.4,
@@ -206,6 +237,7 @@ class _SupportMessagesState extends State<SupportMessages> {
           ],
           color: AppColors.clr_bg, borderRadius: BorderRadius.circular(6)),
       child: TextField(
+        controller: msgBody,
         decoration: InputDecoration(
             border: InputBorder.none,
             hintText: "Type your message...",
@@ -230,4 +262,5 @@ class _SupportMessagesState extends State<SupportMessages> {
           )),
     );
   }
+
 }

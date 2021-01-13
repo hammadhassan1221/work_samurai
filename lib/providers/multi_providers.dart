@@ -131,4 +131,8 @@ final multiProviders=[
     create: (_) => SupportMessagesProvider(),
     lazy: true,
   ),
+  ChangeNotifierProvider<MessageProviders>(
+    create: (_) => MessageProviders(),
+    lazy: true,
+  ),
 ];

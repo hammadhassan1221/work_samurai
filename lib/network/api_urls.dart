@@ -15,6 +15,10 @@ const String getNewPassword = "$baseUrl/User/Password/Save";
 const String getSupportTicket = "$baseUrl/Support/Create";
 const String addUserSkillUrl = "$baseUrl/User/Skill/Save";
 const String getTicketMessages = "$baseUrl/Support/Messages/Get";
+const String sendSupportMessage = "$baseUrl/Support/Message/Save";
+const String getAllUserMessage = "$baseUrl/Messages";
+const String getAllJobMessages = "$baseUrl/Job/Messages";
+const String sendJobMessages = "$baseUrl/Job/Message/Send";
 
 
 

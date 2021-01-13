@@ -1,17 +1,24 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:work_samurai/animations/slide_right.dart';
+import 'package:work_samurai/models/api_models/job_messages/get_all_user_messages.dart';
 import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
+import 'package:work_samurai/screens/chat/chat_screen.dart';
 
 class MessageComponents{
 
-  Widget getMessageThread({@required Function onPress,@required String imagePath,@required String heading,@required String subHeading,@required String imagePath1,@required String rating,}){
+  Widget getMessageThread({@required GetAllUserMessages msgObj ,@required Function onPress,@required String imagePath,@required String heading,@required String subHeading,@required String imagePath1,@required String rating,}){
     return Expanded(
-      child: ListView(
-        children:[
-          GestureDetector(
-            onTap: onPress,
+      child: ListView.builder(
+        itemCount: msgObj.data.length,
+        itemBuilder: (context, index)
+        {
+          return GestureDetector(
+            onTap: (){
+              Navigator.push(context, SlideRightRoute(page: ChatScreen(jobId: msgObj.data[index].jobID)));
+            },
             child: Container(
               margin: EdgeInsets.only(left: AppSizes.width*0.03,right: AppSizes.width*0.03),
               height: AppSizes.height * 0.12,
@@ -41,7 +48,7 @@ class MessageComponents{
                       Row(
                         children: [
                           Text(
-                              heading,
+                              msgObj.data[index].companyName,
                               textAlign: TextAlign.left,
                               style: TextStyle(
                                 color: AppColors.clr_bg_black,
@@ -69,7 +76,7 @@ class MessageComponents{
                                       width: 10,
                                       height: 10),
                                   SizedBox(
-                                    width: AppSizes.width * 0.01,
+                                    width: AppSizes.width * 0.04,
                                   ),
                                   Text(
                                       rating,
@@ -93,7 +100,7 @@ class MessageComponents{
                         height: AppSizes.height * 0.022,
                       ),
                       Text(
-                          subHeading,
+                          msgObj.data[index].jobName,
                           textAlign: TextAlign.left,
                           style: TextStyle(
                             decoration: TextDecoration.none,
@@ -107,8 +114,8 @@ class MessageComponents{
                 ],
               ),
             ),
-          )
-        ],
+          );
+        },
       ),
     );
   }

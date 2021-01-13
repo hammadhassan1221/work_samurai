@@ -9,6 +9,7 @@ import 'package:work_samurai/helper/helper.dart';
 import 'package:work_samurai/models/api_models/support_screen/create_support_ticket_model.dart';
 import 'package:work_samurai/models/api_models/support_screen/get_support_messages.dart';
 import 'package:work_samurai/models/api_models/support_screen/get_support_tickets.dart';
+import 'package:work_samurai/models/api_models/support_screen/send_support_message_model.dart';
 import 'package:work_samurai/models/api_models/support_screen/support_screen.dart';
 import 'package:work_samurai/models/generic_response/GenericResponse.dart';
 import 'package:work_samurai/models/get_data/UserWholeData.dart';
@@ -26,6 +27,7 @@ class SupportMessagesProvider extends ChangeNotifier {
   BuildContext context;
   NetworkHelper _networkHelper = NetworkHelperImpl();
   GetSupportMessages getSupportMessage = GetSupportMessages();
+  SendSupportMessageModel sendSupportMessageModel = SendSupportMessageModel();
  // UserWholeData _userWholeData = UserWholeData();
  // SupportTicketResponse _supportTicketResponse = SupportTicketResponse();
  // SupportTicketsModel supportTicketsModel = SupportTicketsModel();
@@ -39,10 +41,12 @@ class SupportMessagesProvider extends ChangeNotifier {
 
   init(BuildContext context , int ticketId) async
   {
+    isDataFetched = false;
       _token = PreferenceUtils.getString(Strings.ACCESS_TOKEN);
         await  getSupportMessages(context: context,ticketId:  ticketId);
         this.context = context;
          this.id = ticketId;
+
 
       // await callSupportTicket(context: context,);
   }
@@ -74,7 +78,47 @@ class SupportMessagesProvider extends ChangeNotifier {
        // _loader.hideLoader(context);
         getSupportMessage = GetSupportMessages.fromJson(_response.data);
         isDataFetched = true;
-      //  notifyListeners();
+        notifyListeners();
+      }
+    } catch (e) {
+      _loader.hideLoader(context);
+      print(e.toString());
+    }
+  }
+  Future sendSupportMessages({ BuildContext context , int ticketId , String body}) async{
+    try {
+      // var formData = Map<String, dynamic>();
+      // formData['SupportTicketID'] = ticketId.toString();
+      // formData['Body'] = body;
+      FormData formData = FormData.fromMap({
+
+        "Body": body,
+        "SupportTicketID": ticketId,
+
+      });
+      Response response = await dio.post(
+          sendSupportMessage,
+          data: formData,
+          options: Options(
+              headers: {
+                "contentType":"multipart/form-data",
+                "Authorization": "Bearer " + _token,
+                "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
+              })
+      );
+
+      if (response.statusCode != 200) {
+        // _loader.hideLoader(context);
+        throw ("couldn't get the data");
+      }
+
+      if (response.statusCode == 200) {
+        // _loader.hideLoader(context);
+        sendSupportMessageModel = SendSupportMessageModel.fromJson(response.data);
+
+        isDataFetched = true;
+        FocusScope.of(context).requestFocus(FocusNode());
+        notifyListeners();
       }
     } catch (e) {
       _loader.hideLoader(context);

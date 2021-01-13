@@ -49,6 +49,7 @@ class Assets{
   static const String edit = "assets/png/icon_edit.png";
   static const String sheetClose = "assets/png/cross.png";
   static const String done = "assets/png/checkmark.png";
+  static const String loader = "assets/json/api_loader.json";
 
   static const String user = "assets/png/usercircle@3x.png";
   static const String credit = "assets/png/credit_card@3x.png";
