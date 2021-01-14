@@ -15,7 +15,6 @@ class _InProgressPageState extends State<InProgressPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _provider = Provider.of<InProgressProvider>(context, listen: false);
     Future.delayed(Duration.zero, () {
@@ -34,15 +33,15 @@ class _InProgressPageState extends State<InProgressPage> {
           child: _provider.inProgressData
               ? _components.inProgressContainer(
                   context: context,
-                  jobTitle: _provider.inProgressResponse.data.name,
-                  dateTime: _provider.inProgressResponse.data.startDate,
-                  location: _provider.inProgressResponse.data.description,
+                  jobTitle: _provider?.inProgressResponse?.data?.name ?? "",
+                  dateTime: _provider?.inProgressResponse?.data?.startDate ?? "",
+                  location: _provider.inProgressResponse.data.description ?? "",
                   totalAmount:
-                      _provider.inProgressResponse.data.rate.toString() ?? "",
-                  timer: _provider.inProgressResponse.data.estimatedDuration ??
+                      _provider.inProgressResponse?.data?.rate.toString() ?? "",
+                  timer: _provider.inProgressResponse?.data?.estimatedDuration ??
                       0.0,
                   amountHour:
-                      _provider.inProgressResponse.data.rate.toString() ?? "",
+                      _provider.inProgressResponse?.data?.rate.toString() ?? "",
                   requestBreak: () {
                     _components.requestBreakContainer(
                       context: context,
@@ -59,8 +58,7 @@ class _InProgressPageState extends State<InProgressPage> {
                     final response =
                         await _provider.endBreak(context: this.context);
                   },
-                  startTime: _provider.inProgressResponse.data.estimatedDuration
-                      .toInt() *60,
+                  startTime: _provider.inProgressResponse?.data?.estimatedDuration?.toInt() == null ? 0 :_provider.inProgressResponse?.data?.estimatedDuration?.toInt() *60,
                   onTimeFinish: () {
                     ApplicationToast.getErrorToast(
                       durationTime: 3,

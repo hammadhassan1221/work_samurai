@@ -93,8 +93,8 @@ class EditProfileComponents {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(text,style: TextStyle(color:textColor),),
-                Text(text1,style: TextStyle(color: AppColors.clr_bg_black2),),
+                Text(text /*?? "*/,style: TextStyle(color:textColor),),
+                Text(text1 ?? "",style: TextStyle(color: AppColors.clr_bg_black2),),
               ],
             ),
 

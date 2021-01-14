@@ -166,18 +166,7 @@ class CommonWidgets {
             borderRadius: BorderRadius.circular(
               5,
             ),
-            alignment: Alignment.center,
-            height: AppSizes.height * 0.08,
-            width: AppSizes.width,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(
-                5,
-              ),
-              border: Border.all(
-                color: AppColors.clr_bg_black,
-              ),
-              color: AppColors.clr_bg_black,
-            ),
+          ),
 
           child: FlatButton(
             onPressed: ((){onPress();}),
@@ -193,8 +182,8 @@ class CommonWidgets {
           ),
         ),
       ),
-    )
     );
+
   }
 
   static Widget getInputField({

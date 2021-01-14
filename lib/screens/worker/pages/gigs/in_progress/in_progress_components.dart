@@ -145,7 +145,7 @@ class InProgressComponents {
                         ),
                       ),
                       horizontalSpacer(
-                        140.0,
+                        130.0,
                       ),
                       Text(
                         '10:22am',

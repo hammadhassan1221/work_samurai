@@ -84,44 +84,6 @@ class _GigsState extends State<Gigs> with SingleTickerProviderStateMixin {
                   amountHour: "20",
                 ),
               ],
-          CommonWidgets.getAlertContainer(
-            onPress: () => Navigator.push(context,SlideRightRoute(page: ProfileSettings(),),
-            ),
-          ),
-          SizedBox(
-            height: AppSizes.height * 0.01,
-          ),
-          Container(
-            height: AppSizes.height*0.59,
-            child: Flexible(
-              child: TabBarView(
-                children: <Widget>[
-                  _gigsComponents.getOffersContainer(
-                    context: context,
-                    jobTitle: "Waiter",
-                    dateTime: "23 Nov, 2020",
-                    location: "Crown Hotel, New York",
-                    totalAmount: "140",
-                    amountHour: "20",
-                  ),
-                  _gigsComponents.getInProgressContainer(
-                    context: context,
-                    jobTitle: "Bartender",
-                    dateTime: "23 Nov, 2020",
-                    location: "Crown Hotel, New York",
-                    totalAmount: "350",
-                    amountHour: "25",
-                  ),
-                  _gigsComponents.getConfirmedContainer(
-                    context: context,
-                    jobTitle: "Receptionist",
-                    dateTime: "23 Nov, 2020",
-                    location: "Crown Hotel, New York",
-                    totalAmount: "240",
-                    amountHour: "20",
-                  ),
-                ],
-              ),
             ),
           )
         ],

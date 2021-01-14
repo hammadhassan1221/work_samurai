@@ -23,7 +23,8 @@ class ProfileSettings extends StatefulWidget {
 
 class _ProfileSettingsState extends State<ProfileSettings> {
   EditProfileComponents _editProfileComponents;
-  bool _verifyEmail, _verifyPhone;
+  bool _verifyEmail = false;
+  bool _verifyPhone = false;
   EditProfileProviders _editProfileProviders;
   TextEditingController _aboutController = TextEditingController();
   //TextEditingController _firstName,_lastName;
@@ -82,7 +83,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                         backgroundColor: AppColors.clr_bg,
                         borderColor: AppColors.sign_field,
                         textColor: AppColors.clr_bg_black,
-                        text: _userWholeData.data.user.firstname,
+                        text: _userWholeData?.data?.user?.firstname,
                         //controller: ,
                         text1:"",
                         isPassword: false),
@@ -90,7 +91,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                         backgroundColor: AppColors.clr_bg,
                         borderColor: AppColors.sign_field,
                         textColor: AppColors.clr_bg_black,
-                        text: _userWholeData.data.user.lastname,
+                        text: _userWholeData?.data?.user?.lastname,
                         text1:"",
                       //  controller: _lastName ,
                         isPassword: false),
@@ -119,7 +120,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                             borderColor: AppColors.sign_field,
                             textColor: AppColors.clr_bg_black2,
                             text: "Email",
-                            text1: _userWholeData.data.user.emailAddress
+                            text1: _userWholeData?.data?.user?.emailAddress
                                 .toString(),
                             isPassword: false,
                             iconData: Icons.arrow_forward_ios,
@@ -151,7 +152,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                             borderColor: AppColors.sign_field,
                             textColor: AppColors.clr_bg_black2,
                             text: "Phone",
-                            text1: _userWholeData.data.user.mobile.toString(),
+                            text1: _userWholeData?.data?.user?.mobile?.toString(),
                             isPassword: false,
                             iconData: Icons.arrow_forward_ios,
                             verify: "Unverified",
