@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:work_samurai/animations/slide_right.dart';
 import 'package:work_samurai/commons/utils.dart';
 import 'package:work_samurai/generic_decode_encode/generic.dart';
@@ -89,6 +90,8 @@ class AccountProviders extends ChangeNotifier{
         _loader.hideLoader(context);
         _userWholeData = UserWholeData.fromJson(
             _genericDecodeEncode.decodeJson(Helper.getString(_response)));
+        SharedPreferences pref = await SharedPreferences.getInstance();
+        pref.setString(Strings.USER_DATA, Helper.getString(_response));
         if(_userWholeData.responseCode ==1){
           print('Profile api called');
             _isDataFetched = true;

@@ -144,47 +144,48 @@ class CommonWidgets {
     );
   }
 
-  static Widget getSignUpButton({
-    @required BuildContext context,
-    @required Function onPress,
-    @required String text,
-  }) {
-    return Align(
-      alignment: Alignment.bottomCenter,
-      child: InkWell(
-        onTap: () => onPress(),
-        splashColor: AppColors.clr_white,
-        child: Container(
-          margin: EdgeInsets.only(
-            left: AppSizes.width * 0.03,
-            right: AppSizes.width * 0.03,
-          ),
-          alignment: Alignment.center,
-          height: AppSizes.height * 0.08,
-          width: AppSizes.width,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(
-              5,
-            ),
-          ),
+  // static Widget getSignUpButton({
+  //   @required BuildContext context,
+  //   @required Function onPress,
+  //   @required String text,
+  // }) {
+  //   return Align(
+  //     alignment: Alignment.bottomCenter,
+  //     child: InkWell(
+  //       splashColor: AppColors.clr_white,
+  //       child: Container(
+  //         margin: EdgeInsets.only(
+  //           left: AppSizes.width * 0.03,
+  //           right: AppSizes.width * 0.03,
+  //         ),
+  //         alignment: Alignment.center,
+  //         height: AppSizes.height * 0.08,
+  //         width: AppSizes.width,
+  //         decoration: BoxDecoration(
+  //           borderRadius: BorderRadius.circular(
+  //             5,
+  //           ),
+  //           border: Border.all(
+  //             color: AppColors.clr_bg_black,
+  //           ),
+  //           color: AppColors.clr_bg_black,
+  //         ),
+  //         child: Center(
+  //           child: Text(
+  //             text,
+  //             style: TextStyle(
+  //               decoration: TextDecoration.none,
+  //               fontSize: 16.0,
+  //               fontFamily: 'MuliRegular',
+  //               color: AppColors.clr_white,
+  //             ),
+  //           ),
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 
-          child: FlatButton(
-            onPressed: ((){onPress();}),
-            child: Text(
-              text,
-              style: TextStyle(
-                  decoration: TextDecoration.none,
-                  fontSize: 16.0,
-                  fontFamily: 'MuliRegular',
-                  color: AppColors.clr_white,
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-
-  }
 
   static Widget getInputField({
     @required Color backgroundColor,

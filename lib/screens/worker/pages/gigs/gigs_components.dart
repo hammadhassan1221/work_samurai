@@ -1002,8 +1002,8 @@ class GigsComponents {
                     onDateTimeChanged: (dateTime) {}),
               ),
               Expanded(
-                child: CommonWidgets.getSignUpButton(
-                    context: context, onPress: () {}, text: "Request Break"),
+                child: CommonWidgets.getBottomButton(
+                    onButtonClick: () {}, name: "Request Break"),
               )
             ],
           ),

@@ -162,15 +162,15 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                     SizedBox(
                       height: AppSizes.height * 0.05,
                     ),
-                    CommonWidgets.getSignUpButton(
-                        context: context, onPress: () {
-                          String firstName = _userWholeData.data.user.firstname ?? "";
-                          String lastName = _userWholeData.data.user.lastname ?? "";
-                          String salutation =_userWholeData.data.user.salutation ?? "Mr.";
-                          String proTitle = _userWholeData.data.user.professionalTitle ?? "";
-                          String dob = _userWholeData.data.user.dob ?? "";
-                          String placeOfBirth = _userWholeData.data.user.lastname ?? "";
-                          String gender = _userWholeData.data.user.gender.toString() ?? "";
+                    CommonWidgets.getBottomButton(
+                        name: "Update", onButtonClick: () {
+                          String firstName = _userWholeData?.data?.user?.firstname ?? "";
+                          String lastName = _userWholeData?.data?.user?.lastname ?? "";
+                          String salutation =_userWholeData?.data?.user?.salutation ?? "Mr.";
+                          String proTitle = _userWholeData?.data?.user?.professionalTitle ?? "";
+                          String dob = _userWholeData?.data?.user?.dob ?? "";
+                          String placeOfBirth = _userWholeData?.data?.user?.lastname ?? "";
+                          String gender = _userWholeData?.data?.user?.gender?.toString() ?? "";
                           String description = _aboutController?.text?.toString() ?? "";
 
                           Map<String,dynamic> formData = Map<String,dynamic>();
@@ -185,7 +185,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
 
                           _editProfileProviders.sendUpdate(formData, context);
 
-                    }, text: "Update"),
+                    }),
                     SizedBox(
                       height: AppSizes.height * 0.05,
                     ),
@@ -243,12 +243,11 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                   height: AppSizes.height * 0.025,
                 ),
                 Expanded(
-                    child: CommonWidgets.getSignUpButton(
-                        context: context,
-                        onPress: () {
+                    child: CommonWidgets.getBottomButton(
+                        onButtonClick: () {
                           Navigator.pop(context);
                         },
-                        text: "Dismiss")),
+                        name: "Dismiss")),
               ],
             ),
           );
@@ -319,10 +318,9 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                   height: AppSizes.height * 0.025,
                 ),
                 Expanded(
-                    child: CommonWidgets.getSignUpButton(
-                        context: context,
-                        onPress: () {},
-                        text: "Retry In 10 sec")),
+                    child: CommonWidgets.getBottomButton(
+
+                        name: "Retry In 10 sec")),
               ],
             ),
           );

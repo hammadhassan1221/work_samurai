@@ -35,7 +35,7 @@ class _InProgressPageState extends State<InProgressPage> {
                   context: context,
                   jobTitle: _provider?.inProgressResponse?.data?.name ?? "",
                   dateTime: _provider?.inProgressResponse?.data?.startDate ?? "",
-                  location: _provider.inProgressResponse.data.description ?? "",
+                  location: _provider?.inProgressResponse?.data?.description ?? "",
                   totalAmount:
                       _provider.inProgressResponse?.data?.rate.toString() ?? "",
                   timer: _provider.inProgressResponse?.data?.estimatedDuration ??

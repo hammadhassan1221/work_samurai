@@ -102,11 +102,11 @@ class _SupportState extends State<Support> {
                 Container(
                   height: 50,
                   margin: EdgeInsets.only(top: 5),
-                  child: CommonWidgets.getSignUpButton(
-                      context: context, onPress: () {
+                  child: CommonWidgets.getBottomButton(
+                      onButtonClick: () {
                     // jobRolesProviders.result = null;
                     _onButtonPressed();
-                  }, text: "Add Ticket"),
+                  }, name: "Add Ticket"),
                 ),
                 SizedBox(
                   height: AppSizes.height * 0.025,

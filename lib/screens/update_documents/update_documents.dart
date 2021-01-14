@@ -47,7 +47,7 @@ class _UpdateDocumentsState extends State<UpdateDocuments> {
                     width: 160,
                   ),
                 ),
-                Expanded(child: CommonWidgets.getSignUpButton(context: context, onPress: (){}, text: "Choose File"))
+                Expanded(child: CommonWidgets.getBottomButton(onButtonClick: (){}, name: "Choose File"))
 
               ],
             ),

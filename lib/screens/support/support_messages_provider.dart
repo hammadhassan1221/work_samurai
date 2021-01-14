@@ -91,7 +91,6 @@ class SupportMessagesProvider extends ChangeNotifier {
       // formData['SupportTicketID'] = ticketId.toString();
       // formData['Body'] = body;
       FormData formData = FormData.fromMap({
-
         "Body": body,
         "SupportTicketID": ticketId,
 

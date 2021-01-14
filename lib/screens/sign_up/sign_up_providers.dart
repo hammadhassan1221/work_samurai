@@ -90,7 +90,7 @@ class SignUpProvider extends ChangeNotifier {
       formData['Lastname'] = lastName;
       formData['EmailAddress'] = email;
       formData['Password'] = password;
-      formData['Gender'] = gender;
+      formData['Gender'] = 0;
       formData['Mobile'] = phone;
       formData['TNCAccepted'] = true;
       formData['SkillID'] = int.parse(skill);

@@ -68,6 +68,44 @@ class _SupportMessagesState extends State<SupportMessages>{
                       controller: _controller,
                         itemCount: _supportMessagesProvider.getSupportMessage.data.length,
                         itemBuilder: (context, index) {
+                        if(_supportMessagesProvider.getSupportMessage.data.elementAt(index).systemAdminID == null){
+                          ///Message is mine
+                          return Column(
+                            children: [
+                              Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Container(
+                                      margin: EdgeInsets.all(12),
+                                      padding: EdgeInsets.all(10),
+                                      width: AppSizes.width * 0.60,
+
+                                      decoration: BoxDecoration(
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.black.withOpacity(0.25),
+                                              spreadRadius: 0.5,
+                                              blurRadius: 1,
+                                              offset: Offset(0, 1), // changes position of shadow
+                                            ),
+                                          ],
+                                          color: AppColors.clr_bg_black2,
+                                          borderRadius: BorderRadius.circular(8)),
+                                      child: Text(
+                                        _supportMessagesProvider.getSupportMessage.data[index].body,
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                            letterSpacing: 0.15,
+                                            fontSize: 15,
+                                            fontFamily: 'MuliRegular'),
+                                      ),
+                                    ),
+                                  ]),
+                            ],
+                          );
+                        }
+                        else{
+                          ///Message is other's
                           return Column(
                             children: [
                               Row(
@@ -90,7 +128,7 @@ class _SupportMessagesState extends State<SupportMessages>{
                                           color: AppColors.clr_bg,
                                           borderRadius: BorderRadius.circular(8)),
                                       child: Text(
-                                       _supportMessagesProvider.getSupportMessage.data[index].body,
+                                        _supportMessagesProvider.getSupportMessage.data[index].body,
                                         style: TextStyle(
                                             letterSpacing: 0.15,
                                             fontSize: 15,
@@ -98,85 +136,10 @@ class _SupportMessagesState extends State<SupportMessages>{
                                       ),
                                     ),
                                   ]),
-                              // Row(
-                              //     mainAxisAlignment: MainAxisAlignment.start,
-                              //     children: [
-                              //       Container(
-                              //         margin: EdgeInsets.all(12),
-                              //         padding: EdgeInsets.all(10),
-                              //         width: AppSizes.width * 0.25,
-                              //         decoration: BoxDecoration(
-                              //             boxShadow: [
-                              //               BoxShadow(
-                              //                 color: Colors.grey.withOpacity(0.25),
-                              //                 spreadRadius: 0.5,
-                              //                 blurRadius: 1,
-                              //                 offset: Offset(0, 1), // changes position of shadow
-                              //               ),
-                              //             ],
-                              //             color: AppColors.clr_bg,
-                              //             borderRadius: BorderRadius.circular(8)),
-                              //         child: Text(
-                              //           "Aliquam!",
-                              //           style: TextStyle(
-                              //               fontSize: 15,
-                              //               letterSpacing: 0.25,
-                              //               fontFamily: 'MuliRegular'),
-                              //         ),
-                              //       ),
-                              //     ]),
-                              // Row(
-                              //     mainAxisAlignment: MainAxisAlignment.center,
-                              //     children: [
-                              //       Container(
-                              //         margin: EdgeInsets.only(top: 3),
-                              //         padding: EdgeInsets.all(10),
-                              //         width: AppSizes.width * 0.25,
-                              //         decoration: BoxDecoration(
-                              //
-                              //             color: AppColors.transparentColor,
-                              //             borderRadius: BorderRadius.circular(8)),
-                              //         child: Text(
-                              //           "11:03am",
-                              //           style: TextStyle(
-                              //               letterSpacing: 0.25,
-                              //               fontFamily: 'MuliRegular',
-                              //               fontSize: 14),
-                              //         ),
-                              //       ),
-                              //     ]),
-                              // Row(
-                              //     mainAxisAlignment: MainAxisAlignment.end,
-                              //     children: [
-                              //       Container(
-                              //         margin: EdgeInsets.only(
-                              //             right: AppSizes.width * 0.04),
-                              //         padding: EdgeInsets.all(10),
-                              //         width: AppSizes.width * 0.60,
-                              //         decoration: BoxDecoration(
-                              //             boxShadow: [
-                              //               BoxShadow(
-                              //                 color: Colors.grey.withOpacity(0.25),
-                              //                 spreadRadius: 0.5,
-                              //                 blurRadius: 1,
-                              //                 offset: Offset(0, 1), // changes position of shadow
-                              //               ),
-                              //             ],
-                              //             color: AppColors.clr_bg_black,
-                              //             borderRadius: BorderRadius.circular(8)),
-                              //         child: Text(
-                              //           "Quisque vulputate sollicitudin dui, nec placerat ante laoreet sit amet.",
-                              //           style: TextStyle(
-                              //             color: AppColors.clr_white,
-                              //             letterSpacing: 0.25,
-                              //             fontFamily: 'MuliRegular',
-                              //             fontSize: 14,
-                              //           ),
-                              //         ),
-                              //       ),
-                              //     ]),
                             ],
                           );
+                        }
+
                         }
                     ),
                   ) : Expanded(
@@ -246,6 +209,7 @@ class _SupportMessagesState extends State<SupportMessages>{
       ),
     );
   }
+
 
   _enterButton() {
     return GestureDetector(

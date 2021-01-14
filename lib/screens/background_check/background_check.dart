@@ -36,7 +36,7 @@ class _BackgroundCheckState extends State<BackgroundCheck> {
                   _backgroundCheckComponents.getHeadings(text: "Upload Criminal Background Check"),
                   _backgroundCheckComponents.getBackgroundDetails(),
                   SizedBox(height: AppSizes.height*0.05,),
-                  CommonWidgets.getSignUpButton(context: context, onPress: (){_settingModalBottomSheet(context);}, text: "Lodge New Police Check"),
+                  CommonWidgets.getBottomButton(onButtonClick: (){_settingModalBottomSheet(context);}, name: "Lodge New Police Check"),
                   SizedBox(height: AppSizes.height*0.0125,),
                   _backgroundCheckComponents.getExistingButton(context: context, onPress: (){}, text: "Upload Existing")
 
@@ -85,7 +85,7 @@ _settingModalBottomSheet(context){
               ),),
             ),
             SizedBox(height: AppSizes.height*0.05,),
-            CommonWidgets.getSignUpButton(context: context, onPress: (){}, text: "Go to Lodgement")
+            CommonWidgets.getBottomButton(onButtonClick: (){}, name: "Go to Lodgement")
           ],
         ),
         );

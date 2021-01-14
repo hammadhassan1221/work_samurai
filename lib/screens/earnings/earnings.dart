@@ -68,24 +68,21 @@ class _EarningsState extends State<Earnings> {
             _earningComponents.getJobContainer(
                 text: "$hours Hours Worked", amount: ""),
             _earningComponents.getJobContainer(text: "$jobs Jobs", amount: ""),
-            Expanded(
-                child: CommonWidgets.getSignUpButton(
-                    context: context,
-                    onPress:(()  async{
-                      int days = _fromDate.difference(_selectedDate).inDays;
-                      if(days<20){
-                        ApplicationToast.getErrorToast(durationTime: 3, heading: null, subHeading: "please select atleast 20 days");
-                        return;
-                      }
-                      EarningResponse result =await EarningProviders().getUserEarning( _getToDate(_selectedDate.toString()),_getToDate(_fromDate.toString()),context);
-                      if(result != null){
-                        setState(() {
-                          earnedAmount = result.totalEarning;
-                          jobs = result.jobCompleted.toString();
-                        });
-                      }
-                    }),
-                    text: "See Details")),
+            Spacer(),
+            CommonWidgets.getBottomButton(name: "See Details", onButtonClick: (() async{
+              int days = _fromDate.difference(_selectedDate).inDays;
+              if(days<20){
+                ApplicationToast.getErrorToast(durationTime: 3, heading: null, subHeading: "please select atleast 20 days");
+                return;
+              }
+              EarningResponse result =await EarningProviders().getUserEarning( _getToDate(_selectedDate.toString()),_getToDate(_fromDate.toString()),context);
+              if(result != null){
+                setState(() {
+                  earnedAmount = result.totalEarning;
+                  jobs = result.jobCompleted.toString();
+                });
+              }
+            })),
             SizedBox(
               height: AppSizes.height * 0.025,
             ),

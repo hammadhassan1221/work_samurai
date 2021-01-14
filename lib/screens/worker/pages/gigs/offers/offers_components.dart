@@ -557,10 +557,9 @@ class OffersComponent {
                             SizedBox(
                               height: AppSizes.height * 0.03,
                             ),
-                            CommonWidgets.getSignUpButton(
-                              context: context,
-                              text: "Submit Rating",
-                              onPress: () {},
+                            CommonWidgets.getBottomButton(
+                              name: "Submit Rating",
+                              onButtonClick: () {},
                             ),
                             SizedBox(
                               height: AppSizes.height * 0.04,

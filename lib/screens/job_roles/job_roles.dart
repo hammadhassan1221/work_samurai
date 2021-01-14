@@ -106,13 +106,9 @@ class _JobRoleState extends State<JobRole> {
                 // ),
 
                 Container(
-                  height: 50,
+                  height: 60,
                   margin: EdgeInsets.only(top: 0),
-                  child: CommonWidgets.getSignUpButton(
-                      context: context, onPress: () {
-                    // jobRolesProviders.result = null;
-                    _onButtonPressed();
-                  }, text: "Add Job Roles "),
+                  child: CommonWidgets.getBottomButton(name: "Add Job Roles",onButtonClick: _onButtonPressed)
                 ),
 
               ],

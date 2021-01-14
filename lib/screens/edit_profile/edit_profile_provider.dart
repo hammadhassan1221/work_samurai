@@ -103,7 +103,6 @@ class EditProfileProviders extends ChangeNotifier {
       print(e.toString());
     }
   }
-
   sendUpdate(Map<String,dynamic> formData,context) async{
     try {
       _loader.showLoader(context: context);
