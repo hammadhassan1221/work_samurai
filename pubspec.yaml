@@ -51,6 +51,7 @@ dependencies:
   address_search_field: ^3.0.8
   geocoder: ^0.2.1
   flutter_google_places: ^0.2.6
+  url_launcher: ^5.7.10
 
 
   # The following adds the Cupertino Icons font to your application.

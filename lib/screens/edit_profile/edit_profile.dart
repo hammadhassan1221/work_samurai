@@ -131,7 +131,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                     _verifyPhone
                         ? _editProfileComponents.getVerificationContainer(
                             onPress: () {
-                              //_phoneSheet(context);
+                              _phoneSheet(context);
                               _editProfileProviders.getVerifiedPhone(
                                   context: context);
                             },
@@ -244,12 +244,12 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                 SizedBox(
                   height: AppSizes.height * 0.025,
                 ),
-                Expanded(
-                    child: CommonWidgets.getBottomButton(
-                        onButtonClick: () {
-                          Navigator.pop(context);
-                        },
-                        name: "Dismiss")),
+                Spacer(),
+                CommonWidgets.getBottomButton(
+                    onButtonClick: () {
+                      Navigator.pop(context);
+                    },
+                    name: "Dismiss"),
               ],
             ),
           );
@@ -319,10 +319,8 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                 SizedBox(
                   height: AppSizes.height * 0.025,
                 ),
-                Expanded(
-                    child: CommonWidgets.getBottomButton(
-
-                        name: "Retry In 10 sec")),
+                CommonWidgets.getBottomButton(
+                    name: "Retry In 10 sec"),
               ],
             ),
           );
