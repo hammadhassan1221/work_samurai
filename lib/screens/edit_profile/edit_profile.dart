@@ -75,7 +75,9 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                 child: ListView(
                   children: [
                     _editProfileComponents.getUserImage(
-                        onPress: () {}, imagePath: Assets.support),
+                        onPress: () {
+                          ApplicationToast.getSuccessToast(durationTime: 2, heading: "null", subHeading: "Hello");
+                        }, imagePath: Assets.support),
                     SizedBox(
                       height: AppSizes.height * 0.05,
                     ),

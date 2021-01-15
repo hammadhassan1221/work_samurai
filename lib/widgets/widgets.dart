@@ -343,8 +343,8 @@ class CommonWidgets {
               },
               child: Image.asset(
                 Assets.barArrow,
-                height: 20,
-                width: 20,
+                height: 30,
+                width: 30,
               )),
           SizedBox(
             width: AppSizes.width * 0.02,
@@ -532,7 +532,7 @@ class CommonWidgets {
         onPressed: onButtonClick,
         child: Padding(
           padding: EdgeInsets.symmetric(
-            vertical: 18,
+            vertical: 15,
           ),
           child: Text(
             "$name",

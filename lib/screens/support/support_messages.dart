@@ -159,9 +159,9 @@ class _SupportMessagesState extends State<SupportMessages>{
                           SizedBox(
                             width: AppSizes.width * 0.015,
                           ),
-                          Icon(Icons.attach_file),
+                        //  Icon(Icons.attach_file),
                           SizedBox(
-                            width: AppSizes.width * 0.03,
+                            width: AppSizes.width * 0.01,
                           ),
                           GestureDetector(
                               onTap: () async {
@@ -187,9 +187,9 @@ class _SupportMessagesState extends State<SupportMessages>{
 
     return Container(
       height: AppSizes.height * 0.075,
-      width: AppSizes.width / 1.4,
-      margin: EdgeInsets.all(10),
-      padding: EdgeInsets.all(8),
+      width: AppSizes.width / 1.2,
+      margin: EdgeInsets.only(left:10, top: 10, bottom: 10),
+      padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(

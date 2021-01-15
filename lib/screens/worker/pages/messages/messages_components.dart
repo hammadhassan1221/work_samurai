@@ -17,7 +17,7 @@ class MessageComponents{
         {
           return GestureDetector(
             onTap: (){
-              Navigator.push(context, SlideRightRoute(page: ChatScreen(jobId: msgObj.data[index].jobID)));
+              Navigator.push(context, SlideRightRoute(page: ChatScreen(jobId: msgObj.data[index].jobID, appBarName: msgObj.data[index].companyName,)));
             },
             child: Container(
               margin: EdgeInsets.only(left: AppSizes.width*0.03,right: AppSizes.width*0.03),
@@ -61,6 +61,7 @@ class MessageComponents{
                             width: AppSizes.width * 0.02,
                           ),
                           Container(
+                            margin: EdgeInsets.only(left: 40),
                               padding: EdgeInsets.all(3.0),
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius

@@ -109,7 +109,8 @@ class _WorkerChatRoomState extends State<WorkerChatRoom>with TickerProviderState
                 children: <Widget>[
                   _messageComponents.getMessageThread(
                       onPress: (){
-                        Navigator.push(context,SlideRightRoute(page: ChatScreen()));},
+                       // Navigator.push(context,SlideRightRoute(page: ChatScreen()));
+                },
                       imagePath: Assets.support,
                       heading: "Crown Hotel New York",
                       subHeading: "Waiter Wed,Sep 23",

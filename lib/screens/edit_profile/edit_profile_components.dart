@@ -2,15 +2,35 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
+import 'package:work_samurai/widgets/toast.dart';
 
 class EditProfileComponents {
   Widget getUserImage({@required Function onPress,@required String imagePath}) {
-    return Center(
-      child: Container(
-        decoration:
-            BoxDecoration(shape: BoxShape.circle),
+    return GestureDetector(
+    onTap: (){
+      ApplicationToast.getSuccessToast(durationTime: 2, heading: "null", subHeading: "Hello");
+    },
+      child: Center(
+        child: Stack(
+          children:<Widget>[
+            Container(
+                decoration: BoxDecoration(shape: BoxShape.circle),
 
-        child: Image.asset(imagePath,height: 150,width: 150,fit: BoxFit.fill,),
+          child:Image.asset(imagePath,height: 150,width: 150,fit: BoxFit.fill,),
+            ),
+            Container(
+              height: 20,
+              margin: EdgeInsets.only(top: AppSizes.height*0.165,left:42),
+                color: Colors.black54,
+                child: Text(
+                  'edit image',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                )
+            )
+          ],
+        ),
       ),
     );
   }

@@ -2,17 +2,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
+import 'package:work_samurai/commons/utils.dart';
 import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
+import 'package:work_samurai/res/strings.dart';
 import 'package:work_samurai/screens/chat/chat_providers.dart';
 import 'package:work_samurai/widgets/toast.dart';
 import 'package:work_samurai/widgets/widgets.dart';
 
 class ChatScreen extends StatefulWidget {
   final int jobId;
+  final String appBarName;
 
-  ChatScreen({@required this.jobId});
+  ChatScreen({@required this.jobId , @required this.appBarName});
   @override
   _ChatScreenState createState() => _ChatScreenState();
 }
@@ -58,7 +61,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   CommonWidgets.getAppBar(
-                      text: "Chat with Crown Hotel", context: context),
+                      text: widget.appBarName, context: context),
                   Container(
                     height: AppSizes.height * 0.125,
                     padding: EdgeInsets.all(AppSizes.width * 0.03),
@@ -111,6 +114,69 @@ class _ChatScreenState extends State<ChatScreen> {
                       controller: _controller,
                       itemCount: _chatProviders.getAllMessagesofUserJobModel.data.messages.length,
                        itemBuilder: (context, index){
+                         if(_chatProviders.getAllMessagesofUserJobModel.data.messages.elementAt(index).userID == PreferenceUtils.getInt(Strings.USER_ID)){
+                           return  Row(
+                               mainAxisAlignment: MainAxisAlignment.end,
+                               children: [
+                                 Container(
+                                   margin: EdgeInsets.all(12),
+                                   padding: EdgeInsets.all(10),
+                                   width: AppSizes.width * 0.60,
+
+                                   decoration: BoxDecoration(
+                                       boxShadow: [
+                                         BoxShadow(
+                                           color: Colors.grey.withOpacity(0.25),
+                                           spreadRadius: 0.5,
+                                           blurRadius: 1,
+                                           offset: Offset(0, 1), // changes position of shadow
+                                         ),
+                                       ],
+                                       color: AppColors.clr_bg_black2,
+                                       borderRadius: BorderRadius.circular(8)),
+                                   child: Text(
+                                     _chatProviders.getAllMessagesofUserJobModel.data.messages[index].body,
+                                     style: TextStyle(
+                                         color: Colors.white,
+                                         letterSpacing: 0.15,
+                                         fontSize: 15,
+                                         fontFamily: 'MuliRegular'),
+                                   ),
+                                 ),
+                               ]
+                           );
+                         }
+                         else{
+                           return  Row(
+                               mainAxisAlignment: MainAxisAlignment.start,
+                               children: [
+                                 Container(
+                                   margin: EdgeInsets.all(12),
+                                   padding: EdgeInsets.all(10),
+                                   width: AppSizes.width * 0.60,
+
+                                   decoration: BoxDecoration(
+                                       boxShadow: [
+                                         BoxShadow(
+                                           color: Colors.grey.withOpacity(0.25),
+                                           spreadRadius: 0.5,
+                                           blurRadius: 1,
+                                           offset: Offset(0, 1), // changes position of shadow
+                                         ),
+                                       ],
+                                       color: AppColors.clr_bg,
+                                       borderRadius: BorderRadius.circular(8)),
+                                   child: Text(
+                                     _chatProviders.getAllMessagesofUserJobModel.data.messages[index].body,
+                                     style: TextStyle(
+                                         letterSpacing: 0.15,
+                                         fontSize: 15,
+                                         fontFamily: 'MuliRegular'),
+                                   ),
+                                 ),
+                               ]
+                           );
+                         }
                         return  Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
@@ -237,9 +303,12 @@ class _ChatScreenState extends State<ChatScreen> {
                           SizedBox(
                             width: AppSizes.width * 0.015,
                           ),
-                          Icon(Icons.attach_file),
+                          //un comment to attach file functionality
+
+                          // Icon(Icons.attach_file),
+
                           SizedBox(
-                            width: AppSizes.width * 0.03,
+                            width: AppSizes.width * 0.01,
                           ),
                           GestureDetector(
                               onTap: () async {
@@ -265,9 +334,9 @@ class _ChatScreenState extends State<ChatScreen> {
   _textFieldContainer() {
     return Container(
       height: AppSizes.height * 0.075,
-      width: AppSizes.width / 1.4,
-      margin: EdgeInsets.all(10),
-      padding: EdgeInsets.all(8),
+      width: AppSizes.width / 1.2,
+      margin: EdgeInsets.only(top: 7,bottom: 10, left: 10),
+      padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(

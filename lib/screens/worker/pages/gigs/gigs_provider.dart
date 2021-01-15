@@ -64,6 +64,7 @@ class GigsProvider extends ChangeNotifier {
         _userWholeData = UserWholeData.fromJson(
             _genericDecodeEncode.decodeJson(Helper.getString(_response)));
         PreferenceUtils.setBool(Strings.IS_ACCOUNT_VERIFIED, _userWholeData.data.accountVerified);
+        PreferenceUtils.setInt(Strings.USER_ID, _userWholeData.data.user.id);
       }
     } catch (e) {
       print(e.toString());
