@@ -52,7 +52,7 @@ class InProgressComponents {
                       Text(
                         '$jobTitle',
                         style: TextStyle(
-                          fontSize: 22,
+                          fontSize: 18,
                           fontFamily: "MuliSemiBold",
                           color: AppColors.clr_bg_black,
                         ),
@@ -60,7 +60,7 @@ class InProgressComponents {
                       Text(
                         '\$' + '$totalAmount',
                         style: TextStyle(
-                          fontSize: 22,
+                          fontSize: 18,
                           fontFamily: "MuliSemiBold",
                           color: AppColors.clr_bg_black,
                         ),
@@ -81,7 +81,7 @@ class InProgressComponents {
                       Text(
                         '$dateTime',
                         style: TextStyle(
-                          fontSize: AppSizes.fontRatio * 16,
+                          fontSize: AppSizes.fontRatio * 12,
                           fontFamily: "MuliRegular",
                           color: AppColors.clr_bg_black,
                         ),
@@ -89,7 +89,7 @@ class InProgressComponents {
                       Text(
                         '\$' + '$amountHour' + '/h',
                         style: TextStyle(
-                          fontSize: AppSizes.fontRatio * 16,
+                          fontSize: AppSizes.fontRatio * 12,
                           fontFamily: "MuliRegular",
                           color: AppColors.clr_bg_black,
                         ),
@@ -108,7 +108,7 @@ class InProgressComponents {
                   child: Text(
                     '$location',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 12,
                       fontFamily: "MuliRegular",
                       color: AppColors.clr_bg_black,
                     ),
@@ -139,7 +139,7 @@ class InProgressComponents {
                       Text(
                         'Check-in time',
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 12,
                           fontFamily: "MuliRegular",
                           color: AppColors.clr_bg_black,
                         ),
@@ -150,7 +150,7 @@ class InProgressComponents {
                       Text(
                         '10:22am',
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 12,
                           fontFamily: "MuliRegular",
                           color: AppColors.clr_bg_black,
                         ),
@@ -174,7 +174,7 @@ class InProgressComponents {
                       "${startTime.round().toInt()}" + "   Minutes Left",
                       style: TextStyle(
                         color: AppColors.clr_bg_black,
-                        fontSize: 40.0,
+                        fontSize: 20.0,
                       ),
                     ),
                   ),

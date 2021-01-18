@@ -314,6 +314,7 @@ class GigsComponents {
       @required String dateTime,
       @required String location,
       @required String totalAmount,
+      @required onLeave(),
       @required String amountHour}) {
     return Container(
       margin: EdgeInsets.symmetric(
@@ -455,8 +456,8 @@ class GigsComponents {
                         context: context,
                         buttonColor: AppColors.clr_bg_black,
                         icon: Entypo.flag,
-                        onPress: () {},
-                        name: "Start Gig",
+                        onPress: (){onLeave();},
+                        name: "Leave",
                       )
                     ],
                   ),
@@ -516,7 +517,9 @@ class GigsComponents {
         child: FlatButton(
           splashColor: buttonColor.withOpacity(0.2),
           highlightColor: buttonColor.withOpacity(0.1),
-          onPressed: () => onPress,
+          onPressed: (){
+            onPress();
+          },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
