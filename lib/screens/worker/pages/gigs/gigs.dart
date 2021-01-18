@@ -9,11 +9,13 @@ import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/res/strings.dart';
 import 'package:work_samurai/screens/edit_profile/edit_profile.dart';
 import 'package:work_samurai/screens/worker/pages/alerts/alerts.dart';
+import 'package:work_samurai/screens/worker/pages/gigs/confirmed/confirmed_provider.dart';
 import 'package:work_samurai/screens/worker/pages/gigs/gigs_components.dart';
 import 'package:work_samurai/screens/worker/pages/gigs/gigs_provider.dart';
 import 'package:work_samurai/screens/worker/pages/gigs/offers/offers_page.dart';
 import 'package:work_samurai/screens/worker/worker_provider.dart';
 import 'package:work_samurai/widgets/spacer.dart';
+import 'package:work_samurai/widgets/toast.dart';
 import 'package:work_samurai/widgets/widgets.dart';
 
 import 'in_progress/in_progress.dart';
@@ -64,8 +66,8 @@ class _GigsState extends State<Gigs> with SingleTickerProviderStateMixin {
             unselectedLabelColor: AppColors.clr_bg_black3,
             tabs: <Widget>[
               _tabBar("Offers"),
-              _tabBar("In-Progress"),
               _tabBar("Confirmed"),
+              _tabBar("In-Progress"),
             ],
           ),
           _gigsComponents.isAccountVerified(context: context),
@@ -74,7 +76,6 @@ class _GigsState extends State<Gigs> with SingleTickerProviderStateMixin {
             child: TabBarView(
               children: <Widget>[
                 OffersPage(),
-                InProgressPage(),
                 _gigsComponents.getConfirmedContainer(
                   context: context,
                   jobTitle: "Receptionist",
@@ -82,7 +83,11 @@ class _GigsState extends State<Gigs> with SingleTickerProviderStateMixin {
                   location: "Crown Hotel, New York",
                   totalAmount: "240",
                   amountHour: "20",
+                  onLeave: (){
+                    ConfirmedProvider().leaveForJob(context, 1021);
+                  }
                 ),
+                InProgressPage(),
               ],
             ),
           )

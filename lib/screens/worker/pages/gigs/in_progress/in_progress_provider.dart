@@ -9,6 +9,7 @@ import 'package:work_samurai/network/network_helper.dart';
 import 'package:work_samurai/network/network_helper_impl.dart';
 import 'package:work_samurai/res/strings.dart';
 import 'package:work_samurai/widgets/loader.dart';
+import 'package:work_samurai/widgets/toast.dart';
 
 class InProgressProvider extends ChangeNotifier {
   BuildContext context;
@@ -81,7 +82,7 @@ class InProgressProvider extends ChangeNotifier {
           "Bearer " + PreferenceUtils.getString(Strings.ACCESS_TOKEN);
       debugPrint('Token: $token');
       var formData = new Map<String, dynamic>();
-      formData['Duration'] = duration;
+      formData['Duration'] = 30;//duration;
 
       _dio.options.contentType = Headers.formUrlEncodedContentType;
       Response _response = await _dio.post(
@@ -100,6 +101,12 @@ class InProgressProvider extends ChangeNotifier {
       }
       if (_response.statusCode == 200) {
         _loader.hideLoader(context);
+        if(_response.data["ResponseCode"] == 1){
+          ApplicationToast.getSuccessToast(durationTime: 3, heading: null, subHeading: "Success");
+        }
+        else{
+          ApplicationToast.getErrorToast(durationTime: 3, heading: null, subHeading: _response.data["ResponseCode"].toString() + "Can't make another request while one job request is in pending.");
+        }
       }
     } catch (e) {
       _loader.hideLoader(context);
@@ -128,6 +135,13 @@ class InProgressProvider extends ChangeNotifier {
       }
       if (_response.statusCode == 200) {
         _loader.hideLoader(context);
+        if(_response.data["ResponseCode"] == 1){
+          ApplicationToast.getSuccessToast(durationTime: 3, heading: null, subHeading: "Success");
+        }
+        else{
+          ApplicationToast.getErrorToast(durationTime: 3, heading: null, subHeading: _response.data["ResponseCode"].toString() + " sever error");
+        }
+
       }
     } catch (e) {
       _loader.hideLoader(context);

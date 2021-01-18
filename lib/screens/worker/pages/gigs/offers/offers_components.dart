@@ -15,7 +15,7 @@ class OffersComponent {
       child: Text(
         '$jobTitle',
         style: TextStyle(
-          fontSize: AppSizes.fontRatio*22,
+          fontSize: AppSizes.fontRatio*18,
           fontFamily: "MuliSemiBold",
           color: AppColors.clr_bg_black,
         ),
@@ -76,7 +76,7 @@ class OffersComponent {
             child: Text(
               '$dateTime',
               style: TextStyle(
-                fontSize: 16,
+                fontSize: 12,
                 fontFamily: "MuliRegular",
                 color: AppColors.clr_bg_black,
               ),
@@ -94,7 +94,7 @@ class OffersComponent {
                 Text(
                   '\$' + '$totalAmount',
                   style: TextStyle(
-                    fontSize: 22,
+                    fontSize: 18,
                     fontFamily: "MuliSemiBold",
                     color: AppColors.clr_bg_black,
                   ),
@@ -113,7 +113,7 @@ class OffersComponent {
             child: Text(
               '\$' + '$amountHour' + '/h',
               style: TextStyle(
-                fontSize: 16,
+                fontSize: 12,
                 fontFamily: "MuliRegular",
                 color: AppColors.clr_bg_black,
               ),
@@ -130,7 +130,7 @@ class OffersComponent {
             child: Text(
               '$location',
               style: TextStyle(
-                fontSize: 16,
+                fontSize: 12,
                 fontFamily: "MuliRegular",
                 color: AppColors.clr_bg_black,
               ),
@@ -232,7 +232,7 @@ class OffersComponent {
               Text(
                 '$name',
                 style: TextStyle(
-                  fontSize: AppSizes.fontRatio * 14,
+                  fontSize: AppSizes.fontRatio * 12,
                   fontFamily: "MuliRegular",
                   color: buttonColor,
                 ),
@@ -269,7 +269,7 @@ class OffersComponent {
                                 child: Text(
                                   "Robert",
                                   style: TextStyle(
-                                    fontSize: 22,
+                                    fontSize: 18,
                                     fontFamily: "MuliBold",
                                   ),
                                   textAlign: TextAlign.center,
