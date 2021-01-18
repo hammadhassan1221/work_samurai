@@ -1,4 +1,6 @@
 PODS:
+  - address_search_field (0.0.1):
+    - Flutter
   - connectivity (0.0.1):
     - Flutter
     - Reachability
@@ -41,8 +43,18 @@ PODS:
   - fluttertoastalert (0.0.1):
     - Flutter
     - SCLAlertView
+  - geocoder (0.0.1):
+    - Flutter
   - get_version (0.0.1):
     - Flutter
+  - google_maps_flutter (0.0.1):
+    - Flutter
+    - GoogleMaps (< 3.10)
+  - GoogleMaps (2.7.0):
+    - GoogleMaps/Maps (= 2.7.0)
+  - GoogleMaps/Base (2.7.0)
+  - GoogleMaps/Maps (2.7.0):
+    - GoogleMaps/Base
   - image_picker (0.0.1):
     - Flutter
   - package_info (0.0.1):
@@ -61,11 +73,14 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
+  - address_search_field (from `.symlinks/plugins/address_search_field/ios`)
   - connectivity (from `.symlinks/plugins/connectivity/ios`)
   - file_picker (from `.symlinks/plugins/file_picker/ios`)
   - Flutter (from `Flutter`)
   - fluttertoastalert (from `.symlinks/plugins/fluttertoastalert/ios`)
+  - geocoder (from `.symlinks/plugins/geocoder/ios`)
   - get_version (from `.symlinks/plugins/get_version/ios`)
+  - google_maps_flutter (from `.symlinks/plugins/google_maps_flutter/ios`)
   - image_picker (from `.symlinks/plugins/image_picker/ios`)
   - package_info (from `.symlinks/plugins/package_info/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
@@ -76,12 +91,15 @@ SPEC REPOS:
     - DKImagePickerController
     - DKPhotoGallery
     - FLAnimatedImage
+    - GoogleMaps
     - Reachability
     - SCLAlertView
     - SDWebImage
     - SDWebImageFLPlugin
 
 EXTERNAL SOURCES:
+  address_search_field:
+    :path: ".symlinks/plugins/address_search_field/ios"
   connectivity:
     :path: ".symlinks/plugins/connectivity/ios"
   file_picker:
@@ -90,8 +108,12 @@ EXTERNAL SOURCES:
     :path: Flutter
   fluttertoastalert:
     :path: ".symlinks/plugins/fluttertoastalert/ios"
+  geocoder:
+    :path: ".symlinks/plugins/geocoder/ios"
   get_version:
     :path: ".symlinks/plugins/get_version/ios"
+  google_maps_flutter:
+    :path: ".symlinks/plugins/google_maps_flutter/ios"
   image_picker:
     :path: ".symlinks/plugins/image_picker/ios"
   package_info:
@@ -102,6 +124,7 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/shared_preferences/ios"
 
 SPEC CHECKSUMS:
+  address_search_field: 891a01d25f658302071a1e2f3c4c59a3a95dd21d
   connectivity: c4130b2985d4ef6fd26f9702e886bd5260681467
   DKImagePickerController: 4a3e7948a848c4348e600b3fe5ce41478835fa10
   DKPhotoGallery: 0290d32343574f06eaa4c26f8f2f8a1035e916be
@@ -109,7 +132,10 @@ SPEC CHECKSUMS:
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
   fluttertoastalert: d495c35eb40caa4fac869197570c6773282cb6df
+  geocoder: 3cfab70531a0b367e917bafe82df4c30f6d4c45a
   get_version: 2bc18c4e26a265571662cab5d38f8b50dc8c1c77
+  google_maps_flutter: c7f9c73576de1fbe152a227bfd6e6c4ae8088619
+  GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
   image_picker: 9c3312491f862b28d21ecd8fdf0ee14e601b3f09
   package_info: 873975fc26034f0b863a300ad47e7f1ac6c7ec62
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c

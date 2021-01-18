@@ -5,8 +5,11 @@ import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/screens/earning_details/earning_details.dart';
 import 'package:work_samurai/screens/earnings/earnings_components.dart';
+import 'package:work_samurai/screens/earnings/earnings_providers.dart';
 import 'package:work_samurai/widgets/toast.dart';
 import 'package:work_samurai/widgets/widgets.dart';
+import 'package:work_samurai/models/api_models/earning_screen/earning_response.dart';
+
 
 class Earnings extends StatefulWidget {
   @override
@@ -17,12 +20,14 @@ class _EarningsState extends State<Earnings> {
   EarningComponents _earningComponents;
   DateTime _selectedDate;
   DateTime _fromDate;
+  String earnedAmount = "\$0.0";
+  String hours = "0";
+  String jobs = "0";
   int _currentYear;
   TextEditingController _totalAmount;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _earningComponents = EarningComponents();
     _selectedDate = DateTime.now();
@@ -59,18 +64,25 @@ class _EarningsState extends State<Earnings> {
                     fromDate: _getToDate(_fromDate.toString())),
               ],
             ),
-            _earningComponents.getAmountContainer(amount: "\$0.00"),
+            _earningComponents.getAmountContainer(amount: earnedAmount),
             _earningComponents.getJobContainer(
-                text: "Hours Worked", amount: ""),
-            _earningComponents.getJobContainer(text: "Jobs", amount: ""),
-            Expanded(
-                child: CommonWidgets.getSignUpButton(
-                    context: context,
-                    onPress: () {
-                      Navigator.push(
-                          context, SlideRightRoute(page: EarningsDetails()));
-                    },
-                    text: "See Details")),
+                text: "$hours Hours Worked", amount: ""),
+            _earningComponents.getJobContainer(text: "$jobs Jobs", amount: ""),
+            Spacer(),
+            CommonWidgets.getBottomButton(name: "See Details", onButtonClick: (() async{
+              int days = _fromDate.difference(_selectedDate).inDays;
+              if(days<20){
+                ApplicationToast.getErrorToast(durationTime: 3, heading: null, subHeading: "please select atleast 20 days");
+                return;
+              }
+              EarningResponse result =await EarningProviders().getUserEarning( _getToDate(_selectedDate.toString()),_getToDate(_fromDate.toString()),context);
+              if(result != null){
+                setState(() {
+                  earnedAmount = result.totalEarning;
+                  jobs = result.jobCompleted.toString();
+                });
+              }
+            })),
             SizedBox(
               height: AppSizes.height * 0.025,
             ),

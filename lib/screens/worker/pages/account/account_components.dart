@@ -344,7 +344,7 @@ class AccountComponent {
               Container(
                 width: AppSizes.width * 0.85,
                 child: Text(
-                    city,
+                    city ?? "",
                     style: TextStyle(
                       fontSize: 15,
                       color: AppColors.clr_bg_black,

@@ -9,6 +9,7 @@ import 'package:work_samurai/models/api_models/login_screen/login_response.dart'
 import 'package:work_samurai/network/api_urls.dart';
 import 'package:work_samurai/network/network_helper.dart';
 import 'package:work_samurai/network/network_helper_impl.dart';
+import 'package:work_samurai/res/strings.dart';
 import 'package:work_samurai/screens/worker/worker.dart';
 import 'package:work_samurai/utilities/utilities.dart';
 import 'package:work_samurai/widgets/toast.dart';
@@ -36,7 +37,7 @@ class LoginProvider extends ChangeNotifier {
       @required String password}) async {
     try {
       connectivityResult = await (Connectivity().checkConnectivity());
-      if(connectivityResult != ConnectivityResult.none){
+      if (connectivityResult != ConnectivityResult.none) {
         _loader.showLoader(context: context);
         var formData = Map<String, dynamic>();
 
@@ -49,36 +50,45 @@ class LoginProvider extends ChangeNotifier {
         Response _response = await dio.post(
           loginURL,
           data: formData,
-          options: Options(
-            contentType: Headers.formUrlEncodedContentType,
-          ),
+            options: Options(
+              contentType: Headers.formUrlEncodedContentType,
+              headers: {
+                "Authorization": "Bearer " + PreferenceUtils.getString(Strings.ACCESS_TOKEN),
+                "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
+              },
+            ),
         );
 
         if (_response.statusCode != 200) {
           _loader.hideLoader(context);
           ApplicationToast.getErrorToast(
-              durationTime: 3, heading: "Error", subHeading: "Please try again");
+              durationTime: 3,
+              heading: "Error",
+              subHeading: "Please try again",
+          );
           throw "Unauthorized";
         }
         if (_response.statusCode == 200) {
-           _loader.hideLoader(context);
+          _loader.hideLoader(context);
           _loginResponse = LoginResponse.fromJson(_response.data);
           if (_loginResponse.accessToken != null) {
             PreferenceUtils.setLoginResponse(_loginResponse);
             print(_loginResponse.accessToken);
-
             ApplicationToast.getSuccessToast(
                 durationTime: 3,
                 heading: "Success",
                 subHeading: "Login Successful");
-            Navigator.pushReplacement(context, SlideRightRoute(page: Worker()));
+            Navigator.pushReplacement(
+              context,
+              SlideRightRoute(page: Worker()),
+            );
           } else {
             ApplicationToast.getErrorToast(
                 durationTime: 3,
                 heading: "Oops",
                 subHeading: "Please enter valid credentials");
           }
-      }
+        }
       }
     } catch (e) {
       _loader.hideLoader(context);

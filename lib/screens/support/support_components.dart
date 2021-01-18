@@ -36,35 +36,49 @@ class SupportComponents {
           SizedBox(
             width: AppSizes.width * 0.03,
           ),
-           Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  heading,
-                  style: TextStyle(
-                    color: AppColors.clr_bg_black,
-                    decoration: TextDecoration.none,
-                    fontSize: 18,
-                    fontFamily: 'MuliBold',
-                  ),
-                ),
-                SizedBox(
-                  height: AppSizes.height * 0.01,
-                ),
-                Text(
-                  title,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    color: AppColors.clr_bg_black2,
-                    decoration: TextDecoration.none,
-                    fontSize: 16,
-                    fontFamily: 'MuliRegular',
-                  ),
-                ),
-              ],
-            ),
+           Container(
+             width: AppSizes.width*0.3,
+             child: Column(
 
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    heading,
+                    style: TextStyle(
+                      color: AppColors.clr_bg_black,
+                      decoration: TextDecoration.none,
+                      fontSize: 18,
+                      fontFamily: 'MuliBold',
+                    ),
+                  ),
+                  SizedBox(
+                    height: AppSizes.height * 0.01,
+                  ),
+                  Text(
+                    title,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      color: AppColors.clr_bg_black2,
+                      decoration: TextDecoration.none,
+                      fontSize: 16,
+                      fontFamily: 'MuliRegular',
+                    ),
+                  ),
+                ],
+              ),
+           ),
+          SizedBox(width: AppSizes.width*0.3,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Icon(
+                Icons.arrow_forward_ios,
+                size: 15,
+              ),
+            ],
+          )
         ],
+
       ),
     );
   }

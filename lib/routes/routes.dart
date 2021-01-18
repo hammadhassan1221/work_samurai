@@ -12,6 +12,8 @@ class Routes {
   static final routes = {
     splash: (context) => Splash(),
     login: (context) => Login(),
-    worker: (context) => Worker(),
+    worker: (context) => Worker(
+
+    ),
   };
 }

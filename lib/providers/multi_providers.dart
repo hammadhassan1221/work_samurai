@@ -1,4 +1,5 @@
 import 'package:provider/provider.dart';
+import 'package:work_samurai/screens/add_document/add_document_provider.dart';
 import 'package:work_samurai/screens/app_settings/app_settings_provider.dart';
 import 'package:work_samurai/screens/card_details/card_details_provider.dart';
 import 'package:work_samurai/screens/chat/chat_providers.dart';
@@ -14,11 +15,14 @@ import 'package:work_samurai/screens/password/password_providers.dart';
 import 'package:work_samurai/screens/settings/settings_provider.dart';
 import 'package:work_samurai/screens/sign_up/sign_up_providers.dart';
 import 'package:work_samurai/screens/splash/splash_providers.dart';
+import 'package:work_samurai/screens/support/support_messages_provider.dart';
 import 'package:work_samurai/screens/support/support_providers.dart';
 import 'package:work_samurai/screens/update_documents/update_document_providers.dart';
 import 'package:work_samurai/screens/worker/pages/account/account_provider.dart';
 import 'package:work_samurai/screens/worker/pages/alerts/alerts_provider.dart';
 import 'package:work_samurai/screens/worker/pages/gigs/gigs_provider.dart';
+import 'package:work_samurai/screens/worker/pages/gigs/in_progress/in_progress_provider.dart';
+import 'package:work_samurai/screens/worker/pages/gigs/offers/offers_provider.dart';
 import 'package:work_samurai/screens/worker/pages/messages/messages_provider.dart';
 import 'package:work_samurai/screens/worker/pages/messages/pages/archive/archive_providers.dart';
 import 'package:work_samurai/screens/worker/pages/messages/pages/completed/complete_providers.dart';
@@ -126,4 +130,27 @@ final multiProviders=[
     create: (_) => SupportProviders(),
     lazy: true,
   ),
+  ChangeNotifierProvider<OffersProvider>(
+    create: (_) => OffersProvider(),
+    lazy: true,
+  ),
+  ChangeNotifierProvider<InProgressProvider>(
+    create: (_) => InProgressProvider(),
+    lazy: true,
+  ),
+  ChangeNotifierProvider<SupportMessagesProvider>(
+    create: (_) => SupportMessagesProvider(),
+    lazy: true,
+  ),
+  ChangeNotifierProvider<MessageProviders>(
+    create: (_) => MessageProviders(),
+    lazy: true,
+  ),
+
+  // Rizwan
+  ChangeNotifierProvider<AddDocumentProviders>(
+    create: (_) => AddDocumentProviders(),
+    lazy: true,
+  ),
+  //
 ];

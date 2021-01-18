@@ -347,8 +347,7 @@ class _SignUpState extends State<SignUp> {
                             subHeading: "First Name is Empty");
                       }
                     },
-                    child: CommonWidgets.getSignUpButton(
-                        context: context, text: "Sign Up"),
+                    child: CommonWidgets.getBottomButton(name: "Sign Up"),
                   ),
                   SizedBox(
                     height: AppSizes.height * 0.025,

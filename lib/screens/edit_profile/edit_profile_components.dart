@@ -2,15 +2,47 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
+import 'package:work_samurai/screens/edit_profile/edit_profile_provider.dart';
+import 'package:work_samurai/widgets/toast.dart';
 
 class EditProfileComponents {
-  Widget getUserImage({@required Function onPress,@required String imagePath}) {
-    return Center(
-      child: Container(
-        decoration:
-            BoxDecoration(shape: BoxShape.circle),
+  Widget getUserImage({@required Function onPress,@required String imagePath, @required EditProfileProviders editProfileObj}) {
+    return GestureDetector(
+    onTap: (){
+     // ApplicationToast.getSuccessToast(durationTime: 2, heading: "null", subHeading: "Hello");
+      editProfileObj.getImage();
+    },
+      child: Center(
+        child: Stack(
+          children:<Widget>[
 
-        child: Image.asset(imagePath,height: 150,width: 150,fit: BoxFit.fill,),
+         Container(
+              height: AppSizes.width*0.42,
+              width: AppSizes.width*0.42,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: editProfileObj.userImage == null ? AssetImage(
+                   imagePath,
+                  ) : FileImage(editProfileObj.userImage),
+                  fit: BoxFit.cover,
+                ),
+                shape: BoxShape.circle,
+                color: Colors.black54,
+              ),
+            ),
+            Container(
+              height: 20,
+              margin: EdgeInsets.only(top: AppSizes.height*0.165,left:42),
+                color: Colors.black54,
+                child: Text(
+                  'edit image',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                )
+            )
+          ],
+        ),
       ),
     );
   }
@@ -93,8 +125,8 @@ class EditProfileComponents {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(text,style: TextStyle(color:textColor),),
-                Text(text1,style: TextStyle(color: AppColors.clr_bg_black2),),
+                Text(text /*?? "*/,style: TextStyle(color:textColor),),
+                Text(text1 ?? "",style: TextStyle(color: AppColors.clr_bg_black2),),
               ],
             ),
 
@@ -116,7 +148,7 @@ class EditProfileComponents {
     );
   }
 
-  Widget getDescriptionContainer({@required String heading, @required String desc}){
+  Widget getDescriptionContainer({@required String heading, @required String desc,@required controllor}){
     return Container(
       height: AppSizes.height*0.18,
       margin: EdgeInsets.only(top:AppSizes.height*0.015,left:AppSizes.width*0.03,right:AppSizes.width*0.03,),
@@ -129,6 +161,7 @@ class EditProfileComponents {
       ),
       padding: EdgeInsets.only(left: AppSizes.width*0.03),
       child:TextField(
+        controller: controllor,
         cursorColor: AppColors.clr_bg_black2,
         keyboardType: TextInputType.multiline,
         maxLines: null,

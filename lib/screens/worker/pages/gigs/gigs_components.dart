@@ -1,8 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttericon/entypo_icons.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:work_samurai/animations/slide_right.dart';
+import 'package:work_samurai/commons/utils.dart';
 import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
+import 'package:work_samurai/res/strings.dart';
+import 'package:work_samurai/screens/edit_profile/edit_profile.dart';
+import 'package:work_samurai/widgets/spacer.dart';
 import 'package:work_samurai/widgets/widgets.dart';
 
 class GigsComponents {
@@ -15,531 +22,528 @@ class GigsComponents {
     }
   }
 
-  String _getTotalAmount(double valueA, double valueB) =>
-      (valueA * valueB).toString();
+  Widget getOffersContainer({
+    @required BuildContext context,
+    @required String jobTitle,
+    @required String dateTime,
+    @required String location,
+    @required String totalAmount,
+    @required String amountHour,
+  }) {}
 
-  Widget getOffersContainer({@required BuildContext context,@required String jobTitle, @required String dateTime,@required String location,@required String totalAmount,@required String amountHour}) {
-    return Expanded(
-        child: ListView(
-      children: [
-        Container(
-            margin: EdgeInsets.only(
-              left: AppSizes.width * 0.05,
-              right: AppSizes.width * 0.05,
-            ),
-            decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.25),
-                    spreadRadius: 0.5,
-                    blurRadius: 1,
-                    offset: Offset(0, 1), // changes position of shadow
-                  ),
-                ],
-                borderRadius: BorderRadius.circular(5),
-                border: Border.all(color: AppColors.clr_field),
-                color: AppColors.clr_white),
-            child: Column(
-              children: [
-                Container(
-                  padding: EdgeInsets.all(AppSizes.width * 0.03),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                jobTitle,
-                                style: TextStyle(
-                                  fontSize: 22,
-                                  fontFamily: "MuliSemiBold",
-                                  color: AppColors.clr_bg_black,
-                                ),
-                              ),
-                              SizedBox(height: AppSizes.height * 0.005),
-                              Text(
-                                dateTime,
-                                style: TextStyle(
-                                  fontFamily: 'MuliRegular',
-                                  fontSize: 15,
-                                  color: AppColors.clr_bg_black2,
-                                ),
-                              ),
-                              SizedBox(height: AppSizes.height * 0.03),
-                              Text(
-                                location,
-                                style: TextStyle(
-                                  fontFamily: 'MuliRegular',
-                                  fontSize: 15,
-                                  color: AppColors.clr_bg_black2,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Column(
-
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Icon(
-                                Icons.arrow_forward_ios,
-                                size: 15,
-                                color: AppColors.clr_bg_black2,
-                              ),
-                              SizedBox(height: AppSizes.height * 0.016),
-                              Text(
-                                "\$" + totalAmount,
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontFamily: 'MuliBold',
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              Text(
-                                "\$" + amountHour +"/h",
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    fontFamily: 'MuliRegular',
-                                    color: AppColors.clr_bg_black2),
-                              )
-                            ],
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: AppSizes.height * 0.02,
-                ),
-                Container(
-                    decoration: BoxDecoration(
-                        border: Border(
-                      top: BorderSide(width: 2.0, color: AppColors.clr_field),
-                    )),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          height: AppSizes.height*0.06,
-                            decoration: BoxDecoration(
-                              border: Border(
-                                right: BorderSide(
-                                    width: 2.0, color: AppColors.clr_field),
-                              ),
-                              color: Colors.white,
-                            ),
-                            padding: EdgeInsets.all(AppSizes.width * 0.02),
-                            width: AppSizes.width * 0.44,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset(
-                                  Assets.cancelgig,
-                                  height: 20,
-                                  width: 20,
-                                  color: AppColors.clr_red,
-                                ),
-                                SizedBox(
-                                  width: AppSizes.width * 0.01,
-                                ),
-                                Text("Skip",
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      fontFamily: 'MuliRegular',
-                                      color: AppColors.clr_red,
-                                    )),
-                              ],
-                            )),
-                        GestureDetector(
-                          onTap: () {
-                            _newTaskModalBottomSheet(context);
-                          },
-                          child: Container(
-                            height: AppSizes.height*0.06,
-                              padding: EdgeInsets.all(AppSizes.width * 0.02),
-                              decoration: BoxDecoration(),
-                              width: AppSizes.width * 0.44,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.check,
-                                    color: AppColors.clr_green,
-                                    size: 18,
-                                  ),
-                                  SizedBox(
-                                    width: AppSizes.width * 0.01,
-                                  ),
-                                  Text("Accept",
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        color: AppColors.clr_green,
-                                      )),
-                                ],
-                              )),
-                        ),
-                      ],
-                    )),
-              ],
-            )),
-      ],
-    ));
-  }
-
-  Widget getInProgressContainer({@required BuildContext context,@required String jobTitle, @required String dateTime,@required String location,@required String totalAmount,@required String amountHour}) {
-    return Expanded(
-        child: ListView(
-      children: [
-        Container(
-            margin: EdgeInsets.only(
-              left: AppSizes.width * 0.05,
-              right: AppSizes.width * 0.05,
-            ),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                border: Border.all(color: AppColors.clr_field),
-                color: AppColors.clr_white),
-            child: Column(
-              children: [
-                Container(
-                  padding: EdgeInsets.all(AppSizes.width * 0.03),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                jobTitle,
-                                style: TextStyle(
-                                  fontSize: 22,
-                                  fontFamily: "MuliSemiBold",
-                                  color: AppColors.clr_bg_black,
-                                ),
-                              ),
-                              SizedBox(height: AppSizes.height * 0.005),
-                              Text(
-                                dateTime,
-                                style: TextStyle(
-                                  fontFamily: 'MuliRegular',
-                                  fontSize: 15,
-                                  color: AppColors.clr_bg_black2,
-                                ),
-                              ),
-                              SizedBox(height: AppSizes.height * 0.03),
-                              Text(
-                                location,
-                                style: TextStyle(
-                                  fontFamily: 'MuliRegular',
-                                  fontSize: 15,
-                                  color: AppColors.clr_bg_black2,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text(
-                            "\$"+ totalAmount,
-                            style: TextStyle(
-                              fontSize: 22,
-                              fontFamily: 'MuliBold',
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            "\$"+amountHour +"/h",
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontFamily: 'MuliRegular',
-                                color: AppColors.clr_bg_black2),
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: AppSizes.height * 0.02,
-                ),
-                Container(
-                  padding: EdgeInsets.all( AppSizes.width*0.03),
-                  decoration: BoxDecoration(
-                    border: Border(
-                        top: BorderSide(
-                          width: 2.0,
-                          color: AppColors.clr_field,
-                        ),
-                        bottom: BorderSide(
-                            width: 2.0, color: AppColors.clr_field)),
-                  ),
-                  child: CommonWidgets.getAvailability(
-                    text1: "Check-in Time",
-                    text: "10:02am",
-                    onPress: () {},
-                  ),
-                ),
-
-                Container(
-                  padding: EdgeInsets.all(AppSizes.height*0.03),
-                  child: Text("04 : 22 : 53",style: TextStyle(
-                    fontSize: 40,
-                    fontFamily: 'MuliBold'
-                  ),),
-                ),
-
-              ],
-            )),
-
-        SizedBox(
-          height: AppSizes.height * 0.02,
+  Widget getInProgressContainer(
+      {@required BuildContext context,
+      @required String jobTitle,
+      @required String dateTime,
+      @required String location,
+      @required String totalAmount,
+      @required String amountHour}) {
+    return Container(
+      margin: EdgeInsets.symmetric(
+        horizontal: horizontalValue(
+          12.0,
         ),
-
-        Align(
-          alignment: Alignment.center,
-          child: GestureDetector(
-            onTap: (){
-              _requestBreakContainer(context: context);
-            } ,
-            child: Container(
-              width: AppSizes.width,
-              margin: EdgeInsets.only(left: AppSizes.width*0.05,right: AppSizes.width*0.05),
-              decoration: BoxDecoration(
-                color: AppColors.clr_white,
-                border: Border.all(color: AppColors.clr_bg_black),
-                borderRadius: BorderRadius.circular(6),
+      ),
+      child: ListView(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5),
+              border: Border.all(
+                color: AppColors.clr_field,
               ),
-              padding: EdgeInsets.all(AppSizes.height*0.020),
-              child: Text("Request Break",style: TextStyle(
-                  fontSize: 16,
-                  color: AppColors.clr_bg_black,
-                  fontWeight: FontWeight.w600,
-                  fontFamily: 'MuliRegular',
-              ),
-              textAlign: TextAlign.center,),
-            ),
-          ),
-        ),
-
-        SizedBox(
-          height: AppSizes.height * 0.02,
-        ),
-
-        Align(
-          alignment: Alignment.center,
-          child: Container(
-            width: AppSizes.width,
-            margin: EdgeInsets.only(left: AppSizes.width*0.05,right: AppSizes.width*0.05),
-            decoration: BoxDecoration(
-              color: AppColors.clr_bg_black,
-              border: Border.all(color: AppColors.clr_bg_black),
-              borderRadius: BorderRadius.circular(6),
-            ),
-            padding: EdgeInsets.all(AppSizes.height*0.020),
-            child: Text("End Shift",style: TextStyle(
-              fontSize: 16,
               color: AppColors.clr_white,
-              fontFamily: 'MuliRegular',
             ),
-              textAlign: TextAlign.center,),
+            child: Column(
+              children: [
+                verticalSpacer(8.0),
+                Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: horizontalValue(
+                      8.0,
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        jobTitle,
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontFamily: "MuliSemiBold",
+                          color: AppColors.clr_bg_black,
+                        ),
+                      ),
+                      Text(
+                        '\$' + '$totalAmount',
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontFamily: "MuliSemiBold",
+                          color: AppColors.clr_bg_black,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                verticalSpacer(4.0),
+                Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: horizontalValue(
+                      8.0,
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        '$dateTime',
+                        style: TextStyle(
+                          fontSize: AppSizes.fontRatio * 16,
+                          fontFamily: "MuliRegular",
+                          color: AppColors.clr_bg_black,
+                        ),
+                      ),
+                      Text(
+                        '\$' + '$amountHour' + '/h',
+                        style: TextStyle(
+                          fontSize: AppSizes.fontRatio * 16,
+                          fontFamily: "MuliRegular",
+                          color: AppColors.clr_bg_black,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                verticalSpacer(24.0),
+                Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: horizontalValue(
+                      8.0,
+                    ),
+                  ),
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    '$location',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontFamily: "MuliRegular",
+                      color: AppColors.clr_bg_black,
+                    ),
+                  ),
+                ),
+                verticalSpacer(8.0),
+                Container(
+                  height: 1,
+                  width: double.infinity,
+                  color: AppColors.clr_field,
+                ),
+                verticalSpacer(8.0),
+                Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: horizontalValue(
+                      8.0,
+                    ),
+                    vertical: verticalValue(
+                      8.0,
+                    ),
+                  ),
+                  child: Row(
+                    children: [
+                      checkContainer(),
+                      horizontalSpacer(
+                        8.0,
+                      ),
+                      Text(
+                        'Check-in time',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontFamily: "MuliRegular",
+                          color: AppColors.clr_bg_black,
+                        ),
+                      ),
+                      horizontalSpacer(
+                        140.0,
+                      ),
+                      Text(
+                        '10:22am',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontFamily: "MuliRegular",
+                          color: AppColors.clr_bg_black,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                verticalSpacer(8.0),
+                Container(
+                  height: 1,
+                  width: double.infinity,
+                  color: AppColors.clr_field,
+                ),
+                verticalSpacer(
+                  16.0,
+                ),
+                Center(
+                  child: Text(
+                    '04 : 22 : 53',
+                    style: TextStyle(
+                      fontSize: 40,
+                      fontFamily: "MuliBold",
+                      color: AppColors.clr_bg_black,
+                    ),
+                  ),
+                ),
+                verticalSpacer(
+                  16.0,
+                ),
+              ],
+            ),
+          ),
+          verticalSpacer(
+            16.0,
+          ),
+          requestBreakButton(),
+          verticalSpacer(
+            16.0,
+          ),
+          endShiftButton(),
+        ],
+      ),
+    );
+  }
+
+  Widget checkContainer() {
+    return Container(
+      height: 15,
+      width: 15,
+      decoration: BoxDecoration(
+        color: AppColors.clr_green.withOpacity(0.8),
+        shape: BoxShape.circle,
+      ),
+    );
+  }
+
+  Widget requestBreakButton() {
+    return FlatButton(
+      color: AppColors.transparentColor,
+      shape: new RoundedRectangleBorder(
+        borderRadius: new BorderRadius.circular(5.0),
+        side: BorderSide.merge(
+          BorderSide(
+            color: AppColors.clr_bg_black.withOpacity(0.8),
+            style: BorderStyle.solid,
+            width: 1.0,
+          ),
+          BorderSide(
+            color: AppColors.clr_bg_black.withOpacity(0.8),
+            style: BorderStyle.solid,
+            width: 1.0,
           ),
         ),
-
-      ],
-    ));
+      ),
+      splashColor: AppColors.clr_bg_black.withOpacity(0.2),
+      highlightColor: AppColors.clr_bg_black.withOpacity(0.1),
+      onPressed: () {},
+      child: Container(
+        padding: EdgeInsets.symmetric(
+          horizontal: horizontalValue(
+            18.0,
+          ),
+          vertical: verticalValue(
+            18.0,
+          ),
+        ),
+        child: Text(
+          'Request Break',
+          style: TextStyle(
+            fontSize: AppSizes.fontRatio * 16,
+            fontFamily: "MuliRegular",
+            color: AppColors.clr_bg_black,
+          ),
+        ),
+      ),
+    );
   }
 
-  Widget getConfirmedContainer({@required BuildContext context,@required String jobTitle, @required String dateTime,@required String location,@required String totalAmount,@required String amountHour}) {
-    return Expanded(
-        child: ListView(
-          children: [
-            Container(
-                margin: EdgeInsets.only(
-                  left: AppSizes.width * 0.05,
-                  right: AppSizes.width * 0.05,
-                ),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    border: Border.all(color: AppColors.clr_field),
-                    color: AppColors.clr_white),
-                child: Column(
-                  children: [
-                    Container(
-                      padding: EdgeInsets.all(AppSizes.width * 0.03),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    jobTitle,
-                                    style: TextStyle(
-                                      fontSize: 22,
-                                      fontFamily: "MuliSemiBold",
-                                      color: AppColors.clr_bg_black,
-                                    ),
-                                  ),
-                                  SizedBox(height: AppSizes.height * 0.005),
-                                  Text(
-                                    dateTime,
-                                    style: TextStyle(
-                                      fontFamily: 'MuliRegular',
-                                      fontSize: 15,
-                                      color: AppColors.clr_bg_black2,
-                                    ),
-                                  ),
-                                  SizedBox(height: AppSizes.height * 0.03),
-                                  Text(
-                                    location,
-                                    style: TextStyle(
-                                      fontFamily: 'MuliRegular',
-                                      fontSize: 15,
-                                      color: AppColors.clr_bg_black2,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  Icon(
-                                    Icons.arrow_forward_ios,
-                                    size: 15,
-                                    color: AppColors.clr_bg_black2,
-                                  ),
-                                  SizedBox(height: AppSizes.height * 0.01),
-                                  Text(
-                                    "\$" + totalAmount ,
-                                    style: TextStyle(
-                                      fontSize: 22,
-                                      fontFamily: 'MuliBold',
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Text(
-                                    "\$"+ amountHour+ "/h",
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontFamily: 'MuliRegular',
-                                        color: AppColors.clr_bg_black2),
-                                  )
-                                ],
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: AppSizes.height * 0.02,
-                    ),
-                    Container(
-                        height: AppSizes.height*0.06,
-                        decoration: BoxDecoration(
-                            border: Border(
-                              top: BorderSide(width: 2.0, color: AppColors.clr_field),
-                            )),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              height: AppSizes.height*0.06,
-                                decoration: BoxDecoration(
-                                  border: Border(
-                                    right: BorderSide(
-                                        width: 2.0, color: AppColors.clr_field),
-                                  ),
-                                  color: Colors.white,
-                                ),
-                                padding: EdgeInsets.all(AppSizes.width * 0.02),
-                                width: AppSizes.width * 0.44,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Image.asset(
-                                      Assets.cancelgig,
-                                      height: 20,
-                                      width: 20,
-                                      color: AppColors.clr_red,
-                                    ),
-                                    SizedBox(
-                                      width: AppSizes.width * 0.01,
-                                    ),
-                                    Text("Cancel Gig",
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          fontFamily: 'MuliRegular',
-                                          color: AppColors.clr_red,
-                                        )),
-                                  ],
-                                )),
-                            GestureDetector(
-                              onTap: () {
-                                _alertDialogueContainer(context);
-                              },
-                              child: Container(
-                                  height: AppSizes.height*0.06,
-                                  padding: EdgeInsets.all(AppSizes.width * 0.02),
-                                  decoration: BoxDecoration(),
-                                  width: AppSizes.width * 0.44,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Image.asset(
-                                        Assets.start_gig,
-                                        height: 20,
-                                        width: 20,
-                                        color: AppColors.clr_bg_black,
-                                      ),
-                                      SizedBox(
-                                        width: AppSizes.width * 0.01,
-                                      ),
-                                      Text("Start Gig",
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                            color: AppColors.clr_bg_black,
-                                          )),
-                                    ],
-                                  )),
-                            ),
-                          ],
-                        )),
-                  ],
-                )),
-            SizedBox(
-              height: AppSizes.height * 0.02,
+  Widget endShiftButton() {
+    return FlatButton(
+      color: AppColors.clr_bg_black,
+      shape: new RoundedRectangleBorder(
+        borderRadius: new BorderRadius.circular(5.0),
+        side: BorderSide.merge(
+          BorderSide(
+            color: AppColors.clr_bg_black.withOpacity(0.8),
+            style: BorderStyle.solid,
+            width: 1.0,
+          ),
+          BorderSide(
+            color: AppColors.clr_bg_black.withOpacity(0.8),
+            style: BorderStyle.solid,
+            width: 1.0,
+          ),
+        ),
+      ),
+      splashColor: AppColors.clr_red.withOpacity(0.4),
+      highlightColor: AppColors.clr_red.withOpacity(0.2),
+      onPressed: () {},
+      child: Container(
+        padding: EdgeInsets.symmetric(
+          horizontal: horizontalValue(
+            18.0,
+          ),
+          vertical: verticalValue(
+            18.0,
+          ),
+        ),
+        child: Text(
+          'End Shift',
+          style: TextStyle(
+            fontSize: AppSizes.fontRatio * 16,
+            fontFamily: "MuliRegular",
+            color: AppColors.clr_white,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget getConfirmedContainer(
+      {@required BuildContext context,
+      @required String jobTitle,
+      @required String dateTime,
+      @required String location,
+      @required String totalAmount,
+      @required String amountHour}) {
+    return Container(
+      margin: EdgeInsets.symmetric(
+        horizontal: horizontalValue(
+          12.0,
+        ),
+      ),
+      child: ListView(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5),
+              border: Border.all(color: AppColors.clr_field),
+              color: AppColors.clr_white,
             ),
-          ],
-        ));
+            child: Column(
+              children: [
+                verticalSpacer(8.0),
+                Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: horizontalValue(
+                      8.0,
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        jobTitle,
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontFamily: "MuliSemiBold",
+                          color: AppColors.clr_bg_black,
+                        ),
+                      ),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        size: 15,
+                        color: AppColors.clr_bg_black2,
+                      ),
+                    ],
+                  ),
+                ),
+                verticalSpacer(8.0),
+                Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: horizontalValue(
+                      8.0,
+                    ),
+                  ),
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    '$dateTime',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontFamily: "MuliRegular",
+                      color: AppColors.clr_bg_black,
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: horizontalValue(
+                      8.0,
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        '\$' + '$totalAmount',
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontFamily: "MuliSemiBold",
+                          color: AppColors.clr_bg_black,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                verticalSpacer(4.0),
+                Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: horizontalValue(
+                      8.0,
+                    ),
+                  ),
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    '\$' + '$amountHour' + '/h',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontFamily: "MuliRegular",
+                      color: AppColors.clr_bg_black,
+                    ),
+                  ),
+                ),
+                verticalSpacer(4.0),
+                Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: horizontalValue(
+                      8.0,
+                    ),
+                  ),
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    '$location',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontFamily: "MuliRegular",
+                      color: AppColors.clr_bg_black,
+                    ),
+                  ),
+                ),
+                verticalSpacer(8.0),
+                Container(
+                  height: 1,
+                  width: double.infinity,
+                  color: AppColors.clr_field,
+                ),
+                Container(
+                  height: AppSizes.heightRatio * 45,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      getCancelActionButton(
+                        context: context,
+                        buttonColor: AppColors.clr_red,
+                        icon: Icons.close,
+                        onPress: () {},
+                        name: "Cancel Gig",
+                      ),
+                      Container(
+                        height: double.infinity,
+                        width: 1,
+                        color: AppColors.clr_field,
+                      ),
+                      getStartActionButton(
+                        context: context,
+                        buttonColor: AppColors.clr_bg_black,
+                        icon: Entypo.flag,
+                        onPress: () {},
+                        name: "Start Gig",
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
- _newTaskModalBottomSheet(context) {
+  Widget getCancelActionButton(
+      {Color buttonColor,
+      BuildContext context,
+      IconData icon,
+      Function onPress,
+      String name}) {
+    return Expanded(
+      child: Container(
+        height: double.infinity,
+        child: FlatButton(
+          splashColor: buttonColor.withOpacity(0.2),
+          highlightColor: buttonColor.withOpacity(0.1),
+          onPressed: () => onPress,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                icon,
+                color: buttonColor,
+              ),
+              Text(
+                '$name',
+                style: TextStyle(
+                  fontSize: AppSizes.fontRatio * 14,
+                  fontFamily: "MuliRegular",
+                  color: buttonColor,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget getStartActionButton(
+      {Color buttonColor,
+      BuildContext context,
+      IconData icon,
+      Function onPress,
+      String name}) {
+    return Expanded(
+      child: Container(
+        height: double.infinity,
+        child: FlatButton(
+          splashColor: buttonColor.withOpacity(0.2),
+          highlightColor: buttonColor.withOpacity(0.1),
+          onPressed: () => onPress,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                icon,
+                color: buttonColor,
+              ),
+              Text(
+                '$name',
+                style: TextStyle(
+                  fontSize: AppSizes.fontRatio * 14,
+                  fontFamily: "MuliRegular",
+                  color: buttonColor,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  _newTaskModalBottomSheet(context) {
     showModalBottomSheet(
         context: context,
         builder: (BuildContext context) {
           return Container(
-
               padding: EdgeInsets.only(
                   left: AppSizes.width * 0.015, right: AppSizes.width * 0.015),
               decoration: BoxDecoration(
@@ -570,47 +574,46 @@ class GigsComponents {
                                             fontSize: 22,
                                             fontFamily: 'MuliBold',
                                           )),
-
-
                                     ],
                                   ),
-                                 Row(children: [
-
-                                   Container(
-                                     alignment: Alignment.bottomLeft,
-                                     child: Text("Crown Hotel",
-                                         style: TextStyle(
-                                           fontSize: 15,
-                                           color: AppColors.clr_bg_black,
-                                           fontFamily: 'MuliBold',
-                                         )),
-                                   ),
-                                   SizedBox(
-                                     width: AppSizes.width * 0.015,
-                                   ),
-                                   Container(
-                                       padding: EdgeInsets.all(2.0),
-                                       decoration: BoxDecoration(
-                                           borderRadius:
-                                           BorderRadius.circular(10.0),
-                                           border: Border.all(
-                                             color: AppColors.clr_bg_grey,
-                                           )),
-                                       child: Row(
-                                         children: [
-                                           Image.asset(Assets.star,
-                                               width: 10, height: 10),
-                                           Text("4.5",
-                                               style: TextStyle(
-                                                 fontSize: 12,
-                                                 fontFamily:
-                                                 Assets.muliRegular,
-                                                 color:
-                                                 AppColors.clr_bg_black,
-                                               ))
-                                         ],
-                                       )),
-                                 ],)
+                                  Row(
+                                    children: [
+                                      Container(
+                                        alignment: Alignment.bottomLeft,
+                                        child: Text("Crown Hotel",
+                                            style: TextStyle(
+                                              fontSize: 15,
+                                              color: AppColors.clr_bg_black,
+                                              fontFamily: 'MuliBold',
+                                            )),
+                                      ),
+                                      SizedBox(
+                                        width: AppSizes.width * 0.015,
+                                      ),
+                                      Container(
+                                          padding: EdgeInsets.all(2.0),
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0),
+                                              border: Border.all(
+                                                color: AppColors.clr_bg_grey,
+                                              )),
+                                          child: Row(
+                                            children: [
+                                              Image.asset(Assets.star,
+                                                  width: 10, height: 10),
+                                              Text("4.5",
+                                                  style: TextStyle(
+                                                    fontSize: 12,
+                                                    fontFamily:
+                                                        Assets.muliRegular,
+                                                    color:
+                                                        AppColors.clr_bg_black,
+                                                  ))
+                                            ],
+                                          )),
+                                    ],
+                                  )
                                 ],
                               )),
                               Container(
@@ -871,25 +874,29 @@ class GigsComponents {
                           ),
                           Container(
                               decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: AppColors.clr_field,
-                                  ),),
+                                border: Border.all(
+                                  color: AppColors.clr_field,
+                                ),
+                              ),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Container(
-                                      height: AppSizes.height*0.06,
+                                      height: AppSizes.height * 0.06,
                                       decoration: BoxDecoration(
                                         border: Border(
                                           right: BorderSide(
-                                              width: 2.0, color: AppColors.clr_field),
+                                              width: 2.0,
+                                              color: AppColors.clr_field),
                                         ),
                                         color: Colors.white,
                                       ),
-                                      padding: EdgeInsets.all(AppSizes.width * 0.02),
+                                      padding:
+                                          EdgeInsets.all(AppSizes.width * 0.02),
                                       width: AppSizes.width * 0.44,
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: [
                                           Image.asset(
                                             Assets.cancelgig,
@@ -909,12 +916,15 @@ class GigsComponents {
                                         ],
                                       )),
                                   Container(
-                                      height: AppSizes.height*0.06,
-                                      padding: EdgeInsets.all(AppSizes.width * 0.02),
-                                      decoration: BoxDecoration(color: AppColors.clr_white),
+                                      height: AppSizes.height * 0.06,
+                                      padding:
+                                          EdgeInsets.all(AppSizes.width * 0.02),
+                                      decoration: BoxDecoration(
+                                          color: AppColors.clr_white),
                                       width: AppSizes.width * 0.44,
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: [
                                           Icon(
                                             Icons.check,
@@ -940,332 +950,6 @@ class GigsComponents {
         });
   }
 
-  _alertDialogueContainer(BuildContext context) {
-    return {
-      {
-        showDialog(
-          context: context,
-          builder: (context) {
-            return Material(
-              color: AppColors.clr_bg_black.withOpacity(0.5),
-              child: Center(
-                child: Stack(
-                  children: [
-                    Container(
-                        margin: EdgeInsets.only(
-                          top: AppSizes.width * 0.15,
-
-                        ),
-                        height: AppSizes.height*0.90,
-                        color: AppColors.clr_bg,
-                        child: ListView(
-                          children: [
-                            Container(
-                                margin: EdgeInsets.only(top:AppSizes.height*0.07),
-                                child: Text("Robert",
-                                  style: TextStyle(
-                                      fontSize: 22,
-                                      fontFamily: "MuliBold"
-                                  ),
-                                  textAlign: TextAlign.center,)),
-                            SizedBox(
-                              height: AppSizes.height * 0.01,
-                            ),
-                            Container(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    padding: EdgeInsets.all(
-                                      5,
-                                    ),
-                                    child: Image.asset(
-                                      Assets.star,
-                                      height: 25,
-                                      width: 25,
-                                    ),
-                                  ),
-                                  Container(
-                                    padding: EdgeInsets.all(
-                                      5,
-                                    ),
-                                    child: Image.asset(
-                                      Assets.star,
-                                      height: 25,
-                                      width: 25,
-                                    ),
-                                  ),
-                                  Container(
-                                    padding: EdgeInsets.all(
-                                      5,
-                                    ),
-                                    child: Image.asset(
-                                      Assets.star,
-                                      height: 25,
-                                      width: 25,
-                                    ),
-                                  ),
-                                  Container(
-                                    padding: EdgeInsets.all(
-                                      5,
-                                    ),
-                                    child: Image.asset(
-                                      Assets.star,
-                                      height: 25,
-                                      width: 25,
-                                    ),
-                                  ),
-                                  Container(
-                                    padding: EdgeInsets.all(
-                                      5,
-                                    ),
-                                    child: Image.asset(
-                                      Assets.star,
-                                      height: 25,
-                                      width: 25,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-
-                            Container(
-
-                              margin: EdgeInsets.only(left:AppSizes.width*0.06,right:AppSizes.width*0.06,top: AppSizes.height*0.04,bottom: AppSizes.height*0.04),
-                              child: Text("Add compliment",style: TextStyle(fontFamily: 'MuliBold',fontSize: 18),
-                                textAlign: TextAlign.center,),
-                            ),
-
-
-
-                            Container(
-                                width: AppSizes.width * 0.10,
-                                height: AppSizes.height*0.07,
-
-                                margin: EdgeInsets.only(left:AppSizes.width*0.04,right:AppSizes.width*0.04),
-                                padding: EdgeInsets.all(AppSizes.width*0.03),
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: AppColors.clr_bg_black,
-                                  ),
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween ,
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-
-                                        Image.asset(
-                                          Assets.greeting,
-                                          height: 25,
-                                          width: 25,
-                                        ),
-                                        SizedBox(
-                                          width: AppSizes.width * 0.03,
-                                        ),
-                                        Container(
-                                            child: Text(
-                                              "Greeting",
-                                              style: TextStyle(
-                                                fontFamily: "MuliBold",
-                                                fontSize: 15,
-                                              ),
-                                            )
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      children: [
-                                        Icon(Icons.check,size: 15,)
-                                      ],
-                                    )
-
-                                  ],
-                                )
-                            ),
-                            SizedBox(
-                              height: AppSizes.height * 0.015,
-                            ),
-                            Container(
-                                width: AppSizes.width * 0.12,
-                                height: AppSizes.height*0.07,
-
-                                margin: EdgeInsets.only(left:AppSizes.width*0.04,right:AppSizes.width*0.04),
-                                padding: EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: AppColors.clr_bg_grey,
-                                  ),
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
-                                child: Row(
-                                  children: [
-                                    Image.asset(
-                                      Assets.venue_safety,
-                                      height: 25,
-                                      width: 25,
-                                    ),
-                                    SizedBox(
-                                      width: AppSizes.width * 0.03,
-                                    ),
-                                    Container(
-                                        child: Text(
-                                          "Venue Safety",
-                                          style: TextStyle(
-                                            fontFamily: "MuliBold",
-                                            fontSize: 15,
-                                          ),
-                                        )
-                                    ),
-                                  ],
-                                )
-                            ),
-                            SizedBox(
-                              height: AppSizes.height * 0.015,
-                            ),
-                            Container(
-                                width: AppSizes.width * 0.9,
-                                height: AppSizes.height*0.07,
-                                margin: EdgeInsets.only(left:AppSizes.width*0.04,right:AppSizes.width*0.04),
-                                padding: EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: AppColors.clr_bg_grey,
-                                  ),
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
-                                child: Row(
-                                  children: [
-                                    Image.asset(
-                                      Assets.work_atmosphere,
-                                      height: 25,
-                                      width: 25,
-                                    ),
-                                    SizedBox(
-                                      width: AppSizes.width * 0.03,
-                                    ),
-                                    Container(
-                                        child: Text(
-                                          "Work Atmosphere",
-                                          style: TextStyle(
-                                            fontFamily: 'MuliBold',
-                                            fontSize: 15,
-                                          ),
-                                        )
-                                    ),
-                                  ],
-                                )
-                            ),
-                            SizedBox(
-                              height: AppSizes.height * 0.015,
-                            ),
-                            Container(
-                                width: AppSizes.width * 0.12,
-                                height: AppSizes.height*0.07,
-                                margin: EdgeInsets.only(left:AppSizes.width*0.04,right:AppSizes.width*0.04),
-                                padding: EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: AppColors.clr_bg_grey,
-                                  ),
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
-                                child: Row(
-                                  children: [
-                                    Image.asset(
-                                      Assets.team_work,
-                                      height: 25,
-                                      width: 25,
-                                    ),
-                                    SizedBox(
-                                      width: AppSizes.width * 0.03,
-                                    ),
-                                    Container(
-                                        child: Text(
-                                          "Team Work",
-                                          style: TextStyle(
-                                            fontFamily: 'MuliBold',
-                                            fontSize: 15,
-                                          ),
-                                        )
-                                    ),
-                                  ],
-                                )
-                            ),
-                            SizedBox(
-                              height: AppSizes.height * 0.015,
-                            ),
-                            Container(
-                                width: AppSizes.width * 0.12,
-                                height: AppSizes.height*0.07,
-                                margin: EdgeInsets.only(left:AppSizes.width*0.04,right:AppSizes.width*0.04),
-                                padding: EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: AppColors.clr_bg_grey,
-                                  ),
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
-                                child: Row(
-                                  children: [
-                                    Image.asset(
-                                      Assets.management,
-                                      height: 25,
-                                      width: 25,
-                                    ),
-                                    SizedBox(
-                                      width: AppSizes.width * 0.03,
-                                    ),
-                                    Container(
-                                        child: Text(
-                                          "Management",
-                                          style: TextStyle(
-                                            fontFamily: 'MuliBold',
-                                            fontSize: 15,
-                                          ),
-                                        )
-                                    ),
-                                  ],
-                                )
-                            ),
-
-
-                            SizedBox(
-                              height: AppSizes.height * 0.03,
-                            ),
-
-                            CommonWidgets.getSignUpButton(context:context,text:"Submit Rating", onPress: (){hideLoader(context);}),
-
-                            SizedBox(
-                              height: AppSizes.height * 0.04,
-                            ),
-                          ],
-                        )),
-                    Container(
-                        margin: EdgeInsets.only(
-                          left: AppSizes.width * 0.38,
-                        ),
-                        height: AppSizes.width * 0.25,
-                        width: AppSizes.width * 0.25,
-
-                        child: Image.asset(
-                          Assets.support,
-                          height: 100,
-                          width: 100,
-                          fit: BoxFit.cover,
-                        )),
-                  ],
-                ),
-              ),
-            );
-          },
-        )
-      },
-    };
-  }
-
   _container() {
     return Container(
         alignment: Alignment.centerLeft,
@@ -1279,446 +963,67 @@ class GigsComponents {
           ),
         ));
   }
-  hideLoader(BuildContext context) {
-    Navigator.of(context).pop();
+
+  _requestBreakContainer({context}) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          padding: EdgeInsets.all(AppSizes.height * 0.03),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Break Duration",
+                    style: TextStyle(
+                        fontSize: 22,
+                        fontFamily: 'MuliSemiBold',
+                        decoration: TextDecoration.none,
+                        color: AppColors.clr_bg_black),
+                  ),
+                  Text(
+                    "15 mins",
+                    style: TextStyle(
+                        fontFamily: 'MuliSemiBold',
+                        decoration: TextDecoration.none,
+                        color: AppColors.clr_bg_black2),
+                  )
+                ],
+              ),
+              SizedBox(
+                height: AppSizes.height * 0.075,
+              ),
+              Container(
+                height: AppSizes.height * 0.2,
+                child: CupertinoDatePicker(
+                    mode: CupertinoDatePickerMode.time,
+                    onDateTimeChanged: (dateTime) {}),
+              ),
+              Expanded(
+                child: CommonWidgets.getBottomButton(
+                    onButtonClick: () {}, name: "Request Break"),
+              )
+            ],
+          ),
+        );
+      },
+    );
   }
 
-  _requestBreakContainer({context}){
-    showModalBottomSheet(
-        context: context,
-        builder: (BuildContext context) {
-          return Container(
-            padding: EdgeInsets.all(AppSizes.height*0.03),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("Break Duration",
-                      style: TextStyle(
-                        fontSize: 22,
-                          fontFamily: 'MuliSemiBold',
-                          decoration: TextDecoration.none,
-                          color: AppColors.clr_bg_black
-                      ),),
-                    Text("15 mins",
-                      style: TextStyle(
-                          fontFamily: 'MuliSemiBold',
-                          decoration: TextDecoration.none,
-                          color: AppColors.clr_bg_black2
-                      ),)
-                  ],
-                ),
-                SizedBox(height: AppSizes.height*0.075,),
-                Container(
-                  height: AppSizes.height*0.2,
-                  child: CupertinoDatePicker(
-                      mode: CupertinoDatePickerMode.time,
-                      onDateTimeChanged: (dateTime) {
-                      }
-                  ),
-                ),
-
-                Expanded(child: CommonWidgets.getSignUpButton(context: context, onPress: (){}, text: "Request Break"))
-              ],
-            ),
-          );
-        });
-
+  Widget isAccountVerified({BuildContext context}) {
+    if (PreferenceUtils.getBool(Strings.IS_ACCOUNT_VERIFIED)) {
+      return SizedBox.shrink();
+    } else {
+      return CommonWidgets.getAlertContainer(
+        onPress: () => Navigator.push(
+          context,
+          SlideRightRoute(
+            page: ProfileSettings(),
+          ),
+        ),
+      );
+    }
   }
 }
-
-
-
-
-
-
-
-
-/*Widget getOffersContainer({@required BuildContext context, @required FutureJobsResponse futureJobsResponse}) {
-    return Container(
-        child: Container(
-            child: ListView.builder(
-              itemCount: futureJobsResponse.data.length,
-              itemBuilder: (context, index) {
-                return Container(
-                    width: AppSizes.width,
-                    margin: EdgeInsets.only(top: AppSizes.width*0.03,left: AppSizes.width*0.05, right: AppSizes.width*0.05),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        boxShadow: [
-                          BoxShadow(
-                            color: AppColors.clr_bg_grey,
-                            spreadRadius: 0.5,
-                            blurRadius: 1,
-                            offset: Offset(0, 0),
-                          )
-                        ],
-                        border: Border.all(color: AppColors.clr_bg_grey),
-                        color: AppColors.clr_white),
-                    child: Column(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            _newTaskModalBottomSheet(context);
-                          },
-                          child: Container(
-
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          futureJobsResponse.data[index].name,
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                            fontFamily: Assets.muliSemiBold,
-                                            color: AppColors.clr_bg_black,
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: AppSizes.height * 0.015,
-                                        ),
-                                        Text(
-                                          futureJobsResponse.data[index].completedDate.toString()  ,
-                                          style: TextStyle(
-                                            fontSize: 15,
-                                            color: AppColors.clr_bg_grey,
-                                          ),
-                                        ),
-                                        Text(
-                                          getTime(futureJobsResponse
-                                              .data[index].startDate) +
-                                              " - " +
-                                              getTime(futureJobsResponse
-                                                  .data[index].completedDate),
-                                          style: TextStyle(
-                                            fontSize: 15,
-                                            color: AppColors.clr_bg_grey,
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: AppSizes.height * 0.01,
-                                        ),
-                                        Container(
-                                          width: AppSizes.width*0.65,
-                                          child: Text(
-                                            futureJobsResponse.data[index].description,
-                                            style: TextStyle(
-                                              fontSize: 15,
-                                              color: AppColors.clr_bg_grey,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    )
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Column(
-                                      children: [
-                                        IconButton(
-                                          onPressed: () {
-                                            _newTaskModalBottomSheet(context);
-                                          },
-                                          icon: Icon(
-                                            Icons.arrow_forward_ios,
-                                            size: 15,
-                                            color: Colors.grey,
-                                          ),
-                                        ),
-                                        Text(
-                                          "\$" + _getTotalAmount(futureJobsResponse.data[index].rate, futureJobsResponse.data[index].estimatedDuration),
-                                          style: TextStyle(
-                                            fontSize: 22,
-                                            fontFamily: Assets.muliSemiBold,
-                                          ),
-                                        ),
-                                        Text(
-                                          "\$" + futureJobsResponse.data[index].rate.toString() + "/h",
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                            fontFamily: Assets.muliRegular,
-                                          ),
-                                        )
-                                      ],
-                                    )
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        Container(
-                            child: Row(
-                              children: [
-                                Container(
-                                    decoration: BoxDecoration(
-                                      border: Border(
-                                        top: BorderSide(
-                                            width: 2.0, color: AppColors.clr_bg_grey),
-                                        right: BorderSide(
-                                            width: 2.0, color: AppColors.clr_bg_grey),
-                                      ),
-                                      color: Colors.white,
-                                    ),
-                                    padding: EdgeInsets.only(
-                                        left: 50.0, right: 10.0, top: 10.0, bottom: 10.0),
-                                    width: AppSizes.width * 0.44,
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        Icon(
-                                          Icons.clear,
-                                          color: AppColors.clr_bg_black,
-                                        ),
-                                        SizedBox(
-                                          width: AppSizes.width * 0.02,
-                                        ),
-                                        Text("Skip",
-                                            style: TextStyle(
-                                                color: AppColors.clr_bg_black,
-                                                fontSize: 17)),
-                                      ],
-                                    )),
-                                GestureDetector(
-                                  onTap: () {
-                                    _alertDialogueContainer(context);
-                                  },
-                                  child: Container(
-                                      padding: EdgeInsets.only(
-                                          left: 50.0, right: 10.0, top: 10.0, bottom: 10.0),
-                                      decoration: BoxDecoration(
-                                        border: Border(
-                                          top: BorderSide(
-                                              width: 2.0, color: AppColors.clr_bg_grey),
-                                        ),
-                                        color: Colors.white,
-                                      ),
-                                      width: AppSizes.width * 0.44,
-                                      child: Row(
-                                        children: [
-                                          Icon(
-                                            Icons.check,
-                                            color: AppColors.clr_green,
-                                          ),
-                                          SizedBox(
-                                            width: AppSizes.width * 0.02,
-                                          ),
-                                          Text("Accept",
-                                              style: TextStyle(
-                                                  color: AppColors.clr_green,
-                                                  fontSize: 16)),
-                                        ],
-                                      )),
-                                ),
-                              ],
-                            )),
-                      ],
-                    ));
-              },
-            )
-    )
-    );
-  }*/
-
-/*
-  Widget getInProgressContainer({@required BuildContext context, @required JobsInProgressResponse jobsInProgressResponse}) {
-    return Container(
-        child: Container(
-            child: ListView.builder(
-              itemCount: jobsInProgressResponse.data.length,
-              itemBuilder: (context, index) {
-                return Container(
-                    width: AppSizes.width,
-                    margin: EdgeInsets.only(top: AppSizes.width*0.03,left: AppSizes.width*0.05, right: AppSizes.width*0.05),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        boxShadow: [
-                          BoxShadow(
-                            color: AppColors.clr_bg_grey,
-                            spreadRadius: 0.5,
-                            blurRadius: 1,
-                            offset: Offset(0, 0),
-                          )
-                        ],
-                        border: Border.all(color: AppColors.clr_bg_grey),
-                        color: AppColors.clr_white),
-                    child: Column(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            _newTaskModalBottomSheet(context);
-                          },
-                          child: Container(
-                            padding: EdgeInsets.all(10.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          jobsInProgressResponse.data[index].name,
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                            fontFamily: Assets.muliSemiBold,
-                                            color: AppColors.clr_bg_black,
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: AppSizes.height * 0.015,
-                                        ),
-                                        Text(
-                                          jobsInProgressResponse.data[index].completedDate,
-                                          style: TextStyle(
-                                            fontSize: 15,
-                                            color: AppColors.clr_bg_grey,
-                                          ),
-                                        ),
-                                        Text(
-                                          getTime(jobsInProgressResponse
-                                              .data[index].startDate) +
-                                              " - " +
-                                              getTime(jobsInProgressResponse
-                                                  .data[index].completedDate),
-                                          style: TextStyle(
-                                            fontSize: 15,
-                                            color: AppColors.clr_bg_grey,
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: AppSizes.height * 0.01,
-                                        ),
-                                        Container(
-                                          width: AppSizes.width*0.65,
-                                          child: Text(
-                                            jobsInProgressResponse.data[index].description,
-                                            style: TextStyle(
-                                              fontSize: 15,
-                                              color: AppColors.clr_bg_grey,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    )
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Column(
-                                      children: [
-                                        IconButton(
-                                          onPressed: () {
-                                            _newTaskModalBottomSheet(context);
-                                          },
-                                          icon: Icon(
-                                            Icons.arrow_forward_ios,
-                                            size: 15,
-                                            color: Colors.grey,
-                                          ),
-                                        ),
-                                        Text(
-                                          "\$" + _getTotalAmount(jobsInProgressResponse.data[index].rate, jobsInProgressResponse.data[index].estimatedDuration),
-                                          style: TextStyle(
-                                            fontSize: 22,
-                                            fontFamily: Assets.muliSemiBold,
-                                          ),
-                                        ),
-                                        Text(
-                                          "\$" + jobsInProgressResponse.data[index].rate.toString() + "/h",
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                            fontFamily: Assets.muliRegular,
-                                          ),
-                                        )
-                                      ],
-                                    )
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        Container(
-                            child: Row(
-                              children: [
-                                Container(
-                                    decoration: BoxDecoration(
-                                      border: Border(
-                                        top: BorderSide(
-                                            width: 2.0, color: AppColors.clr_bg_grey),
-                                        right: BorderSide(
-                                            width: 2.0, color: AppColors.clr_bg_grey),
-                                      ),
-                                      color: Colors.white,
-                                    ),
-                                    padding: EdgeInsets.only(
-                                        left: 50.0, right: 10.0, top: 10.0, bottom: 10.0),
-                                    width: AppSizes.width * 0.44,
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        Icon(
-                                          Icons.clear,
-                                          color: AppColors.clr_bg_black,
-                                        ),
-                                        SizedBox(
-                                          width: AppSizes.width * 0.02,
-                                        ),
-                                        Text("Skip",
-                                            style: TextStyle(
-                                                color: AppColors.clr_bg_black,
-                                                fontSize: 17)),
-                                      ],
-                                    )),
-                                GestureDetector(
-                                  onTap: () {
-                                    _alertDialogueContainer(context);
-                                  },
-                                  child: Container(
-                                      padding: EdgeInsets.only(
-                                          left: 50.0, right: 10.0, top: 10.0, bottom: 10.0),
-                                      decoration: BoxDecoration(
-                                        border: Border(
-                                          top: BorderSide(
-                                              width: 2.0, color: AppColors.clr_bg_grey),
-                                        ),
-                                        color: Colors.white,
-                                      ),
-                                      width: AppSizes.width * 0.44,
-                                      child: Row(
-                                        children: [
-                                          Icon(
-                                            Icons.check,
-                                            color: AppColors.clr_green,
-                                          ),
-                                          SizedBox(
-                                            width: AppSizes.width * 0.02,
-                                          ),
-                                          Text("Accept",
-                                              style: TextStyle(
-                                                  color: AppColors.clr_green,
-                                                  fontSize: 16)),
-                                        ],
-                                      )),
-                                ),
-                              ],
-                            )),
-                      ],
-                    ));
-              },
-            )
-        )
-    );
-  }
-*/

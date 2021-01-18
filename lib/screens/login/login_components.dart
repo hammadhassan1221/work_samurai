@@ -27,11 +27,9 @@ class LoginComponents {
                 style: TextStyle(
                   fontSize: 15,
                   color: AppColors.clr_bg_black,
+                  fontWeight: FontWeight.bold,
                   fontFamily: 'MuliRegular',
                 ),
-              ),
-              SizedBox(
-                width: AppSizes.width * 0.02,
               ),
               Text(
                 text2,
@@ -65,9 +63,6 @@ class LoginComponents {
                   color: AppColors.clr_bg_black,
                   fontFamily: 'MuliRegular',
                 ),
-              ),
-              SizedBox(
-                width: AppSizes.width * 0.01,
               ),
               Container(
                 decoration: BoxDecoration(

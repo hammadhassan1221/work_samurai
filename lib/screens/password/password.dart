@@ -78,16 +78,15 @@ class _ChangePasswordState extends State<ChangePassword> {
                 controller: _confirmPassword,
                 isPassword: true),
             Expanded(
-                child: CommonWidgets.getSignUpButton(
-                    context: context,
-                    onPress: () {
+                child: CommonWidgets.getBottomButton(
+                    onButtonClick: () {
                       _passwordProviders.callPasswordAPI(
                           context: context,
                           currentPassword: _currentPassword.text.toString(),
                           newPassword: _newPassword.text.toString(),
                           confirmPassword: _confirmPassword.text.toString());
                     },
-                    text: "Change Password")),
+                    name: "Change Password")),
             SizedBox(
               height: AppSizes.height * 0.025,
             ),

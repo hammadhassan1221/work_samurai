@@ -1,7 +1,7 @@
 
 class FutureJobsResponse {
   int responseCode;
-  List<Data> data;
+  List<Data> data = List<Data>();
 
   FutureJobsResponse.empty();
 
@@ -37,7 +37,7 @@ class Data {
   int jobStatus;
   bool isInstant;
   bool autoAssign;
-
+  double distance;
   Data(
       {this.iD,
         this.name,
@@ -48,8 +48,10 @@ class Data {
         this.completedDate,
         this.jobStatus,
         this.isInstant,
-        this.autoAssign});
+        this.autoAssign,
+      this.distance});
 
+  Data.empty();
   Data.fromJson(Map<String, dynamic> json) {
     iD = json['ID'];
     name = json['Name'];
@@ -61,6 +63,7 @@ class Data {
     jobStatus = json['JobStatus'];
     isInstant = json['IsInstant'];
     autoAssign = json['AutoAssign'];
+    distance = json['Distance'];
   }
 
   Map<String, dynamic> toJson() {
@@ -75,6 +78,7 @@ class Data {
     data['JobStatus'] = this.jobStatus;
     data['IsInstant'] = this.isInstant;
     data['AutoAssign'] = this.autoAssign;
+    data['Distance'] = this.distance;
     return data;
   }
 }

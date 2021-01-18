@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:work_samurai/animations/slide_right.dart';
 import 'package:work_samurai/res/assets.dart';
@@ -25,7 +26,7 @@ class _WorkerChatRoomState extends State<WorkerChatRoom>with TickerProviderState
   TabController _tabController;
   WorkerProvider _workerProvider;
   MessageComponents _messageComponents;
-
+  MessageProviders _messageProviders;
   final List<Widget> children = [
     Completed(),
     Archive(),
@@ -37,6 +38,8 @@ class _WorkerChatRoomState extends State<WorkerChatRoom>with TickerProviderState
     super.initState();
     _messageComponents= MessageComponents();
     _workerProvider = Provider.of<WorkerProvider>(context,listen:false);
+    _messageProviders = Provider.of<MessageProviders>(context,listen:false);
+    _messageProviders.init(context: context);
     _tabController = new TabController(length: 2, vsync: this);
 
   }
@@ -48,9 +51,8 @@ class _WorkerChatRoomState extends State<WorkerChatRoom>with TickerProviderState
         height: AppSizes.height,
         width: AppSizes.width,
         color: AppColors.clr_bg,
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        child: _messageProviders.isDataFetched == true ? Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           CommonWidgets.getGigsAppBar(text: "Messages"),
-
           Container(
             decoration: BoxDecoration(
               color: AppColors.clr_white,
@@ -90,18 +92,13 @@ class _WorkerChatRoomState extends State<WorkerChatRoom>with TickerProviderState
               ),
             ),
           ),
-
           CommonWidgets.getAlertContainer(onPress: (){
             _workerProvider.setCurrentIndex(4);
           }),
-
-
           SizedBox(
             height: AppSizes.height * 0.02,
           ),
-
           CommonWidgets.getSupportContainer(imagePath: Assets.support, heading: "Work Samurai Support", onPress: (){Navigator.push(context, SlideRightRoute(page:Support()));}),
-
           SizedBox(
             height: AppSizes.height * 0.025,
           ),
@@ -110,13 +107,28 @@ class _WorkerChatRoomState extends State<WorkerChatRoom>with TickerProviderState
               child: TabBarView(
                 controller: _tabController,
                 children: <Widget>[
-                  _messageComponents.getMessageThread(onPress: (){Navigator.push(context,SlideRightRoute(page: ChatScreen()));}, imagePath: Assets.support, heading: "Crown Hotel New York", subHeading: "Waiter Wed,Sep 23", imagePath1: Assets.star, rating: "4.5"),
+                  _messageComponents.getMessageThread(
+                      onPress: (){
+                       // Navigator.push(context,SlideRightRoute(page: ChatScreen()));
+                },
+                      imagePath: Assets.support,
+                      heading: "Crown Hotel New York",
+                      subHeading: "Waiter Wed,Sep 23",
+                      imagePath1: Assets.star,
+                      rating: "4.5",
+                      msgObj: _messageProviders.getAllUserMessages
+                  ),
                   Container(color:AppColors.clr_red),
                 ],
               ),
             ),
           )
-        ]),
+        ]
+        ): Container(
+          height: 30,
+          width: 30,
+          child: Lottie.asset(Assets.loader),
+        ),
       ),
     );
   }
