@@ -1,6 +1,7 @@
 import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:work_samurai/commons/utils.dart';
 import 'package:work_samurai/generic_decode_encode/generic.dart';
 import 'package:work_samurai/helper/helper.dart';
@@ -11,12 +12,14 @@ import 'package:work_samurai/network/network_helper.dart';
 import 'package:work_samurai/network/network_helper_impl.dart';
 import 'package:work_samurai/res/strings.dart';
 import 'package:work_samurai/widgets/toast.dart';
-
+import 'dart:io';
 import 'package:work_samurai/widgets/loader.dart';
+import 'package:http_parser/http_parser.dart';
 
 class EditProfileProviders extends ChangeNotifier {
   BuildContext context;
-
+  File userImage ;
+  final picker = ImagePicker();
   NetworkHelper _networkHelper = NetworkHelperImpl();
   UserWholeData _userWholeData = UserWholeData();
   GenericDecodeEncode _genericDecodeEncode = GenericDecodeEncode();
@@ -33,6 +36,16 @@ class EditProfileProviders extends ChangeNotifier {
     } catch (e) {
       print(e.toString());
     }
+  }
+  Future getImage({@required BuildContext context}) async {
+    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      userImage = image;
+    } else {
+      print('No image selected');
+    }
+
+    notifyListeners();
   }
 
   Future getVerifiedPhone(
@@ -103,13 +116,33 @@ class EditProfileProviders extends ChangeNotifier {
       print(e.toString());
     }
   }
-  sendUpdate(Map<String,dynamic> formData,context) async{
+  sendUpdate( firstName, lastName,salutation,proTitle,dob,placeOfBirth,gender,description,imagePath,context) async{
     try {
       _loader.showLoader(context: context);
       var connectivityResult = await (Connectivity().checkConnectivity());
       if (connectivityResult != ConnectivityResult.none) {
-        dio.options.contentType = Headers.formUrlEncodedContentType;
-
+       // dio.options.contentType = Headers.formUrlEncodedContentType;
+        String fileName = imagePath.toString().split("/").last;
+        FormData formData;
+        formData = FormData.fromMap({
+          "Document.Attachment": await MultipartFile.fromFile(
+            imagePath,
+            filename: fileName,
+            contentType: MediaType(
+              "image",
+              "png",
+            ),
+          ),
+          "Firstname": firstName,
+          "Lastname": lastName,
+          "Salutation": salutation,
+          "ProfessionalTitle": proTitle,
+          "DOB": dob,
+          "PlaceOfBirth": placeOfBirth,
+          "Gender": gender,
+          "Mobile": "012948371",
+          "Description": description,
+        });
         Response _response = await dio.post(
           updateProfile,
           data: formData,
@@ -131,7 +164,13 @@ class EditProfileProviders extends ChangeNotifier {
 
           GenericResponse _genericResponse =
           GenericResponse.fromJson(_response.data);
-          ApplicationToast.getSuccessToast(durationTime: 3, heading: null, subHeading: "data updated");
+          if(_genericResponse.responseCode == 1){
+            ApplicationToast.getSuccessToast(durationTime: 3, heading: null, subHeading: "data updated successfully");
+          }
+          else{
+            ApplicationToast.getWarningToast(durationTime: 2, heading: null, subHeading: "something went wrong");
+          }
+
         }
       }
     } catch (e) {

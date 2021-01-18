@@ -1,3 +1,5 @@
+import 'dart:io';
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -11,7 +13,7 @@ import 'package:work_samurai/res/strings.dart';
 import 'package:work_samurai/screens/edit_profile/edit_profile_provider.dart';
 import 'package:work_samurai/commons/utils.dart';
 import 'package:work_samurai/widgets/toast.dart';
-
+import 'package:http_parser/http_parser.dart';
 import 'package:work_samurai/widgets/widgets.dart';
 
 import 'edit_profile_components.dart';
@@ -76,8 +78,8 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                   children: [
                     _editProfileComponents.getUserImage(
                         onPress: () {
-                          ApplicationToast.getSuccessToast(durationTime: 2, heading: "null", subHeading: "Hello");
-                        }, imagePath: Assets.support),
+                         // ApplicationToast.getSuccessToast(durationTime: 2, heading: "null", subHeading: "Hello");
+                        }, imagePath: Assets.support,editProfileObj: _editProfileProviders),
                     SizedBox(
                       height: AppSizes.height * 0.05,
                     ),
@@ -165,7 +167,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                       height: AppSizes.height * 0.05,
                     ),
                     CommonWidgets.getBottomButton(
-                        name: "Update", onButtonClick: () {
+                        name: "Update", onButtonClick: () async {
                           String firstName = _userWholeData?.data?.user?.firstname ?? "";
                           String lastName = _userWholeData?.data?.user?.lastname ?? "";
                           String salutation =_userWholeData?.data?.user?.salutation ?? "Mr.";
@@ -174,20 +176,12 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                           String placeOfBirth = _userWholeData?.data?.user?.lastname ?? "";
                           String gender = _userWholeData?.data?.user?.gender?.toString() ?? "";
                           String description = _aboutController?.text?.toString() ?? "";
+                          String imagePath = _editProfileProviders.userImage.path ?? "";
 
-                          Map<String,dynamic> formData = Map<String,dynamic>();
-                          formData["Firstname"] = firstName;
-                          formData["Lastname"] = lastName;
-                          formData["Salutation"] = salutation;
-                          formData["ProfessionalTitle"] = proTitle;
-                          formData["DOB"] = dob;
-                          formData["PlaceOfBirth"] = placeOfBirth;
-                          formData["Gender"] = gender;
-                          formData["Description"] = description;
-
-                          _editProfileProviders.sendUpdate(formData, context);
-
-                    }),
+                        //  List<String> array = [firstName, lastName,salutation,proTitle,dob,placeOfBirth,gender,description,imagePath];
+                          _editProfileProviders.sendUpdate(firstName, lastName,salutation,proTitle,dob,placeOfBirth,gender,description,imagePath, context);
+                        }
+                    ),
                     SizedBox(
                       height: AppSizes.height * 0.05,
                     ),
