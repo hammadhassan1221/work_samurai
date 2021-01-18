@@ -33,7 +33,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
   EditProfileProviders _editProfileProviders;
   TextEditingController _aboutController = TextEditingController();
   //TextEditingController _firstName,_lastName;
-
+  TextEditingController firstname, lastname;
   UserWholeData _userWholeData;
   GenericDecodeEncode _genericDecodeEncode = GenericDecodeEncode();
 
@@ -59,6 +59,8 @@ class _ProfileSettingsState extends State<ProfileSettings> {
       _verifyPhone = _userWholeData.data.user.phoneVerified;
 
     }
+    firstname = TextEditingController(text: _userWholeData.data.user.firstname);
+    lastname =TextEditingController(text: _userWholeData.data.user.lastname);
   }
 
   @override
@@ -90,6 +92,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                       height: AppSizes.height * 0.05,
                     ),
                     _editProfileComponents.getInputField(
+                      firstname: firstname,
                         backgroundColor: AppColors.clr_bg,
                         borderColor: AppColors.sign_field,
                         textColor: AppColors.clr_bg_black,
@@ -98,6 +101,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                         text1:"",
                         isPassword: false),
                     _editProfileComponents.getInputField(
+                      firstname: lastname,
                         backgroundColor: AppColors.clr_bg,
                         borderColor: AppColors.sign_field,
                         textColor: AppColors.clr_bg_black,
@@ -173,15 +177,22 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                     ),
                     CommonWidgets.getBottomButton(
                         name: "Update", onButtonClick: () async {
-                          String firstName = _userWholeData?.data?.user?.firstname ?? "";
-                          String lastName = _userWholeData?.data?.user?.lastname ?? "";
+                      String firstName = _userWholeData?.data?.user.firstname;
+                      String lastName = _userWholeData?.data?.user.lastname;
+                          if (firstname.text.isNotEmpty ){
+                          firstName   = firstname.text ;
+                          }
+                      if (lastname.text.isNotEmpty ){
+                        lastName   = lastname.text ;
+                      }
+
                           String salutation =_userWholeData?.data?.user?.salutation ?? "Mr.";
                           String proTitle = _userWholeData?.data?.user?.professionalTitle ?? "";
                           String dob = _userWholeData?.data?.user?.dob ?? "";
                           String placeOfBirth = _userWholeData?.data?.user?.lastname ?? "";
                           String gender = _userWholeData?.data?.user?.gender?.toString() ?? "";
                           String description = _aboutController?.text?.toString() ?? "";
-                          String imagePath = _editProfileProviders.userImage.path ?? "";
+                          String imagePath = _editProfileProviders?.userImage?.path ?? "";
 
                         //  List<String> array = [firstName, lastName,salutation,proTitle,dob,placeOfBirth,gender,description,imagePath];
                           _editProfileProviders.sendUpdate(firstName, lastName,salutation,proTitle,dob,placeOfBirth,gender,description,imagePath, context);

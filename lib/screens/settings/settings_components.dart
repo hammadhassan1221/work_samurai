@@ -77,7 +77,26 @@ class SettingsComponents {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Image.network(imagePath),
+            Container(
+              height: 70,
+              width: 70,
+              decoration: BoxDecoration(
+                  border: Border(
+                    left: BorderSide(
+                      color: Colors.green,
+                      width: 3,
+                    ),
+                  ),
+                  image: DecorationImage(
+                    image:  NetworkImage(
+                      imagePath,
+                    ) ,
+                    fit: BoxFit.cover,
+                  ),
+                  shape: BoxShape.circle
+              ),
+             // margin: EdgeInsets.only(top: AppSizes.height*0.08),
+            ),
             SizedBox(
               width: AppSizes.width * 0.03,
             ),

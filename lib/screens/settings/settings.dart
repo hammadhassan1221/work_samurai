@@ -35,6 +35,7 @@ class _SettingsState extends State<Settings> {
     _settingsProviders = Provider.of<SettingsProviders>(context, listen: false);
     _settingsProviders.init(context: context);
     _accountProviders = Provider.of<AccountProviders>(context, listen: false);
+   // _accountProviders.getProfileData(context: context);
 
   }
 
@@ -53,7 +54,7 @@ class _SettingsState extends State<Settings> {
           children: [
             CommonWidgets.getAppBar(text: "Account Settings", context: context),
             Expanded(
-                child: (ListView(
+                child: ListView(
               children: [
                 _settingsComponents.getProfileThread(
                   onPress: () {
@@ -117,7 +118,8 @@ class _SettingsState extends State<Settings> {
                       _showDialog();
                     }),
               ],
-            )))
+            ),
+            ),
           ],
         ),
       ) : CircularProgressIndicator(),

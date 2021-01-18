@@ -28,7 +28,7 @@ class AccountProviders extends ChangeNotifier{
     this._context = context;
     _isDataFetched = false;
     _token = await PreferenceUtils.getString(Strings.ACCESS_TOKEN);
-    await _getProfileData(context: context);
+    await getProfileData(context: context);
   }
 
 
@@ -72,7 +72,7 @@ class AccountProviders extends ChangeNotifier{
 
   }
 
-  Future _getProfileData({@required BuildContext context}) async {
+  Future getProfileData({@required BuildContext context}) async {
     try {
       _loader.showLoader(context: context);
       Response _response = await _networkHelper.post(getData, headers: {

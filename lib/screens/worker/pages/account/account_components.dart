@@ -35,12 +35,24 @@ class AccountComponent {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              margin: EdgeInsets.only(top: AppSizes.height*0.03),
-              child: Image.network(
-                imagePath,
-                height: 100,
-                width: 100,
+              height: 100,
+              width: 100,
+              decoration: BoxDecoration(
+                  border: Border(
+                    left: BorderSide(
+                      color: Colors.green,
+                      width: 3,
+                    ),
+                  ),
+                  image: DecorationImage(
+                    image:  NetworkImage(
+                      imagePath,
+                    ) ,
+                    fit: BoxFit.cover,
+                  ),
+                shape: BoxShape.circle
               ),
+              margin: EdgeInsets.only(top: AppSizes.height*0.08),
             ),
             Row(
 

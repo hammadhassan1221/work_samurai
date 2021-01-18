@@ -55,6 +55,8 @@ class EditProfileComponents {
         @required String text,
         @required String text1,
         @required String value,
+        @required TextEditingController firstname,
+
        // @required TextEditingController controller,
         @required bool isPassword,
       }) {
@@ -70,6 +72,7 @@ class EditProfileComponents {
         ),
 
         child:TextField(
+          controller: firstname,
           cursorColor: AppColors.clr_bg_black2,
           //cursorHeight: 12,
           obscureText: isPassword,

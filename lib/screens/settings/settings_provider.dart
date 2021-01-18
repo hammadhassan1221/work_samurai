@@ -9,6 +9,7 @@ import 'package:work_samurai/network/network_helper.dart';
 import 'package:work_samurai/network/network_helper_impl.dart';
 import 'package:work_samurai/res/strings.dart';
 import 'package:work_samurai/screens/login/login.dart';
+import 'package:work_samurai/screens/worker/pages/account/account_provider.dart';
 import 'package:work_samurai/widgets/loader.dart';
 import 'package:work_samurai/widgets/toast.dart';
 
@@ -16,12 +17,14 @@ class SettingsProviders extends ChangeNotifier{
   BuildContext _context;
   init({@required BuildContext context}) {
     this._context = context;
+
   }
 
   NetworkHelper _networkHelper = NetworkHelperImpl();
   GenericDecodeEncode _genericDecodeEncode = GenericDecodeEncode();
   Loader _loader = Loader();
   String _token;
+  AccountProviders _accountProviders;
 
 
   Future signout(
