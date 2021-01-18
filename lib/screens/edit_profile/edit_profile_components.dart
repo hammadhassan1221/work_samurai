@@ -21,7 +21,7 @@ class EditProfileComponents {
               width: AppSizes.width*0.42,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: editProfileObj.userImage == null ? AssetImage(
+                  image: editProfileObj.userImage == null ? NetworkImage(
                    imagePath,
                   ) : FileImage(editProfileObj.userImage),
                   fit: BoxFit.cover,

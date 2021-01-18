@@ -16,5 +16,6 @@ class Strings {
   static const String TOKEN_RESPONSE = "TokenResponse";
   static const String IS_ACCOUNT_VERIFIED = "isAccountVerified";
   static const String USER_DATA = "UserData";
-  static const String USER_ID = "UserIc";
+  static const String USER_ID = "UserId";
+  static const String IMAGE = "image";
 }

@@ -12,6 +12,7 @@ import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/res/strings.dart';
 import 'package:work_samurai/screens/edit_profile/edit_profile_provider.dart';
 import 'package:work_samurai/commons/utils.dart';
+import 'package:work_samurai/screens/worker/pages/account/account_provider.dart';
 import 'package:work_samurai/widgets/toast.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:work_samurai/widgets/widgets.dart';
@@ -27,6 +28,8 @@ class _ProfileSettingsState extends State<ProfileSettings> {
   EditProfileComponents _editProfileComponents;
   bool _verifyEmail = false;
   bool _verifyPhone = false;
+  AccountProviders _accountProviders;
+
   EditProfileProviders _editProfileProviders;
   TextEditingController _aboutController = TextEditingController();
   //TextEditingController _firstName,_lastName;
@@ -36,7 +39,6 @@ class _ProfileSettingsState extends State<ProfileSettings> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     // _firstName = TextEditingController();
@@ -46,6 +48,8 @@ class _ProfileSettingsState extends State<ProfileSettings> {
         Provider.of<EditProfileProviders>(context, listen: false);
     _editProfileProviders.init(context: context);
     String userDataFromPrefs = PreferenceUtils.getString(Strings.USER_DATA);
+    _accountProviders = Provider.of<AccountProviders>(context, listen: false);
+
 
     if (userDataFromPrefs.isNotEmpty) {
       _verifyEmail = _verifyPhone = false;
@@ -60,6 +64,8 @@ class _ProfileSettingsState extends State<ProfileSettings> {
   @override
   Widget build(BuildContext context) {
     Provider.of<EditProfileProviders>(context, listen: true);
+    _accountProviders = Provider.of<AccountProviders>(context, listen: true);
+
     return SafeArea(
       child: Scaffold(
         body: Container(
@@ -79,7 +85,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                     _editProfileComponents.getUserImage(
                         onPress: () {
                          // ApplicationToast.getSuccessToast(durationTime: 2, heading: "null", subHeading: "Hello");
-                        }, imagePath: Assets.support,editProfileObj: _editProfileProviders),
+                        }, imagePath: _accountProviders.getUserWholeData().data.user.document["URL"],editProfileObj: _editProfileProviders),
                     SizedBox(
                       height: AppSizes.height * 0.05,
                     ),
@@ -110,8 +116,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                             borderColor: AppColors.sign_field,
                             textColor: AppColors.clr_bg_black2,
                             text: "Email",
-                            text1: ""/*_userWholeData.data.user.emailAddress
-                                .toString()*/,
+                            text1: _accountProviders.getUserWholeData().data.user.emailAddress,
                             isPassword: false,
                             iconData: Icons.check_circle,
                             verify: "Verified",
@@ -141,7 +146,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                             borderColor: AppColors.sign_field,
                             textColor: AppColors.clr_bg_black2,
                             text: "Phone",
-                            text1: "",/*_userWholeData.data.user.mobile.toString(),*/
+                            text1: _accountProviders.getUserWholeData().data.user.mobile,/*_userWholeData.data.user.mobile.toString(),*/
                             isPassword: false,
                             iconData: Icons.check_circle,
                             verify: "Verified",

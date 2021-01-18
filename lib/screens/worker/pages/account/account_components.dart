@@ -36,7 +36,7 @@ class AccountComponent {
           children: [
             Container(
               margin: EdgeInsets.only(top: AppSizes.height*0.03),
-              child: Image.asset(
+              child: Image.network(
                 imagePath,
                 height: 100,
                 width: 100,

@@ -77,7 +77,7 @@ class SettingsComponents {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Image.asset(imagePath),
+            Image.network(imagePath),
             SizedBox(
               width: AppSizes.width * 0.03,
             ),

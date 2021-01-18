@@ -23,7 +23,6 @@ class _AccountState extends State<Account> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _accountComponent = AccountComponent();
     _accountProviders = Provider.of<AccountProviders>(context, listen: false);
@@ -44,8 +43,8 @@ class _AccountState extends State<Account> {
                     Align(
                       alignment: Alignment.topRight,
                       child: _accountComponent.getUserEdit(
-                          imagePath: Assets.support,
-                          imagePath1: Assets.user,
+                          imagePath: _accountProviders.getUserWholeData().data.user.document["URL"],
+                          imagePath1: _accountProviders.getUserWholeData().data.user.document["URL"],
                           text: "Account",
                           onPress: () {
                             Navigator.push(
