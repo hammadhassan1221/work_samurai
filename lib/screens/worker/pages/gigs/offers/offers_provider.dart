@@ -10,6 +10,7 @@ import 'package:work_samurai/network/network_helper_impl.dart';
 import 'package:work_samurai/res/strings.dart';
 import 'package:work_samurai/widgets/loader.dart';
 import 'package:http/http.dart' as http;
+import 'package:work_samurai/widgets/toast.dart';
 
 class OffersProvider extends ChangeNotifier {
   BuildContext context;
@@ -100,6 +101,12 @@ class OffersProvider extends ChangeNotifier {
       }
       if (_response.statusCode == 200) {
         _loader.hideLoader(context);
+        if(_response.data["ResponseCode"] == 1){
+          ApplicationToast.getSuccessToast(durationTime: 3, heading: null, subHeading: "Success");
+        }
+        else{
+          ApplicationToast.getErrorToast(durationTime: 3, heading: null, subHeading: _response.data["ResponseCode"].toString() + " sever error");
+        }
       }
     } catch (e) {
       _loader.hideLoader(context);
@@ -113,7 +120,7 @@ class OffersProvider extends ChangeNotifier {
       String token = "Bearer "+PreferenceUtils.getString(Strings.ACCESS_TOKEN);
       debugPrint('Token: $token');
       var formData = new Map<String, dynamic>();
-      formData['JobID'] = jobId;
+      formData['JobID'] = 1014;
 
       _dio.options.contentType = Headers.formUrlEncodedContentType;
       Response _response = await _dio.post(
@@ -132,6 +139,14 @@ class OffersProvider extends ChangeNotifier {
       }
       if (_response.statusCode == 200) {
         _loader.hideLoader(context);
+
+
+        if(_response.data["ResponseCode"] == 1){
+          ApplicationToast.getSuccessToast(durationTime: 3, heading: null, subHeading: "Success");
+        }
+        else{
+          ApplicationToast.getErrorToast(durationTime: 3, heading: null, subHeading: _response.data["ResponseCode"].toString() + " sever error");
+        }
       }
     } catch (e) {
       _loader.hideLoader(context);
