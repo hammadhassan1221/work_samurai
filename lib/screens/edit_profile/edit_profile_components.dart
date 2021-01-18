@@ -15,6 +15,7 @@ class EditProfileComponents {
       child: Center(
         child: Stack(
           children:<Widget>[
+
          Container(
               height: AppSizes.width*0.42,
               width: AppSizes.width*0.42,
