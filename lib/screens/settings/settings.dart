@@ -65,7 +65,7 @@ class _SettingsState extends State<Settings> {
                       ),
                     );
                   },
-                  imagePath: _accountProviders.getUserWholeData().data.user.document["URL"],
+                  imagePath: _accountProviders.getUserWholeData().data.user.document == null ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThsyVVdxkz5zyuE-yRKpdwtre_R234HkS2gQ&usqp=CAU" :_accountProviders.getUserWholeData().data.user.document["URL"],
                   heading: _accountProviders.getUserWholeData().data.user.firstname + " "+ _accountProviders.getUserWholeData().data.user.lastname,
                   subHeading: "Edit Profile",
                   iconData: "",

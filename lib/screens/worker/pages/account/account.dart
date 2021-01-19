@@ -43,8 +43,8 @@ class _AccountState extends State<Account> {
                     Align(
                       alignment: Alignment.topRight,
                       child: _accountComponent.getUserEdit(
-                          imagePath: _accountProviders.getUserWholeData().data.user.document["URL"],
-                          imagePath1: _accountProviders.getUserWholeData().data.user.document["URL"],
+                          imagePath: _accountProviders.getUserWholeData().data.user.document == null ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThsyVVdxkz5zyuE-yRKpdwtre_R234HkS2gQ&usqp=CAU" :_accountProviders.getUserWholeData().data.user.document["URL"],
+                          imagePath1: _accountProviders.getUserWholeData().data.user.document == null ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThsyVVdxkz5zyuE-yRKpdwtre_R234HkS2gQ&usqp=CAU" :_accountProviders.getUserWholeData().data.user.document["URL"],
                           text: "Account",
                           onPress: () {
                             Navigator.push(
