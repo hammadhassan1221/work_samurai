@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:work_samurai/animations/slide_right.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/screens/add_document/add_document.dart';
 import 'package:work_samurai/screens/background_check/background_check.dart';
+import 'package:work_samurai/screens/documents/documents_provider.dart';
 import 'package:work_samurai/widgets/widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -17,15 +19,19 @@ class DocumentVerification extends StatefulWidget {
 
 class _DocumentVerificationState extends State<DocumentVerification> {
   DocumentComponents _documentComponents;
+  DocumentProviders _documentProviders;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     _documentComponents =  DocumentComponents();
+    _documentProviders = Provider.of<DocumentProviders>(context, listen: false);
+    _documentProviders.init(context: context);
   }
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
+    _documentProviders = Provider.of<DocumentProviders>(context, listen: true);
     return SafeArea(
         child: Scaffold(
           body: Container(
@@ -42,11 +48,13 @@ class _DocumentVerificationState extends State<DocumentVerification> {
                        _documentComponents.getHeadings(text: "Worker Requirements"),
                        SizedBox(height:AppSizes.height*0.015),
                        _documentComponents.getUserInfo2(onPress: () async{
-                         /*Navigator.push(context, SlideRightRoute(page: BackgroundCheck()));*/
-                         const url = 'https://www.google.com';
-                         if (await canLaunch(url)) {
-                         await launch(url);
-                         }
+                        _documentProviders.policeVerification(context: context);
+                         //old implementation
+                        // Navigator.push(context, SlideRightRoute(page: BackgroundCheck()));
+                         //const url = 'https://www.google.com';
+                         // if (await canLaunch(url)) {
+                         // await launch(url);
+                         // }
                        }, text: "Unverified", text1: "Criminal Background Check",),
                        SizedBox(height:AppSizes.height*0.015),
 

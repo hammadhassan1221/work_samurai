@@ -38,12 +38,7 @@ class AccountComponent {
               height: 100,
               width: 100,
               decoration: BoxDecoration(
-                  border: Border(
-                    left: BorderSide(
-                      color: Colors.green,
-                      width: 3,
-                    ),
-                  ),
+                border: Border.all(color: Colors.black54),
                   image: DecorationImage(
                     image:  NetworkImage(
                       imagePath,

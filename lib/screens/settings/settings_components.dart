@@ -81,12 +81,7 @@ class SettingsComponents {
               height: 70,
               width: 70,
               decoration: BoxDecoration(
-                  border: Border(
-                    left: BorderSide(
-                      color: Colors.green,
-                      width: 3,
-                    ),
-                  ),
+                  border: Border.all(color: Colors.black54),
                   image: DecorationImage(
                     image:  NetworkImage(
                       imagePath,

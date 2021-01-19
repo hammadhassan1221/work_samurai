@@ -130,12 +130,16 @@ class EditProfileProviders extends ChangeNotifier {
       if (connectivityResult != ConnectivityResult.none) {
        // dio.options.contentType = Headers.formUrlEncodedContentType;
         String fileName;
+        Response _response;
         if(imagePath != ""){
          fileName = imagePath.toString().split("/").last;
+         if (fileName.length >= 41) {
+           fileName = fileName.substring(fileName.length - 40);
+         }
         }
 
         FormData formData;
-        if (fileName != ""){
+        if (imagePath != ""){
           formData = FormData.fromMap({
             "Document.Attachment": await MultipartFile.fromFile(
               imagePath,
@@ -155,6 +159,17 @@ class EditProfileProviders extends ChangeNotifier {
             "Mobile": "012948371",
             "Description": description,
           });
+           _response = await dio.post(
+            updateProfile,
+            data: formData,
+            options: Options(
+                contentType: Headers.formUrlEncodedContentType,
+              headers: {
+                "Authorization": "Bearer " + _token,
+                "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
+              },
+            ),
+          );
         }
         else{
           formData = FormData.fromMap({
@@ -168,19 +183,20 @@ class EditProfileProviders extends ChangeNotifier {
             "Mobile": "012948371",
             "Description": description,
           });
+          _response = await dio.post(
+            updateProfile,
+            data: formData,
+            options: Options(
+            //  contentType: Headers.formUrlEncodedContentType,
+              headers: {
+                "Authorization": "Bearer " + _token,
+                "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
+              },
+            ),
+          );
         }
 
-        Response _response = await dio.post(
-          updateProfile,
-          data: formData,
-          options: Options(
-            contentType: Headers.formUrlEncodedContentType,
-            headers: {
-              "Authorization": "Bearer " + _token,
-              "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
-            },
-          ),
-        );
+
 
         if (_response.statusCode != 200) {
           _loader.hideLoader(context);

@@ -49,6 +49,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
     _editProfileProviders.init(context: context);
     String userDataFromPrefs = PreferenceUtils.getString(Strings.USER_DATA);
     _accountProviders = Provider.of<AccountProviders>(context, listen: false);
+    _editProfileProviders.userImage = null;
 
 
     if (userDataFromPrefs.isNotEmpty) {
@@ -79,7 +80,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
               CommonWidgets.getAppBar(text: "Edit Profile", context: context),
               //index == 1 ? showToast : SizedBox.shrink(),
               SizedBox(
-                height: AppSizes.height * 0.05,
+                height: AppSizes.height * 0.03,
               ),
               Expanded(
                 child: ListView(
