@@ -66,7 +66,7 @@ class _ScheduleState extends State<Schedule> {
        Map<String,dynamic> map = await _scheduleProviders.getCurrentPreferences(context);
        Map<String,dynamic> locationData = await _scheduleProviders.getCurrentAddress(context);
        setState(() {
-         _value = getDistanceText(map);
+         _value = getDistanceText(map) < 51 && getDistanceText(map) > 0 ? getDistanceText(map) : 0 ;
          this.addressLine ??= locationData["AddressLine"] ;
          this.city ??= locationData["City"] ;
          this.state ??= locationData["State"] ;
