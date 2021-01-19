@@ -47,6 +47,7 @@ class DocumentProviders extends ChangeNotifier{
           _loader.hideLoader(context);
           throw "Unauthorized";
         }
+
         if (_response.statusCode == 200) {
           _loader.hideLoader(context);
           _policeVerificationModel = PoliceVerificationModel.fromJson(
