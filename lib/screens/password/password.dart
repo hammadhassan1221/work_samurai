@@ -9,6 +9,7 @@ import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/res/strings.dart';
 import 'package:work_samurai/screens/password/password_components.dart';
 import 'package:work_samurai/screens/password/password_providers.dart';
+import 'package:work_samurai/widgets/toast.dart';
 import 'package:work_samurai/widgets/widgets.dart';
 
 class ChangePassword extends StatefulWidget {
@@ -77,16 +78,31 @@ class _ChangePasswordState extends State<ChangePassword> {
                 text: "Confirm Password",
                 controller: _confirmPassword,
                 isPassword: true),
-            Expanded(
-                child: CommonWidgets.getBottomButton(
-                    onButtonClick: () {
-                      _passwordProviders.callPasswordAPI(
-                          context: context,
-                          currentPassword: _currentPassword.text.toString(),
-                          newPassword: _newPassword.text.toString(),
-                          confirmPassword: _confirmPassword.text.toString());
-                    },
-                    name: "Change Password")),
+            SizedBox(height: 30,),
+            CommonWidgets.getBottomButton(
+                onButtonClick: () {
+                  if (_currentPassword.text == "" || _confirmPassword.text == "" || _newPassword.text == ""){
+                    ApplicationToast.getErrorToast(durationTime: 2, heading: null, subHeading: "Please fill password fields");
+
+                  }
+
+                  else{
+                    if(_confirmPassword.text != _newPassword.text ){
+                      ApplicationToast.getErrorToast(durationTime: 2, heading: null, subHeading: "Password is not matching ");
+
+                    }
+                    else{
+
+                    }
+                    _passwordProviders.callPasswordAPI(
+                        context: context,
+                        currentPassword: _currentPassword.text.toString(),
+                        newPassword: _newPassword.text.toString(),
+                        confirmPassword: _confirmPassword.text.toString());
+                  }
+
+                },
+                name: "Change Password"),
             SizedBox(
               height: AppSizes.height * 0.025,
             ),

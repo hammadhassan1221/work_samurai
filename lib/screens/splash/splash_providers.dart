@@ -1,5 +1,4 @@
-
-// import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:get_version/get_version.dart';
@@ -25,7 +24,7 @@ class SplashProvider extends ChangeNotifier {
   String versionNumber="";
 
   BuildContext context;
- // FirebaseMessaging _fcm = FirebaseMessaging();
+  FirebaseMessaging _fcm = FirebaseMessaging();
   NetworkHelper _networkHelper = NetworkHelperImpl();
   FutureJobsResponse _futureJobsResponse = FutureJobsResponse.empty();
   JobsInProgressResponse _jobsInResponse = JobsInProgressResponse();
@@ -36,13 +35,14 @@ class SplashProvider extends ChangeNotifier {
 
   init({@required BuildContext context}) async{
     await _getVersionNumber();
+    getToken();
     this.context = context;
   }
 
 
   void getToken()async{
-   // final token = await _fcm.getToken();
-   // debugPrint('$token');
+    final token = await _fcm.getToken();
+    debugPrint('$token');
   }
 
   initializeResources(BuildContext context) {

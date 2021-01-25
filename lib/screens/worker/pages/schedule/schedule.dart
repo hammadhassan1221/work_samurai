@@ -158,31 +158,31 @@ class _ScheduleState extends State<Schedule> {
                         color: AppColors.clr_field
                         ,),
                       SizedBox(height: AppSizes.height*0.02,),
-                      _scheduleComponents.getDayTime(day: "Monday", time: getScheduleText(snapshot.data, "Monday"),buildContext: context, scheduleProviders: _scheduleProviders),
+                      _scheduleComponents.getDayTime(day: "Mon", time: getScheduleText(snapshot.data, "Monday"),buildContext: context, scheduleProviders: _scheduleProviders),
                       SizedBox(
                         height: AppSizes.height * 0.02,
                       ),
-                      _scheduleComponents.getDayTime(day: "Tuesday", time: getScheduleText(snapshot.data, "Tuesday"),buildContext: context, scheduleProviders: _scheduleProviders),
+                      _scheduleComponents.getDayTime(day: "Tue", time: getScheduleText(snapshot.data, "Tuesday"),buildContext: context, scheduleProviders: _scheduleProviders),
                       SizedBox(
                         height: AppSizes.height * 0.02,
                       ),
-                      _scheduleComponents.getDayTime(day: "Wednesday", time: getScheduleText(snapshot.data, "Wednesday"),buildContext: context, scheduleProviders: _scheduleProviders),
+                      _scheduleComponents.getDayTime(day: "Wed", time: getScheduleText(snapshot.data, "Wednesday"),buildContext: context, scheduleProviders: _scheduleProviders),
                       SizedBox(
                         height: AppSizes.height * 0.02,
                       ),
-                      _scheduleComponents.getDayTime(day: "Thursday", time:getScheduleText(snapshot.data, "Thursday"),buildContext: context, scheduleProviders: _scheduleProviders),
+                      _scheduleComponents.getDayTime(day: "Thu", time:getScheduleText(snapshot.data, "Thursday"),buildContext: context, scheduleProviders: _scheduleProviders),
                       SizedBox(
                         height: AppSizes.height * 0.02,
                       ),
-                      _scheduleComponents.getDayTime(day: "Friday", time: getScheduleText(snapshot.data, "Friday"),buildContext: context, scheduleProviders: _scheduleProviders),
+                      _scheduleComponents.getDayTime(day: "Fri", time: getScheduleText(snapshot.data, "Friday"),buildContext: context, scheduleProviders: _scheduleProviders),
                       SizedBox(
                         height: AppSizes.height * 0.02,
                       ),
-                      _scheduleComponents.getDayTime(day: "Saturday", time: getScheduleText(snapshot.data, "Saturday"),buildContext: context, scheduleProviders: _scheduleProviders),
+                      _scheduleComponents.getDayTime(day: "Sat", time: getScheduleText(snapshot.data, "Saturday"),buildContext: context, scheduleProviders: _scheduleProviders),
                       SizedBox(
                         height: AppSizes.height * 0.02,
                       ),
-                      _scheduleComponents.getDayTime(day: "Sunday", time: getScheduleText(snapshot.data, "Sunday"),buildContext: context, scheduleProviders: _scheduleProviders),
+                      _scheduleComponents.getDayTime(day: "Sun", time: getScheduleText(snapshot.data, "Sunday"),buildContext: context, scheduleProviders: _scheduleProviders),
                       SizedBox(
                         height: AppSizes.height * 0.02,
                       ),

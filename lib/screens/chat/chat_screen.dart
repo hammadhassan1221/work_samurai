@@ -333,7 +333,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
   _textFieldContainer() {
     return Container(
-      height: AppSizes.height * 0.075,
+      height: AppSizes.height * 0.06,
       width: AppSizes.width / 1.2,
       margin: EdgeInsets.only(top: 7,bottom: 10, left: 10),
       padding: EdgeInsets.all(10),

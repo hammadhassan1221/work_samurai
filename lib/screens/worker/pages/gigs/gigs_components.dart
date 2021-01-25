@@ -9,7 +9,9 @@ import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/res/strings.dart';
 import 'package:work_samurai/screens/edit_profile/edit_profile.dart';
+import 'package:work_samurai/screens/worker/pages/account/account.dart';
 import 'package:work_samurai/widgets/spacer.dart';
+import 'package:work_samurai/widgets/toast.dart';
 import 'package:work_samurai/widgets/widgets.dart';
 
 class GigsComponents {
@@ -33,11 +35,11 @@ class GigsComponents {
 
   Widget getInProgressContainer(
       {@required BuildContext context,
-      @required String jobTitle,
-      @required String dateTime,
-      @required String location,
-      @required String totalAmount,
-      @required String amountHour}) {
+        @required String jobTitle,
+        @required String dateTime,
+        @required String location,
+        @required String totalAmount,
+        @required String amountHour}) {
     return Container(
       margin: EdgeInsets.symmetric(
         horizontal: horizontalValue(
@@ -310,29 +312,37 @@ class GigsComponents {
 
   Widget getConfirmedContainer(
       {@required BuildContext context,
-      @required String jobTitle,
-      @required String dateTime,
-      @required String location,
-      @required String totalAmount,
-      @required onLeave(),
-      @required String amountHour}) {
+        @required String jobTitle,
+        @required String dateTime,
+        @required String location,
+        @required String totalAmount,
+        @required onLeave(),
+        @required String amountHour}) {
     return Container(
       margin: EdgeInsets.symmetric(
         horizontal: horizontalValue(
-          12.0,
+          15.0,
         ),
       ),
       child: ListView(
         children: [
           Container(
             decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.3),
+                  spreadRadius: 0,
+                  blurRadius: 1,
+                  offset: Offset(0, 2), // changes position of shadow
+                ),
+              ],
               borderRadius: BorderRadius.circular(5),
               border: Border.all(color: AppColors.clr_field),
               color: AppColors.clr_white,
             ),
             child: Column(
               children: [
-                verticalSpacer(8.0),
+                verticalSpacer(5.0),
                 Container(
                   padding: EdgeInsets.symmetric(
                     horizontal: horizontalValue(
@@ -387,7 +397,7 @@ class GigsComponents {
                       Text(
                         '\$' + '$totalAmount',
                         style: TextStyle(
-                          fontSize: 22,
+                          fontSize: 18,
                           fontFamily: "MuliSemiBold",
                           color: AppColors.clr_bg_black,
                         ),
@@ -399,20 +409,20 @@ class GigsComponents {
                 Container(
                   padding: EdgeInsets.symmetric(
                     horizontal: horizontalValue(
-                      8.0,
+                      5.0,
                     ),
                   ),
                   alignment: Alignment.centerRight,
                   child: Text(
                     '\$' + '$amountHour' + '/h',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 13,
                       fontFamily: "MuliRegular",
                       color: AppColors.clr_bg_black,
                     ),
                   ),
                 ),
-                verticalSpacer(4.0),
+                verticalSpacer(0.0),
                 Container(
                   padding: EdgeInsets.symmetric(
                     horizontal: horizontalValue(
@@ -472,10 +482,10 @@ class GigsComponents {
 
   Widget getCancelActionButton(
       {Color buttonColor,
-      BuildContext context,
-      IconData icon,
-      Function onPress,
-      String name}) {
+        BuildContext context,
+        IconData icon,
+        Function onPress,
+        String name}) {
     return Expanded(
       child: Container(
         height: double.infinity,
@@ -507,10 +517,10 @@ class GigsComponents {
 
   Widget getStartActionButton(
       {Color buttonColor,
-      BuildContext context,
-      IconData icon,
-      Function onPress,
-      String name}) {
+        BuildContext context,
+        IconData icon,
+        Function onPress,
+        String name}) {
     return Expanded(
       child: Container(
         height: double.infinity,
@@ -551,9 +561,9 @@ class GigsComponents {
                   left: AppSizes.width * 0.015, right: AppSizes.width * 0.015),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
-                topRight: Radius.circular(15),
-                topLeft: Radius.circular(15),
-              )),
+                    topRight: Radius.circular(15),
+                    topLeft: Radius.circular(15),
+                  )),
               child: ListView(
                 children: [
                   Container(
@@ -567,58 +577,58 @@ class GigsComponents {
                             children: [
                               Container(
                                   child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text("Waiter",
-                                          textAlign: TextAlign.left,
-                                          style: TextStyle(
-                                            fontSize: 22,
-                                            fontFamily: 'MuliBold',
-                                          )),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Container(
-                                        alignment: Alignment.bottomLeft,
-                                        child: Text("Crown Hotel",
-                                            style: TextStyle(
-                                              fontSize: 15,
-                                              color: AppColors.clr_bg_black,
-                                              fontFamily: 'MuliBold',
-                                            )),
-                                      ),
-                                      SizedBox(
-                                        width: AppSizes.width * 0.015,
-                                      ),
-                                      Container(
-                                          padding: EdgeInsets.all(2.0),
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(10.0),
-                                              border: Border.all(
-                                                color: AppColors.clr_bg_grey,
+                                      Row(
+                                        children: [
+                                          Text("Waiter",
+                                              textAlign: TextAlign.left,
+                                              style: TextStyle(
+                                                fontSize: 22,
+                                                fontFamily: 'MuliBold',
                                               )),
-                                          child: Row(
-                                            children: [
-                                              Image.asset(Assets.star,
-                                                  width: 10, height: 10),
-                                              Text("4.5",
-                                                  style: TextStyle(
-                                                    fontSize: 12,
-                                                    fontFamily:
+                                        ],
+                                      ),
+                                      Row(
+                                        children: [
+                                          Container(
+                                            alignment: Alignment.bottomLeft,
+                                            child: Text("Crown Hotel",
+                                                style: TextStyle(
+                                                  fontSize: 15,
+                                                  color: AppColors.clr_bg_black,
+                                                  fontFamily: 'MuliBold',
+                                                )),
+                                          ),
+                                          SizedBox(
+                                            width: AppSizes.width * 0.015,
+                                          ),
+                                          Container(
+                                              padding: EdgeInsets.all(2.0),
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                  BorderRadius.circular(10.0),
+                                                  border: Border.all(
+                                                    color: AppColors.clr_bg_grey,
+                                                  )),
+                                              child: Row(
+                                                children: [
+                                                  Image.asset(Assets.star,
+                                                      width: 10, height: 10),
+                                                  Text("4.5",
+                                                      style: TextStyle(
+                                                        fontSize: 12,
+                                                        fontFamily:
                                                         Assets.muliRegular,
-                                                    color:
+                                                        color:
                                                         AppColors.clr_bg_black,
-                                                  ))
-                                            ],
-                                          )),
+                                                      ))
+                                                ],
+                                              )),
+                                        ],
+                                      )
                                     ],
-                                  )
-                                ],
-                              )),
+                                  )),
                               Container(
                                 child: Image.asset(
                                   Assets.support,
@@ -895,11 +905,11 @@ class GigsComponents {
                                         color: Colors.white,
                                       ),
                                       padding:
-                                          EdgeInsets.all(AppSizes.width * 0.02),
+                                      EdgeInsets.all(AppSizes.width * 0.02),
                                       width: AppSizes.width * 0.44,
                                       child: Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.center,
+                                        MainAxisAlignment.center,
                                         children: [
                                           Image.asset(
                                             Assets.cancelgig,
@@ -921,13 +931,13 @@ class GigsComponents {
                                   Container(
                                       height: AppSizes.height * 0.06,
                                       padding:
-                                          EdgeInsets.all(AppSizes.width * 0.02),
+                                      EdgeInsets.all(AppSizes.width * 0.02),
                                       decoration: BoxDecoration(
                                           color: AppColors.clr_white),
                                       width: AppSizes.width * 0.44,
                                       child: Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.center,
+                                        MainAxisAlignment.center,
                                         children: [
                                           Icon(
                                             Icons.check,
@@ -1019,14 +1029,16 @@ class GigsComponents {
     if (PreferenceUtils.getBool(Strings.IS_ACCOUNT_VERIFIED)) {
       return SizedBox.shrink();
     } else {
-      return CommonWidgets.getAlertContainer(
+        return CommonWidgets.getAlertContainer(
+
         onPress: () => Navigator.push(
           context,
           SlideRightRoute(
-            page: ProfileSettings(),
+            page: Account(),
           ),
         ),
       );
     }
+
   }
 }

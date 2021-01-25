@@ -59,16 +59,21 @@ class _GigsState extends State<Gigs> with SingleTickerProviderStateMixin {
         mainAxisSize: MainAxisSize.min,
         children: [
           CommonWidgets.getGigsAppBar(text: "Gigs"),
-          TabBar(
-            labelStyle: TextStyle(fontFamily: 'MuliSemiBold'),
-            indicatorColor: AppColors.clr_bg_grey,
-            labelColor: AppColors.clr_bg_black,
-            unselectedLabelColor: AppColors.clr_bg_black3,
-            tabs: <Widget>[
-              _tabBar("Offers"),
-              _tabBar("Confirmed"),
-              _tabBar("In-Progress"),
-            ],
+          Container(
+            color: Colors.white,
+            width: AppSizes.width,
+            child: TabBar(
+              labelStyle: TextStyle(fontFamily: 'MuliSemiBold'),
+              indicatorColor: AppColors.clr_bg_black2,
+              labelColor: AppColors.clr_bg_black,
+              unselectedLabelColor: AppColors.clr_bg_black3,
+              isScrollable: true,
+              tabs: <Widget>[
+                _tabBar("Offers"),
+                _tabBar("Confirmed"),
+                _tabBar("In-Progress"),
+              ],
+            ),
           ),
           _gigsComponents.isAccountVerified(context: context),
           verticalSpacer(16.0,),

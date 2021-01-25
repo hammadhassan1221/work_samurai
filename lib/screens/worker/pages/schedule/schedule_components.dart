@@ -222,9 +222,9 @@ class ScheduleComponents  with ChangeNotifier{
         padding: EdgeInsets.all(10.0),
         decoration: BoxDecoration(boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.25),
-            spreadRadius: 1.5,
-            blurRadius: 1,
+            color: Colors.grey.withOpacity(0.2),
+            spreadRadius: 0,
+            blurRadius: 2,
             offset: Offset(0, 0), // changes position of shadow
           ),
         ], borderRadius: BorderRadius.circular(8), color: AppColors.clr_white),

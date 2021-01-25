@@ -31,6 +31,14 @@ class InProgressComponents {
         children: [
           Container(
             decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.3),
+                  spreadRadius: 0,
+                  blurRadius: 1,
+                  offset: Offset(0, 2), // changes position of shadow
+                ),
+              ],
               borderRadius: BorderRadius.circular(5),
               border: Border.all(
                 color: AppColors.clr_field,

@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:work_samurai/commons/utils.dart';
 import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
+import 'package:work_samurai/res/strings.dart';
 
 class CommonWidgets {
   static Widget getRow(String text, bool value, Function onPress) {
@@ -337,17 +339,22 @@ class CommonWidgets {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          SizedBox(
+            width: AppSizes.width * 0.02,
+          ),
           GestureDetector(
+
               onTap: () {
                 Navigator.pop(context);
               },
               child: Image.asset(
+
                 Assets.barArrow,
-                height: 30,
-                width: 30,
+                height: 20,
+                width: 20,
               )),
           SizedBox(
-            width: AppSizes.width * 0.02,
+            width: AppSizes.width * 0.05,
           ),
           Container(
             padding: EdgeInsets.only(bottom: AppSizes.width * 0.01),
@@ -481,43 +488,51 @@ class CommonWidgets {
   }
 
   static Widget getAlertContainer({@required Function onPress}) {
-    return GestureDetector(
-      onTap: onPress,
-      child: Container(
-        width: AppSizes.width,
-        padding: EdgeInsets.all(AppSizes.width * 0.03),
-        color: Colors.orangeAccent,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Your Profile Inactive",
-              style: TextStyle(
+    if (PreferenceUtils.getBool(Strings.IS_ACCOUNT_VERIFIED)) {
+      return SizedBox.shrink();
+    }
+    else{
+      return GestureDetector(
+        onTap: onPress,
+
+        child: Container(
+          width: AppSizes.width,
+          padding: EdgeInsets.all(AppSizes.width * 0.03),
+          color: Colors.orangeAccent,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Your Profile Inactive",
+                style: TextStyle(
                   color: AppColors.clr_white,
                   fontSize: 14,
                   fontFamily: 'MuliSemiBold',
+                ),
               ),
-            ),
-            SizedBox(
-              height: AppSizes.height * 0.005,
-            ),
-            Text(
-              "Please see the alerts for verifying your profile and start receiving the jobs",
-              style: TextStyle(
+              SizedBox(
+                height: AppSizes.height * 0.005,
+              ),
+              Text(
+                "Please see the alerts for verifying your profile and start receiving the jobs",
+                style: TextStyle(
                   color: AppColors.clr_white,
                   fontSize: 10,
                   fontFamily: 'MuliRegular',
-              ),
-            )
-          ],
+                ),
+              )
+            ],
+          ),
         ),
-      ),
-    );
+      );
+    }
+
   }
 
   static Widget getBottomButton({@required String name, Function onButtonClick}){
     return Container(
       width: double.infinity,
+
       margin: EdgeInsets.symmetric(
         horizontal: 10.0,
       ),

@@ -84,28 +84,7 @@ class PasswordProviders extends ChangeNotifier{
     @required String newPassword,
     @required String currentPassword,
   }) {
-    if (currentPassword.isNotEmpty) {
-      if (newPassword.isNotEmpty) {
-        if (confirmPassword.isNotEmpty && confirmPassword == newPassword){
-          _newPassword(context: context,newPassword: newPassword,);
-        } else {
-          ApplicationToast.getWarningToast(
-              durationTime: 3,
-              heading: "Error",
-              subHeading: "Confirm Password is empty");
-        }
-      } else {
-        ApplicationToast.getWarningToast(
-            durationTime: 3,
-            heading: "Error",
-            subHeading: "New Password is empty");
-      }
-    } else {
-      ApplicationToast.getWarningToast(
-          durationTime: 3,
-          heading: "Error",
-          subHeading: "Current Password is empty");
-    }
+    ApplicationToast.getSuccessToast(durationTime: 3, heading: null, subHeading: "ApiHitting");
   }
 
 }

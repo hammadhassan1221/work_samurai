@@ -27,13 +27,17 @@ class MessageComponents{
                   boxShadow: [
                     BoxShadow(
                       color: Colors.grey.withOpacity(0.25),
-                      spreadRadius: 1,
+                      spreadRadius: 0.5,
                       blurRadius: 0.5,
                       offset: Offset(0, 0), // changes position of shadow
                     ),
                   ],
-                  borderRadius: BorderRadius.circular(8),
-                  color: AppColors.clr_white
+                  borderRadius: BorderRadius.circular(6),
+                  color: AppColors.clr_bg,
+
+                border: Border.all(
+                  color: AppColors.clr_bg_grey,
+                )
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,

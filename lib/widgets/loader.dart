@@ -14,7 +14,7 @@ class Loader {
       context: context,
       builder: (_) {
         return Material(
-          color: AppColors.clr_bg_grey.withOpacity(0.4),
+          color: AppColors.clr_bg_grey.withOpacity(0.2),
           child: Center(
             child: Container(
               height: AppSizes.height * 0.30,
