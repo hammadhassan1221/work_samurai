@@ -2,6 +2,7 @@ import 'package:connectivity/connectivity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart';
 import 'package:work_samurai/commons/utils.dart';
+import 'package:work_samurai/constants/constants.dart';
 import 'package:work_samurai/generic_decode_encode/generic.dart';
 import 'package:work_samurai/helper/helper.dart';
 import 'package:work_samurai/models/api_models/document_verification/police_verification_model.dart';
@@ -38,7 +39,7 @@ class DocumentProviders extends ChangeNotifier{
           policeCheck,
           headers: {
             "Authorization": "Bearer " + _token,
-            "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
+            "DeviceID": Constants.deviceId,
            // "Content-Type": "multipart/form-data",
           },
         );

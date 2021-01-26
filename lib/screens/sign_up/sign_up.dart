@@ -293,16 +293,24 @@ class _SignUpState extends State<SignUp> {
                               if (_selectedSkillId != null) {
                                 if (getGenderText() != null) {
                                   if (_phoneNumber.text.isNotEmpty) {
-                                    _signUpProvider.userSignUp(
-                                      context: context,
-                                      firstName: _firstName.text,
-                                      lastName: _lastName.text,
-                                      email: _email.text,
-                                      password: _password.text,
-                                      phone: _phoneNumber.text,
-                                      skill: _selectedSkillId,
-                                      gender: getGenderText(),
-                                    );
+                                    if (_password.text.length > 7){
+                                      _signUpProvider.userSignUp(
+                                        context: context,
+                                        firstName: _firstName.text,
+                                        lastName: _lastName.text,
+                                        email: _email.text,
+                                        password: _password.text,
+                                        phone: _phoneNumber.text,
+                                        skill: _selectedSkillId,
+                                        gender: getGenderText(),
+                                      );
+                                    }
+                                    else{
+                                      ApplicationToast.getWarningToast(
+                                          durationTime: 3,
+                                          heading: "Error",
+                                          subHeading: "Password should be greater than 7 characters");
+                                    }
                                   } else {
                                     ApplicationToast.getWarningToast(
                                         durationTime: 3,

@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:work_samurai/commons/utils.dart';
+import 'package:work_samurai/constants/constants.dart';
 import 'package:work_samurai/models/api_models/in_progress/in_progress.dart';
 import 'package:work_samurai/network/gigs/gigs_api_end_points.dart';
 import 'package:work_samurai/res/strings.dart';
@@ -30,7 +31,7 @@ class ConfirmedProvider{
           contentType: Headers.formUrlEncodedContentType,
           headers: {
             "Authorization": token,
-            "DeviceID": "Device Id goes here",
+            "DeviceID": Constants.deviceId,
           },
         ),
       );

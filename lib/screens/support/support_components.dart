@@ -34,7 +34,7 @@ class SupportComponents {
             imagePath,
           ),
           SizedBox(
-            width: AppSizes.width * 0.03,
+            width: AppSizes.width * 0.04,
           ),
            Container(
              width: AppSizes.width*0.3,
@@ -47,12 +47,12 @@ class SupportComponents {
                     style: TextStyle(
                       color: AppColors.clr_bg_black,
                       decoration: TextDecoration.none,
-                      fontSize: 18,
+                      fontSize: 15,
                       fontFamily: 'MuliBold',
                     ),
                   ),
                   SizedBox(
-                    height: AppSizes.height * 0.01,
+                    height: AppSizes.height * 0.015,
                   ),
                   Text(
                     title,

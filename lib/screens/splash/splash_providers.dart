@@ -1,9 +1,13 @@
+import 'dart:io';
+
+import 'package:device_info/device_info.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:get_version/get_version.dart';
 import 'package:work_samurai/animations/slide_right.dart';
 import 'package:work_samurai/commons/utils.dart';
+import 'package:work_samurai/constants/constants.dart';
 import 'package:work_samurai/generic_decode_encode/generic.dart';
 import 'package:work_samurai/helper/helper.dart';
 import 'package:work_samurai/models/api_models/worker_screen/gigs_screen/future_jobs_response.dart';
@@ -31,11 +35,13 @@ class SplashProvider extends ChangeNotifier {
   UserWholeData _userWholeData = UserWholeData();
   GenericDecodeEncode _genericDecodeEncode = GenericDecodeEncode();
   Loader _loader = Loader();
+  DeviceInfoPlugin devicInfo = DeviceInfoPlugin();
   bool loading = true;
 
   init({@required BuildContext context}) async{
     await _getVersionNumber();
     getToken();
+    getDeviceInfo();
     this.context = context;
   }
 
@@ -43,6 +49,13 @@ class SplashProvider extends ChangeNotifier {
   void getToken()async{
     final token = await _fcm.getToken();
     debugPrint('$token');
+
+    if(token != null && token.isNotEmpty){
+      PreferenceUtils.setString(Strings.FCM_TOKEN, token);
+    }
+    else{
+      debugPrint('$token');
+    }
   }
 
   initializeResources(BuildContext context) {
@@ -67,6 +80,26 @@ class SplashProvider extends ChangeNotifier {
       Navigator.pushReplacement(context, SlideRightRoute(page: Worker()));
     } else {
       Navigator.pushReplacement(context, SlideRightRoute(page: Login()));
+    }
+  }
+
+  Future getDeviceInfo() async {
+    if (Platform.isIOS) {
+      IosDeviceInfo iosInfo = await devicInfo.iosInfo;
+      print(iosInfo.name);
+      print(iosInfo.systemVersion);
+      print(iosInfo.localizedModel);
+      print(iosInfo.model);
+      print(iosInfo.identifierForVendor);
+      PreferenceUtils.setString(Strings.DEVICE_ID, iosInfo.identifierForVendor);
+      Constants.deviceId = PreferenceUtils.getString(Strings.DEVICE_ID);
+    } else {
+      AndroidDeviceInfo deviceInfo = await devicInfo.androidInfo;
+      print(deviceInfo.androidId);
+      print(deviceInfo.brand);
+      print(deviceInfo.manufacturer);
+      PreferenceUtils.setString(Strings.DEVICE_ID, deviceInfo.androidId);
+      Constants.deviceId = PreferenceUtils.getString(Strings.DEVICE_ID);
     }
   }
 }

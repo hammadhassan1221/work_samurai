@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:work_samurai/commons/utils.dart';
+import 'package:work_samurai/constants/constants.dart';
 import 'package:work_samurai/generic_decode_encode/generic.dart';
 import 'package:work_samurai/models/api_models/in_progress/in_progress.dart';
 import 'package:work_samurai/models/api_models/worker_screen/gigs_screen/future_jobs_response.dart';
@@ -53,7 +54,7 @@ class InProgressProvider extends ChangeNotifier {
           contentType: Headers.formUrlEncodedContentType,
           headers: {
             "Authorization": token,
-            "DeviceID": "Device Id goes here",
+            "DeviceID": Constants.deviceId,
           },
         ),
       );
@@ -92,7 +93,7 @@ class InProgressProvider extends ChangeNotifier {
           contentType: Headers.formUrlEncodedContentType,
           headers: {
             "Authorization": token,
-            "DeviceID": "Device Id goes here",
+            "DeviceID": Constants.deviceId,
           },
         ),
       );
@@ -125,7 +126,7 @@ class InProgressProvider extends ChangeNotifier {
         options: Options(
           headers: {
             "Authorization": token,
-            "DeviceID": "Device Id goes here",
+            "DeviceID": Constants.deviceId,
             "EncryptedDeviceID": "",
           },
         ),

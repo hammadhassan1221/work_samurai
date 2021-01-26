@@ -4,6 +4,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:work_samurai/commons/utils.dart';
+import 'package:work_samurai/constants/constants.dart';
 import 'package:work_samurai/generic_decode_encode/generic.dart';
 import 'package:work_samurai/helper/helper.dart';
 import 'package:work_samurai/models/api_models/jobRoles/add_user_skills.dart';
@@ -66,7 +67,7 @@ class JobRolesProviders extends ChangeNotifier{
       _loader.showLoader(context: context);
       http.Response _response = await _networkHelper.post(getData, headers: {
         "Authorization": "Bearer " + _token,
-        "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
+        "DeviceID": Constants.deviceId,
         "Scope": "userskills",
       }, body: {});
 
@@ -91,7 +92,7 @@ class JobRolesProviders extends ChangeNotifier{
       _loader.showLoader(context: context);
       http.Response _response = await _networkHelper.post(getData, headers: {
         "Authorization": "Bearer " + _token,
-        "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
+        "DeviceID": Constants.deviceId,
         "Scope": "systemskills",
       }, body: {});
 
@@ -144,7 +145,7 @@ class JobRolesProviders extends ChangeNotifier{
           headers: {
             "contentType":"multipart/form-data",
             "Authorization": "Bearer " + _token,
-            "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
+            "DeviceID": Constants.deviceId,
           })
       );
 

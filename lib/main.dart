@@ -37,8 +37,6 @@ class MyApp extends StatelessWidget {
           title: 'Work Samurai',
           theme: ThemeData(
             primarySwatch: Colors.blue,
-            brightness: Brightness.light,
-            accentColor: Colors.white,
             visualDensity: VisualDensity.adaptivePlatformDensity,
           ),
           debugShowCheckedModeBanner: false,

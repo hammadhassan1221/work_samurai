@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:work_samurai/commons/utils.dart';
+import 'package:work_samurai/constants/constants.dart';
 import 'package:work_samurai/generic_decode_encode/generic.dart';
 import 'package:work_samurai/models/api_models/chat_screen/get_all_messagesof_user_job_model.dart';
 import 'package:work_samurai/models/api_models/chat_screen/send_job_messages_model.dart';
@@ -51,7 +52,7 @@ class ChatProviders extends ChangeNotifier{
           contentType: Headers.formUrlEncodedContentType,
           headers: {
             "Authorization": "Bearer " + _token,
-            "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
+            "DeviceID": Constants.deviceId,
           },
         ),
       );

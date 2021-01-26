@@ -92,15 +92,13 @@ class _ChangePasswordState extends State<ChangePassword> {
 
                     }
                     else{
-
+                      _passwordProviders.callPasswordAPI(
+                          context: context,
+                          currentPassword: _currentPassword.text.toString(),
+                          newPassword: _newPassword.text.toString(),
+                          confirmPassword: _confirmPassword.text.toString());
                     }
-                    _passwordProviders.callPasswordAPI(
-                        context: context,
-                        currentPassword: _currentPassword.text.toString(),
-                        newPassword: _newPassword.text.toString(),
-                        confirmPassword: _confirmPassword.text.toString());
                   }
-
                 },
                 name: "Change Password"),
             SizedBox(

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 import 'package:work_samurai/commons/utils.dart';
+import 'package:work_samurai/constants/constants.dart';
 import 'package:work_samurai/network/api_urls.dart';
 import 'package:work_samurai/network/network_helper.dart';
 import 'package:work_samurai/network/network_helper_impl.dart';
@@ -54,7 +55,7 @@ class EarningProviders extends ChangeNotifier{
             headers: {
               "Content-Type": "multipart/form-data",
               "Authorization": "Bearer " + PreferenceUtils.getString(Strings.ACCESS_TOKEN),
-              "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
+              "DeviceID": Constants.deviceId,
             },
           ),
         );

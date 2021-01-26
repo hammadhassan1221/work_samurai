@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart';
 import 'package:work_samurai/animations/slide_right.dart';
 import 'package:work_samurai/commons/utils.dart';
+import 'package:work_samurai/constants/constants.dart';
 import 'package:work_samurai/generic_decode_encode/generic.dart';
 import 'package:work_samurai/network/api_urls.dart';
 import 'package:work_samurai/network/network_helper.dart';
@@ -41,7 +42,7 @@ class SettingsProviders extends ChangeNotifier{
           headers: {
             "Authorization": "Bearer " + _token,
             "Content-Type" : "multipart/form-data",
-            "DeviceID" : "A580E6FE-DA99-4066-AFC7-C939104AED7F"
+            "DeviceID" : Constants.deviceId,
           },
           body: {
           }
