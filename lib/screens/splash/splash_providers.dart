@@ -39,22 +39,27 @@ class SplashProvider extends ChangeNotifier {
   bool loading = true;
 
   init({@required BuildContext context}) async{
+    this.context = context;
+    await getDeviceInfo();
     await _getVersionNumber();
     getToken();
-    getDeviceInfo();
-    this.context = context;
+
+
   }
 
 
   void getToken()async{
+
     final token = await _fcm.getToken();
     debugPrint('$token');
 
     if(token != null && token.isNotEmpty){
       PreferenceUtils.setString(Strings.FCM_TOKEN, token);
+      navigateToNextRoute(context);
     }
     else{
       debugPrint('$token');
+      navigateToNextRoute(context);
     }
   }
 
@@ -73,7 +78,7 @@ class SplashProvider extends ChangeNotifier {
 
   void navigateToNextRoute(BuildContext context) async {
     await Future.delayed(Duration(
-      seconds: 4,
+      seconds: 5,
     ));
 
     if (PreferenceUtils.getBoolean(Strings.IS_LOGGED_IN) == true) {
@@ -83,23 +88,26 @@ class SplashProvider extends ChangeNotifier {
     }
   }
 
-  Future getDeviceInfo() async {
+   Future  getDeviceInfo() async {
     if (Platform.isIOS) {
       IosDeviceInfo iosInfo = await devicInfo.iosInfo;
       print(iosInfo.name);
-      print(iosInfo.systemVersion);
+      //print(iosInfo.systemVersion);
       print(iosInfo.localizedModel);
       print(iosInfo.model);
       print(iosInfo.identifierForVendor);
-      PreferenceUtils.setString(Strings.DEVICE_ID, iosInfo.identifierForVendor);
+      await PreferenceUtils.setString(Strings.DEVICE_ID, iosInfo.identifierForVendor);
       Constants.deviceId = PreferenceUtils.getString(Strings.DEVICE_ID);
     } else {
       AndroidDeviceInfo deviceInfo = await devicInfo.androidInfo;
       print(deviceInfo.androidId);
       print(deviceInfo.brand);
       print(deviceInfo.manufacturer);
-      PreferenceUtils.setString(Strings.DEVICE_ID, deviceInfo.androidId);
+      var deviceId = (deviceInfo.androidId);
+      await PreferenceUtils.setString(Strings.DEVICE_ID, deviceId );
       Constants.deviceId = PreferenceUtils.getString(Strings.DEVICE_ID);
+
+
     }
   }
 }

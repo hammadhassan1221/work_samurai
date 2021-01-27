@@ -334,7 +334,7 @@ class _SignUpState extends State<SignUp> {
                                   durationTime: 3,
                                   heading: "Error",
                                   subHeading:
-                                  "Password and Confirm Password should be equal");
+                                  "Password is not matching");
                             }
                           } else {
                             ApplicationToast.getWarningToast(

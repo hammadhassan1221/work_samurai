@@ -92,6 +92,9 @@ class LoginProvider extends ChangeNotifier {
           }
         }
       }
+      else{
+        ApplicationToast.getErrorToast(durationTime: 2, heading: null, subHeading: "Please check your internet connection");
+      }
     } catch (e) {
       _loader.hideLoader(context);
       print(e.toString());

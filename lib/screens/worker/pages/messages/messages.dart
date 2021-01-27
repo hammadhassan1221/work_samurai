@@ -136,8 +136,8 @@ class _WorkerChatRoomState extends State<WorkerChatRoom>with TickerProviderState
                 Center(
                   child: Container(
                     alignment: Alignment.center,
-                    height: AppSizes.width*0.5,
-                    width: AppSizes.width*0.5,
+                    height: AppSizes.width*0.2,
+                    width: AppSizes.width*0.3,
                     child: Lottie.asset(Assets.loader),
                   ),
                 ),
