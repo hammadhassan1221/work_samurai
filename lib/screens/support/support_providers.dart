@@ -4,7 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:fluttericon/zocial_icons.dart';
 import 'package:work_samurai/animations/slide_right.dart';
 import 'package:work_samurai/commons/utils.dart';
+import 'package:work_samurai/constants/constants.dart';
 import 'package:work_samurai/generic_decode_encode/generic.dart';
+import 'package:work_samurai/helper/helper.dart';
+import 'package:work_samurai/models/api_models/support_screen/create_support_ticket_model.dart';
+import 'package:work_samurai/models/api_models/support_screen/get_support_tickets.dart';
 import 'package:work_samurai/models/api_models/support_screen/support_screen.dart';
 import 'package:work_samurai/models/generic_response/GenericResponse.dart';
 import 'package:work_samurai/models/get_data/UserWholeData.dart';
@@ -15,16 +19,19 @@ import 'package:work_samurai/res/strings.dart';
 import 'package:work_samurai/screens/worker/worker.dart';
 import 'package:work_samurai/widgets/loader.dart';
 import 'package:work_samurai/widgets/toast.dart';
+import 'package:http/http.dart' as http;
 
-class SupportProviders extends ChangeNotifier{
+class SupportProviders extends ChangeNotifier {
 
   BuildContext context;
   NetworkHelper _networkHelper = NetworkHelperImpl();
   UserWholeData _userWholeData = UserWholeData();
   SupportTicketResponse _supportTicketResponse = SupportTicketResponse();
+  SupportTicketsModel supportTicketsModel = SupportTicketsModel();
+  CreateSupportTicketModel _createSupportTicketModel = CreateSupportTicketModel();
   GenericDecodeEncode _genericDecodeEncode = GenericDecodeEncode();
   Loader _loader = Loader();
-
+  bool isDataFetched ;
   Dio dio = Dio();
   String _token;
 
@@ -33,19 +40,46 @@ class SupportProviders extends ChangeNotifier{
     try {
       this.context = context;
       _token = PreferenceUtils.getString(Strings.ACCESS_TOKEN);
-      await callSupportTicket(context: context,);
+      await getSupportTickets(context: context);
+      // await callSupportTicket(context: context,);
     } catch (e) {
       print(e.toString());
     }
   }
 
-  Future _supportTicket({@required BuildContext context , @required String title})async{
+  Future getSupportTickets({@required BuildContext context}) async {
+    try {
+    //  _loader.showLoader(context: context);
+      http.Response _response = await _networkHelper.post(getData, headers: {
+        "Authorization": "Bearer " + _token,
+        "DeviceID": Constants.deviceId,
+        "Scope": "supporttickets",
+      }, body: {});
+
+      if (_response.statusCode != 200) {
+       // _loader.hideLoader(context);
+        throw ("couldn't get the data");
+      }
+      if (_response.statusCode == 200) {
+       // _loader.hideLoader(context);
+        supportTicketsModel = SupportTicketsModel.fromJson(
+            _genericDecodeEncode.decodeJson(Helper.getString(_response)));
+        isDataFetched = true;
+        notifyListeners();
+      }
+    } catch (e) {
+     // _loader.hideLoader(context);
+      print(e.toString());
+    }
+  }
+
+  Future supportTicket({@required BuildContext context , @required String supportTicket})async{
     try{
       var connectivityResult = await (Connectivity().checkConnectivity());
       if (connectivityResult != ConnectivityResult.none) {
         _loader.showLoader(context: context);
         var formData = Map<String, dynamic>();
-        formData['Title'] = title;
+        formData['Title'] = supportTicket;
         dio.options.contentType = Headers.formUrlEncodedContentType;
 
         Response _response = await dio.post(
@@ -55,7 +89,7 @@ class SupportProviders extends ChangeNotifier{
             contentType: Headers.formUrlEncodedContentType,
             headers: {
               "Authorization": "Bearer " + _token,
-              "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
+              "DeviceID": Constants.deviceId,
             },
           ),
         );
@@ -67,12 +101,26 @@ class SupportProviders extends ChangeNotifier{
         if (_response.statusCode == 200) {
           _loader.hideLoader(context);
 
-          GenericResponse _genericResponse = GenericResponse.fromJson(_response.data);
-          ApplicationToast.getSuccessToast(
-              durationTime: 3,
-              heading: "Success",
-              subHeading: "Ticket Generated");
-          Navigator.pushReplacement(context, SlideRightRoute(page: Worker()));
+
+          if (_response.statusCode == 200) {
+            _loader.hideLoader(context);
+            _createSupportTicketModel = CreateSupportTicketModel.fromJson(_response.data);
+            isDataFetched = true;
+            if (_createSupportTicketModel.responseCode == 1){
+              ApplicationToast.getSuccessToast(durationTime: 3, heading: "Success", subHeading: "Successfully created Token");
+              notifyListeners();
+            }
+            else if (_createSupportTicketModel.responseCode == 34) {
+              ApplicationToast.getSuccessToast(durationTime: 3, heading: "Success", subHeading: "Token Already created");
+              notifyListeners();
+            }
+          }
+          // GenericResponse _genericResponse = GenericResponse.fromJson(_response.data);
+          // ApplicationToast.getSuccessToast(
+          //     durationTime: 3,
+          //     heading: "Success",
+          //     subHeading: "Ticket Generated");
+          // Navigator.pushReplacement(context, SlideRightRoute(page: Worker()));
         }
       }
     }catch(e){
@@ -81,12 +129,13 @@ class SupportProviders extends ChangeNotifier{
     }
   }
 
-  callSupportTicket({@required BuildContext context,
-    @required String supportTicket,}) {
-    if (supportTicket.isNotEmpty) {
-      _supportTicket(context: context, title: supportTicket,);
-    } else {
-      ApplicationToast.getSupportTicketToast(
-          context: context, text: "Ticket Generated", onNavigate: () {});
-    }
-  }}
+  // callSupportTicket({@required BuildContext context,
+  //   @required String supportTicket,}) {
+  //   if (supportTicket.isNotEmpty) {
+  //     _supportTicket(context: context, title: supportTicket,);
+  //   } else {
+  //     ApplicationToast.getSupportTicketToast(
+  //         context: context, text: "Ticket Generated", onNavigate: () {});
+  //   }
+  // }
+}

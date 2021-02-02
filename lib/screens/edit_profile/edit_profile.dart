@@ -1,3 +1,5 @@
+import 'dart:io';
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -9,6 +11,10 @@ import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/res/strings.dart';
 import 'package:work_samurai/screens/edit_profile/edit_profile_provider.dart';
+import 'package:work_samurai/commons/utils.dart';
+import 'package:work_samurai/screens/worker/pages/account/account_provider.dart';
+import 'package:work_samurai/widgets/toast.dart';
+import 'package:http_parser/http_parser.dart';
 import 'package:work_samurai/widgets/widgets.dart';
 
 import 'edit_profile_components.dart';
@@ -20,16 +26,19 @@ class ProfileSettings extends StatefulWidget {
 
 class _ProfileSettingsState extends State<ProfileSettings> {
   EditProfileComponents _editProfileComponents;
-  bool _verifyEmail, _verifyPhone;
-  EditProfileProviders _editProfileProviders;
-  //TextEditingController _firstName,_lastName;
+  bool _verifyEmail = false;
+  bool _verifyPhone = false;
+  AccountProviders _accountProviders;
 
+  EditProfileProviders _editProfileProviders;
+  TextEditingController _aboutController = TextEditingController();
+  //TextEditingController _firstName,_lastName;
+  TextEditingController firstname, lastname;
   UserWholeData _userWholeData;
   GenericDecodeEncode _genericDecodeEncode = GenericDecodeEncode();
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     // _firstName = TextEditingController();
@@ -39,6 +48,9 @@ class _ProfileSettingsState extends State<ProfileSettings> {
         Provider.of<EditProfileProviders>(context, listen: false);
     _editProfileProviders.init(context: context);
     String userDataFromPrefs = PreferenceUtils.getString(Strings.USER_DATA);
+    _accountProviders = Provider.of<AccountProviders>(context, listen: false);
+    _editProfileProviders.userImage = null;
+
 
     if (userDataFromPrefs.isNotEmpty) {
       _verifyEmail = _verifyPhone = false;
@@ -48,11 +60,15 @@ class _ProfileSettingsState extends State<ProfileSettings> {
       _verifyPhone = _userWholeData.data.user.phoneVerified;
 
     }
+    firstname = TextEditingController(text: _userWholeData.data.user.firstname);
+    lastname =TextEditingController(text: _userWholeData.data.user.lastname);
   }
 
   @override
   Widget build(BuildContext context) {
     Provider.of<EditProfileProviders>(context, listen: true);
+    _accountProviders = Provider.of<AccountProviders>(context, listen: true);
+
     return SafeArea(
       child: Scaffold(
         body: Container(
@@ -64,29 +80,34 @@ class _ProfileSettingsState extends State<ProfileSettings> {
               CommonWidgets.getAppBar(text: "Edit Profile", context: context),
               //index == 1 ? showToast : SizedBox.shrink(),
               SizedBox(
-                height: AppSizes.height * 0.05,
+                height: AppSizes.height * 0.03,
               ),
               Expanded(
                 child: ListView(
                   children: [
                     _editProfileComponents.getUserImage(
-                        onPress: () {}, imagePath: Assets.support),
+                        onPress: () {
+                         // ApplicationToast.getSuccessToast(durationTime: 2, heading: "null", subHeading: "Hello");
+                        }, imagePath: _accountProviders.getUserWholeData().data.user.document == null ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThsyVVdxkz5zyuE-yRKpdwtre_R234HkS2gQ&usqp=CAU" :_accountProviders.getUserWholeData().data.user.document["URL"],
+                        editProfileObj: _editProfileProviders),
                     SizedBox(
                       height: AppSizes.height * 0.05,
                     ),
                     _editProfileComponents.getInputField(
+                      firstname: firstname,
                         backgroundColor: AppColors.clr_bg,
                         borderColor: AppColors.sign_field,
                         textColor: AppColors.clr_bg_black,
-                        text: _userWholeData.data.user.firstname,
+                        text: _userWholeData?.data?.user?.firstname,
                         //controller: ,
                         text1:"",
                         isPassword: false),
                     _editProfileComponents.getInputField(
+                      firstname: lastname,
                         backgroundColor: AppColors.clr_bg,
                         borderColor: AppColors.sign_field,
                         textColor: AppColors.clr_bg_black,
-                        text: _userWholeData.data.user.lastname,
+                        text: _userWholeData?.data?.user?.lastname,
                         text1:"",
                       //  controller: _lastName ,
                         isPassword: false),
@@ -101,8 +122,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                             borderColor: AppColors.sign_field,
                             textColor: AppColors.clr_bg_black2,
                             text: "Email",
-                            text1: ""/*_userWholeData.data.user.emailAddress
-                                .toString()*/,
+                            text1: _accountProviders.getUserWholeData().data.user.emailAddress,
                             isPassword: false,
                             iconData: Icons.check_circle,
                             verify: "Verified",
@@ -115,7 +135,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                             borderColor: AppColors.sign_field,
                             textColor: AppColors.clr_bg_black2,
                             text: "Email",
-                            text1: _userWholeData.data.user.emailAddress
+                            text1: _userWholeData?.data?.user?.emailAddress
                                 .toString(),
                             isPassword: false,
                             iconData: Icons.arrow_forward_ios,
@@ -124,7 +144,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                     _verifyPhone
                         ? _editProfileComponents.getVerificationContainer(
                             onPress: () {
-                              //_phoneSheet(context);
+                              _phoneSheet(context);
                               _editProfileProviders.getVerifiedPhone(
                                   context: context);
                             },
@@ -132,7 +152,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                             borderColor: AppColors.sign_field,
                             textColor: AppColors.clr_bg_black2,
                             text: "Phone",
-                            text1: "",/*_userWholeData.data.user.mobile.toString(),*/
+                            text1: _accountProviders.getUserWholeData().data.user.mobile,/*_userWholeData.data.user.mobile.toString(),*/
                             isPassword: false,
                             iconData: Icons.check_circle,
                             verify: "Verified",
@@ -147,18 +167,39 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                             borderColor: AppColors.sign_field,
                             textColor: AppColors.clr_bg_black2,
                             text: "Phone",
-                            text1: _userWholeData.data.user.mobile.toString(),
+                            text1: _userWholeData?.data?.user?.mobile?.toString(),
                             isPassword: false,
                             iconData: Icons.arrow_forward_ios,
                             verify: "Unverified",
                             verifyColor: Colors.orangeAccent),
                     _editProfileComponents.getDescriptionContainer(
-                        heading: "About You", desc: ""),
+                        heading: "About You", desc: "",controllor: _aboutController),
                     SizedBox(
                       height: AppSizes.height * 0.05,
                     ),
-                    CommonWidgets.getSignUpButton(
-                        context: context, onPress: () {}, text: "Update"),
+                    CommonWidgets.getBottomButton(
+                        name: "Update", onButtonClick: () async {
+                      String firstName = _userWholeData?.data?.user.firstname;
+                      String lastName = _userWholeData?.data?.user.lastname;
+                          if (firstname.text.isNotEmpty ){
+                          firstName   = firstname.text ;
+                          }
+                      if (lastname.text.isNotEmpty ){
+                        lastName   = lastname.text ;
+                      }
+
+                          String salutation =_userWholeData?.data?.user?.salutation ?? "Mr.";
+                          String proTitle = _userWholeData?.data?.user?.professionalTitle ?? "";
+                          String dob = _userWholeData?.data?.user?.dob ?? "";
+                          String placeOfBirth = _userWholeData?.data?.user?.lastname ?? "";
+                          String gender = _userWholeData?.data?.user?.gender?.toString() ?? "";
+                          String description = _aboutController?.text?.toString() ?? "";
+                          String imagePath = _editProfileProviders?.userImage?.path ?? "";
+
+                        //  List<String> array = [firstName, lastName,salutation,proTitle,dob,placeOfBirth,gender,description,imagePath];
+                          _editProfileProviders.sendUpdate(firstName, lastName,salutation,proTitle,dob,placeOfBirth,gender,description,imagePath, context);
+                        }
+                    ),
                     SizedBox(
                       height: AppSizes.height * 0.05,
                     ),
@@ -215,13 +256,12 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                 SizedBox(
                   height: AppSizes.height * 0.025,
                 ),
-                Expanded(
-                    child: CommonWidgets.getSignUpButton(
-                        context: context,
-                        onPress: () {
-                          Navigator.pop(context);
-                        },
-                        text: "Dismiss")),
+                Spacer(),
+                CommonWidgets.getBottomButton(
+                    onButtonClick: () {
+                      Navigator.pop(context);
+                    },
+                    name: "Dismiss"),
               ],
             ),
           );
@@ -291,11 +331,8 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                 SizedBox(
                   height: AppSizes.height * 0.025,
                 ),
-                Expanded(
-                    child: CommonWidgets.getSignUpButton(
-                        context: context,
-                        onPress: () {},
-                        text: "Retry In 10 sec")),
+                CommonWidgets.getBottomButton(
+                    name: "Retry In 10 sec"),
               ],
             ),
           );

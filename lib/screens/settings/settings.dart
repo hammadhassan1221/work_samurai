@@ -14,6 +14,7 @@ import 'package:work_samurai/screens/job_roles/job_roles.dart';
 import 'package:work_samurai/screens/password/password.dart';
 import 'package:work_samurai/screens/settings/settings_components.dart';
 import 'package:work_samurai/screens/settings/settings_provider.dart';
+import 'package:work_samurai/screens/worker/pages/account/account_provider.dart';
 import 'package:work_samurai/widgets/widgets.dart';
 
 class Settings extends StatefulWidget {
@@ -24,21 +25,27 @@ class Settings extends StatefulWidget {
 class _SettingsState extends State<Settings> {
   SettingsComponents _settingsComponents;
   SettingsProviders _settingsProviders;
+  AccountProviders _accountProviders;
+
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _settingsComponents = SettingsComponents();
     _settingsProviders = Provider.of<SettingsProviders>(context, listen: false);
     _settingsProviders.init(context: context);
+    _accountProviders = Provider.of<AccountProviders>(context, listen: false);
+   // _accountProviders.getProfileData(context: context);
+
   }
 
   @override
   Widget build(BuildContext context) {
+    _accountProviders = Provider.of<AccountProviders>(context, listen: true);
+
     return SafeArea(
         child: Scaffold(
-      body: Container(
+      body: _accountProviders.getIsDataFetched()? Container(
         height: AppSizes.height,
         width: AppSizes.width,
         color: AppColors.clr_bg,
@@ -47,7 +54,7 @@ class _SettingsState extends State<Settings> {
           children: [
             CommonWidgets.getAppBar(text: "Account Settings", context: context),
             Expanded(
-                child: (ListView(
+                child: ListView(
               children: [
                 _settingsComponents.getProfileThread(
                   onPress: () {
@@ -58,8 +65,8 @@ class _SettingsState extends State<Settings> {
                       ),
                     );
                   },
-                  imagePath: Assets.support,
-                  heading: "Robert Miller",
+                  imagePath: _accountProviders.getUserWholeData().data.user.document == null ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThsyVVdxkz5zyuE-yRKpdwtre_R234HkS2gQ&usqp=CAU" :_accountProviders.getUserWholeData().data.user.document["URL"],
+                  heading: _accountProviders.getUserWholeData().data.user.firstname + " "+ _accountProviders.getUserWholeData().data.user.lastname,
                   subHeading: "Edit Profile",
                   iconData: "",
                 ),
@@ -111,10 +118,11 @@ class _SettingsState extends State<Settings> {
                       _showDialog();
                     }),
               ],
-            )))
+            ),
+            ),
           ],
         ),
-      ),
+      ) : CircularProgressIndicator(),
     ));
   }
 

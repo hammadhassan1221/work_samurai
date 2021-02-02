@@ -47,7 +47,11 @@ class Assets{
   static const String mails = "assets/png/mail@3x.png";
   static const String files = "assets/png/add-file@3x.png";
   static const String edit = "assets/png/icon_edit.png";
-
+  static const String sheetClose = "assets/png/cross.png";
+  static const String done = "assets/png/checkmark.png";
+  static const String loader1 = "assets/json/api_loader_old.json";
+  static const String loader2 = "assets/json/loader.json";
+  static const String loader = "assets/json/api_loader.json";
 
   static const String user = "assets/png/usercircle@3x.png";
   static const String credit = "assets/png/credit_card@3x.png";

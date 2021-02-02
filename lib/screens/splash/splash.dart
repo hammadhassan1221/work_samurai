@@ -1,4 +1,5 @@
-import 'package:firebase_core/firebase_core.dart';
+// import 'package:firebase_core/firebase_core.dart';
+// import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -24,16 +25,23 @@ class _SplashState extends State<Splash> {
   @override
   void initState() {
     super.initState();
-
     _provider = Provider.of<SplashProvider>(context, listen: false);
-    _provider.init(context: context);
-    _provider.navigateToNextRoute(context);
+    Future.delayed(Duration.zero, () async {
+      await _provider.init(context: context);
+    });
+    //_provider.navigateToNextRoute(context);
     _components = SplashComponents();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
     PreferenceUtils.init();
+    PreferenceUtils.setInt("counter", 1);
     AppSizes.initializeSize(context);
     Provider.of<SplashProvider>(context, listen: true);
     _provider.initializeResources(context);

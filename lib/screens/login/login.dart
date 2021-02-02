@@ -34,7 +34,6 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _loginComponents = LoginComponents();
     _loginProvider = Provider.of<LoginProvider>(context, listen: false);
@@ -69,14 +68,20 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     _scale = 1 - _animationController.value;
     Provider.of<LoginProvider>(context, listen: true);
+
     return Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: Container(
-          height: AppSizes.height,
-          width: AppSizes.width,
-          color: AppColors.clr_bg,
-          child: Center(
+      resizeToAvoidBottomInset: false,
+      body: Container(
+        height: AppSizes.height,
+        width: AppSizes.width,
+        color: AppColors.clr_bg,
+        child: Center(
+          child: GestureDetector(
+            onTap: (){
+              FocusScope.of(context).unfocus();
+            },
             child: Column(
+
               children: [
                 _loginComponents.getImageContainer(Assets.logo, 270, 270),
                 CommonWidgets.getInputField(
@@ -150,7 +155,9 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                     );
                   },
                 ),
-                verticalSpacer(10.0,),
+                verticalSpacer(
+                  10.0,
+                ),
                 _loginComponents.getRichText1(
                   text1: "Forgot Password?",
                   text2: "",
@@ -163,21 +170,25 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                     );
                   },
                 ),
-                verticalSpacer(77.5,),
+                verticalSpacer(
+                  77.5,
+                ),
                 BouncingWidget(
                   duration: Duration(milliseconds: 200),
                   scaleFactor: 1,
                   child: _loginComponents.getRichText(
-                      text1: "Don't have an account?",
-                      text2: "Sign Up",
-                      onPress: () {
-                        Navigator.push(
-                            context, SlideRightRoute(page: SignUp()));
-                      }),
+                    text1: "Don't have an account?",
+                    text2: "Sign Up",
+                    onPress: () {
+                      Navigator.push(context, SlideRightRoute(page: SignUp()));
+                    },
+                  ),
                 ),
               ],
             ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }

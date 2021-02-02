@@ -65,9 +65,8 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                     context: context, email: _email.text.toString());
               },
 
-              child: CommonWidgets.getSignUpButton(
-                context: context,
-                text: "Reset my Password",
+              child: CommonWidgets.getBottomButton(
+                name: "Reset my Password",
               ),
             )
           ],

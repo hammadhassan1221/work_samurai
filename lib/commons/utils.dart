@@ -27,6 +27,11 @@ class PreferenceUtils {
     return prefs?.setString(key, value) ?? Future.value(null);
   }
 
+  static Future<bool> setBool(String key, bool value) async {
+    var prefs = await _instance;
+    return prefs?.setBool(key, value) ?? Future.value(false);
+  }
+
   static Future setLoginResponse(LoginResponse loginResponse) async {
     var prefs = await _instance;
 
@@ -53,6 +58,10 @@ class PreferenceUtils {
 
   static int getInt(String key, [int defValue]) {
     return _prefsInstance.getInt(key) ?? defValue ?? 0;
+  }
+
+  static bool getBool(String key, [bool defValue]) {
+    return _prefsInstance.getBool(key) ?? defValue ?? false;
   }
 
   static void reset() {

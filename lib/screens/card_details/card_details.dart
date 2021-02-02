@@ -70,14 +70,14 @@ class _CardDetailsState extends State<CardDetails> {
                 controller: _accountNumber,
                 isPassword: false),
             Expanded(
-                child: CommonWidgets.getSignUpButton(
-                    context: context, onPress: () { _cardDetailsProvider.callBankInfoAPI(
+                child: CommonWidgets.getBottomButton(
+                    onButtonClick: () { _cardDetailsProvider.callBankInfoAPI(
                     context: context,
                     bankName: _bankName.text.toString(),
                     accountNumber: _accountNumber.text.toString(),
                     accountHolder: _accountName.text.toString(),
                     bsbNum: _bsbNum.text.toString());
-                }, text: "Update Details")),
+                }, name: "Update Details")),
             SizedBox(
               height: AppSizes.height * 0.025,
             ),

@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:work_samurai/animations/slide_right.dart';
 import 'package:work_samurai/commons/utils.dart';
+import 'package:work_samurai/constants/constants.dart';
 import 'package:work_samurai/generic_decode_encode/generic.dart';
 import 'package:work_samurai/models/api_models/password/new_password.dart';
 import 'package:work_samurai/models/generic_response/GenericResponse.dart';
@@ -29,7 +30,7 @@ class PasswordProviders extends ChangeNotifier{
     try {
       this.context = context;
       _token = PreferenceUtils.getString(Strings.ACCESS_TOKEN);
-      await callPasswordAPI(context: context,);
+     // await callPasswordAPI(context: context,);
 
     } catch (e) {
       print(e.toString());
@@ -52,7 +53,7 @@ class PasswordProviders extends ChangeNotifier{
             contentType: Headers.formUrlEncodedContentType,
             headers: {
               "Authorization": "Bearer " + _token,
-              "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
+              "DeviceID": Constants.deviceId,
             },
           ),
         );
@@ -84,28 +85,7 @@ class PasswordProviders extends ChangeNotifier{
     @required String newPassword,
     @required String currentPassword,
   }) {
-    if (currentPassword.isNotEmpty) {
-      if (newPassword.isNotEmpty) {
-        if (confirmPassword.isNotEmpty && confirmPassword == newPassword){
-          _newPassword(context: context,newPassword: newPassword,);
-        } else {
-          ApplicationToast.getWarningToast(
-              durationTime: 3,
-              heading: "Error",
-              subHeading: "Confirm Password is empty");
-        }
-      } else {
-        ApplicationToast.getWarningToast(
-            durationTime: 3,
-            heading: "Error",
-            subHeading: "New Password is empty");
-      }
-    } else {
-      ApplicationToast.getWarningToast(
-          durationTime: 3,
-          heading: "Error",
-          subHeading: "Current Password is empty");
-    }
+   _newPassword(context: context, newPassword: newPassword);
   }
 
 }
