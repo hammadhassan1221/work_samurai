@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:work_samurai/commons/utils.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
+import 'package:work_samurai/res/strings.dart';
 import 'package:work_samurai/screens/card_details/card_details_provider.dart';
 import 'package:work_samurai/widgets/widgets.dart';
 
@@ -28,10 +30,10 @@ class _CardDetailsState extends State<CardDetails> {
     });
     _cardDetailsProvider = Provider.of<CardDetailsProvider>(context, listen : false);
     _accountHolder = TextEditingController();
-    _accountName = TextEditingController();
-    _accountNumber = TextEditingController();
+    _accountName = TextEditingController(text: PreferenceUtils.getString(Strings.ACCOUNT_NAME));
+    _accountNumber = TextEditingController(text: PreferenceUtils.getString(Strings.ACCOUNT_Number));
     _bankName = TextEditingController();
-    _bsbNum = TextEditingController();
+    _bsbNum = TextEditingController(text: PreferenceUtils.getString(Strings.BSB_Number));
   }
 
   @override
@@ -69,15 +71,17 @@ class _CardDetailsState extends State<CardDetails> {
                 text: "Account Number",
                 controller: _accountNumber,
                 isPassword: false),
-            Expanded(
-                child: CommonWidgets.getBottomButton(
-                    onButtonClick: () { _cardDetailsProvider.callBankInfoAPI(
-                    context: context,
-                    bankName: _bankName.text.toString(),
-                    accountNumber: _accountNumber.text.toString(),
-                    accountHolder: _accountName.text.toString(),
-                    bsbNum: _bsbNum.text.toString());
-                }, name: "Update Details")),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: CommonWidgets.getBottomButton(
+                  onButtonClick: () { _cardDetailsProvider.callBankInfoAPI(
+                  context: context,
+                  bankName: _bankName.text.toString(),
+                  accountNumber: _accountNumber.text.toString(),
+                  accountHolder: _accountName.text.toString(),
+                  bsbNum: _bsbNum.text.toString());
+              }, name: "Update Details"),
+            ),
             SizedBox(
               height: AppSizes.height * 0.025,
             ),

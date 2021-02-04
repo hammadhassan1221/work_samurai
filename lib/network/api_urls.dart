@@ -24,6 +24,7 @@ const String updateUserAddress = "$baseUrl/User/Address/Save";
 const String getUserEarnings = "$baseUrl/User/Earning";
 const String updateProfile = "$baseUrl/User/Save";
 const String policeCheck = "$baseUrl/Email/PoliceCheck";
+const String userSettingURL = "$baseUrl/User/Settings/Save";
 
 
 

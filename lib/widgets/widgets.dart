@@ -364,8 +364,9 @@ class CommonWidgets {
                 color: AppColors.clr_bg_black,
                 decoration: TextDecoration.none,
                 fontSize: 22,
-                fontWeight: FontWeight.w400,
-                fontFamily: 'MuliSemiBold',
+
+                fontFamily: 'MuliBold',
+
               ),
             ),
           )

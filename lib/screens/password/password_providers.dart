@@ -37,13 +37,14 @@ class PasswordProviders extends ChangeNotifier{
     }
   }
 
-  Future _newPassword({@required BuildContext context,@required String newPassword,})async{
+  Future _newPassword({@required BuildContext context,@required String newPassword,@required String oldPassword})async{
     try{
       var connectivityResult = await (Connectivity().checkConnectivity());
       if (connectivityResult != ConnectivityResult.none) {
         _loader.showLoader(context: context);
         var formData = Map<String, dynamic>();
         formData['NewPassword'] = newPassword;
+        formData['OldPassword'] = oldPassword;
         dio.options.contentType = Headers.formUrlEncodedContentType;
 
         Response _response = await dio.post(
@@ -85,7 +86,7 @@ class PasswordProviders extends ChangeNotifier{
     @required String newPassword,
     @required String currentPassword,
   }) {
-   _newPassword(context: context, newPassword: newPassword);
+   _newPassword(context: context, newPassword: newPassword, oldPassword: currentPassword);
   }
 
 }

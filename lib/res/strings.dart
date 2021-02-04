@@ -20,4 +20,8 @@ class Strings {
   static const String USER_DATA = "UserData";
   static const String USER_ID = "UserId";
   static const String IMAGE = "image";
+  static const String ACCOUNT_NAME = "AccountName";
+  static const String ACCOUNT_Number = "AccountNumber";
+  static const String BSB_Number = "BSBNumber";
+
 }
