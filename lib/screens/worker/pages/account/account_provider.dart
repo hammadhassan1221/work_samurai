@@ -99,7 +99,7 @@ class AccountProviders extends ChangeNotifier{
             notifyListeners();
         }
         else{
-          ApplicationToast.getErrorToast(durationTime: 3, heading: "Error", subHeading: "Something went wronge");
+          ApplicationToast.getErrorToast(durationTime: 3, heading: "Error", subHeading: "Something went wrong");
         }
       }
     } catch (e) {

@@ -52,7 +52,7 @@ class _AppSettingsState extends State<AppSettings> {
               setState(() {
                 isEnabled1 = !isEnabled1;
               });
-              _appSettingsProviders.notificationSettings(context: context, value: value);
+              // _appSettingsProviders.notificationSettings(context: context, value: value);
             }),
             SizedBox(height: AppSizes.height*0.02,),
             _appSettingsComponents.getSettingText(text: "Terms Of Use"),
@@ -63,6 +63,26 @@ class _AppSettingsState extends State<AppSettings> {
 
             SizedBox(height: AppSizes.height*0.02,),
             _appSettingsComponents.getSettingText(text: "FeedBack"),
+
+            SizedBox(height: AppSizes.height*0.02,),
+            CommonWidgets.getBottomButton(name: "Update", onButtonClick: (){
+
+              // String str = json.encode([
+              //   {
+              //     "Name": "App Settings",
+              //     "Value": "false",
+              //     "SettingList": [
+              //       {"Name": "Dark mode", "Value": "true"},
+              //       {"Name": "Notification Sound", "Value": "true"}
+              //     ],
+              //   }
+              // ]);
+
+              _appSettingsProviders.themeSettings(
+                context: context,
+
+              );
+            }),
           ],
         ),
       ),
