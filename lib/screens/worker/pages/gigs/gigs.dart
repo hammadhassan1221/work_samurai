@@ -63,9 +63,9 @@ class _GigsState extends State<Gigs> with SingleTickerProviderStateMixin {
               isScrollable: true,
               tabs: <Widget>[
                 _tabBar("Offers"),
+                _tabBar("Pending"),
                 _tabBar("Confirmed"),
                 _tabBar("In-Progress"),
-                _tabBar("Pending"),
               ],
             ),
           ),
@@ -75,19 +75,29 @@ class _GigsState extends State<Gigs> with SingleTickerProviderStateMixin {
             child: TabBarView(
               children: <Widget>[
                 OffersPage(),
-                _gigsComponents.getConfirmedContainer(
-                  context: context,
-                  jobTitle: "Receptionist",
-                  dateTime: "23 Nov, 2020",
-                  location: "Crown Hotel, New York",
-                  totalAmount: "240",
-                  amountHour: "20",
-                  onLeave: (){
-                    ConfirmedProvider().leaveForJob(context, 1021);
-                  }
+                PendingJobs(),
+                GestureDetector(
+                  onTap: (){
+                    _gigsComponents.newTaskModalBottomSheet(context);
+                  },
+                  child: _gigsComponents.getConfirmedContainer(
+                    context: context,
+                    jobTitle: "Receptionist",
+                    dateTime: "23 Nov, 2020",
+                    location: "Crown Hotel, New York",
+                    totalAmount: "240",
+                    amountHour: "20",
+                    onLeave: (){
+                      ConfirmedProvider().leaveForJob(context, 1014);
+                    },
+                    onReject: (){
+                      ConfirmedProvider().rejectJob(context, 1014);
+                    }
+
+                  ),
                 ),
                 InProgressPage(),
-                PendingJobs(),
+
               ],
             ),
           )

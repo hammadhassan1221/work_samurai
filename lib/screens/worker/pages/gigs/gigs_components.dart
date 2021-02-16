@@ -317,6 +317,7 @@ class GigsComponents {
         @required String location,
         @required String totalAmount,
         @required onLeave(),
+        @required onReject(),
         @required String amountHour}) {
     return Container(
       margin: EdgeInsets.symmetric(
@@ -454,7 +455,7 @@ class GigsComponents {
                         context: context,
                         buttonColor: AppColors.clr_red,
                         icon: Icons.close,
-                        onPress: () {},
+                        onPress: () {onReject();},
                         name: "Cancel Gig",
                       ),
                       Container(
@@ -492,7 +493,7 @@ class GigsComponents {
         child: FlatButton(
           splashColor: buttonColor.withOpacity(0.2),
           highlightColor: buttonColor.withOpacity(0.1),
-          onPressed: () => onPress,
+          onPressed: () {onPress.call();},
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -552,7 +553,7 @@ class GigsComponents {
     );
   }
 
-  _newTaskModalBottomSheet(context) {
+  newTaskModalBottomSheet(context) {
     showModalBottomSheet(
         context: context,
         builder: (BuildContext context) {
