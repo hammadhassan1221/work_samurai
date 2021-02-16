@@ -1,5 +1,5 @@
 //Base URL
-const String baseUrl = "https://dev-api.worksamurai.com.au/api";
+const String baseUrl = "http://dev-api.worksamurai.com.au/api";
 
 const String loginURL = "$baseUrl/Auth";
 const String signUpURL = "$baseUrl/Signup";

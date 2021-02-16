@@ -1,25 +1,22 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:provider/provider.dart';
-import 'package:work_samurai/commons/utils.dart';
+import 'package:dio/dio.dart';
 import 'package:work_samurai/constants/constants.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:work_samurai/commons/utils.dart';
 import 'package:work_samurai/models/api_models/worker_screen/gigs_screen/future_jobs_response.dart';
 import 'package:work_samurai/network/gigs/gigs_api_end_points.dart';
 import 'package:work_samurai/res/strings.dart';
 import 'package:work_samurai/widgets/spacer.dart';
-import 'package:work_samurai/screens/worker/pages/gigs/offers/offers_components.dart';
-import 'package:work_samurai/screens/worker/pages/gigs/offers/offers_provider.dart';
-
-class OffersPage extends StatefulWidget {
+import 'package:work_samurai/screens/worker/pages/gigs/Pending/PendingComponent.dart';
+class PendingJobs extends StatefulWidget {
   @override
-  _OffersPageState createState() => _OffersPageState();
+  _PendingJobsState createState() => _PendingJobsState();
 }
 
-class _OffersPageState extends State<OffersPage> {
-  OffersComponent _component;
-  OffersProvider _provider;
-  ScrollController _controller;
+class _PendingJobsState extends State<PendingJobs> {
+  PendingComponent _component;
+  // // OffersProvider _provider;
+  // ScrollController _controller;
   int pageNumber = 0;
   FutureJobsResponse futureJobsResponse = FutureJobsResponse.empty();
   List<Data> _futureJobsList = List<Data>();
@@ -29,21 +26,16 @@ class _OffersPageState extends State<OffersPage> {
   int currentPage = 0;
 
   final PagingController<int, Data> _pagingController =
-      PagingController(firstPageKey: 0);
+  PagingController(firstPageKey: 0);
 
   @override
   void initState() {
     super.initState();
-    _provider = Provider.of<OffersProvider>(context, listen: false);
-    _component = OffersComponent();
-    _controller = ScrollController();
-    Future.delayed(Duration.zero, () {
-      _provider.initialize(context: context);
-    });
+    _component = PendingComponent();
     _pagingController.addPageRequestListener(
-      (pageKey) async {
+          (pageKey) async {
         await getFutureJobs(
-          jobType: 1,
+          jobType: 4,
           pageSize: Constants.pageSize,
           pageNumber: pageNumber,
         );
@@ -52,15 +44,7 @@ class _OffersPageState extends State<OffersPage> {
   }
 
   @override
-  void dispose() {
-    super.dispose();
-    _pagingController.dispose();
-    _controller.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    Provider.of<OffersProvider>(context, listen: true);
     return Container(
       margin: EdgeInsets.symmetric(
         horizontal: horizontalValue(
@@ -69,7 +53,7 @@ class _OffersPageState extends State<OffersPage> {
       ),
       child: RefreshIndicator(
         onRefresh: () => Future.sync(
-          () => _pagingController.refresh(),
+              () => _pagingController.refresh(),
         ),
         child: PagedListView<int, Data>.separated(
           pagingController: _pagingController,
@@ -81,25 +65,17 @@ class _OffersPageState extends State<OffersPage> {
           builderDelegate: PagedChildBuilderDelegate<Data>(
             itemBuilder: (context, item, index) =>
                 _component.getSingleContainer(
-              context: this.context,
-              jobTitle: item.name,
-              dateTime: item.startDate,
-              location: item.name,
-              totalAmount: item.rate,
-              amountHour: item.rate,
-              acceptJob: () async {
-                final response = await _provider.acceptJob(
-                    context: this.context, jobId: item.iD);
-
-                //_component.alertDialogueContainer(context);
-              },
-              rejectJob: () async {
-                final respons = await _provider.rejectJob(
                   context: context,
-                  jobId: item.iD,
-                );
-              },
-            ),
+                  jobTitle: item.name,
+                  dateTime: item.startDate,
+                  location: item.name,
+                  totalAmount: item.rate,
+                  amountHour: item.rate,
+                  acceptJob: () async {
+                  },
+                  rejectJob: () async {
+                  },
+                ),
           ),
         ),
       ),
