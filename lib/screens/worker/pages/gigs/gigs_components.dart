@@ -320,6 +320,7 @@ class GigsComponents {
         @required onReject(),
         @required String amountHour}) {
     return Container(
+      height: AppSizes.height *.3,
       margin: EdgeInsets.symmetric(
         horizontal: horizontalValue(
           15.0,

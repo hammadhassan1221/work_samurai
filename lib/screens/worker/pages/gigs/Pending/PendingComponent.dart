@@ -145,33 +145,6 @@ class PendingComponent{
             width: double.infinity,
             color: AppColors.clr_field,
           ),
-          Container(
-            height: AppSizes.heightRatio * 45,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // getCancelActionButton(
-                //   context: context,
-                //   buttonColor: AppColors.clr_bg_black,
-                //   icon: Icons.close,
-                //   onPress: rejectJob,
-                //   name: "Skip",
-                // ),
-                Container(
-                  height: double.infinity,
-                  width: 1,
-                  color: AppColors.clr_field,
-                ),
-                // getStartActionButton(
-                //   context: context,
-                //   buttonColor: AppColors.clr_green,
-                //   icon: MdiIcons.check,
-                //   onPress: acceptJob,
-                //   name: "Accept",
-                // )
-              ],
-            ),
-          ),
         ],
       ),
     );

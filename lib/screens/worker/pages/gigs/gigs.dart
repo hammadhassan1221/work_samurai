@@ -8,6 +8,7 @@ import 'package:work_samurai/screens/worker/pages/gigs/gigs_components.dart';
 import 'package:work_samurai/screens/worker/pages/gigs/gigs_provider.dart';
 import 'package:work_samurai/screens/worker/pages/gigs/Pending/PendingJobs.dart';
 import 'package:work_samurai/screens/worker/pages/gigs/offers/offers_page.dart';
+import 'package:work_samurai/screens/worker/pages/gigs/confirmed/confirmed_page.dart';
 import 'package:work_samurai/screens/worker/worker_provider.dart';
 import 'package:work_samurai/widgets/spacer.dart';
 import 'package:work_samurai/widgets/widgets.dart';
@@ -76,26 +77,27 @@ class _GigsState extends State<Gigs> with SingleTickerProviderStateMixin {
               children: <Widget>[
                 OffersPage(),
                 PendingJobs(),
-                GestureDetector(
-                  onTap: (){
-                    _gigsComponents.newTaskModalBottomSheet(context);
-                  },
-                  child: _gigsComponents.getConfirmedContainer(
-                    context: context,
-                    jobTitle: "Receptionist",
-                    dateTime: "23 Nov, 2020",
-                    location: "Crown Hotel, New York",
-                    totalAmount: "240",
-                    amountHour: "20",
-                    onLeave: (){
-                      ConfirmedProvider().leaveForJob(context, 1014);
-                    },
-                    onReject: (){
-                      ConfirmedProvider().rejectJob(context, 1014);
-                    }
-
-                  ),
-                ),
+                // GestureDetector(
+                //   onTap: (){
+                //     _gigsComponents.newTaskModalBottomSheet(context);
+                //   },
+                //   child: _gigsComponents.getConfirmedContainer(
+                //     context: context,
+                //     jobTitle: "Receptionist",
+                //     dateTime: "23 Nov, 2020",
+                //     location: "Crown Hotel, New York",
+                //     totalAmount: "240",
+                //     amountHour: "20",
+                //     onLeave: (){
+                //       ConfirmedProvider().leaveForJob(context, 1014);
+                //     },
+                //     onReject: (){
+                //       ConfirmedProvider().rejectJob(context, 1014);
+                //     }
+                //
+                //   ),
+                // ),
+                ConfirmedJob(),
                 InProgressPage(),
 
               ],
