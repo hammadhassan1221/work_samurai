@@ -8,6 +8,8 @@ import 'package:work_samurai/network/gigs/gigs_api_end_points.dart';
 import 'package:work_samurai/res/strings.dart';
 import 'package:work_samurai/widgets/spacer.dart';
 import 'package:work_samurai/screens/worker/pages/gigs/Pending/PendingComponent.dart';
+import 'package:work_samurai/screens/worker/pages/gigs/gigs_components.dart';
+
 class PendingJobs extends StatefulWidget {
   @override
   _PendingJobsState createState() => _PendingJobsState();
@@ -15,6 +17,7 @@ class PendingJobs extends StatefulWidget {
 
 class _PendingJobsState extends State<PendingJobs> {
   PendingComponent _component;
+
   // // OffersProvider _provider;
   // ScrollController _controller;
   int pageNumber = 0;
@@ -52,29 +55,42 @@ class _PendingJobsState extends State<PendingJobs> {
         ),
       ),
       child: RefreshIndicator(
-        onRefresh: () => Future.sync(
-              () => _pagingController.refresh(),
-        ),
+        onRefresh: () =>
+            Future.sync(
+                  () => _pagingController.refresh(),
+            ),
         child: PagedListView<int, Data>.separated(
           pagingController: _pagingController,
           shrinkWrap: true,
           scrollDirection: Axis.vertical,
-          separatorBuilder: (context, index) => verticalSpacer(
-            16.0,
-          ),
+          separatorBuilder: (context, index) =>
+              verticalSpacer(
+                16.0,
+              ),
           builderDelegate: PagedChildBuilderDelegate<Data>(
             itemBuilder: (context, item, index) =>
-                _component.getSingleContainer(
-                  context: context,
-                  jobTitle: item.name,
-                  dateTime: item.startDate,
-                  location: item.name,
-                  totalAmount: item.rate,
-                  amountHour: item.rate,
-                  acceptJob: () async {
+                GestureDetector(
+                  onTap: () {
+                    GigsComponents().newTaskModalBottomSheet(
+                        context, jobTitle: item.name,
+                        rating: 4.5,
+                        date: item.startDate,
+                        time: item.estimatedDuration.toString() +" minutes",
+                        pay: "${item.rate}\$ /hour",
+                        contactPerson: "anonymous",
+                        place: item.distance.toString() +" meters away",
+                        instructions: item.description);
                   },
-                  rejectJob: () async {
-                  },
+                  child: _component.getSingleContainer(
+                    context: context,
+                    jobTitle: item.name,
+                    dateTime: item.startDate,
+                    location: item.name,
+                    totalAmount: item.rate,
+                    amountHour: item.rate,
+                    acceptJob: () async {},
+                    rejectJob: () async {},
+                  ),
                 ),
           ),
         ),

@@ -554,7 +554,8 @@ class GigsComponents {
     );
   }
 
-  newTaskModalBottomSheet(context) {
+  newTaskModalBottomSheet(context,
+  {@required String jobTitle,@required double rating,@required String date, @required String time,@required String pay,@required String contactPerson,@required String place,@required String instructions}) {
     showModalBottomSheet(
         context: context,
         builder: (BuildContext context) {
@@ -583,10 +584,10 @@ class GigsComponents {
                                     children: [
                                       Row(
                                         children: [
-                                          Text("Waiter",
+                                          Text(jobTitle,
                                               textAlign: TextAlign.left,
                                               style: TextStyle(
-                                                fontSize: 22,
+                                                fontSize: 18,
                                                 fontFamily: 'MuliBold',
                                               )),
                                         ],
@@ -595,7 +596,7 @@ class GigsComponents {
                                         children: [
                                           Container(
                                             alignment: Alignment.bottomLeft,
-                                            child: Text("Crown Hotel",
+                                            child: Text(place,
                                                 style: TextStyle(
                                                   fontSize: 15,
                                                   color: AppColors.clr_bg_black,
@@ -617,7 +618,7 @@ class GigsComponents {
                                                 children: [
                                                   Image.asset(Assets.star,
                                                       width: 10, height: 10),
-                                                  Text("4.5",
+                                                  Text(rating.toString(),
                                                       style: TextStyle(
                                                         fontSize: 12,
                                                         fontFamily:
@@ -670,7 +671,7 @@ class GigsComponents {
                                 Row(
                                   children: [
                                     Text(
-                                      "Friday, 25 Sep",
+                                      date,
                                       style: TextStyle(
                                         fontSize: 15,
                                         fontFamily: 'MuliRegular',
@@ -711,7 +712,7 @@ class GigsComponents {
                                 Row(
                                   children: [
                                     Text(
-                                      "10:00am - 5:00pm",
+                                      time,
                                       style: TextStyle(
                                         fontSize: 15,
                                         fontFamily: 'MuliRegular',
@@ -752,7 +753,7 @@ class GigsComponents {
                                 Row(
                                   children: [
                                     Text(
-                                      "\$140 (\$20/h x 7 hours)",
+                                      pay,
                                       style: TextStyle(
                                         fontSize: 15,
                                         fontFamily: 'MuliRegular',
@@ -793,7 +794,7 @@ class GigsComponents {
                                 Row(
                                   children: [
                                     Text(
-                                      "John Doe",
+                                      contactPerson,
                                       style: TextStyle(
                                         fontSize: 15,
                                         fontFamily: 'MuliRegular',
@@ -834,7 +835,7 @@ class GigsComponents {
                                 Row(
                                   children: [
                                     Text(
-                                      "Crown Hotel, New York, USA",
+                                      place,
                                       style: TextStyle(
                                         fontSize: 15,
                                         fontFamily: 'MuliRegular',
@@ -877,7 +878,7 @@ class GigsComponents {
                           Container(
                               alignment: Alignment.centerLeft,
                               child: Text(
-                                "Wear white shirt with black pants and black shoes.",
+                                instructions,//"Wear white shirt with black pants and black shoes.",
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: AppColors.clr_bg_black,
@@ -887,77 +888,77 @@ class GigsComponents {
                           SizedBox(
                             height: AppSizes.height * 0.02,
                           ),
-                          Container(
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: AppColors.clr_field,
-                                ),
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Container(
-                                      height: AppSizes.height * 0.06,
-                                      decoration: BoxDecoration(
-                                        border: Border(
-                                          right: BorderSide(
-                                              width: 2.0,
-                                              color: AppColors.clr_field),
-                                        ),
-                                        color: Colors.white,
-                                      ),
-                                      padding:
-                                      EdgeInsets.all(AppSizes.width * 0.02),
-                                      width: AppSizes.width * 0.44,
-                                      child: Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.center,
-                                        children: [
-                                          Image.asset(
-                                            Assets.cancelgig,
-                                            height: 20,
-                                            width: 20,
-                                            color: AppColors.clr_bg_black,
-                                          ),
-                                          SizedBox(
-                                            width: AppSizes.width * 0.01,
-                                          ),
-                                          Text("Skip",
-                                              style: TextStyle(
-                                                fontSize: 14,
-                                                fontFamily: 'MuliRegular',
-                                                color: AppColors.clr_bg_black,
-                                              )),
-                                        ],
-                                      )),
-                                  Container(
-                                      height: AppSizes.height * 0.06,
-                                      padding:
-                                      EdgeInsets.all(AppSizes.width * 0.02),
-                                      decoration: BoxDecoration(
-                                          color: AppColors.clr_white),
-                                      width: AppSizes.width * 0.44,
-                                      child: Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.center,
-                                        children: [
-                                          Icon(
-                                            Icons.check,
-                                            color: AppColors.clr_green,
-                                            size: 18,
-                                          ),
-                                          SizedBox(
-                                            width: AppSizes.width * 0.01,
-                                          ),
-                                          Text("Accept",
-                                              style: TextStyle(
-                                                fontSize: 14,
-                                                color: AppColors.clr_green,
-                                              )),
-                                        ],
-                                      )),
-                                ],
-                              )),
+                          // Container(
+                          //     decoration: BoxDecoration(
+                          //       border: Border.all(
+                          //         color: AppColors.clr_field,
+                          //       ),
+                          //     ),
+                          //     child: Row(
+                          //       mainAxisAlignment: MainAxisAlignment.center,
+                          //       children: [
+                          //         Container(
+                          //             height: AppSizes.height * 0.06,
+                          //             decoration: BoxDecoration(
+                          //               border: Border(
+                          //                 right: BorderSide(
+                          //                     width: 2.0,
+                          //                     color: AppColors.clr_field),
+                          //               ),
+                          //               color: Colors.white,
+                          //             ),
+                          //             padding:
+                          //             EdgeInsets.all(AppSizes.width * 0.02),
+                          //             width: AppSizes.width * 0.44,
+                          //             child: Row(
+                          //               mainAxisAlignment:
+                          //               MainAxisAlignment.center,
+                          //               children: [
+                          //                 Image.asset(
+                          //                   Assets.cancelgig,
+                          //                   height: 20,
+                          //                   width: 20,
+                          //                   color: AppColors.clr_bg_black,
+                          //                 ),
+                          //                 SizedBox(
+                          //                   width: AppSizes.width * 0.01,
+                          //                 ),
+                          //                 Text("Skip",
+                          //                     style: TextStyle(
+                          //                       fontSize: 14,
+                          //                       fontFamily: 'MuliRegular',
+                          //                       color: AppColors.clr_bg_black,
+                          //                     )),
+                          //               ],
+                          //             )),
+                          //         Container(
+                          //             height: AppSizes.height * 0.06,
+                          //             padding:
+                          //             EdgeInsets.all(AppSizes.width * 0.02),
+                          //             decoration: BoxDecoration(
+                          //                 color: AppColors.clr_white),
+                          //             width: AppSizes.width * 0.44,
+                          //             child: Row(
+                          //               mainAxisAlignment:
+                          //               MainAxisAlignment.center,
+                          //               children: [
+                          //                 Icon(
+                          //                   Icons.check,
+                          //                   color: AppColors.clr_green,
+                          //                   size: 18,
+                          //                 ),
+                          //                 SizedBox(
+                          //                   width: AppSizes.width * 0.01,
+                          //                 ),
+                          //                 Text("Accept",
+                          //                     style: TextStyle(
+                          //                       fontSize: 14,
+                          //                       color: AppColors.clr_green,
+                          //                     )),
+                          //               ],
+                          //             )),
+                          //       ],
+                          //     )),
                         ],
                       ))
                 ],
