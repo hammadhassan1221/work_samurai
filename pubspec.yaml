@@ -49,6 +49,7 @@ dependencies:
   timer_count_down: ^1.0.4+1
   device_info: ^0.4.2+9
 
+
   address_search_field: ^3.0.8
   geocoder: ^0.2.1
   flutter_google_places: ^0.2.6
