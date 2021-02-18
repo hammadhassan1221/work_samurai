@@ -43,7 +43,7 @@ class _OffersPageState extends State<OffersPage> {
     _pagingController.addPageRequestListener(
       (pageKey) async {
         await getFutureJobs(
-          jobType: 1,
+          jobType: 0,
           pageSize: Constants.pageSize,
           pageNumber: pageNumber,
         );
