@@ -53,12 +53,13 @@ class DocumentProviders extends ChangeNotifier{
           _loader.hideLoader(context);
           _policeVerificationModel = PoliceVerificationModel.fromJson(
               _genericDecodeEncode.decodeJson(Helper.getString(_response)));
-          if (_response.statusCode == 1){
+          if (_policeVerificationModel.responseCode == 1){
             ApplicationToast.getSuccessToast(
                 durationTime: 3,
                 heading: "Success",
                 subHeading: "Email Sent Successfully. Please check your email for verfication");
           }
+
 
          // Navigator.pushReplacement(context, SlideRightRoute(page: Login()));
         }

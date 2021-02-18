@@ -152,5 +152,9 @@ final multiProviders=[
     create: (_) => AddDocumentProviders(),
     lazy: true,
   ),
+  ChangeNotifierProvider<EarningProviders>(
+    create: (_) => EarningProviders(),
+    lazy: true,
+  ),
   //
 ];
