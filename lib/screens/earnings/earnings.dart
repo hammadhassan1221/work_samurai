@@ -5,8 +5,11 @@ import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/screens/earning_details/earning_details.dart';
 import 'package:work_samurai/screens/earnings/earnings_components.dart';
+import 'package:work_samurai/screens/earnings/earnings_providers.dart';
 import 'package:work_samurai/widgets/toast.dart';
 import 'package:work_samurai/widgets/widgets.dart';
+import 'package:intl/intl.dart';
+import 'package:work_samurai/models/api_models/earning_screen/earning_response.dart';
 
 class Earnings extends StatefulWidget {
   @override
@@ -17,15 +20,30 @@ class _EarningsState extends State<Earnings> {
   EarningComponents _earningComponents;
   DateTime _selectedDate;
   DateTime _fromDate;
+  String earnedAmount = "\$0.0";
+  String hours = "0";
+  String jobs = "0";
+  String fees = "0";
   int _currentYear;
+  TextEditingController _totalAmount;
+  TextEditingController _dateController = TextEditingController();
+  var myFormat = DateFormat('dd-MM-yyyy');
+  var myFormat1 = DateFormat('dd-MM-yyyy');
+  bool forward;
 
   @override
   void initState() {
     super.initState();
     _earningComponents = EarningComponents();
     _selectedDate = DateTime.now();
-    _fromDate = DateTime.now();
-    _currentYear = DateTime.now().year;
+    _fromDate = DateTime.now().add(Duration(days: 7));
+    forward = false;
+
+    DateTime dateTime = DateTime.parse(_selectedDate.toString());
+
+    String strDate = _selectedDate.toString();
+    List<String> arrDateAndTime = strDate.split(" ");
+    arrDateAndTime = arrDateAndTime[0].toString().split("-");
   }
 
   @override
@@ -40,35 +58,38 @@ class _EarningsState extends State<Earnings> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CommonWidgets.getAppBar(text: "Earnings", context: context),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _earningComponents.getDateContainer(
-                  onPress: () => _fromPicker(),
-                  context: context,
-                  iconData: Icons.calendar_today,
-                  fromDate: _getFromDate(_selectedDate.toString()),
-                ),
-                SizedBox(width: AppSizes.width*0.05,),
-                _earningComponents.getDateContainer(
-                    onPress: () => _toPicker(),
-                    context: context,
-                    iconData: Icons.calendar_today,
-                    fromDate: _getToDate(_fromDate.toString())),
-              ],
+            _earningComponents.getAmountByDateContainer(
+                context,
+                //
+                "${myFormat.format(_selectedDate)}",
+                "${myFormat1.format(_fromDate)}",
+                () {
+                  setState(() {
+                    _selectedDate = _selectedDate.subtract(Duration(days: 7));
+                    _fromDate = _fromDate.subtract(Duration(days: 7));
+                  });
+                },
+                "\$ 2020202", () {
+
+                    setState(() {
+                      _selectedDate = _selectedDate.add(Duration(days: 7));
+                      _fromDate = _fromDate.add(Duration(days: 7));
+                    });
+            },
             ),
-            _earningComponents.getAmountContainer(amount: "\$0.00"),
+            _earningComponents.getAmountContainer(
+                amount: "Total Jobs: " "$jobs"),
             _earningComponents.getJobContainer(
-                text: "Hours Worked", amount: ""),
-            _earningComponents.getJobContainer(text: "Jobs", amount: ""),
-            Expanded(
-                child: CommonWidgets.getSignUpButton(
-                    context: context,
-                    onPress: () {
-                      Navigator.push(
-                          context, SlideRightRoute(page: EarningsDetails()));
-                    },
-                    text: "See Details")),
+                text: "Total Hours: " "$hours ", amount: ""),
+            _earningComponents.getJobContainer(
+                text: "Fees Applied: " "\$$fees", amount: ""),
+            Spacer(),
+            CommonWidgets.getBottomButton(
+                name: "See Details",
+                onButtonClick: () {
+                  Navigator.push(
+                      context, SlideRightRoute(page: EarningsDetails()));
+                }),
             SizedBox(
               height: AppSizes.height * 0.025,
             ),
@@ -94,9 +115,19 @@ class _EarningsState extends State<Earnings> {
       ApplicationToast.getWarningToast(
           durationTime: 3,
           heading: "Information",
-          subHeading:
-          "No Date has been selected");
+          subHeading: "No Date has been selected");
     }
+  }
+
+  Future<String> _dateSelection(BuildContext context) async {
+    final DateTime picked = await showDatePicker(
+        context: context,
+        initialDate: _selectedDate,
+        firstDate: DateTime(2015, 8),
+        lastDate: DateTime(2101));
+    setState(() {
+      _selectedDate = picked ?? _selectedDate;
+    });
   }
 
   String _getFromDate(String date) {
@@ -121,8 +152,7 @@ class _EarningsState extends State<Earnings> {
       ApplicationToast.getWarningToast(
           durationTime: 3,
           heading: "Information",
-          subHeading:
-          "No Date has been selected");
+          subHeading: "No Date has been selected");
     }
   }
 
@@ -132,3 +162,18 @@ class _EarningsState extends State<Earnings> {
     return tempDate[1] + "/" + tempDate[2] + "/" + tempDate[0];
   }
 }
+
+/*CommonWidgets.getBottomButton(name: "See Details", onButtonClick: (() async{
+              int days = _fromDate.difference(_selectedDate).inDays;
+              if(days<20){
+                ApplicationToast.getErrorToast(durationTime: 3, heading: null, subHeading: "please select atleast 20 days");
+                return;
+              }
+              EarningResponse result =await EarningProviders().getUserEarning( _getToDate(_selectedDate.toString()),_getToDate(_fromDate.toString()),context);
+              if(result != null){
+                setState(() {
+                  earnedAmount = result.totalEarning;
+                  jobs = result.jobCompleted.toString();
+                });
+              }
+            })),*/

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:work_samurai/animations/slide_right.dart';
 import 'package:work_samurai/commons/utils.dart';
+import 'package:work_samurai/constants/constants.dart';
 import 'package:work_samurai/generic_decode_encode/generic.dart';
 import 'package:work_samurai/helper/helper.dart';
 import 'package:work_samurai/models/api_models/forget_password/forget_password_response.dart';
@@ -47,7 +48,7 @@ class ForgetPasswordProvider extends ChangeNotifier {
         getForgetPasswordURL,
         headers: {
           "Authorization": "Bearer V6U20yUktw/QnZXR9/IBfTAntE76fiSb8f+TyKK4JEQX9+kep3QsNkBElP6QVOl83KUeZe/8ce+gHQEov+yG3U3Ob5PhRZfSwlhjYECDZEzXt3RF7DvhFbrQnLtfwB/Swn90YJaKBLSYwm19bsn0RNfTzh8R0hemwArWiVhX4jcEPZbiXMvprO7DowVGdCwhu10lH17633ZWbQSghqkOEnERV5tO56kLnvEXpCDjF382s1JeZFMK8yHWfY59p1coB4ivYOjtyJJMESp1rYzY2IEiXaS7Z+7F03bwKLAL7BViA=" /*+ _token*/,
-          "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
+          "DeviceID": Constants.deviceId,
           "Content-Type": "multipart/form-data",
         },
         body: {
@@ -78,10 +79,6 @@ class ForgetPasswordProvider extends ChangeNotifier {
   callForgetPasswordAPI(
       {@required BuildContext context, @required String email}) {
     if (email.toString().validateEmail()) {
-      ApplicationToast.getWarningToast(
-          durationTime: 3,
-          heading: "Testing",
-          subHeading: "email is: " + email);
       _forgetPassword(context: context, email: email);
     } else {
       ApplicationToast.getWarningToast(

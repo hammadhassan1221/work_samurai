@@ -16,18 +16,17 @@ import 'package:work_samurai/screens/worker/worker_provider.dart';
 
 class Worker extends StatefulWidget {
   @override
+
   _WorkerState createState() => _WorkerState();
 }
 
-class _WorkerState extends State<Worker> with TickerProviderStateMixin{
-  TabController _tabController;
-  double _value = 0.0;
-
+class _WorkerState extends State<Worker> with TickerProviderStateMixin {
   var pickedTime;
   WorkerProvider workerProvider;
   WorkerComponents workerComponents;
+  int currentIndex;
 
-  final List<Widget> children = [
+  final List<Widget> pages = [
     Gigs(),
     Schedule(),
     WorkerChatRoom(),
@@ -38,110 +37,132 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin{
   @override
   void initState() {
     super.initState();
+    currentIndex = 0;
     workerProvider = Provider.of<WorkerProvider>(context, listen: false);
     workerComponents = WorkerComponents();
-
   }
 
   @override
   Widget build(BuildContext context) {
-    AppSizes.initializeSize(context);
     Provider.of<WorkerProvider>(context, listen: true);
-    return SafeArea(
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: Container(child:_currentPage()),
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: workerProvider.currentIndex,
-          backgroundColor: AppColors.clr_white,
-          type: BottomNavigationBarType.fixed,
-          onTap: (index) {
-            setState(() {
-              workerProvider.setCurrentIndex(index);
-            });
-          },
-          items: [
-            BottomNavigationBarItem(
-              icon: GestureDetector(
-                child:Icon(LineariconsFree.briefcase,color: workerProvider.currentIndex == 0
-                    ? AppColors.clr_bg_black
-                    : AppColors.clr_bg_black2,size: 20,)
-              ),
-              title: Text(
-                "Gigs",style: TextStyle(
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      body: Container(
+        child: pages[currentIndex],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currentIndex,
+        backgroundColor: AppColors.clr_white,
+        type: BottomNavigationBarType.shifting,
+        onTap: (index) {
+          setState(() {
+            currentIndex = index;
+          });
+        },
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(
+              LineariconsFree.briefcase,
+              color: workerProvider.currentIndex == 0
+              ? AppColors.clr_bg_black
+              : AppColors.clr_bg_black2,
+              size: 20,
+            ),
+            title: Text(
+              "Gigs",
+              style: TextStyle(
                 color: workerProvider.currentIndex == 0
                     ? AppColors.clr_bg_black
                     : AppColors.clr_bg_black2,
               ),
-              ),
             ),
-            BottomNavigationBarItem(
-              icon: GestureDetector(
-                child: Image.asset(Assets.schedule,height: 20,width: 20, color: workerProvider.currentIndex == 1
-                    ? AppColors.clr_bg_black
-                    : AppColors.clr_bg_black2,),
-              ),
-              title: Text(
-                "Schedule",style: TextStyle(
+          ),
+          BottomNavigationBarItem(
+            icon: Image.asset(
+              Assets.schedule,
+              height: 20,
+              width: 20,
+              color: workerProvider.currentIndex == 1
+                  ? AppColors.clr_bg_black
+                  : AppColors.clr_bg_black2,
+            ),
+            title: Text(
+              "Schedule",
+              style: TextStyle(
                 color: workerProvider.currentIndex == 1
                     ? AppColors.clr_bg_black
                     : AppColors.clr_bg_black2,
               ),
-              ),
             ),
-            BottomNavigationBarItem(
-              icon: GestureDetector(
-                child: Image.asset(Assets.msgs,height: 20,width: 20, color: workerProvider.currentIndex == 2
-                    ? AppColors.clr_bg_black
-                    : AppColors.clr_bg_black2,),
-              ),
-              title: Text(
-                "Messages",style: TextStyle(
+          ),
+          BottomNavigationBarItem(
+            icon: Image.asset(
+              Assets.msgs,
+              height: 20,
+              width: 20,
+              color: workerProvider.currentIndex == 2
+                  ? AppColors.clr_bg_black
+                  : AppColors.clr_bg_black2,
+            ),
+            title: Text(
+              "Messages",
+              style: TextStyle(
                 color: workerProvider.currentIndex == 2
                     ? AppColors.clr_bg_black
                     : AppColors.clr_bg_black2,
               ),
-              ),
             ),
-            BottomNavigationBarItem(
-              icon: GestureDetector(
-                child: Image.asset(Assets.profile,height: 20,width: 20, color: workerProvider.currentIndex == 3
-                    ? AppColors.clr_bg_black
-                    : AppColors.clr_bg_black2,),
-              ),
-              title: Text(
-                "Profile",style: TextStyle(
+          ),
+          BottomNavigationBarItem(
+            icon: Image.asset(
+              Assets.profile,
+              height: 20,
+              width: 20,
+              color: workerProvider.currentIndex == 3
+                  ? AppColors.clr_bg_black
+                  : AppColors.clr_bg_black2,
+            ),
+            title: Text(
+              "Profile",
+              style: TextStyle(
                 color: workerProvider.currentIndex == 3
                     ? AppColors.clr_bg_black
                     : AppColors.clr_bg_black2,
               ),
-              ),
             ),
-            BottomNavigationBarItem(
-              icon: GestureDetector(
-                child: Image.asset(Assets.alerts,height: 20,width: 20, color: workerProvider.currentIndex == 4
-                    ? AppColors.clr_bg_black
-                    : AppColors.clr_bg_black2,),
-              ),
-              title: Text(
-                "Alerts",style: TextStyle(
+          ),
+          BottomNavigationBarItem(
+            icon: Image.asset(
+              Assets.alerts,
+              height: 20,
+              width: 20,
+              color: workerProvider.currentIndex == 4
+                  ? AppColors.clr_bg_black
+                  : AppColors.clr_bg_black2,
+            ),
+            title: Text(
+              "Alerts",
+              style: TextStyle(
                 color: workerProvider.currentIndex == 4
                     ? AppColors.clr_bg_black
                     : AppColors.clr_bg_black2,
               ),
-              ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 
   _currentPage(){
     if(workerProvider.currentIndex == 0){
+
+
       return Gigs();
     }if(workerProvider.currentIndex == 1){
       return Schedule();
+
+
     }if(workerProvider.currentIndex == 2){
       return WorkerChatRoom();
     }if(workerProvider.currentIndex == 3){

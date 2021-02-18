@@ -76,7 +76,7 @@ class AddDocumentComponents{
     );
   }
 
-  Widget getDescriptionContainer({@required String heading, @required String desc}){
+  Widget getDescriptionContainer({@required String heading, @required TextEditingController desc}){
     return Container(
       height: AppSizes.height*0.18,
         margin: EdgeInsets.only(top:AppSizes.height*0.015,left:AppSizes.width*0.03,right:AppSizes.width*0.03,),
@@ -93,10 +93,9 @@ class AddDocumentComponents{
           keyboardType: TextInputType.multiline,
           maxLines: null,
           //cursorHeight: 12,
-         // controller: controller,
+         controller: desc,
           decoration: InputDecoration(
               hintText: heading,
-
               hintStyle: TextStyle(fontSize: 18,
                 color: AppColors.clr_bg_black,
                 fontFamily: 'MuliRegular',),
@@ -106,7 +105,7 @@ class AddDocumentComponents{
     );
   }
 
-  Widget getDottedContainer({@required Function onPress}){
+  Widget getDottedContainer({@required Function onPress, @required String text}){
     return GestureDetector(
       onTap: onPress,
       child: Center(
@@ -123,7 +122,7 @@ class AddDocumentComponents{
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12)
             ),
-              child: Text("Add File",style: TextStyle(fontSize: 20),),
+              child: Text(text,style: TextStyle(fontSize: 20),),
             ),
           ),
         ),

@@ -1,3 +1,4 @@
+import 'package:bouncing_widget/bouncing_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -24,31 +25,50 @@ class _ForgetPasswordState extends State<ForgetPassword> {
     // TODO: implement initState
     super.initState();
     _forgetPasswordComponents = ForgetPasswordComponents();
-    _forgetPasswordProvider = Provider.of<ForgetPasswordProvider>(context, listen:false);
+    _forgetPasswordProvider =
+        Provider.of<ForgetPasswordProvider>(context, listen: false);
     _forgetPasswordProvider = ForgetPasswordProvider();
     _email = TextEditingController();
   }
+
   @override
   Widget build(BuildContext context) {
-    _forgetPasswordProvider = Provider.of<ForgetPasswordProvider>(context, listen:true);
-    return SafeArea(child: Scaffold(
+    _forgetPasswordProvider =
+        Provider.of<ForgetPasswordProvider>(context, listen: true);
+    return SafeArea(
+        child: Scaffold(
       body: Container(
         height: AppSizes.height,
         width: AppSizes.width,
         color: AppColors.clr_bg,
         child: Column(
           children: [
-
             CommonWidgets.getAppBar(text: "Forgot Password", context: context),
             _forgetPasswordComponents.getConfirmationText(),
+            CommonWidgets.getInputField(
+                backgroundColor: AppColors.transparentColor,
+                isPassword: false,
+                borderColor: AppColors.clr_bg_grey,
+                textColor: AppColors.clr_bg_black2,
+                text: "Email",
+                imagePath: Assets.mail,
+                controller: _email),
+            SizedBox(
+              height: AppSizes.height * 0.025,
+            ),
+            BouncingWidget(
 
-            CommonWidgets.getInputField(backgroundColor: AppColors.transparentColor,isPassword: false ,borderColor: AppColors.clr_bg_grey, textColor: AppColors.clr_bg_black2, text: "Email", imagePath: Assets.mail,controller: _email),
+              duration: Duration(milliseconds: 100),
+              scaleFactor: 0.5,
+              onPressed: () {
+                _forgetPasswordProvider.callForgetPasswordAPI(
+                    context: context, email: _email.text.toString());
+              },
 
-           // Expanded(child: CommonWidgets.getSignUpButton(context: context, onPress: (){}, text: "Reset My Password")),
-            SizedBox(height: AppSizes.height*0.025,),
-            CommonWidgets.getSignUpButton(context: context, onPress: (){
-              _forgetPasswordProvider.callForgetPasswordAPI(context: context, email: _email.text.toString());
-            }, text: "Reset my Password",)
+              child: CommonWidgets.getBottomButton(
+                name: "Reset my Password",
+              ),
+            )
           ],
         ),
       ),

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:work_samurai/animations/slide_right.dart';
 import 'package:work_samurai/commons/utils.dart';
+import 'package:work_samurai/constants/constants.dart';
 import 'package:work_samurai/generic_decode_encode/generic.dart';
 import 'package:work_samurai/helper/helper.dart';
 import 'package:work_samurai/models/api_models/login_screen/login_response.dart';
@@ -14,6 +15,7 @@ import 'package:work_samurai/models/hitting_model/sign_up_screen/sign_up_model.d
 import 'package:work_samurai/network/api_urls.dart';
 import 'package:work_samurai/network/network_helper.dart';
 import 'package:work_samurai/network/network_helper_impl.dart';
+import 'package:work_samurai/res/strings.dart';
 import 'package:work_samurai/screens/worker/worker.dart';
 import 'package:work_samurai/utilities/utilities.dart';
 import 'package:work_samurai/widgets/loader.dart';
@@ -35,7 +37,11 @@ class SignUpProvider extends ChangeNotifier {
   Dio dio = Dio();
 
   init({@required BuildContext context}) async {
+    skills = [];
+    skillIDs = [];
     await getAppData(context: context);
+
+
     this._context = context;
   }
 
@@ -83,7 +89,6 @@ class SignUpProvider extends ChangeNotifier {
   }) async {
     try {
       var connectivityResult = await (Connectivity().checkConnectivity());
-      connectivityResult == ConnectivityResult.none;
       if(connectivityResult != ConnectivityResult.none){
       _loader.showLoader(context: context);
       var formData = Map<String, dynamic>();
@@ -91,7 +96,7 @@ class SignUpProvider extends ChangeNotifier {
       formData['Lastname'] = lastName;
       formData['EmailAddress'] = email;
       formData['Password'] = password;
-      formData['Gender'] = gender;
+      formData['Gender'] = 0;
       formData['Mobile'] = phone;
       formData['TNCAccepted'] = true;
       formData['SkillID'] = int.parse(skill);
@@ -102,7 +107,7 @@ class SignUpProvider extends ChangeNotifier {
         data: formData,
         options: Options(
           contentType: Headers.formUrlEncodedContentType,
-          headers: {"DeviceID": "Device Id goes here"},
+          headers: {"DeviceID": Constants.deviceId},
         ),
       );
       if (_response.statusCode != 200) {
