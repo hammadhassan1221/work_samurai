@@ -62,6 +62,22 @@ class Assets{
   static const String earning = "assets/png/credit_card_alt@3x.png";
   static const String userCard = "assets/png/id_card@3x.png";
 
+
+  static const String gigsActive = "assets/png/1.1.png";
+  static const String gigsInactive = "assets/png/1.png";
+
+  static const String scheduleActive = "assets/png/2.2.png";
+  static const String scheduleInactive = "assets/png/2.png";
+
+  static const String messagesActive = "assets/png/3.3.png";
+  static const String messagesInactive = "assets/png/3.png";
+
+  static const String profileActive = "assets/png/4.4.png";
+  static const String profileInactive = "assets/png/4.png";
+
+  static const String alertsActive = "assets/png/5.5.png";
+  static const String alertsInactive = "assets/png/5.png";
+
  //jpg
   static const String google = "assets/jpg/GoogleMaps.jpg";
 

@@ -67,12 +67,21 @@ class PasswordProviders extends ChangeNotifier{
           _loader.hideLoader(context);
 
           GenericResponse _genericResponse = GenericResponse.fromJson(_response.data);
-          ApplicationToast.getSuccessToast(
-              durationTime: 3,
-              heading: "Success",
-              subHeading: "Login Successful");
-          Navigator.pushReplacement(context, SlideRightRoute(page: Worker()));
+          if (_genericResponse.responseCode == 1) {
+            ApplicationToast.getSuccessToast(
+                durationTime: 3,
+                heading: "Success",
+                subHeading: "Successfully changed password");
+            Navigator.pushReplacement(context, SlideRightRoute(page: Worker()));
+          }
+          else if(_genericResponse.responseCode == 35 ){
+            ApplicationToast.getWarningToast(
+                durationTime: 3,
+                heading: "Error",
+                subHeading: "Old Password is incorrect");
+          }
         }
+
       }
     }catch(e){
       _loader.hideLoader(context);

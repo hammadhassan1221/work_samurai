@@ -132,7 +132,7 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                               style: TextStyle(
                                 color: AppColors.clr_bg_black,
                                 fontSize: 14,
-                                fontFamily: 'MuliRegular',
+                                fontFamily: Assets.muliRegular,
                               ),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
