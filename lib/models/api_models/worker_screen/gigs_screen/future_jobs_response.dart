@@ -38,6 +38,7 @@ class Data {
   bool isInstant;
   bool autoAssign;
   double distance;
+  bool leftForJob;
   Data(
       {this.iD,
         this.name,
@@ -64,6 +65,7 @@ class Data {
     isInstant = json['IsInstant'];
     autoAssign = json['AutoAssign'];
     distance = json['Distance'];
+    leftForJob = json['LeftForJob'];
   }
 
   Map<String, dynamic> toJson() {
@@ -79,6 +81,7 @@ class Data {
     data['IsInstant'] = this.isInstant;
     data['AutoAssign'] = this.autoAssign;
     data['Distance'] = this.distance;
+    data['LeftForJob'] = this.leftForJob;
     return data;
   }
 }

@@ -10,6 +10,7 @@ import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/res/strings.dart';
 import 'package:work_samurai/screens/edit_profile/edit_profile.dart';
 import 'package:work_samurai/screens/worker/pages/account/account.dart';
+import 'package:work_samurai/widgets/MapView.dart';
 import 'package:work_samurai/widgets/spacer.dart';
 import 'package:work_samurai/widgets/toast.dart';
 import 'package:work_samurai/widgets/widgets.dart';
@@ -318,6 +319,8 @@ class GigsComponents {
         @required String totalAmount,
         @required onLeave(),
         @required onReject(),
+        @required onStart(),
+        @required bool leftForJob,
         @required String amountHour}) {
     return Container(
       height: AppSizes.height *.3,
@@ -464,6 +467,17 @@ class GigsComponents {
                         width: 1,
                         color: AppColors.clr_field,
                       ),
+                      leftForJob?
+                      getStartActionButton(
+                        context: context,
+                        buttonColor: AppColors.clr_bg_black,
+                        icon: Entypo.arrows_ccw,
+                        onPress: (){onStart();},
+                        name: "Start",
+                      )
+
+
+                          :
                       getStartActionButton(
                         context: context,
                         buttonColor: AppColors.clr_bg_black,
@@ -555,7 +569,7 @@ class GigsComponents {
   }
 
   newTaskModalBottomSheet(context,
-  {@required String jobTitle,@required double rating,@required String date, @required String time,@required String pay,@required String contactPerson,@required String place,@required String instructions}) {
+  {@required String jobTitle,@required double lat,@required double long,@required double rating,@required String date, @required String time,@required String pay,@required String contactPerson,@required String place,@required String instructions}) {
     showModalBottomSheet(
         context: context,
         builder: (BuildContext context) {
@@ -856,10 +870,15 @@ class GigsComponents {
                           Container(
                             height: AppSizes.height * 0.4,
                             width: AppSizes.width,
-                            child: Image.asset(
-                              Assets.google,
-                              fit: BoxFit.fill,
-                            ),
+                            child:
+                            MapView(startLat: lat,
+                                startLong: lat,
+                                apiKey: null,
+                                directionsApiKey: "AIzaSyBxBzba_srvA-PJBBF2JEaqswGUibpzeNQ"),
+                            // Image.asset(
+                            //   Assets.google,
+                            //   fit: BoxFit.fill,
+                            // ),
                           ),
                           Divider(),
                           Container(
