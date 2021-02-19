@@ -475,6 +475,7 @@ class GigsComponents {
                         onPress: (){onStart();},
                         name: "Start",
                       )
+
                           :
                       getStartActionButton(
                         context: context,
