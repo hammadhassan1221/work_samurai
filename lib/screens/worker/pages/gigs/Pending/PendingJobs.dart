@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:work_samurai/constants/constants.dart';
@@ -71,15 +73,19 @@ class _PendingJobsState extends State<PendingJobs> {
             itemBuilder: (context, item, index) =>
                 GestureDetector(
                   onTap: () {
-                    GigsComponents().newTaskModalBottomSheet(
-                        context, jobTitle: item.name,
-                        rating: 4.5,
-                        date: item.startDate,
-                        time: item.estimatedDuration.toString() +" minutes",
-                        pay: "${item.rate}\$ /hour",
-                        contactPerson: "anonymous",
-                        place: item.distance.toString() +" meters away",
-                        instructions: item.description);
+                    getJob(item.iD).then((value) {
+                      GigsComponents().newTaskModalBottomSheet(
+                          context, jobTitle: item.name,
+                          rating: 4.5,
+                          date: item.startDate,
+                          time: item.estimatedDuration.toString() +" minutes",
+                          pay: "${item.rate}\$ /hour",
+                          contactPerson: "anonymous",
+                          place: item.distance.toString() +" meters away",
+                          lat: value.first,
+                          long: value.last,
+                          instructions: item.description);
+                    });
                   },
                   child: _component.getSingleContainer(
                     context: context,
@@ -139,6 +145,57 @@ class _PendingJobsState extends State<PendingJobs> {
       }
     } catch (e) {
       print(e.toString());
+    }
+  }
+  Future<List<double>> getJob(int jobId) async {
+    try {
+      String token =
+          "Bearer " + PreferenceUtils.getString(Strings.ACCESS_TOKEN);
+      debugPrint('Token: $token');
+      var formData = new Map<String, dynamic>();
+      formData['JobId'] = jobId;
+      _dio.options.contentType = Headers.formUrlEncodedContentType;
+      Response _response = await _dio.post(
+        getJobById,
+        data: formData,
+        options: Options(
+          contentType: Headers.formUrlEncodedContentType,
+          headers: {
+            "Authorization": token,
+            "DeviceID": "Device Id goes here",
+          },
+        ),
+      );
+      if (_response.statusCode != 200) {
+        return null;
+      }
+      if (_response.statusCode == 200) {
+        Map<String,dynamic> parsedJson = json.decode(_response.toString());
+        double lat = ((parsedJson["Data"])["Address"])["GPSLat"];
+        double lng = ((parsedJson["Data"])["Address"])["GPSLong"];
+        List<double> latlong = List<double>();
+        latlong.add(lat);
+        latlong.add(lng);
+        return latlong;
+        // if (futureJobsResponse.data.length <= _pageSize) {
+        //   // FutureJobsResponse temp = FutureJobsResponse.empty();
+        //   // temp = FutureJobsResponse.fromJson(_response.data);
+        //   // pageCount = pageCount + temp.data.length;
+        //   // futureJobsResponse.data.addAll(temp.data);
+        //   // _futureJobsList.addAll(futureJobsResponse.data);
+        //   // final isLastPage = temp.data.length < _pageSize;
+        //   // if (isLastPage)
+        //   //   _pagingController.appendLastPage(_futureJobsList);
+        //   // else {
+        //   //   final nextPage = pageNumber + 1;
+        //   //   _pagingController.appendPage(_futureJobsList, nextPage);
+        //   // }
+        // }
+      }
+      return null;
+    } catch (e) {
+      print(e.toString());
+      return null;
     }
   }
 }

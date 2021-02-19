@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:work_samurai/screens/worker/pages/gigs/gigs_components.dart';
 import 'package:work_samurai/screens/worker/pages/gigs/confirmed/confirmed_components.dart';
 import 'package:work_samurai/screens/worker/pages/gigs/confirmed/confirmed_provider.dart';
@@ -83,7 +84,11 @@ class _ConfirmedJobState extends State<ConfirmedJob> {
                       },
                       onReject: (){
                         ConfirmedProvider().rejectJob(context, item.iD);
-                      }
+                      },
+                      onStart: (){
+                        ConfirmedProvider().startJob(context, item.iD);
+                      },
+                      leftForJob: item.leftForJob
                 ),
             ),
           ),
