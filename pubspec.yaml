@@ -50,6 +50,7 @@ dependencies:
   device_info: ^0.4.2+9
   geolocator: ^6.1.4
 
+
   address_search_field: ^3.0.8
   geocoder: ^0.2.1
   flutter_google_places: ^0.2.6

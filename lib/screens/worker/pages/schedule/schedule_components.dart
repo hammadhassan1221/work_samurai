@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/screens/worker/pages/schedule/schedule.dart';
@@ -161,6 +162,7 @@ class ScheduleComponents  with ChangeNotifier{
                                       setState(() {
                                         onClick = !onClick;
                                         isAllday = value;
+
                                       });
                                     }),
                               ],
@@ -191,6 +193,7 @@ class ScheduleComponents  with ChangeNotifier{
                           // ApplicationToast.getSuccessToast(durationTime: 3, heading: "null", subHeading: scheduleMap.toString());
                         }),
                         name: "DONE")
+
                   ],
                 ),
               );
@@ -332,7 +335,6 @@ class ScheduleComponents  with ChangeNotifier{
       ],
     );
   }
-
 // Widget getWedThur({@required String day, @required String time}) {
 //   return GestureDetector(
 //     onTap: () {

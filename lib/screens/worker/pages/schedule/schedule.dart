@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:work_samurai/animations/slide_right.dart';
 import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
@@ -23,7 +22,6 @@ class Schedule extends StatefulWidget {
 }
 
 class _ScheduleState extends State<Schedule> {
-
   double _value = 1.0;
   ScheduleComponents _scheduleComponents;
   ScheduleProviders _scheduleProviders;
@@ -77,6 +75,7 @@ class _ScheduleState extends State<Schedule> {
          this.locationText = city + ", "+ country;
        });
     });
+
   }
 
   @override
@@ -214,6 +213,7 @@ class _ScheduleState extends State<Schedule> {
                         height: AppSizes.height * 0.02,
                       ),
                     ],
+
                   ),
                 )
               ]),
