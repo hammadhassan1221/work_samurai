@@ -18,7 +18,7 @@ class AccountComponent {
         Text(
           text,
           style: TextStyle(
-            fontFamily: 'MuliSemiBold',
+            fontFamily: Assets.muliRegular,
             fontSize: 15,
           ),
         ),
@@ -70,7 +70,7 @@ class AccountComponent {
                           style: TextStyle(
                             // decoration: TextDecoration.underline,
                             fontSize: 18,
-                            fontFamily: 'MuliBold',
+                            fontFamily: Assets.muliBold,
                           )),
                     )),
               ],
@@ -95,7 +95,7 @@ class AccountComponent {
                   Text(
                     text,
                     style: TextStyle(
-                      fontFamily: 'MuliSemiBold',
+                      fontFamily: Assets.muliSemiBold,
                       fontSize: 15,
                     ),
                   )
@@ -119,7 +119,7 @@ class AccountComponent {
             style: TextStyle(
               fontSize: 14,
               color: AppColors.clr_bg_black2,
-              fontFamily: 'MuliRegular',                    )
+              fontFamily: Assets.muliRegular,                    )
         )
     );
   }
@@ -132,7 +132,7 @@ class AccountComponent {
             style: TextStyle(
               fontSize: 18,
               color: AppColors.clr_bg_black,
-              fontFamily: 'MuliBold',
+              fontFamily: Assets.muliBold,
             )
         )
     );
@@ -153,7 +153,7 @@ class AccountComponent {
               compliment,
               style: TextStyle(
                 fontSize: 15,
-                fontFamily: 'MuliSemiBold',
+                fontFamily: Assets.muliSemiBold,
               ),
             ),
             SizedBox(
@@ -175,7 +175,7 @@ class AccountComponent {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 12,
-                        fontFamily: 'MuliRegular',
+                        fontFamily: Assets.muliRegular,
                         color: AppColors.clr_bg_black2,
                       )
                   ),
@@ -200,7 +200,7 @@ class AccountComponent {
                     text1,
                     style: TextStyle(
                       fontSize: 15,
-                      fontFamily: 'MuliRegular',
+                      fontFamily: Assets.muliRegular,
                       color: AppColors.clr_bg_black,
                     )
                 )
@@ -218,7 +218,7 @@ class AccountComponent {
                     text2,
                     style: TextStyle(
                       fontSize: 15,
-                      fontFamily: 'MuliRegular',
+                      fontFamily: Assets.muliRegular,
                       color: AppColors.clr_bg_black,
                     )
                 )
@@ -236,7 +236,7 @@ class AccountComponent {
                     text3,
                     style: TextStyle(
                       fontSize: 15,
-                      fontFamily: 'MuliRegular',
+                      fontFamily: Assets.muliRegular,
                       color: AppColors.clr_bg_black,
                     )
                 )
@@ -255,7 +255,7 @@ class AccountComponent {
                     text4,
                     style: TextStyle(
                       fontSize: 15,
-                      fontFamily: 'MuliRegular',
+                      fontFamily: Assets.muliRegular,
                       color: AppColors.clr_bg_black,
                     )
                 )
@@ -290,7 +290,7 @@ class AccountComponent {
                 "Add Positions",
                 style: TextStyle(
                   fontSize: 15,
-                  fontFamily: 'MuliRegular',
+                  fontFamily: Assets.muliRegular,
                   color: AppColors.clr_bg_black,
                 )
             ),
@@ -311,8 +311,8 @@ class AccountComponent {
                     textAlign: TextAlign.left,
                     style: TextStyle(
                       fontSize: 22,
-                      fontFamily: 'MuliBold,',
-                      fontWeight: FontWeight.bold,
+                      fontFamily: Assets.muliBold,
+                     // fontWeight: FontWeight.bold,
                     )
                 ),
                 SizedBox(
@@ -339,7 +339,7 @@ class AccountComponent {
                             rating,
                             style: TextStyle(
                               fontSize: 12,
-                              fontFamily: 'MuliRegular',
+                              fontFamily: Assets.muliRegular,
                               color: AppColors.clr_bg_black,
                             )
                         )
@@ -355,7 +355,7 @@ class AccountComponent {
                   style: TextStyle(
                     fontSize: 15,
                     color: AppColors.clr_bg_black,
-                    fontFamily: 'MuliSemiBold',
+                    fontFamily: Assets.muliSemiBold,
                   )
               ),
             ),

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:work_samurai/animations/slide_right.dart';
+import 'package:work_samurai/models/api_models/earning_screen/earning_response_model.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/screens/earning_history/earning_history.dart';
@@ -9,11 +10,15 @@ import 'package:work_samurai/widgets/widgets.dart';
 import 'earning_details_components.dart';
 
 class EarningsDetails extends StatefulWidget {
+
   @override
+  EarningResponseModel earningObj;
+  EarningsDetails({@required this.earningObj});
   _EarningsDetailsState createState() => _EarningsDetailsState();
 }
 
 class _EarningsDetailsState extends State<EarningsDetails> {
+
 
   String price = "20";
   String time = "0";
@@ -21,6 +26,7 @@ class _EarningsDetailsState extends State<EarningsDetails> {
   EarningDetailsComponents _earningDetailsComponents;
   @override
   void initState() {
+    print(widget.earningObj);
     // TODO: implement initState
     super.initState();
     _earningDetailsComponents = EarningDetailsComponents();
@@ -39,7 +45,7 @@ class _EarningsDetailsState extends State<EarningsDetails> {
 
               ListView.separated(
                 physics: NeverScrollableScrollPhysics(),
-                itemCount: 13,
+                itemCount: widget.earningObj.data.jobs.length,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
                   return Container(
@@ -65,7 +71,7 @@ class _EarningsDetailsState extends State<EarningsDetails> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Waiter at Crown Hotel",
+                          widget.earningObj.data.jobs[index].description,
                           style: TextStyle(
                               fontFamily: "MuliSemiBold",
                               fontSize: 14,
@@ -74,13 +80,14 @@ class _EarningsDetailsState extends State<EarningsDetails> {
                               decoration: TextDecoration.none),
                         ),
                         SizedBox(
-                          width: AppSizes.width * 0.025,
+                          height: AppSizes.width * 0.04,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
+                            SizedBox(width: 10,),
                             Text(
-                              "\$" "$price" ,
+                              "\$" + widget.earningObj.data.jobs[index].rate.toString() ,
                               style: TextStyle(
                                 color: Colors.black,
                                   fontFamily: "MuliSemiBold",
@@ -102,7 +109,7 @@ class _EarningsDetailsState extends State<EarningsDetails> {
                             ),
                             SizedBox(width: 5,),
                             Text(
-                               "$time " "hour" ,
+                               "$time " + widget.earningObj.data.jobs[index].estimatedDuration.toString() ,
                               style: TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w300,
@@ -125,10 +132,10 @@ class _EarningsDetailsState extends State<EarningsDetails> {
                 },
               ),
 
-              Container(
-                margin: EdgeInsets.symmetric(vertical: 20),
-                alignment: Alignment.bottomCenter,
-                  child: CommonWidgets.getBottomButton(name: "Download Payslip"))
+              // Container(
+              //   margin: EdgeInsets.symmetric(vertical: 20),
+              //   alignment: Alignment.bottomCenter,
+              //     child: CommonWidgets.getBottomButton(name: "Download Payslip"))
             ],
           ),
         ),

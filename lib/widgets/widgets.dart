@@ -22,7 +22,7 @@ class CommonWidgets {
               style: TextStyle(
                   color: AppColors.clr_bg_black,
                   fontSize: 15,
-                  fontFamily: 'MuliRegular'),
+                  fontFamily: Assets.muliRegular),
             ),
             CupertinoSwitch(
                 activeColor: Colors.lightGreenAccent,
@@ -41,7 +41,7 @@ class CommonWidgets {
           style: TextStyle(
               decoration: TextDecoration.none,
             fontSize: 15,
-            fontFamily: 'MuliSemiBold',
+            fontFamily: Assets.muliSemiBold,
           ),
         ),
       ),
@@ -76,7 +76,7 @@ class CommonWidgets {
                 style: TextStyle(
                     color: AppColors.clr_bg_black,
                     fontSize: 16,
-                    fontFamily: 'MuliRegular'),
+                    fontFamily: Assets.muliRegular),
               )
             ],
           ),
@@ -88,7 +88,7 @@ class CommonWidgets {
                 style: TextStyle(
                     fontSize: 16,
                     color: AppColors.clr_bg_black,
-                    fontFamily: 'MuliRegular'),
+                    fontFamily: Assets.muliRegular),
               )
             ],
           ),
@@ -125,7 +125,7 @@ class CommonWidgets {
                 style: TextStyle(
                     color: AppColors.clr_bg_black,
                     fontSize: 16,
-                    fontFamily: 'MuliRegular'),
+                    fontFamily: Assets.muliRegular),
               )
             ],
           ),
@@ -137,7 +137,7 @@ class CommonWidgets {
                 style: TextStyle(
                     fontSize: 16,
                     color: AppColors.clr_bg_black,
-                    fontFamily: 'MuliRegular'),
+                    fontFamily: Assets.muliRegular),
               )
             ],
           ),
@@ -222,7 +222,7 @@ class CommonWidgets {
               labelStyle: TextStyle(
                 fontSize: 12,
                 color: AppColors.clr_bg_black2,
-                fontFamily: 'MuliRegular',
+                fontFamily: Assets.muliRegular,
               ),
               border: InputBorder.none,
               prefixIcon: Padding(
@@ -264,7 +264,7 @@ class CommonWidgets {
               labelStyle: TextStyle(
                 fontSize: 12,
                 color: AppColors.clr_bg_black2,
-                fontFamily: 'MuliRegular',
+                fontFamily:Assets.muliRegular,
               ),
               border: InputBorder.none,
               prefixIcon: Padding(
@@ -306,7 +306,7 @@ class CommonWidgets {
               labelStyle: TextStyle(
                 fontSize: 12,
                 color: AppColors.clr_bg_black2,
-                fontFamily: 'MuliRegular',
+                fontFamily: Assets.muliRegular,
               ),
               border: InputBorder.none,
               prefixIcon: Padding(
@@ -365,7 +365,7 @@ class CommonWidgets {
                 decoration: TextDecoration.none,
                 fontSize: 22,
 
-                fontFamily: 'MuliBold',
+                fontFamily: Assets.muliBold,
 
               ),
             ),
@@ -400,7 +400,7 @@ class CommonWidgets {
           style: TextStyle(
               decoration: TextDecoration.none,
               fontSize: 22,
-              fontFamily: 'MuliBold'),
+              fontFamily: Assets.muliBold),
         ),
       ),
     );
@@ -420,7 +420,7 @@ class CommonWidgets {
           style: TextStyle(
               decoration: TextDecoration.none,
               fontSize: 22,
-              fontFamily: 'MuliBold'),
+              fontFamily: Assets.muliBold),
         ),
       ),
     );
@@ -469,7 +469,7 @@ class CommonWidgets {
                     color: AppColors.clr_bg_black,
                     decoration: TextDecoration.none,
                     fontSize: 16,
-                    fontFamily: 'MuliBold',
+                    fontFamily: Assets.muliBold,
                   ),
                 ),
               ],
@@ -508,7 +508,7 @@ class CommonWidgets {
                 style: TextStyle(
                   color: AppColors.clr_white,
                   fontSize: 14,
-                  fontFamily: 'MuliSemiBold',
+                  fontFamily: Assets.muliSemiBold,
                 ),
               ),
               SizedBox(
@@ -519,7 +519,7 @@ class CommonWidgets {
                 style: TextStyle(
                   color: AppColors.clr_white,
                   fontSize: 10,
-                  fontFamily: 'MuliRegular',
+                  fontFamily: Assets.muliRegular,
                 ),
               )
             ],
@@ -555,7 +555,7 @@ class CommonWidgets {
             style: TextStyle(
               color: AppColors.clr_white,
               fontSize: 16,
-              fontFamily: 'MuliRegular',
+              fontFamily: Assets.muliRegular,
             ),
           ),
         ),
@@ -607,6 +607,7 @@ class CommonWidgets {
                           'We will send a link on your email to reset your password',
                           style: TextStyle(
                             fontSize: 14,
+                            fontFamily: Assets.muliRegular
                           ),
                           textAlign: TextAlign.center,
                         ),

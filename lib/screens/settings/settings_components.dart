@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 
@@ -36,7 +37,7 @@ class SettingsComponents {
                   style: TextStyle(
                     fontSize: 14,
                     color: AppColors.clr_bg_black,
-                    fontFamily: 'MuliSemiBold',
+                    fontFamily: Assets.muliSemiBold,
                   )),
             ),
           ],

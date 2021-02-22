@@ -1,8 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 import 'package:work_samurai/animations/slide_right.dart';
+import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
+import 'package:work_samurai/screens/documents/documents_provider.dart';
 import 'package:work_samurai/screens/earning_details/earning_details.dart';
 import 'package:work_samurai/screens/earnings/earnings_components.dart';
 import 'package:work_samurai/screens/earnings/earnings_providers.dart';
@@ -30,6 +34,7 @@ class _EarningsState extends State<Earnings> {
   var myFormat = DateFormat('dd-MM-yyyy');
   var myFormat1 = DateFormat('dd-MM-yyyy');
   bool forward;
+  EarningProviders _earningProviders;
 
   @override
   void initState() {
@@ -38,65 +43,83 @@ class _EarningsState extends State<Earnings> {
     _selectedDate = DateTime.now();
     _fromDate = DateTime.now().add(Duration(days: 7));
     forward = false;
+    _earningProviders = Provider.of<EarningProviders>(context, listen: false);
+
 
     DateTime dateTime = DateTime.parse(_selectedDate.toString());
 
     String strDate = _selectedDate.toString();
     List<String> arrDateAndTime = strDate.split(" ");
     arrDateAndTime = arrDateAndTime[0].toString().split("-");
+    _earningProviders.init(fromDate: myFormat.format(_selectedDate),toDate:  myFormat1.format(_fromDate) ,context: context);
+
   }
 
   @override
   Widget build(BuildContext context) {
+    Provider.of<EarningProviders>(context, listen: true);
     return SafeArea(
         child: Scaffold(
-      body: Container(
-        height: AppSizes.height,
-        width: AppSizes.width,
-        color: AppColors.clr_bg,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            CommonWidgets.getAppBar(text: "Earnings", context: context),
-            _earningComponents.getAmountByDateContainer(
-                context,
-                //
-                "${myFormat.format(_selectedDate)}",
-                "${myFormat1.format(_fromDate)}",
-                () {
+          body: Container(
+            height: AppSizes.height,
+            width: AppSizes.width,
+            color: AppColors.clr_bg,
+            child: _earningProviders.isUpdated ? Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CommonWidgets.getAppBar(text: "Earnings", context: context),
+                _earningComponents.getAmountByDateContainer(
+                  context,
+                  //
+                  "${myFormat.format(_selectedDate)}",
+                  "${myFormat1.format(_fromDate)}",
+                      () {
+                    setState(() {
+                      _selectedDate = _selectedDate.subtract(Duration(days: 7));
+                      _fromDate = _fromDate.subtract(Duration(days: 7));
+                      _earningProviders.getUserEarnings1(context: context, fromDate: myFormat.format(_selectedDate), toDate: myFormat.format(_fromDate));
+                    });
+                  },
+                  _earningProviders.earning.data.totalEarnings + " ", () {
+
                   setState(() {
-                    _selectedDate = _selectedDate.subtract(Duration(days: 7));
-                    _fromDate = _fromDate.subtract(Duration(days: 7));
+                    _selectedDate = _selectedDate.add(Duration(days: 7));
+                    _fromDate = _fromDate.add(Duration(days: 7));
+                    _earningProviders.getUserEarnings1(context: context, fromDate: myFormat.format(_selectedDate), toDate: myFormat.format(_fromDate));
                   });
                 },
-                "\$ 2020202", () {
-
-                    setState(() {
-                      _selectedDate = _selectedDate.add(Duration(days: 7));
-                      _fromDate = _fromDate.add(Duration(days: 7));
-                    });
-            },
+                ),
+                _earningComponents.getAmountContainer(
+                    amount: "Total Jobs:   " +  _earningProviders.earning.data.jobsCompleted.toString()),
+                _earningComponents.getJobContainer(
+                    text: "Total Hours:    " , amount: _earningProviders.earning.data.duration ),
+                _earningComponents.getJobContainer(
+                    text: "Fees Applied:    " "\$$fees", amount: ""),
+                Spacer(),
+                CommonWidgets.getBottomButton(
+                    name: "See Details",
+                    onButtonClick: () {
+                      if (_earningProviders.earning.data.jobs != null){
+                        Navigator.push(
+                            context, SlideRightRoute(page: EarningsDetails(earningObj: _earningProviders.earning)));
+                      }
+                     else {
+                        ApplicationToast.getWarningToast(durationTime: 3, heading: "Warning", subHeading: "no data found");
+                      }
+                    }),
+                SizedBox(
+                  height: AppSizes.height * 0.025,
+                ),
+              ],
+            ): Container(
+              height: 20,
+              width: 20,
+              child:
+              Lottie.asset(Assets.loader),
             ),
-            _earningComponents.getAmountContainer(
-                amount: "Total Jobs: " "$jobs"),
-            _earningComponents.getJobContainer(
-                text: "Total Hours: " "$hours ", amount: ""),
-            _earningComponents.getJobContainer(
-                text: "Fees Applied: " "\$$fees", amount: ""),
-            Spacer(),
-            CommonWidgets.getBottomButton(
-                name: "See Details",
-                onButtonClick: () {
-                  Navigator.push(
-                      context, SlideRightRoute(page: EarningsDetails()));
-                }),
-            SizedBox(
-              height: AppSizes.height * 0.025,
-            ),
-          ],
-        ),
-      ),
-    ));
+          ),
+        )
+    );
   }
 
   _fromPicker() async {

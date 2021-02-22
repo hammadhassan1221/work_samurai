@@ -1,5 +1,5 @@
 //Base URL
-const String baseUrl = "https://dev-api.worksamurai.com.au/api";
+const String baseUrl = "http://dev-api.worksamurai.com.au/api";
 
 const String loginURL = "$baseUrl/Auth";
 const String signUpURL = "$baseUrl/Signup";
@@ -21,7 +21,7 @@ const String getAllJobMessages = "$baseUrl/Job/Messages";
 const String sendJobMessages = "$baseUrl/Job/Message/Send";
 const String savePreferences = "$baseUrl/User/Preference/Save";
 const String updateUserAddress = "$baseUrl/User/Address/Save";
-const String getUserEarnings = "$baseUrl/User/Earning";
+const String getUsersEarning = "$baseUrl/User/Earning";
 const String updateProfile = "$baseUrl/User/Save";
 const String policeCheck = "$baseUrl/Email/PoliceCheck";
 const String userSettingURL = "$baseUrl/User/Settings/Save";

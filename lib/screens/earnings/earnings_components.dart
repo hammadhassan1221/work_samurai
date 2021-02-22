@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 
@@ -48,7 +49,7 @@ class EarningComponents {
                         EdgeInsets.only(top: AppSizes.height * 0.01, bottom: 1),
                     child: Text(
                       fromDate.isNotEmpty ? '$fromDate' : "Select Date",
-                      style: TextStyle(fontSize: 13),
+                      style: TextStyle(fontSize: 13, fontFamily: Assets.muliSemiBold),
                     ),
                   ),
                 )
@@ -74,18 +75,18 @@ class EarningComponents {
         margin: EdgeInsets.only(
             left: AppSizes.width * 0.04, right: AppSizes.width * 0.04),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
               text,
               style: TextStyle(
                   fontSize: 18,
-                  fontFamily: "MuliSemiBold",
+                  fontFamily: Assets.muliSemiBold,
                   fontWeight: FontWeight.w100),
             ),
             Text(
               amount,
-              style: TextStyle(fontSize: 20, fontFamily: "MuliSemiBold"),
+              style: TextStyle(fontSize: 20, fontFamily: Assets.muliSemiBold),
             ),
           ],
         ));
@@ -110,7 +111,7 @@ class EarningComponents {
           amount,
           style: TextStyle(
               fontSize: 18,
-              fontFamily: "MuliSemiBold",
+              fontFamily: Assets.muliSemiBold,
               fontWeight: FontWeight.w100),
         ));
   }
@@ -132,7 +133,7 @@ class EarningComponents {
                 style: TextStyle(
                   color: Colors.grey,
                   fontSize: 16,
-                  fontFamily: 'MuliSemiBold'
+                  fontFamily: Assets.muliSemiBold
                 ),
               ),
               SizedBox(width:20,),
@@ -141,7 +142,7 @@ class EarningComponents {
                 style: TextStyle(
                     color: Colors.grey,
                     fontSize: 16,
-                    fontFamily: 'MuliSemiBold'
+                    fontFamily: Assets.muliSemiBold
                 ),
               ),
             ],
@@ -168,7 +169,7 @@ class EarningComponents {
                   color: Colors.black,
                   fontSize: 36,
                   decoration: TextDecoration.none,
-                  fontFamily: 'MuliRegular'
+                  fontFamily: Assets.muliRegular
                 ),
               ),
               SizedBox(
@@ -191,7 +192,7 @@ class EarningComponents {
             style: TextStyle(
               color: Colors.grey,
                 fontSize: 16,
-                fontFamily: 'MuliSemiBold'
+                fontFamily: Assets.muliSemiBold
             ),
           ),
         ],
