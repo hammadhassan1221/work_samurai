@@ -39,7 +39,7 @@ class InProgressProvider extends ChangeNotifier {
     int jobType,
   }) async {
     try {
-      _loader.showLoader(context: context);
+      // _loader.showLoader(context: context);
       String token =
           "Bearer " + PreferenceUtils.getString(Strings.ACCESS_TOKEN);
       debugPrint('Token: $token');
@@ -59,16 +59,16 @@ class InProgressProvider extends ChangeNotifier {
         ),
       );
       if (_response.statusCode != 200) {
-        _loader.hideLoader(context);
+        // _loader.hideLoader(context);
       }
       if (_response.statusCode == 200) {
-        _loader.hideLoader(context);
+        // _loader.hideLoader(context);
         inProgressResponse = InProgressResponse.fromJson(_response.data);
         inProgressData = true;
         notifyListeners();
       }
     } catch (e) {
-      _loader.hideLoader(context);
+      // _loader.hideLoader(context);
       print(e.toString());
     }
   }

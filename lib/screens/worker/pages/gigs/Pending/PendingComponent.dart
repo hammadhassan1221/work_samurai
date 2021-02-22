@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/widgets/spacer.dart';
-class ConfirmedComponent{
-
+class PendingComponent{
   Widget _getHeading({String jobTitle}){
     return  Container(
       width: AppSizes.width/1.3,
@@ -150,4 +149,5 @@ class ConfirmedComponent{
       ),
     );
   }
+
 }

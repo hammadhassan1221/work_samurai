@@ -6,11 +6,10 @@ import 'package:work_samurai/commons/utils.dart';
 import 'package:work_samurai/constants/constants.dart';
 import 'package:work_samurai/models/api_models/worker_screen/gigs_screen/future_jobs_response.dart';
 import 'package:work_samurai/network/gigs/gigs_api_end_points.dart';
-import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/strings.dart';
+import 'package:work_samurai/widgets/spacer.dart';
 import 'package:work_samurai/screens/worker/pages/gigs/offers/offers_components.dart';
 import 'package:work_samurai/screens/worker/pages/gigs/offers/offers_provider.dart';
-import 'package:work_samurai/widgets/spacer.dart';
 
 class OffersPage extends StatefulWidget {
   @override
@@ -34,7 +33,6 @@ class _OffersPageState extends State<OffersPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _provider = Provider.of<OffersProvider>(context, listen: false);
     _component = OffersComponent();
@@ -45,7 +43,7 @@ class _OffersPageState extends State<OffersPage> {
     _pagingController.addPageRequestListener(
       (pageKey) async {
         await getFutureJobs(
-          jobType: 1,
+          jobType: 0,
           pageSize: Constants.pageSize,
           pageNumber: pageNumber,
         );
@@ -55,7 +53,6 @@ class _OffersPageState extends State<OffersPage> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _pagingController.dispose();
     _controller.dispose();
