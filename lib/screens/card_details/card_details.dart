@@ -39,55 +39,54 @@ class _CardDetailsState extends State<CardDetails> {
   @override
   Widget build(BuildContext context) {
     Provider.of<CardDetailsProvider>(context, listen: true);
-    return SafeArea(
-        child: Scaffold(
+    return Scaffold(
       body: Container(
-        height: AppSizes.height,
-        width: AppSizes.width,
-        color: AppColors.clr_bg,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            CommonWidgets.getAppBar(text: "Bank Information", context: context),
-            _cardDetailsComponents.getHeading(text: "Payment Methods"),
-            _cardDetailsComponents.getInputField(
-                backgroundColor: AppColors.clr_bg,
-                borderColor: AppColors.sign_field,
-                textColor: AppColors.clr_bg_black,
-                text: "Account Name",
-                controller: _accountName,
-                isPassword: false),
-            _cardDetailsComponents.getInputField(
-                backgroundColor: AppColors.clr_bg,
-                borderColor: AppColors.sign_field,
-                textColor: AppColors.clr_bg_black,
-                text: "BSB",
-                controller: _bsbNum,
-                isPassword: false),
-            _cardDetailsComponents.getInputField(
-                backgroundColor: AppColors.clr_bg,
-                borderColor: AppColors.sign_field,
-                textColor: AppColors.clr_bg_black,
-                text: "Account Number",
-                controller: _accountNumber,
-                isPassword: false),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: CommonWidgets.getBottomButton(
-                  onButtonClick: () { _cardDetailsProvider.callBankInfoAPI(
-                  context: context,
-                  bankName: _bankName.text.toString(),
-                  accountNumber: _accountNumber.text.toString(),
-                  accountHolder: _accountName.text.toString(),
-                  bsbNum: _bsbNum.text.toString());
-              }, name: "Update Details"),
-            ),
-            SizedBox(
-              height: AppSizes.height * 0.025,
-            ),
-          ],
+    height: AppSizes.height,
+    width: AppSizes.width,
+    color: AppColors.clr_bg,
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        CommonWidgets.getAppBarAccount(text: "Bank Information", context: context),
+        _cardDetailsComponents.getHeading(text: "Payment Methods"),
+        _cardDetailsComponents.getInputField(
+            backgroundColor: AppColors.clr_bg,
+            borderColor: AppColors.sign_field,
+            textColor: AppColors.clr_bg_black,
+            text: "Account Name",
+            controller: _accountName,
+            isPassword: false),
+        _cardDetailsComponents.getInputField(
+            backgroundColor: AppColors.clr_bg,
+            borderColor: AppColors.sign_field,
+            textColor: AppColors.clr_bg_black,
+            text: "BSB",
+            controller: _bsbNum,
+            isPassword: false),
+        _cardDetailsComponents.getInputField(
+            backgroundColor: AppColors.clr_bg,
+            borderColor: AppColors.sign_field,
+            textColor: AppColors.clr_bg_black,
+            text: "Account Number",
+            controller: _accountNumber,
+            isPassword: false),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: CommonWidgets.getBottomButton(
+              onButtonClick: () { _cardDetailsProvider.callBankInfoAPI(
+              context: context,
+              bankName: _bankName.text.toString(),
+              accountNumber: _accountNumber.text.toString(),
+              accountHolder: _accountName.text.toString(),
+              bsbNum: _bsbNum.text.toString());
+          }, name: "Update Details"),
         ),
+        SizedBox(
+          height: AppSizes.height * 0.025,
+        ),
+      ],
+    ),
       ),
-    ));
+    );
   }
 }

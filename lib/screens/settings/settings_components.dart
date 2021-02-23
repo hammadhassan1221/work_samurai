@@ -57,7 +57,6 @@ class SettingsComponents {
       onTap: onPress,
       child: Container(
         margin: EdgeInsets.only(
-          top: AppSizes.width * 0.03,
           left: AppSizes.width * 0.03,
           right: AppSizes.width * 0.03,
         ),

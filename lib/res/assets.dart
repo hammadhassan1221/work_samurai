@@ -77,6 +77,7 @@ class Assets{
 
   static const String alertsActive = "assets/png/5.5.png";
   static const String alertsInactive = "assets/png/5.png";
+  static const String dp = "assets/png/user.png";
 
  //jpg
   static const String google = "assets/jpg/GoogleMaps.jpg";

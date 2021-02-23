@@ -32,51 +32,50 @@ class _DocumentVerificationState extends State<DocumentVerification> {
   @override
   Widget build(BuildContext context){
     _documentProviders = Provider.of<DocumentProviders>(context, listen: true);
-    return SafeArea(
-        child: Scaffold(
-          body: Container(
-            height: AppSizes.height,
-            width: AppSizes.width,
-            color: AppColors.clr_bg,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-                children:[
-                  CommonWidgets.getAppBar(text: "Document Verification", context: context),
-                 Expanded(
-                   child: ListView(
-                     children: [
-                       _documentComponents.getHeadings(text: "Worker Requirements"),
-                       SizedBox(height:AppSizes.height*0.015),
-                       _documentComponents.getUserInfo2(onPress: () async{
-                        _documentProviders.policeVerification(context: context);
-                         //old implementation
-                        // Navigator.push(context, SlideRightRoute(page: BackgroundCheck()));
-                         //const url = 'https://www.google.com';
-                         // if (await canLaunch(url)) {
-                         // await launch(url);
-                         // }
-                       }, text: "Unverified", text1: "Criminal Background Check",),
-                       SizedBox(height:AppSizes.height*0.015),
+    return Scaffold(
+      body: Container(
+        height: AppSizes.height,
+        width: AppSizes.width,
+        color: AppColors.clr_bg,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+            children:[
+              CommonWidgets.getAppBarAccount(text: "Document Verification", context: context),
+             Expanded(
+               child: ListView(
+                 children: [
+                   _documentComponents.getHeadings(text: "Worker Requirements"),
+                   SizedBox(height:AppSizes.height*0.015),
+                   _documentComponents.getUserInfo2(onPress: () async{
+                    _documentProviders.policeVerification(context: context);
+                     //old implementation
+                    // Navigator.push(context, SlideRightRoute(page: BackgroundCheck()));
+                     //const url = 'https://www.google.com';
+                     // if (await canLaunch(url)) {
+                     // await launch(url);
+                     // }
+                   }, text: "Unverified", text1: "Criminal Background Check",),
+                   SizedBox(height:AppSizes.height*0.015),
 
-                     //  _documentComponents.getUserInfo2(text: "Your Current Photo id",iconData: Icons.warning,colors: AppColors.clr_red ,onPress: (){}),
-                    //    _documentComponents.getUserInfo(text: "Statutory Declaration",text1:"Country Proof of Age",iconData: Icons.warning,colors: AppColors.clr_red ,onPress: (){}),
-                   //     _documentComponents.getUserInfo2(text: "Country Proof Of Age",iconData: Icons.check_circle_outline,colors: Colors.lightGreen ,onPress: (){}),
-                   //    _documentComponents.getUserInfo(text: "Drivers Licence",text1:"Completed",iconData: Icons.check_circle,colors: AppColors.clr_bg_black ,onPress: (){Navigator.push(context, SlideRightRoute(page:UpdateDocuments()));}),
-                       _documentComponents.getUserInfo(text: "Drivers Licence",text1:"Completed",iconData: Icons.check_circle,colors: AppColors.clr_bg_black ,onPress: (){}),
-                       SizedBox(height:AppSizes.height*0.015),
+                 //  _documentComponents.getUserInfo2(text: "Your Current Photo id",iconData: Icons.warning,colors: AppColors.clr_red ,onPress: (){}),
+                //    _documentComponents.getUserInfo(text: "Statutory Declaration",text1:"Country Proof of Age",iconData: Icons.warning,colors: AppColors.clr_red ,onPress: (){}),
+               //     _documentComponents.getUserInfo2(text: "Country Proof Of Age",iconData: Icons.check_circle_outline,colors: Colors.lightGreen ,onPress: (){}),
+               //    _documentComponents.getUserInfo(text: "Drivers Licence",text1:"Completed",iconData: Icons.check_circle,colors: AppColors.clr_bg_black ,onPress: (){Navigator.push(context, SlideRightRoute(page:UpdateDocuments()));}),
+                   _documentComponents.getUserInfo(text: "Drivers Licence",text1:"Completed",iconData: Icons.check_circle,colors: AppColors.clr_bg_black ,onPress: (){}),
+                   SizedBox(height:AppSizes.height*0.015),
 
-                       _documentComponents.getUserInfo(text: "Proof Of Age",text1:"Completed",iconData: Icons.check_circle,colors: AppColors.clr_bg_black ,onPress: (){}),
-                       SizedBox(height:AppSizes.height*0.015),
-                       _documentComponents.getUserInfo2(onPress: (){}, text: "Unverified", text1: "VEVO Check", ),
-                     ],
-                   ),
-                 ),
-                  CommonWidgets.getBottomButton(name: "Add Document", onButtonClick: (){
-                    Navigator.push(context, SlideRightRoute(page: AddDocument()));
-                  }),
-                  SizedBox(height:AppSizes.height*0.015),
-                ]),
-          ),
-        ));
+                   _documentComponents.getUserInfo(text: "Proof Of Age",text1:"Completed",iconData: Icons.check_circle,colors: AppColors.clr_bg_black ,onPress: (){}),
+                   SizedBox(height:AppSizes.height*0.015),
+                   _documentComponents.getUserInfo2(onPress: (){}, text: "Unverified", text1: "VEVO Check", ),
+                 ],
+               ),
+             ),
+              CommonWidgets.getBottomButton(name: "Add Document", onButtonClick: (){
+                Navigator.push(context, SlideRightRoute(page: AddDocument()));
+              }),
+              SizedBox(height:AppSizes.height*0.015),
+            ]),
+      ),
+    );
   }
 }

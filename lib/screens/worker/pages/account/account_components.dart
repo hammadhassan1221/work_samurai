@@ -40,9 +40,9 @@ class AccountComponent {
               decoration: BoxDecoration(
                   border: Border.all(color: Colors.black54),
                   image: DecorationImage(
-                    image:  NetworkImage(
+                    image: imagePath != null  ? NetworkImage(
                       imagePath,
-                    ) ,
+                    ) : AssetImage( Assets.dp),
                     fit: BoxFit.cover,
                   ),
                   shape: BoxShape.circle
@@ -115,11 +115,13 @@ class AccountComponent {
     return Container(
         width: AppSizes.width * 0.85,
         child: Text(
-            text,
+            text ?? "addressline not available",
             style: TextStyle(
-              fontSize: 14,
+              fontSize: 13,
               color: AppColors.clr_bg_black2,
-              fontFamily: Assets.muliRegular,                    )
+              fontFamily: Assets.muliRegular,
+                fontStyle: FontStyle.italic
+            )
         )
     );
   }
@@ -160,7 +162,7 @@ class AccountComponent {
               width: AppSizes.width * 0.015,
             ),
             Container(
-                padding: EdgeInsets.only(left: 5.0, right: 5.0),
+                padding: EdgeInsets.only(left: 5.0, right: 5.0, top: 2, bottom: 2),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8.0),
                     border: Border.all(
@@ -169,7 +171,7 @@ class AccountComponent {
                 ),
                 child: Container(
                   alignment: Alignment.center,
-                  margin: EdgeInsets.only(top:3),
+                  margin: EdgeInsets.only(top:0),
                   child: Text(
                       rating,
                       textAlign: TextAlign.center,
@@ -299,7 +301,7 @@ class AccountComponent {
     );
   }
 
-  Widget getUserRatingCity({@required String name,@required String rating,@required String city,}){
+  Widget getUserRatingCity({@required String name,@required double rating,@required String city,}){
     return Container(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -335,27 +337,30 @@ class AccountComponent {
                         SizedBox(
                           width: AppSizes.width * 0.015,
                         ),
-                        Text(
-                            rating,
+                      Text(
+                            rating.toString(),
                             style: TextStyle(
                               fontSize: 12,
                               fontFamily: Assets.muliRegular,
                               color: AppColors.clr_bg_black,
                             )
                         )
-                      ],
+                      ] ,
                     )
                 )
               ],
             ),
             Container(
+              margin: EdgeInsets.only(top: 10),
               width: AppSizes.width * 0.85,
               child: Text(
-                  city ?? "",
+
+                  city ?? "no city selected",
                   style: TextStyle(
-                    fontSize: 15,
-                    color: AppColors.clr_bg_black,
-                    fontFamily: Assets.muliSemiBold,
+                    fontSize: 13,
+                    color: AppColors.clr_bg_black2,
+                    fontFamily: Assets.muliRegular,
+                    fontStyle: FontStyle.italic
                   )
               ),
             ),

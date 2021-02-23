@@ -46,16 +46,12 @@ class _ChangePasswordState extends State<ChangePassword> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
+    return Scaffold(
       body: Container(
-        height: AppSizes.height,
-        width: AppSizes.width,
-        color: AppColors.clr_bg,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CommonWidgets.getAppBar(text: "Change Password", context: context),
+            CommonWidgets.getAppBarAccount(text: "Change Password", context: context),
             _passwordComponents.getHeading(text: "Change Password"),
             _passwordComponents.getInputField(
                 backgroundColor: AppColors.clr_bg,
@@ -107,6 +103,6 @@ class _ChangePasswordState extends State<ChangePassword> {
           ],
         ),
       ),
-    ));
+    );
   }
 }

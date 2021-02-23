@@ -53,7 +53,7 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
         showUnselectedLabels: false,
-        showSelectedLabels: false,
+        showSelectedLabels: true,
         backgroundColor: AppColors.clr_white,
         type: BottomNavigationBarType.fixed,
         onTap: (index) {
@@ -76,6 +76,9 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin {
             title: Text(
               "Gigs",
               style: TextStyle(
+                fontSize: 10,
+                color: Color.fromRGBO(0, 16, 32, 1),
+                fontFamily: Assets.muliRegular,
               ),
             ),
           ),
@@ -91,6 +94,9 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin {
             title: Text(
               "Schedule",
               style: TextStyle(
+                fontSize: 12,
+                color: Color.fromRGBO(0, 16, 32, 1),
+                fontFamily: Assets.muliRegular,
               ),
             ),
           ),
@@ -106,6 +112,9 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin {
             title: Text(
               "Messages",
               style: TextStyle(
+                fontSize: 12,
+                color: Color.fromRGBO(0, 16, 32, 1),
+                fontFamily: Assets.muliRegular,
               ),
             ),
           ),
@@ -121,6 +130,9 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin {
             title: Text(
               "Profile",
               style: TextStyle(
+                fontSize: 12,
+                color: Color.fromRGBO(0, 16, 32, 1),
+                fontFamily: Assets.muliRegular,
               ),
             ),
           ),
@@ -136,6 +148,9 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin {
             title: Text(
               "Alerts",
               style: TextStyle(
+                fontSize: 12,
+                color: Color.fromRGBO(0, 16, 32, 1),
+                fontFamily: Assets.muliRegular,
 
               ),
             ),
