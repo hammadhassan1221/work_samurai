@@ -511,6 +511,7 @@ class GigsComponents {
           highlightColor: buttonColor.withOpacity(0.1),
           onPressed: () {onPress.call();},
           child: Row(
+
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(
