@@ -11,6 +11,7 @@ import 'package:work_samurai/network/network_helper_impl.dart';
 import 'package:work_samurai/res/strings.dart';
 import 'package:work_samurai/widgets/loader.dart';
 import 'package:work_samurai/widgets/toast.dart';
+import 'package:intl/intl.dart';
 
 class InProgressProvider extends ChangeNotifier {
   BuildContext context;
@@ -65,6 +66,7 @@ class InProgressProvider extends ChangeNotifier {
         // _loader.hideLoader(context);
         inProgressResponse = InProgressResponse.fromJson(_response.data);
         inProgressData = true;
+        // getRemainingTime();
         notifyListeners();
       }
     } catch (e) {
@@ -149,4 +151,25 @@ class InProgressProvider extends ChangeNotifier {
       print(e.toString());
     }
   }
+  // int getRemainingTime(){
+  //   // DateTime end = DateFormat.dMy().add_jm().parse("25/02/2021 08:00 PM "/*inProgressResponse.data.completedDate*/);
+  //   // DateTime now = DateTime.now();
+  //   // int hour = end.difference(now).inHours;
+  //   // int totalSeconds = end.difference(now).inSeconds;
+  //   // double remainingHours = (totalSeconds / 60) / 60;
+  //   //   print("curr date is: "+end.toString());
+  //   //
+  //   //
+  //   //
+  //   // // int remainingMinutes = (totalSeconds / 60);
+  //   // // int remainingSeconds = totalSeconds -( (remainingHours * 60) + (remainingMinutes * 60));
+  //   // print("THE END DATE IS:::::: ${end.toString()} \n THE CURR DATE IS:::::: ${now.toString()}"
+  //   //     " \n Remaining Hours:::::: ${remainingHours.floor().toString()}"
+  //   //     "\n Remaining Minutes:::::: ${(totalSeconds/3600).toStringAsFixed(2)}"
+  //   //     "\n Remaining Minutes:::::: ${(totalSeconds/216000).toStringAsFixed(2)}"
+  //   //     // "\n Remaining Seconds:::::: ${remainingSeconds.toString()}"
+  //   // );
+  //   // ApplicationToast.getSuccessToast(durationTime: 3, heading: null, subHeading: difference.toString());
+  //   return end.microsecondsSinceEpoch;
+  // }
 }

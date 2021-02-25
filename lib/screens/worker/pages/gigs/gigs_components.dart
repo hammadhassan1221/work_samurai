@@ -475,9 +475,6 @@ class GigsComponents {
                         onPress: (){onStart();},
                         name: "Start",
                       )
-
-
-
                           :
                       getStartActionButton(
                         context: context,
@@ -876,7 +873,7 @@ class GigsComponents {
                             MapView(startLat: lat,
                                 startLong: lat,
                                 apiKey: null,
-                                directionsApiKey: "AIzaSyBxBzba_srvA-PJBBF2JEaqswGUibpzeNQ"),
+                                directionsApiKey: "AIzaSyBTdkccVvUmp02tIqDfXT1eaS6LjqeTWYM"),
                             // Image.asset(
                             //   Assets.google,
                             //   fit: BoxFit.fill,
