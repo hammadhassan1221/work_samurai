@@ -21,26 +21,44 @@ class EditProfileComponents {
               width: AppSizes.width*0.42,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: editProfileObj.userImage == null ? AssetImage(
+                  image: editProfileObj.userImage == null ? NetworkImage(
                    imagePath,
                   ) : FileImage(editProfileObj.userImage),
                   fit: BoxFit.cover,
                 ),
                 shape: BoxShape.circle,
                 color: Colors.black54,
+                  border: Border.all(
+                    color: AppColors.clr_bg_black,
+                  )
               ),
             ),
             Container(
-              height: 20,
-              margin: EdgeInsets.only(top: AppSizes.height*0.165,left:42),
-                color: Colors.black54,
-                child: Text(
-                  'edit image',
-                  style: TextStyle(
+                margin: EdgeInsets.only(left: AppSizes.width*0.3,top: 20),
+                height: AppSizes.width * 0.13,
+                width: AppSizes.width * 0.13,
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
                     color: Colors.white,
-                  ),
+                    border: Border.all(
+                      color: AppColors.clr_bg_black,
+                    )),
+                child: Icon(
+                  Icons.edit,
+                  color: AppColors.clr_bg_black,
                 )
-            )
+            ),
+            // Container(
+            //   height: 20,
+            //   margin: EdgeInsets.only(top: AppSizes.height*0.165,left:42),
+            //     color: Colors.black54,
+            //     child: Text(
+            //       'edit image',
+            //       style: TextStyle(
+            //         color: Colors.white,
+            //       ),
+            //     )
+            // )
           ],
         ),
       ),
@@ -55,6 +73,8 @@ class EditProfileComponents {
         @required String text,
         @required String text1,
         @required String value,
+        @required TextEditingController firstname,
+
        // @required TextEditingController controller,
         @required bool isPassword,
       }) {
@@ -70,6 +90,7 @@ class EditProfileComponents {
         ),
 
         child:TextField(
+          controller: firstname,
           cursorColor: AppColors.clr_bg_black2,
           //cursorHeight: 12,
           obscureText: isPassword,

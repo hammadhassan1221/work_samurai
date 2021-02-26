@@ -18,6 +18,7 @@ class _InProgressPageState extends State<InProgressPage> {
     super.initState();
     _provider = Provider.of<InProgressProvider>(context, listen: false);
     Future.delayed(Duration.zero, () {
+      if(context == null) return;
       _provider.init(context: context);
     });
 

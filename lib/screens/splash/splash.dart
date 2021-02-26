@@ -1,5 +1,6 @@
 // import 'package:firebase_core/firebase_core.dart';
 // import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -18,17 +19,17 @@ class _SplashState extends State<Splash> {
   SplashProvider _provider;
   SplashComponents _components;
 
- // final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
   String text = "";
 
   @override
   void initState() {
     super.initState();
     _provider = Provider.of<SplashProvider>(context, listen: false);
-    Future.delayed(Duration.zero, (){
-      _provider.init(context: context);
+    Future.delayed(Duration.zero, () async {
+      await _provider.init(context: context);
     });
-    _provider.navigateToNextRoute(context);
+    //_provider.navigateToNextRoute(context);
     _components = SplashComponents();
   }
 

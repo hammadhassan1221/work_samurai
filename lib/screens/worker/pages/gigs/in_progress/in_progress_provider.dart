@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:work_samurai/commons/utils.dart';
+import 'package:work_samurai/constants/constants.dart';
 import 'package:work_samurai/generic_decode_encode/generic.dart';
 import 'package:work_samurai/models/api_models/in_progress/in_progress.dart';
 import 'package:work_samurai/models/api_models/worker_screen/gigs_screen/future_jobs_response.dart';
@@ -9,6 +10,8 @@ import 'package:work_samurai/network/network_helper.dart';
 import 'package:work_samurai/network/network_helper_impl.dart';
 import 'package:work_samurai/res/strings.dart';
 import 'package:work_samurai/widgets/loader.dart';
+import 'package:work_samurai/widgets/toast.dart';
+import 'package:intl/intl.dart';
 
 class InProgressProvider extends ChangeNotifier {
   BuildContext context;
@@ -37,7 +40,7 @@ class InProgressProvider extends ChangeNotifier {
     int jobType,
   }) async {
     try {
-      _loader.showLoader(context: context);
+      // _loader.showLoader(context: context);
       String token =
           "Bearer " + PreferenceUtils.getString(Strings.ACCESS_TOKEN);
       debugPrint('Token: $token');
@@ -52,21 +55,22 @@ class InProgressProvider extends ChangeNotifier {
           contentType: Headers.formUrlEncodedContentType,
           headers: {
             "Authorization": token,
-            "DeviceID": "Device Id goes here",
+            "DeviceID": Constants.deviceId,
           },
         ),
       );
       if (_response.statusCode != 200) {
-        _loader.hideLoader(context);
+        // _loader.hideLoader(context);
       }
       if (_response.statusCode == 200) {
-        _loader.hideLoader(context);
+        // _loader.hideLoader(context);
         inProgressResponse = InProgressResponse.fromJson(_response.data);
         inProgressData = true;
+        // getRemainingTime();
         notifyListeners();
       }
     } catch (e) {
-      _loader.hideLoader(context);
+      // _loader.hideLoader(context);
       print(e.toString());
     }
   }
@@ -81,7 +85,7 @@ class InProgressProvider extends ChangeNotifier {
           "Bearer " + PreferenceUtils.getString(Strings.ACCESS_TOKEN);
       debugPrint('Token: $token');
       var formData = new Map<String, dynamic>();
-      formData['Duration'] = duration;
+      formData['Duration'] = 30;//duration;
 
       _dio.options.contentType = Headers.formUrlEncodedContentType;
       Response _response = await _dio.post(
@@ -91,7 +95,7 @@ class InProgressProvider extends ChangeNotifier {
           contentType: Headers.formUrlEncodedContentType,
           headers: {
             "Authorization": token,
-            "DeviceID": "Device Id goes here",
+            "DeviceID": Constants.deviceId,
           },
         ),
       );
@@ -100,6 +104,12 @@ class InProgressProvider extends ChangeNotifier {
       }
       if (_response.statusCode == 200) {
         _loader.hideLoader(context);
+        if(_response.data["ResponseCode"] == 1){
+          ApplicationToast.getSuccessToast(durationTime: 3, heading: null, subHeading: "Success");
+        }
+        else{
+          ApplicationToast.getErrorToast(durationTime: 3, heading: null, subHeading: _response.data["ResponseCode"].toString() + "Can't make another request while one job request is in pending.");
+        }
       }
     } catch (e) {
       _loader.hideLoader(context);
@@ -118,7 +128,7 @@ class InProgressProvider extends ChangeNotifier {
         options: Options(
           headers: {
             "Authorization": token,
-            "DeviceID": "Device Id goes here",
+            "DeviceID": Constants.deviceId,
             "EncryptedDeviceID": "",
           },
         ),
@@ -128,10 +138,38 @@ class InProgressProvider extends ChangeNotifier {
       }
       if (_response.statusCode == 200) {
         _loader.hideLoader(context);
+        if(_response.data["ResponseCode"] == 1){
+          ApplicationToast.getSuccessToast(durationTime: 3, heading: null, subHeading: "Success");
+        }
+        else{
+          ApplicationToast.getErrorToast(durationTime: 3, heading: null, subHeading: _response.data["ResponseCode"].toString() + " sever error");
+        }
+
       }
     } catch (e) {
       _loader.hideLoader(context);
       print(e.toString());
     }
   }
+  // int getRemainingTime(){
+  //   // DateTime end = DateFormat.dMy().add_jm().parse("25/02/2021 08:00 PM "/*inProgressResponse.data.completedDate*/);
+  //   // DateTime now = DateTime.now();
+  //   // int hour = end.difference(now).inHours;
+  //   // int totalSeconds = end.difference(now).inSeconds;
+  //   // double remainingHours = (totalSeconds / 60) / 60;
+  //   //   print("curr date is: "+end.toString());
+  //   //
+  //   //
+  //   //
+  //   // // int remainingMinutes = (totalSeconds / 60);
+  //   // // int remainingSeconds = totalSeconds -( (remainingHours * 60) + (remainingMinutes * 60));
+  //   // print("THE END DATE IS:::::: ${end.toString()} \n THE CURR DATE IS:::::: ${now.toString()}"
+  //   //     " \n Remaining Hours:::::: ${remainingHours.floor().toString()}"
+  //   //     "\n Remaining Minutes:::::: ${(totalSeconds/3600).toStringAsFixed(2)}"
+  //   //     "\n Remaining Minutes:::::: ${(totalSeconds/216000).toStringAsFixed(2)}"
+  //   //     // "\n Remaining Seconds:::::: ${remainingSeconds.toString()}"
+  //   // );
+  //   // ApplicationToast.getSuccessToast(durationTime: 3, heading: null, subHeading: difference.toString());
+  //   return end.microsecondsSinceEpoch;
+  // }
 }

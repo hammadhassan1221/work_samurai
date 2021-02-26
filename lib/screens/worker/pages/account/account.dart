@@ -23,7 +23,6 @@ class _AccountState extends State<Account> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _accountComponent = AccountComponent();
     _accountProviders = Provider.of<AccountProviders>(context, listen: false);
@@ -37,15 +36,16 @@ class _AccountState extends State<Account> {
       child: Scaffold(
         body: _accountProviders.getIsDataFetched()
             ? Container(
+          padding: EdgeInsets.only(right: 25, left: 25,),
                 color: AppColors.clr_bg,
-                margin: EdgeInsets.all(AppSizes.width * 0.03),
+                //margin: EdgeInsets.all(AppSizes.width * 0.03),
                 child: ListView(
                   children: [
                     Align(
                       alignment: Alignment.topRight,
                       child: _accountComponent.getUserEdit(
-                          imagePath: Assets.support,
-                          imagePath1: Assets.user,
+                          imagePath: _accountProviders.getUserWholeData().data.user.document == null ? "https://toppng.com/uploads/preview/roger-berry-avatar-placeholder-11562991561rbrfzlng6h.png" :_accountProviders.getUserWholeData().data.user.document["URL"],
+                          imagePath1: _accountProviders.getUserWholeData().data.user.document == null ? "https://toppng.com/uploads/preview/roger-berry-avatar-placeholder-11562991561rbrfzlng6h.png" :_accountProviders.getUserWholeData().data.user.document["URL"],
                           text: "Account",
                           onPress: () {
                             Navigator.push(
@@ -59,20 +59,16 @@ class _AccountState extends State<Account> {
                     _accountComponent.getUserRatingCity(
                       name:
                           '${_accountProviders.getUserWholeData().data.user.firstname} ${_accountProviders.getUserWholeData().data.user.lastname}',
-                      rating: _accountProviders
-                          .getUserWholeData()
-                          .data
-                          .userRating
-                          .toString(),
+                      rating:  _accountProviders.getUserWholeData().data.userRating,
                       city:
-                          '${_accountProviders.getUserWholeData().data.userAddress.city}',
+                          _accountProviders.getUserWholeData().data.userAddress.city,
                     ),
                     SizedBox(
                       height: AppSizes.height * 0.01,
                     ),
                     _accountComponent.getUserDetails(
                       text:
-                          '${_accountProviders.getUserWholeData().data.userAddress.addressLine}',
+                          _accountProviders.getUserWholeData().data.userAddress.addressLine,
                     ),
                     SizedBox(
                       height: AppSizes.height * 0.015,

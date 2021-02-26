@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:work_samurai/animations/slide_right.dart';
 import 'package:work_samurai/commons/utils.dart';
+import 'package:work_samurai/constants/constants.dart';
 import 'package:work_samurai/generic_decode_encode/generic.dart';
 import 'package:work_samurai/main.dart';
 import 'package:work_samurai/models/api_models/bank_detail/bank_detail_response.dart';
@@ -53,7 +54,7 @@ class CardDetailsProvider extends ChangeNotifier {
           contentType: Headers.formUrlEncodedContentType,
           headers: {
             "Authorization": "Bearer " + _token,
-            "DeviceId" : "A580E6FE-DA99-4066-AFC7-C939104AED7F",
+            "DeviceId" : Constants.deviceId,
           },
         ),
       );
@@ -66,6 +67,8 @@ class CardDetailsProvider extends ChangeNotifier {
       if (_response.statusCode == 200) {
         _loader.hideLoader(context);
         _bankDetailResponse = BankDetailResponse.fromJson(_response.data);
+        
+        PreferenceUtils.setBankUpdateResponse(_bankDetailResponse);
 
         ApplicationToast.getSuccessToast(
             durationTime: 3, heading: "Successfully Updated", subHeading: "");

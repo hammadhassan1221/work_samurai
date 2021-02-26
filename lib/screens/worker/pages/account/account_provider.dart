@@ -3,6 +3,7 @@ import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:work_samurai/animations/slide_right.dart';
 import 'package:work_samurai/commons/utils.dart';
+import 'package:work_samurai/constants/constants.dart';
 import 'package:work_samurai/generic_decode_encode/generic.dart';
 import 'package:work_samurai/helper/helper.dart';
 import 'package:work_samurai/models/get_data/UserWholeData.dart';
@@ -28,7 +29,7 @@ class AccountProviders extends ChangeNotifier{
     this._context = context;
     _isDataFetched = false;
     _token = await PreferenceUtils.getString(Strings.ACCESS_TOKEN);
-    await _getProfileData(context: context);
+    await getProfileData(context: context);
   }
 
 
@@ -43,7 +44,7 @@ class AccountProviders extends ChangeNotifier{
           headers: {
             "Authorization": "Bearer " + _token,
             "Content-Type" : "multipart/form-data",
-            "DeviceID" : "A580E6FE-DA99-4066-AFC7-C939104AED7F"
+            "DeviceID" : Constants.deviceId
           },
           body: {
           }
@@ -72,12 +73,12 @@ class AccountProviders extends ChangeNotifier{
 
   }
 
-  Future _getProfileData({@required BuildContext context}) async {
+  Future getProfileData({@required BuildContext context}) async {
     try {
       _loader.showLoader(context: context);
       Response _response = await _networkHelper.post(getData, headers: {
         "Authorization": "Bearer " + _token,
-        "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
+        "DeviceID": Constants.deviceId,
         "Scope":
         "profile,useraddress,userrating,CompletedJobs,userverifications,usercompliments",
       }, body: {});
@@ -98,7 +99,7 @@ class AccountProviders extends ChangeNotifier{
             notifyListeners();
         }
         else{
-          ApplicationToast.getErrorToast(durationTime: 3, heading: "Error", subHeading: "Something went wronge");
+          ApplicationToast.getErrorToast(durationTime: 3, heading: "Error", subHeading: "Something went wrong");
         }
       }
     } catch (e) {

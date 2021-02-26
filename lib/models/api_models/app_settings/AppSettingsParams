@@ -1,0 +1,12 @@
+class AppSettingsParams{
+
+  String _name;
+  String _Value;
+
+  AppSettingParams(String name, String value){
+    this._name = name;
+    this.value = value;
+  }
+
+
+}

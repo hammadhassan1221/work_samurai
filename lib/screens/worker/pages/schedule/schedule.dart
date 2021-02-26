@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:work_samurai/animations/slide_right.dart';
 import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
@@ -23,7 +22,6 @@ class Schedule extends StatefulWidget {
 }
 
 class _ScheduleState extends State<Schedule> {
-
   double _value = 1.0;
   ScheduleComponents _scheduleComponents;
   ScheduleProviders _scheduleProviders;
@@ -66,7 +64,7 @@ class _ScheduleState extends State<Schedule> {
        Map<String,dynamic> map = await _scheduleProviders.getCurrentPreferences(context);
        Map<String,dynamic> locationData = await _scheduleProviders.getCurrentAddress(context);
        setState(() {
-         _value = getDistanceText(map);
+         _value = getDistanceText(map) < 51 && getDistanceText(map) > 0 ? getDistanceText(map) : 0 ;
          this.addressLine ??= locationData["AddressLine"] ;
          this.city ??= locationData["City"] ;
          this.state ??= locationData["State"] ;
@@ -77,6 +75,7 @@ class _ScheduleState extends State<Schedule> {
          this.locationText = city + ", "+ country;
        });
     });
+
   }
 
   @override
@@ -158,31 +157,31 @@ class _ScheduleState extends State<Schedule> {
                         color: AppColors.clr_field
                         ,),
                       SizedBox(height: AppSizes.height*0.02,),
-                      _scheduleComponents.getDayTime(day: "Monday", time: getScheduleText(snapshot.data, "Monday"),buildContext: context, scheduleProviders: _scheduleProviders),
+                      _scheduleComponents.getDayTime(day: "Mon", time: getScheduleText(snapshot.data, "Monday"),buildContext: context, scheduleProviders: _scheduleProviders),
                       SizedBox(
                         height: AppSizes.height * 0.02,
                       ),
-                      _scheduleComponents.getDayTime(day: "Tuesday", time: getScheduleText(snapshot.data, "Tuesday"),buildContext: context, scheduleProviders: _scheduleProviders),
+                      _scheduleComponents.getDayTime(day: "Tue", time: getScheduleText(snapshot.data, "Tuesday"),buildContext: context, scheduleProviders: _scheduleProviders),
                       SizedBox(
                         height: AppSizes.height * 0.02,
                       ),
-                      _scheduleComponents.getDayTime(day: "Wednesday", time: getScheduleText(snapshot.data, "Wednesday"),buildContext: context, scheduleProviders: _scheduleProviders),
+                      _scheduleComponents.getDayTime(day: "Wed", time: getScheduleText(snapshot.data, "Wednesday"),buildContext: context, scheduleProviders: _scheduleProviders),
                       SizedBox(
                         height: AppSizes.height * 0.02,
                       ),
-                      _scheduleComponents.getDayTime(day: "Thursday", time:getScheduleText(snapshot.data, "Thursday"),buildContext: context, scheduleProviders: _scheduleProviders),
+                      _scheduleComponents.getDayTime(day: "Thu", time:getScheduleText(snapshot.data, "Thursday"),buildContext: context, scheduleProviders: _scheduleProviders),
                       SizedBox(
                         height: AppSizes.height * 0.02,
                       ),
-                      _scheduleComponents.getDayTime(day: "Friday", time: getScheduleText(snapshot.data, "Friday"),buildContext: context, scheduleProviders: _scheduleProviders),
+                      _scheduleComponents.getDayTime(day: "Fri", time: getScheduleText(snapshot.data, "Friday"),buildContext: context, scheduleProviders: _scheduleProviders),
                       SizedBox(
                         height: AppSizes.height * 0.02,
                       ),
-                      _scheduleComponents.getDayTime(day: "Saturday", time: getScheduleText(snapshot.data, "Saturday"),buildContext: context, scheduleProviders: _scheduleProviders),
+                      _scheduleComponents.getDayTime(day: "Sat", time: getScheduleText(snapshot.data, "Saturday"),buildContext: context, scheduleProviders: _scheduleProviders),
                       SizedBox(
                         height: AppSizes.height * 0.02,
                       ),
-                      _scheduleComponents.getDayTime(day: "Sunday", time: getScheduleText(snapshot.data, "Sunday"),buildContext: context, scheduleProviders: _scheduleProviders),
+                      _scheduleComponents.getDayTime(day: "Sun", time: getScheduleText(snapshot.data, "Sunday"),buildContext: context, scheduleProviders: _scheduleProviders),
                       SizedBox(
                         height: AppSizes.height * 0.02,
                       ),
@@ -214,6 +213,7 @@ class _ScheduleState extends State<Schedule> {
                         height: AppSizes.height * 0.02,
                       ),
                     ],
+
                   ),
                 )
               ]),
@@ -225,8 +225,8 @@ class _ScheduleState extends State<Schedule> {
               color: AppColors.clr_bg_grey.withOpacity(0.4),
               child: Center(
                 child: Container(
-                  height: AppSizes.height * 0.30,
-                  width: AppSizes.width * 0.50,
+                  height: AppSizes.height * 0.20,
+                  width: AppSizes.width * 0.30,
                   child: Lottie.asset(Assets.loader),
                 ),
               ),

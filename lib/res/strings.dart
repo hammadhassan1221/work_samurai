@@ -7,6 +7,8 @@ class Strings {
 
   // Login response keys
   static const String IS_LOGGED_IN = "is_logged_in";
+  static const String FCM_TOKEN = "fcm_token";
+  static const String DEVICE_ID = "device_id";
 
   // Token keys
   static const String ACCESS_TOKEN = "AccessToken";
@@ -16,5 +18,10 @@ class Strings {
   static const String TOKEN_RESPONSE = "TokenResponse";
   static const String IS_ACCOUNT_VERIFIED = "isAccountVerified";
   static const String USER_DATA = "UserData";
-  static const String USER_ID = "UserIc";
+  static const String USER_ID = "UserId";
+  static const String IMAGE = "image";
+  static const String ACCOUNT_NAME = "AccountName";
+  static const String ACCOUNT_Number = "AccountNumber";
+  static const String BSB_Number = "BSBNumber";
+
 }

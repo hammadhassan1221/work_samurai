@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:work_samurai/commons/utils.dart';
+import 'package:work_samurai/constants/constants.dart';
 import 'package:work_samurai/generic_decode_encode/generic.dart';
 import 'package:work_samurai/models/api_models/job_messages/get_all_user_messages.dart';
 import 'package:work_samurai/network/api_urls.dart';
@@ -39,7 +40,7 @@ class MessageProviders extends ChangeNotifier{
           contentType: Headers.formUrlEncodedContentType,
           headers: {
             "Authorization": "Bearer " + _token,
-            "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
+            "DeviceID": Constants.deviceId,
           },
         ),
       );

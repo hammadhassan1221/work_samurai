@@ -2,7 +2,9 @@ import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:work_samurai/animations/slide_right.dart';
 import 'package:work_samurai/commons/utils.dart';
+import 'package:work_samurai/constants/constants.dart';
 import 'package:work_samurai/generic_decode_encode/generic.dart';
 import 'package:work_samurai/helper/helper.dart';
 import 'package:work_samurai/models/generic_response/GenericResponse.dart';
@@ -10,7 +12,12 @@ import 'package:work_samurai/models/get_data/UserWholeData.dart';
 import 'package:work_samurai/network/api_urls.dart';
 import 'package:work_samurai/network/network_helper.dart';
 import 'package:work_samurai/network/network_helper_impl.dart';
+import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/strings.dart';
+import 'package:work_samurai/routes/routes.dart';
+import 'package:work_samurai/screens/worker/pages/account/account.dart';
+import 'package:work_samurai/screens/worker/pages/account/account_provider.dart';
+import 'package:work_samurai/screens/worker/worker.dart';
 import 'package:work_samurai/widgets/toast.dart';
 import 'dart:io';
 import 'package:work_samurai/widgets/loader.dart';
@@ -24,6 +31,7 @@ class EditProfileProviders extends ChangeNotifier {
   UserWholeData _userWholeData = UserWholeData();
   GenericDecodeEncode _genericDecodeEncode = GenericDecodeEncode();
   Loader _loader = Loader();
+  AccountProviders _accountProviders;
   Dio dio = Dio();
   String _token;
 
@@ -61,7 +69,7 @@ class EditProfileProviders extends ChangeNotifier {
             contentType: Headers.formUrlEncodedContentType,
             headers: {
               "Authorization": "Bearer " + _token,
-              "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
+              "DeviceID": Constants.deviceId,
             },
           ),
         );
@@ -122,38 +130,74 @@ class EditProfileProviders extends ChangeNotifier {
       var connectivityResult = await (Connectivity().checkConnectivity());
       if (connectivityResult != ConnectivityResult.none) {
        // dio.options.contentType = Headers.formUrlEncodedContentType;
-        String fileName = imagePath.toString().split("/").last;
+        String fileName;
+        Response _response;
+        if(imagePath != ""){
+         fileName = imagePath.toString().split("/").last;
+         if (fileName.length >= 41) {
+           fileName = fileName.substring(fileName.length - 40);
+         }
+        }
+
         FormData formData;
-        formData = FormData.fromMap({
-          "Document.Attachment": await MultipartFile.fromFile(
-            imagePath,
-            filename: fileName,
-            contentType: MediaType(
-              "image",
-              "png",
+        if (imagePath != ""){
+          formData = FormData.fromMap({
+            "Document.Attachment": await MultipartFile.fromFile(
+              imagePath,
+              filename: fileName,
+              contentType: MediaType(
+                "image",
+                "png",
+              ),
             ),
-          ),
-          "Firstname": firstName,
-          "Lastname": lastName,
-          "Salutation": salutation,
-          "ProfessionalTitle": proTitle,
-          "DOB": dob,
-          "PlaceOfBirth": placeOfBirth,
-          "Gender": gender,
-          "Mobile": "012948371",
-          "Description": description,
-        });
-        Response _response = await dio.post(
-          updateProfile,
-          data: formData,
-          options: Options(
-            contentType: Headers.formUrlEncodedContentType,
-            headers: {
-              "Authorization": "Bearer " + _token,
-              "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
-            },
-          ),
-        );
+            "Firstname": firstName,
+            "Lastname": lastName,
+            "Salutation": salutation,
+            "ProfessionalTitle": proTitle,
+            "DOB": dob,
+            "PlaceOfBirth": placeOfBirth,
+            "Gender": gender,
+            "Mobile": "012948371",
+            "Description": description,
+          });
+           _response = await dio.post(
+            updateProfile,
+            data: formData,
+            options: Options(
+                contentType: Headers.formUrlEncodedContentType,
+              headers: {
+                "Authorization": "Bearer " + _token,
+                "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
+              },
+            ),
+          );
+        }
+        else{
+          formData = FormData.fromMap({
+            "Firstname": firstName,
+            "Lastname": lastName,
+            "Salutation": salutation,
+            "ProfessionalTitle": proTitle,
+            "DOB": dob,
+            "PlaceOfBirth": placeOfBirth,
+            "Gender": gender,
+            "Mobile": "012948371",
+            "Description": description,
+          });
+          _response = await dio.post(
+            updateProfile,
+            data: formData,
+            options: Options(
+            //  contentType: Headers.formUrlEncodedContentType,
+              headers: {
+                "Authorization": "Bearer " + _token,
+                "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
+              },
+            ),
+          );
+        }
+
+
 
         if (_response.statusCode != 200) {
           _loader.hideLoader(context);
@@ -166,6 +210,7 @@ class EditProfileProviders extends ChangeNotifier {
           GenericResponse.fromJson(_response.data);
           if(_genericResponse.responseCode == 1){
             ApplicationToast.getSuccessToast(durationTime: 3, heading: null, subHeading: "data updated successfully");
+            Navigator.of(context).pushAndRemoveUntil(SlideRightRoute(page: Worker()), (Route<dynamic> route) => false);
           }
           else{
             ApplicationToast.getWarningToast(durationTime: 2, heading: null, subHeading: "something went wrong");

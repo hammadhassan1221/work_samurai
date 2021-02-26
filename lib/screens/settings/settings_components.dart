@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 
@@ -36,7 +37,7 @@ class SettingsComponents {
                   style: TextStyle(
                     fontSize: 14,
                     color: AppColors.clr_bg_black,
-                    fontFamily: 'MuliSemiBold',
+                    fontFamily: Assets.muliSemiBold,
                   )),
             ),
           ],
@@ -56,7 +57,6 @@ class SettingsComponents {
       onTap: onPress,
       child: Container(
         margin: EdgeInsets.only(
-          top: AppSizes.width * 0.03,
           left: AppSizes.width * 0.03,
           right: AppSizes.width * 0.03,
         ),
@@ -77,7 +77,21 @@ class SettingsComponents {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Image.asset(imagePath),
+            Container(
+              height: 70,
+              width: 70,
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black54),
+                  image: DecorationImage(
+                    image:  NetworkImage(
+                      imagePath,
+                    ) ,
+                    fit: BoxFit.cover,
+                  ),
+                  shape: BoxShape.circle
+              ),
+             // margin: EdgeInsets.only(top: AppSizes.height*0.08),
+            ),
             SizedBox(
               width: AppSizes.width * 0.03,
             ),

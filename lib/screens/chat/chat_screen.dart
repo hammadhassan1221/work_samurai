@@ -24,11 +24,13 @@ class _ChatScreenState extends State<ChatScreen> {
   var _controller = ScrollController();
   ChatProviders _chatProviders ;
   TextEditingController msgBody;
+  bool isClicked;
   @override
 
   void initState() {
     super.initState();
     msgBody = TextEditingController();
+    isClicked = false;
     _chatProviders = Provider.of<ChatProviders>(context, listen:false);
 
     _chatProviders.init (context, widget.jobId);
@@ -49,6 +51,7 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
    Provider.of<ChatProviders>(context, listen:true);
    WidgetsBinding.instance.addPostFrameCallback((_) => scrollToEnd());
+   isClicked = false;
     return SafeArea(
         child: Scaffold(
             resizeToAvoidBottomInset: true,
@@ -313,10 +316,18 @@ class _ChatScreenState extends State<ChatScreen> {
                           GestureDetector(
                               onTap: () async {
                                 if(msgBody.text.isNotEmpty) {
-                                  await _chatProviders.sendUserJobMessages(context: context, body: msgBody.text, jobId: widget.jobId);
-                                  msgBody.clear();
-                                  FocusScope.of(context).requestFocus(FocusNode());
-                                  _chatProviders.getAllUserJobMessages(context: context, jobId: widget.jobId);
+                                  if(isClicked == false){
+                                    isClicked = true;
+                                    await _chatProviders.sendUserJobMessages(context: context, body: msgBody.text, jobId: widget.jobId);
+                                    msgBody.clear();
+                                    FocusScope.of(context).requestFocus(FocusNode());
+                                    _chatProviders.getAllUserJobMessages(context: context, jobId: widget.jobId);
+
+                                  }
+                                  else{
+                                    msgBody.clear();
+                                    return;
+                                  }
                                 }
                                 else {
                                   ApplicationToast.getWarningToast(durationTime: 2, heading: null, subHeading: "Please type msg first");
@@ -333,7 +344,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
   _textFieldContainer() {
     return Container(
-      height: AppSizes.height * 0.075,
+      height: AppSizes.height * 0.06,
       width: AppSizes.width / 1.2,
       margin: EdgeInsets.only(top: 7,bottom: 10, left: 10),
       padding: EdgeInsets.all(10),

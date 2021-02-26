@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:work_samurai/animations/slide_right.dart';
 import 'package:work_samurai/commons/utils.dart';
+import 'package:work_samurai/constants/constants.dart';
 import 'package:work_samurai/generic_decode_encode/generic.dart';
 import 'package:work_samurai/models/api_models/login_screen/login_response.dart';
 import 'package:work_samurai/network/api_urls.dart';
@@ -41,31 +42,31 @@ class LoginProvider extends ChangeNotifier {
         _loader.showLoader(context: context);
         var formData = Map<String, dynamic>();
 
+        final token = PreferenceUtils.getString(Strings.FCM_TOKEN);
         var encryptedPass = AesCrypt(password);
         formData['EmailAddress'] = email;
         formData['Password'] = password;
-        formData['DeviceID'] = "A580E6FE-DA99-4066-AFC7-C939104AED7F";
+        formData['DeviceID'] = Constants.deviceId;
         dio.options.contentType = Headers.formUrlEncodedContentType;
 
         Response _response = await dio.post(
           loginURL,
           data: formData,
-          options: Options(
-            contentType: Headers.formUrlEncodedContentType,
-            headers: {
-              "Authorization":
-                  "Bearer " + PreferenceUtils.getString(Strings.ACCESS_TOKEN),
-              "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
-            },
-          ),
+            options: Options(
+              contentType: Headers.formUrlEncodedContentType,
+              headers: {
+                "Authorization": "Bearer " + PreferenceUtils.getString(Strings.ACCESS_TOKEN),
+               // "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
+              },
+            ),
         );
 
         if (_response.statusCode != 200) {
           _loader.hideLoader(context);
           ApplicationToast.getErrorToast(
-            durationTime: 3,
-            heading: "Error",
-            subHeading: "Please try again",
+              durationTime: 3,
+              heading: "Error",
+              subHeading: "Please try again",
           );
           throw "Unauthorized";
         }
@@ -90,6 +91,9 @@ class LoginProvider extends ChangeNotifier {
                 subHeading: "Please enter valid credentials");
           }
         }
+      }
+      else{
+        ApplicationToast.getErrorToast(durationTime: 2, heading: null, subHeading: "Please check your internet connection");
       }
     } catch (e) {
       _loader.hideLoader(context);

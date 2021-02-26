@@ -14,11 +14,11 @@ class Loader {
       context: context,
       builder: (_) {
         return Material(
-          color: AppColors.clr_bg_grey.withOpacity(0.4),
+          color: Colors.white,
           child: Center(
             child: Container(
-              height: AppSizes.height * 0.30,
-              width: AppSizes.width * 0.50,
+              height: AppSizes.height * 0.20,
+              width: AppSizes.width * 0.30,
               child: Lottie.asset(Assets.loader),
             ),
           ),

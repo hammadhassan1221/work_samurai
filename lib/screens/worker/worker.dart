@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -13,6 +14,7 @@ import 'package:work_samurai/screens/worker/pages/messages/messages.dart';
 import 'package:work_samurai/screens/worker/pages/schedule/schedule.dart';
 import 'package:work_samurai/screens/worker/worker_components.dart';
 import 'package:work_samurai/screens/worker/worker_provider.dart';
+import 'package:work_samurai/widgets/toast.dart';
 
 class Worker extends StatefulWidget {
   @override
@@ -40,118 +42,137 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin {
     currentIndex = 0;
     workerProvider = Provider.of<WorkerProvider>(context, listen: false);
     workerComponents = WorkerComponents();
+    WidgetsBinding.instance.addPostFrameCallback((_) async{
+      String token = await FirebaseMessaging().getToken();
+      print("The token is: :::::: "+ token);
+    });
+    FirebaseMessaging().configure(
+      onMessage: (map) async{
+        ApplicationToast.getSuccessToast(durationTime: 3, heading: null, subHeading: "message received");
+      },
+      onLaunch: (map) async{
+        ApplicationToast.getSuccessToast(durationTime: 3, heading: null, subHeading: "message received");
+      },
+      onResume: (map) async{
+        ApplicationToast.getSuccessToast(durationTime: 3, heading: null, subHeading: "message received");
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     Provider.of<WorkerProvider>(context, listen: true);
-    return SafeArea(
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: Container(
-          child: pages[currentIndex],
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: currentIndex,
-          backgroundColor: AppColors.clr_white,
-          type: BottomNavigationBarType.fixed,
-          onTap: (index) {
-            setState(() {
-              currentIndex = index;
-            });
-          },
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(
-                LineariconsFree.briefcase,
-                color: workerProvider.currentIndex == 0
-                ? AppColors.clr_bg_black
-                : AppColors.clr_bg_black2,
-                size: 20,
-              ),
-              title: Text(
-                "Gigs",
-                style: TextStyle(
-                  color: workerProvider.currentIndex == 0
-                      ? AppColors.clr_bg_black
-                      : AppColors.clr_bg_black2,
-                ),
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      body: Container(
+        child: pages[currentIndex],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currentIndex,
+        showUnselectedLabels: false,
+        showSelectedLabels: true,
+        backgroundColor: AppColors.clr_white,
+        type: BottomNavigationBarType.fixed,
+        onTap: (index) {
+          setState(() {
+            currentIndex = index;
+          });
+        },
+        items: [
+          BottomNavigationBarItem(
+            activeIcon: Image.asset(Assets.gigsActive,
+              height: 20,
+              width: 20,) ,
+            icon: Image.asset(
+
+              Assets.gigsInactive,
+              height: 20,
+              width: 20,
+              fit: BoxFit.contain,
+            ),
+            title: Text(
+              "Gigs",
+              style: TextStyle(
+                fontSize: 10,
+                color: Color.fromRGBO(0, 16, 32, 1),
+                fontFamily: Assets.muliRegular,
               ),
             ),
-            BottomNavigationBarItem(
-              icon: Image.asset(
-                Assets.schedule,
+          ),
+          BottomNavigationBarItem(
+            activeIcon: Image.asset(Assets.scheduleActive,
+              height: 20,
+              width: 20,),
+            icon: Image.asset(
+              Assets.scheduleInactive,
+              height: 20,
+              width: 20,
+            ),
+            title: Text(
+              "Schedule",
+              style: TextStyle(
+                fontSize: 12,
+                color: Color.fromRGBO(0, 16, 32, 1),
+                fontFamily: Assets.muliRegular,
+              ),
+            ),
+          ),
+          BottomNavigationBarItem(
+            activeIcon: Image.asset(Assets.messagesActive,
+              height: 20,
+              width: 20,),
+            icon: Image.asset(
+              Assets.messagesInactive,
+              height: 20,
+              width: 20,
+            ),
+            title: Text(
+              "Messages",
+              style: TextStyle(
+                fontSize: 12,
+                color: Color.fromRGBO(0, 16, 32, 1),
+                fontFamily: Assets.muliRegular,
+              ),
+            ),
+          ),
+          BottomNavigationBarItem(
+            activeIcon: Image.asset(Assets.profileActive,
                 height: 20,
-                width: 20,
-                color: workerProvider.currentIndex == 1
-                    ? AppColors.clr_bg_black
-                    : AppColors.clr_bg_black2,
-              ),
-              title: Text(
-                "Schedule",
-                style: TextStyle(
-                  color: workerProvider.currentIndex == 1
-                      ? AppColors.clr_bg_black
-                      : AppColors.clr_bg_black2,
-                ),
+              width: 20),
+            icon: Image.asset(
+              Assets.profileInactive,
+              height: 20,
+              width: 20,
+            ),
+            title: Text(
+              "Profile",
+              style: TextStyle(
+                fontSize: 12,
+                color: Color.fromRGBO(0, 16, 32, 1),
+                fontFamily: Assets.muliRegular,
               ),
             ),
-            BottomNavigationBarItem(
-              icon: Image.asset(
-                Assets.msgs,
-                height: 20,
-                width: 20,
-                color: workerProvider.currentIndex == 2
-                    ? AppColors.clr_bg_black
-                    : AppColors.clr_bg_black2,
-              ),
-              title: Text(
-                "Messages",
-                style: TextStyle(
-                  color: workerProvider.currentIndex == 2
-                      ? AppColors.clr_bg_black
-                      : AppColors.clr_bg_black2,
-                ),
+          ),
+          BottomNavigationBarItem(
+            activeIcon: Image.asset(Assets.alertsActive,
+              height: 20,
+              width: 20,),
+            icon: Image.asset(
+              Assets.alertsInactive,
+              height: 20,
+              width: 20,
+            ),
+            title: Text(
+              "Alerts",
+              style: TextStyle(
+                fontSize: 12,
+                color: Color.fromRGBO(0, 16, 32, 1),
+                fontFamily: Assets.muliRegular,
+
               ),
             ),
-            BottomNavigationBarItem(
-              icon: Image.asset(
-                Assets.profile,
-                height: 20,
-                width: 20,
-                color: workerProvider.currentIndex == 3
-                    ? AppColors.clr_bg_black
-                    : AppColors.clr_bg_black2,
-              ),
-              title: Text(
-                "Profile",
-                style: TextStyle(
-                  color: workerProvider.currentIndex == 3
-                      ? AppColors.clr_bg_black
-                      : AppColors.clr_bg_black2,
-                ),
-              ),
-            ),
-            BottomNavigationBarItem(
-              icon: Image.asset(
-                Assets.alerts,
-                height: 20,
-                width: 20,
-                color: workerProvider.currentIndex == 4
-                    ? AppColors.clr_bg_black
-                    : AppColors.clr_bg_black2,
-              ),
-              title: Text(
-                "Alerts",
-                style: TextStyle(
-                  color: workerProvider.currentIndex == 4
-                      ? AppColors.clr_bg_black
-                      : AppColors.clr_bg_black2,
-                ),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:fluttericon/zocial_icons.dart';
 import 'package:work_samurai/animations/slide_right.dart';
 import 'package:work_samurai/commons/utils.dart';
+import 'package:work_samurai/constants/constants.dart';
 import 'package:work_samurai/generic_decode_encode/generic.dart';
 import 'package:work_samurai/helper/helper.dart';
 import 'package:work_samurai/models/api_models/support_screen/create_support_ticket_model.dart';
@@ -51,7 +52,7 @@ class SupportProviders extends ChangeNotifier {
     //  _loader.showLoader(context: context);
       http.Response _response = await _networkHelper.post(getData, headers: {
         "Authorization": "Bearer " + _token,
-        "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
+        "DeviceID": Constants.deviceId,
         "Scope": "supporttickets",
       }, body: {});
 
@@ -88,7 +89,7 @@ class SupportProviders extends ChangeNotifier {
             contentType: Headers.formUrlEncodedContentType,
             headers: {
               "Authorization": "Bearer " + _token,
-              "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
+              "DeviceID": Constants.deviceId,
             },
           ),
         );

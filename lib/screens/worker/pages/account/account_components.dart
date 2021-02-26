@@ -18,7 +18,7 @@ class AccountComponent {
         Text(
           text,
           style: TextStyle(
-            fontFamily: 'MuliSemiBold',
+            fontFamily: Assets.muliRegular,
             fontSize: 15,
           ),
         ),
@@ -35,12 +35,19 @@ class AccountComponent {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              margin: EdgeInsets.only(top: AppSizes.height*0.03),
-              child: Image.asset(
-                imagePath,
-                height: 100,
-                width: 100,
+              height: 100,
+              width: 100,
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black54),
+                  image: DecorationImage(
+                    image: imagePath != null  ? NetworkImage(
+                      imagePath,
+                    ) : AssetImage( Assets.dp),
+                    fit: BoxFit.cover,
+                  ),
+                  shape: BoxShape.circle
               ),
+              margin: EdgeInsets.only(top: AppSizes.height*0.08),
             ),
             Row(
 
@@ -49,23 +56,23 @@ class AccountComponent {
                 Container(margin: EdgeInsets.only(bottom: AppSizes.height*0.1,),child: Image.asset(imagePath1,height: 25,width: 25,)),
                 SizedBox(width: AppSizes.width*0.0125,),
                 GestureDetector(
-                  onTap: onPress,
-                  child: Container(
-                    margin: EdgeInsets.only(bottom: AppSizes.height*0.105),
-                    alignment: Alignment.topRight,
-                    decoration : BoxDecoration(
+                    onTap: onPress,
+                    child: Container(
+                      margin: EdgeInsets.only(bottom: AppSizes.height*0.105),
+                      alignment: Alignment.topRight,
+                      decoration : BoxDecoration(
                         border: Border(
                             bottom: BorderSide( color: AppColors.clr_bg_black)
                         ),
-                ),
+                      ),
                       child: Text(text,
-                      textAlign: TextAlign.right,
-                      style: TextStyle(
-                        // decoration: TextDecoration.underline,
-                        fontSize: 18,
-                        fontFamily: 'MuliBold',
-                      )),
-    )),
+                          textAlign: TextAlign.right,
+                          style: TextStyle(
+                            // decoration: TextDecoration.underline,
+                            fontSize: 18,
+                            fontFamily: Assets.muliBold,
+                          )),
+                    )),
               ],
             ),
           ],
@@ -88,7 +95,7 @@ class AccountComponent {
                   Text(
                     text,
                     style: TextStyle(
-                      fontFamily: 'MuliSemiBold',
+                      fontFamily: Assets.muliSemiBold,
                       fontSize: 15,
                     ),
                   )
@@ -108,11 +115,13 @@ class AccountComponent {
     return Container(
         width: AppSizes.width * 0.85,
         child: Text(
-            text,
+            text ?? "addressline not available",
             style: TextStyle(
-              fontSize: 14,
+              fontSize: 13,
               color: AppColors.clr_bg_black2,
-              fontFamily: 'MuliRegular',                    )
+              fontFamily: Assets.muliRegular,
+                fontStyle: FontStyle.italic
+            )
         )
     );
   }
@@ -125,7 +134,7 @@ class AccountComponent {
             style: TextStyle(
               fontSize: 18,
               color: AppColors.clr_bg_black,
-              fontFamily: 'MuliBold',
+              fontFamily: Assets.muliBold,
             )
         )
     );
@@ -146,14 +155,14 @@ class AccountComponent {
               compliment,
               style: TextStyle(
                 fontSize: 15,
-                fontFamily: 'MuliSemiBold',
+                fontFamily: Assets.muliSemiBold,
               ),
             ),
             SizedBox(
               width: AppSizes.width * 0.015,
             ),
             Container(
-                padding: EdgeInsets.only(left: 5.0, right: 5.0),
+                padding: EdgeInsets.only(left: 5.0, right: 5.0, top: 2, bottom: 2),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8.0),
                     border: Border.all(
@@ -162,13 +171,13 @@ class AccountComponent {
                 ),
                 child: Container(
                   alignment: Alignment.center,
-                  margin: EdgeInsets.only(top:3),
+                  margin: EdgeInsets.only(top:0),
                   child: Text(
                       rating,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 12,
-                        fontFamily: 'MuliRegular',
+                        fontFamily: Assets.muliRegular,
                         color: AppColors.clr_bg_black2,
                       )
                   ),
@@ -193,7 +202,7 @@ class AccountComponent {
                     text1,
                     style: TextStyle(
                       fontSize: 15,
-                      fontFamily: 'MuliRegular',
+                      fontFamily: Assets.muliRegular,
                       color: AppColors.clr_bg_black,
                     )
                 )
@@ -211,7 +220,7 @@ class AccountComponent {
                     text2,
                     style: TextStyle(
                       fontSize: 15,
-                      fontFamily: 'MuliRegular',
+                      fontFamily: Assets.muliRegular,
                       color: AppColors.clr_bg_black,
                     )
                 )
@@ -229,7 +238,7 @@ class AccountComponent {
                     text3,
                     style: TextStyle(
                       fontSize: 15,
-                      fontFamily: 'MuliRegular',
+                      fontFamily: Assets.muliRegular,
                       color: AppColors.clr_bg_black,
                     )
                 )
@@ -248,7 +257,7 @@ class AccountComponent {
                     text4,
                     style: TextStyle(
                       fontSize: 15,
-                      fontFamily: 'MuliRegular',
+                      fontFamily: Assets.muliRegular,
                       color: AppColors.clr_bg_black,
                     )
                 )
@@ -268,7 +277,7 @@ class AccountComponent {
 
   _getAddPosition(){
     return Container(
-      width: AppSizes.width*0.45,
+        width: AppSizes.width*0.45,
         padding: EdgeInsets.all(10.0,),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20.0),
@@ -283,7 +292,7 @@ class AccountComponent {
                 "Add Positions",
                 style: TextStyle(
                   fontSize: 15,
-                  fontFamily: 'MuliRegular',
+                  fontFamily: Assets.muliRegular,
                   color: AppColors.clr_bg_black,
                 )
             ),
@@ -292,68 +301,71 @@ class AccountComponent {
     );
   }
 
-  Widget getUserRatingCity({@required String name,@required String rating,@required String city,}){
+  Widget getUserRatingCity({@required String name,@required double rating,@required String city,}){
     return Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Text(
-                      name,
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                          fontSize: 22,
-                          fontFamily: 'MuliBold,',
-                        fontWeight: FontWeight.bold,
-                      )
-                  ),
-                  SizedBox(
-                    width: AppSizes.width * 0.02,
-                  ),
-                  Container(
-                      padding: EdgeInsets.all(3.0),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10.0),
-                          border: Border.all(
-                            color: AppColors.clr_bg_grey,
-                          )
-                      ),
-                      child: Row(
-                        children: [
-                          Image.asset(
-                              Assets.star,
-                              width: 10,
-                              height: 10),
-                          SizedBox(
-                            width: AppSizes.width * 0.015,
-                          ),
-                          Text(
-                              rating,
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontFamily: 'MuliRegular',
-                                color: AppColors.clr_bg_black,
-                              )
-                          )
-                        ],
-                      )
-                  )
-                ],
-              ),
-              Container(
-                width: AppSizes.width * 0.85,
-                child: Text(
-                    city ?? "",
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Text(
+                    name,
+                    textAlign: TextAlign.left,
                     style: TextStyle(
-                      fontSize: 15,
-                      color: AppColors.clr_bg_black,
-                      fontFamily: 'MuliSemiBold',
+                      fontSize: 22,
+                      fontFamily: Assets.muliBold,
+                     // fontWeight: FontWeight.bold,
                     )
                 ),
+                SizedBox(
+                  width: AppSizes.width * 0.02,
+                ),
+                Container(
+                    padding: EdgeInsets.all(3.0),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.0),
+                        border: Border.all(
+                          color: AppColors.clr_bg_grey,
+                        )
+                    ),
+                    child: Row(
+                      children: [
+                        Image.asset(
+                            Assets.star,
+                            width: 10,
+                            height: 10),
+                        SizedBox(
+                          width: AppSizes.width * 0.015,
+                        ),
+                      Text(
+                            rating.toString(),
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontFamily: Assets.muliRegular,
+                              color: AppColors.clr_bg_black,
+                            )
+                        )
+                      ] ,
+                    )
+                )
+              ],
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 10),
+              width: AppSizes.width * 0.85,
+              child: Text(
+
+                  city ?? "no city selected",
+                  style: TextStyle(
+                    fontSize: 13,
+                    color: AppColors.clr_bg_black2,
+                    fontFamily: Assets.muliRegular,
+                    fontStyle: FontStyle.italic
+                  )
               ),
-            ],
-          )
-      );
+            ),
+          ],
+        )
+    );
   }
 }

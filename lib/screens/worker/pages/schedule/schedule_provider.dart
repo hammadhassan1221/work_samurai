@@ -2,6 +2,7 @@ import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:work_samurai/commons/utils.dart';
+import 'package:work_samurai/constants/constants.dart';
 import 'package:work_samurai/generic_decode_encode/generic.dart';
 import 'package:work_samurai/network/api_urls.dart';
 import 'package:work_samurai/network/network_helper.dart';
@@ -52,7 +53,7 @@ class ScheduleProviders extends ChangeNotifier{
             contentType: Headers.formUrlEncodedContentType,
             headers: {
               "Authorization": "Bearer " + PreferenceUtils.getString(Strings.ACCESS_TOKEN),
-              "DeviceID": "6e5e3c7e-d607-4d4c-ba0a-4c885d87a1f0"},
+              "DeviceID": Constants.deviceId},
           ),
         );
         if (_response.statusCode != 200) {
@@ -102,7 +103,7 @@ class ScheduleProviders extends ChangeNotifier{
             contentType: Headers.formUrlEncodedContentType,
             headers: {
               "Authorization": "Bearer " + PreferenceUtils.getString(Strings.ACCESS_TOKEN),
-              "DeviceID": "6e5e3c7e-d607-4d4c-ba0a-4c885d87a1f0"},
+              "DeviceID": Constants.deviceId},
           ),
         );
 
@@ -147,7 +148,7 @@ class ScheduleProviders extends ChangeNotifier{
         var _token = PreferenceUtils.getString(Strings.ACCESS_TOKEN);
         http.Response _response = await _network.post(getData, headers: {
           "Authorization": "Bearer " + _token,
-          "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
+          "DeviceID": Constants.deviceId,
           "Scope":
           "preferences",
         }, body: {});
@@ -180,7 +181,7 @@ class ScheduleProviders extends ChangeNotifier{
       var _token = PreferenceUtils.getString(Strings.ACCESS_TOKEN);
       http.Response _response = await _network.post(getData, headers: {
         "Authorization": "Bearer " + _token,
-        "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
+        "DeviceID": Constants.deviceId,
         "Scope":
         "useraddress",
       }, body: {});

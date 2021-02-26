@@ -64,7 +64,7 @@ class _SupportMessagesState extends State<SupportMessages>{
                   CommonWidgets.getAppBar(
                       text: "Chat with Support", context: context),
                   _supportMessagesProvider.isDataFetched == true ? Expanded(
-                    child: ListView.builder(
+                    child:  _supportMessagesProvider.getSupportMessage.data != null ? ListView.builder(
                       controller: _controller,
                         itemCount: _supportMessagesProvider.getSupportMessage.data.length,
                         itemBuilder: (context, index) {
@@ -141,6 +141,16 @@ class _SupportMessagesState extends State<SupportMessages>{
                         }
 
                         }
+                    ) : Container(
+                      height: 30,
+                      margin: EdgeInsets.only(top: 10),
+                      child: Text(
+                        'No messages available',
+                        style: TextStyle(
+                          fontFamily: 'MuliRegular',
+                          fontSize: 15,
+                        ),
+                      ),
                     ),
                   ) : Expanded(
                     child: Container (

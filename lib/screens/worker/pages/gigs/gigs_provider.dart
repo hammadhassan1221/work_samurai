@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:work_samurai/commons/utils.dart';
+import 'package:work_samurai/constants/constants.dart';
 import 'package:work_samurai/generic_decode_encode/generic.dart';
 import 'package:work_samurai/helper/helper.dart';
 import 'package:work_samurai/models/api_models/worker_screen/gigs_screen/future_jobs_response.dart';
@@ -44,15 +45,15 @@ class GigsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+
   Future _getProfileData({@required BuildContext context}) async {
     try {
       Response _response = await _networkHelper.post(
         getData,
         headers: {
           "Authorization": "Bearer " + _token,
-          "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
-          "Scope":
-              "profile,useraddress,preferences,userskills,usersettings,userverifications,usercompliments,userrating,CompletedJobs,supporttickets,company,companyaddress,companycompliments,companyrating,verificationmethods,compliments,systemskills,AccountVerified,paymentdetails",
+          "DeviceID": Constants.deviceId,
+          "Scope":"profile,useraddress,preferences,userskills,usersettings,userverifications,usercompliments,userrating,CompletedJobs,supporttickets,company,companyaddress,companycompliments,companyrating,verificationmethods,compliments,systemskills,AccountVerified,paymentdetails",
         },
         body: {},
       );
@@ -63,14 +64,15 @@ class GigsProvider extends ChangeNotifier {
       if (_response.statusCode == 200) {
         _userWholeData = UserWholeData.fromJson(
             _genericDecodeEncode.decodeJson(Helper.getString(_response)));
-        PreferenceUtils.setBool(
-            Strings.IS_ACCOUNT_VERIFIED, _userWholeData.data.accountVerified);
+        PreferenceUtils.setBool(Strings.IS_ACCOUNT_VERIFIED, _userWholeData.data.user.emailVerified);
         PreferenceUtils.setInt(Strings.USER_ID, _userWholeData.data.user.id);
+
       }
     } catch (e) {
       print(e.toString());
     }
   }
+
 
   getFutureJobResponse() {
     return this._futureJobsResponse;

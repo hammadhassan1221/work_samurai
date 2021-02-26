@@ -37,15 +37,15 @@ class _AlertsState extends State<Alerts> {
           SizedBox(height: AppSizes.height * 0.01),
           _alertProviders.getIsDataFetched()
               ? Expanded(
-                  child: _alertProviders.getAlerts().data.length > 0
+                  child: _alertProviders.getAlerts().data.length <1
                       ? ListView.builder(
-                          itemCount: _alertProviders.getAlerts().data.length,
+                          itemCount: 3/*_alertProviders.getAlerts().data.length3*/,
                           itemBuilder: (context, index) {
                             return _alertsComponents.getNotificationsContainer(
                                 leftIcon: Assets.support,
-                                userName: _alertProviders.getAlerts().data[index].title,
-                                message:_alertProviders.getAlerts().data[index].body,
-                                time: _alertProviders.getAlerts().data[index].createdDate);
+                                userName:"rizwan", //_alertProviders.getAlerts().data[index].title,
+                                message:"asdfghjm",//_alertProviders.getAlerts().data[index].body,
+                                time:"12345",); //_alertProviders.getAlerts().data[index].createdDate);
                           })
                       : CommonWidgets.onNullData(text: "No Alerts"))
               : Container()

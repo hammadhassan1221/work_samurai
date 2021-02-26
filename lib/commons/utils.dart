@@ -1,6 +1,7 @@
 import 'dart:async' show Future;
 
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:work_samurai/models/api_models/bank_detail/bank_detail_response.dart';
 import 'package:work_samurai/models/api_models/login_screen/login_response.dart';
 import 'package:work_samurai/res/strings.dart';
 
@@ -42,6 +43,14 @@ class PreferenceUtils {
     prefs.setString(Strings.ACCESS_EXPIRY, loginResponse.accessExpiry);
     prefs.setString(Strings.REFRESH_EXPIRY, loginResponse.refreshExpiry);
     prefs.setInt(Strings.TOKEN_RESPONSE, loginResponse.tokenResponse);
+  }
+
+  static Future setBankUpdateResponse(BankDetailResponse bankDetailResponse) async {
+    var prefs = await _instance;
+
+    prefs.setString(Strings.ACCOUNT_NAME, bankDetailResponse.data.holderName);
+    prefs.setString(Strings.ACCOUNT_Number, bankDetailResponse.data.accountNumber);
+    prefs.setString(Strings.BSB_Number, bankDetailResponse.data.bsb);
   }
 
   static Future setUserData(String userData) async {

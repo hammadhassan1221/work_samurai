@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:timer_count_down/timer_count_down.dart';
+import 'package:flutter_countdown_timer/current_remaining_time.dart';
+import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
+import 'package:work_samurai/screens/worker/pages/gigs/in_progress/in_progress_provider.dart';
 import 'package:work_samurai/widgets/spacer.dart';
 
 class InProgressComponents {
@@ -31,6 +33,14 @@ class InProgressComponents {
         children: [
           Container(
             decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.3),
+                  spreadRadius: 0,
+                  blurRadius: 1,
+                  offset: Offset(0, 2), // changes position of shadow
+                ),
+              ],
               borderRadius: BorderRadius.circular(5),
               border: Border.all(
                 color: AppColors.clr_field,
@@ -52,7 +62,7 @@ class InProgressComponents {
                       Text(
                         '$jobTitle',
                         style: TextStyle(
-                          fontSize: 22,
+                          fontSize: 18,
                           fontFamily: "MuliSemiBold",
                           color: AppColors.clr_bg_black,
                         ),
@@ -60,7 +70,7 @@ class InProgressComponents {
                       Text(
                         '\$' + '$totalAmount',
                         style: TextStyle(
-                          fontSize: 22,
+                          fontSize: 18,
                           fontFamily: "MuliSemiBold",
                           color: AppColors.clr_bg_black,
                         ),
@@ -81,7 +91,7 @@ class InProgressComponents {
                       Text(
                         '$dateTime',
                         style: TextStyle(
-                          fontSize: AppSizes.fontRatio * 16,
+                          fontSize: AppSizes.fontRatio * 12,
                           fontFamily: "MuliRegular",
                           color: AppColors.clr_bg_black,
                         ),
@@ -89,7 +99,7 @@ class InProgressComponents {
                       Text(
                         '\$' + '$amountHour' + '/h',
                         style: TextStyle(
-                          fontSize: AppSizes.fontRatio * 16,
+                          fontSize: AppSizes.fontRatio * 12,
                           fontFamily: "MuliRegular",
                           color: AppColors.clr_bg_black,
                         ),
@@ -108,7 +118,7 @@ class InProgressComponents {
                   child: Text(
                     '$location',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 12,
                       fontFamily: "MuliRegular",
                       color: AppColors.clr_bg_black,
                     ),
@@ -139,7 +149,7 @@ class InProgressComponents {
                       Text(
                         'Check-in time',
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 12,
                           fontFamily: "MuliRegular",
                           color: AppColors.clr_bg_black,
                         ),
@@ -150,7 +160,7 @@ class InProgressComponents {
                       Text(
                         '10:22am',
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 12,
                           fontFamily: "MuliRegular",
                           color: AppColors.clr_bg_black,
                         ),
@@ -167,19 +177,19 @@ class InProgressComponents {
                 verticalSpacer(
                   16.0,
                 ),
-                Countdown(
-                  seconds: startTime,
-                  build: (BuildContext context, startTime) => Center(
-                    child: Text(
-                      "${startTime.round().toInt()}" + "   Minutes Left",
-                      style: TextStyle(
-                        color: AppColors.clr_bg_black,
-                        fontSize: 40.0,
-                      ),
-                    ),
+                Center(
+                  child :CountdownTimer(
+                    endTime: DateTime.now().microsecondsSinceEpoch + 1000 * 30,
+                    widgetBuilder: (_, CurrentRemainingTime time) {
+                      if (time == null) {
+                        return Text('Game over');
+                      }
+                      return Text(
+                          ' ${time.hours} : ${time.min} : ${time.sec} '
+                          ,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 25),
+                      );
+                    },
                   ),
-                  interval: Duration(microseconds: 23,),
-                  onFinished: onTimeFinish,
                 ),
                 verticalSpacer(
                   16.0,

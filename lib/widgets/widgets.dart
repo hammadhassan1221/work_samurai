@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:work_samurai/commons/utils.dart';
 import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
+import 'package:work_samurai/res/strings.dart';
 
 class CommonWidgets {
   static Widget getRow(String text, bool value, Function onPress) {
@@ -20,7 +22,7 @@ class CommonWidgets {
               style: TextStyle(
                   color: AppColors.clr_bg_black,
                   fontSize: 15,
-                  fontFamily: 'MuliRegular'),
+                  fontFamily: Assets.muliRegular),
             ),
             CupertinoSwitch(
                 activeColor: Colors.lightGreenAccent,
@@ -39,7 +41,7 @@ class CommonWidgets {
           style: TextStyle(
               decoration: TextDecoration.none,
             fontSize: 15,
-            fontFamily: 'MuliSemiBold',
+            fontFamily: Assets.muliRegular,
           ),
         ),
       ),
@@ -63,6 +65,7 @@ class CommonWidgets {
                 width: AppSizes.width * 0.03,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
+
                   color: AppColors.clr_green,
                 ),
               ),
@@ -74,7 +77,7 @@ class CommonWidgets {
                 style: TextStyle(
                     color: AppColors.clr_bg_black,
                     fontSize: 16,
-                    fontFamily: 'MuliRegular'),
+                    fontFamily: Assets.muliRegular),
               )
             ],
           ),
@@ -86,7 +89,7 @@ class CommonWidgets {
                 style: TextStyle(
                     fontSize: 16,
                     color: AppColors.clr_bg_black,
-                    fontFamily: 'MuliRegular'),
+                    fontFamily: Assets.muliRegular),
               )
             ],
           ),
@@ -123,7 +126,7 @@ class CommonWidgets {
                 style: TextStyle(
                     color: AppColors.clr_bg_black,
                     fontSize: 16,
-                    fontFamily: 'MuliRegular'),
+                    fontFamily: Assets.muliRegular),
               )
             ],
           ),
@@ -135,7 +138,7 @@ class CommonWidgets {
                 style: TextStyle(
                     fontSize: 16,
                     color: AppColors.clr_bg_black,
-                    fontFamily: 'MuliRegular'),
+                    fontFamily: Assets.muliRegular),
               )
             ],
           ),
@@ -220,7 +223,7 @@ class CommonWidgets {
               labelStyle: TextStyle(
                 fontSize: 12,
                 color: AppColors.clr_bg_black2,
-                fontFamily: 'MuliRegular',
+                fontFamily: Assets.muliRegular,
               ),
               border: InputBorder.none,
               prefixIcon: Padding(
@@ -262,7 +265,7 @@ class CommonWidgets {
               labelStyle: TextStyle(
                 fontSize: 12,
                 color: AppColors.clr_bg_black2,
-                fontFamily: 'MuliRegular',
+                fontFamily:Assets.muliRegular,
               ),
               border: InputBorder.none,
               prefixIcon: Padding(
@@ -304,7 +307,7 @@ class CommonWidgets {
               labelStyle: TextStyle(
                 fontSize: 12,
                 color: AppColors.clr_bg_black2,
-                fontFamily: 'MuliRegular',
+                fontFamily: Assets.muliRegular,
               ),
               border: InputBorder.none,
               prefixIcon: Padding(
@@ -332,22 +335,30 @@ class CommonWidgets {
           ),
         ],
       ),
-      padding: EdgeInsets.all(AppSizes.width * 0.035),
+      padding: EdgeInsets.only(top: 20, bottom: 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          SizedBox(
+            width: AppSizes.width * 0.02,
+          ),
           GestureDetector(
+
               onTap: () {
                 Navigator.pop(context);
               },
-              child: Image.asset(
-                Assets.barArrow,
-                height: 30,
-                width: 30,
+              child: Container(
+                padding: EdgeInsets.all(10),
+                child: Image.asset(
+
+                  Assets.barArrow,
+                  height: 20,
+                  width: 20,
+                ),
               )),
           SizedBox(
-            width: AppSizes.width * 0.02,
+            width: AppSizes.width * 0.05,
           ),
           Container(
             padding: EdgeInsets.only(bottom: AppSizes.width * 0.01),
@@ -357,8 +368,67 @@ class CommonWidgets {
                 color: AppColors.clr_bg_black,
                 decoration: TextDecoration.none,
                 fontSize: 22,
-                fontWeight: FontWeight.w400,
-                fontFamily: 'MuliSemiBold',
+
+                fontFamily: Assets.muliSemiBold,
+
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+  static Widget getAppBarAccount(
+      {@required String text, @required BuildContext context}) {
+    return Container(
+      width: AppSizes.width,
+      decoration: BoxDecoration(
+        color: AppColors.clr_white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.25),
+            spreadRadius: 0.5,
+            blurRadius: 1,
+            offset: Offset(0, 1), // changes position of shadow
+          ),
+        ],
+      ),
+      padding: EdgeInsets.only(top: 50, bottom: 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SizedBox(
+            width: AppSizes.width * 0.02,
+          ),
+          GestureDetector(
+
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Container(
+                padding: EdgeInsets.all(10),
+                child: Image.asset(
+
+                  Assets.barArrow,
+                  height: 20,
+                  width: 20,
+                ),
+              )),
+          SizedBox(
+            width: AppSizes.width * 0.05,
+          ),
+          Container(
+            padding: EdgeInsets.only(bottom: AppSizes.width * 0.01),
+            child: Text(
+              text,
+              style: TextStyle(
+                color: AppColors.clr_bg_black,
+                decoration: TextDecoration.none,
+                fontSize: 22,
+
+                fontFamily: Assets.muliBold,
+
               ),
             ),
           )
@@ -385,14 +455,14 @@ class CommonWidgets {
       ),
       padding: EdgeInsets.all(AppSizes.width * 0.038),
       child: Container(
-        padding: EdgeInsets.only(top: 15),
+        padding: EdgeInsets.only(top: 50),
         child: Text(
           text,
           textAlign: TextAlign.justify,
           style: TextStyle(
               decoration: TextDecoration.none,
               fontSize: 22,
-              fontFamily: 'MuliBold'),
+              fontFamily: Assets.muliBold),
         ),
       ),
     );
@@ -404,15 +474,15 @@ class CommonWidgets {
     return Container(
       width: AppSizes.width,
       color: AppColors.clr_white,
-      padding: EdgeInsets.all(AppSizes.width * 0.038),
+      padding: EdgeInsets.all(AppSizes.width * 0.04),
       child: Container(
-        padding: EdgeInsets.only(top: 15),
+        padding: EdgeInsets.only(top: 50),
         child: Text(
           text,
           style: TextStyle(
               decoration: TextDecoration.none,
               fontSize: 22,
-              fontFamily: 'MuliBold'),
+              fontFamily: Assets.muliBold),
         ),
       ),
     );
@@ -461,7 +531,7 @@ class CommonWidgets {
                     color: AppColors.clr_bg_black,
                     decoration: TextDecoration.none,
                     fontSize: 16,
-                    fontFamily: 'MuliBold',
+                    fontFamily: Assets.muliBold,
                   ),
                 ),
               ],
@@ -481,43 +551,51 @@ class CommonWidgets {
   }
 
   static Widget getAlertContainer({@required Function onPress}) {
-    return GestureDetector(
-      onTap: onPress,
-      child: Container(
-        width: AppSizes.width,
-        padding: EdgeInsets.all(AppSizes.width * 0.03),
-        color: Colors.orangeAccent,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Your Profile Inactive",
-              style: TextStyle(
+    if (PreferenceUtils.getBool(Strings.IS_ACCOUNT_VERIFIED)) {
+      return SizedBox.shrink();
+    }
+    else{
+      return GestureDetector(
+        onTap: onPress,
+
+        child: Container(
+          width: AppSizes.width,
+          padding: EdgeInsets.all(AppSizes.width * 0.03),
+          color: Colors.orangeAccent,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Your Profile Inactive",
+                style: TextStyle(
                   color: AppColors.clr_white,
                   fontSize: 14,
-                  fontFamily: 'MuliSemiBold',
+                  fontFamily: Assets.muliSemiBold,
+                ),
               ),
-            ),
-            SizedBox(
-              height: AppSizes.height * 0.005,
-            ),
-            Text(
-              "Please see the alerts for verifying your profile and start receiving the jobs",
-              style: TextStyle(
+              SizedBox(
+                height: AppSizes.height * 0.005,
+              ),
+              Text(
+                "Please see the alerts for verifying your profile and start receiving the jobs",
+                style: TextStyle(
                   color: AppColors.clr_white,
                   fontSize: 10,
-                  fontFamily: 'MuliRegular',
-              ),
-            )
-          ],
+                  fontFamily: Assets.muliRegular,
+                ),
+              )
+            ],
+          ),
         ),
-      ),
-    );
+      );
+    }
+
   }
 
   static Widget getBottomButton({@required String name, Function onButtonClick}){
     return Container(
       width: double.infinity,
+
       margin: EdgeInsets.symmetric(
         horizontal: 10.0,
       ),
@@ -539,7 +617,7 @@ class CommonWidgets {
             style: TextStyle(
               color: AppColors.clr_white,
               fontSize: 16,
-              fontFamily: 'MuliRegular',
+              fontFamily: Assets.muliRegular,
             ),
           ),
         ),
@@ -591,6 +669,7 @@ class CommonWidgets {
                           'We will send a link on your email to reset your password',
                           style: TextStyle(
                             fontSize: 14,
+                            fontFamily: Assets.muliRegular
                           ),
                           textAlign: TextAlign.center,
                         ),
