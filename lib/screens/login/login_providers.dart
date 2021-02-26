@@ -50,21 +50,22 @@ class LoginProvider extends ChangeNotifier {
         Response _response = await dio.post(
           loginURL,
           data: formData,
-            options: Options(
-              contentType: Headers.formUrlEncodedContentType,
-              headers: {
-                "Authorization": "Bearer " + PreferenceUtils.getString(Strings.ACCESS_TOKEN),
-                "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
-              },
-            ),
+          options: Options(
+            contentType: Headers.formUrlEncodedContentType,
+            headers: {
+              "Authorization":
+                  "Bearer " + PreferenceUtils.getString(Strings.ACCESS_TOKEN),
+              "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
+            },
+          ),
         );
 
         if (_response.statusCode != 200) {
           _loader.hideLoader(context);
           ApplicationToast.getErrorToast(
-              durationTime: 3,
-              heading: "Error",
-              subHeading: "Please try again",
+            durationTime: 3,
+            heading: "Error",
+            subHeading: "Please try again",
           );
           throw "Unauthorized";
         }
