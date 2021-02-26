@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 
@@ -48,7 +49,7 @@ class EarningComponents {
                         EdgeInsets.only(top: AppSizes.height * 0.01, bottom: 1),
                     child: Text(
                       fromDate.isNotEmpty ? '$fromDate' : "Select Date",
-                      style: TextStyle(fontSize: 13),
+                      style: TextStyle(fontSize: 13, fontFamily: Assets.muliSemiBold),
                     ),
                   ),
                 )
@@ -74,18 +75,17 @@ class EarningComponents {
         margin: EdgeInsets.only(
             left: AppSizes.width * 0.04, right: AppSizes.width * 0.04),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
               text,
               style: TextStyle(
                   fontSize: 18,
-                  fontFamily: "MuliSemiBold",
-                  fontWeight: FontWeight.w100),
+                  fontFamily: Assets.muliSemiBold),
             ),
             Text(
               amount,
-              style: TextStyle(fontSize: 20, fontFamily: "MuliSemiBold"),
+              style: TextStyle(fontSize: 18, fontFamily: Assets.muliSemiBold),
             ),
           ],
         ));
@@ -104,14 +104,13 @@ class EarningComponents {
             top: AppSizes.height * 0.01, bottom: AppSizes.width * 0.025),
         margin: EdgeInsets.only(
             left: AppSizes.width * 0.04,
-            right: AppSizes.width * 0.04,
+            right: AppSizes.width * 0.05,
             top: AppSizes.height * 0.025),
         child: Text(
           amount,
           style: TextStyle(
               fontSize: 18,
-              fontFamily: "MuliSemiBold",
-              fontWeight: FontWeight.w100),
+              fontFamily: Assets.muliSemiBold),
         ));
   }
 
@@ -132,7 +131,7 @@ class EarningComponents {
                 style: TextStyle(
                   color: Colors.grey,
                   fontSize: 16,
-                  fontFamily: 'MuliSemiBold'
+                  fontFamily: Assets.muliSemiBold
                 ),
               ),
               SizedBox(width:20,),
@@ -141,7 +140,7 @@ class EarningComponents {
                 style: TextStyle(
                     color: Colors.grey,
                     fontSize: 16,
-                    fontFamily: 'MuliSemiBold'
+                    fontFamily: Assets.muliSemiBold
                 ),
               ),
             ],
@@ -154,9 +153,12 @@ class EarningComponents {
             children: [
               GestureDetector(
                 onTap: leftIcon,
-                child: Icon(
-                  Icons.arrow_back_ios,
-                  size: 18,
+                child: Container(
+                  padding: EdgeInsets.all(10),
+                  child: Icon(
+                    Icons.arrow_back_ios,
+                    size: 18,
+                  ),
                 ),
               ),
               SizedBox(
@@ -168,7 +170,7 @@ class EarningComponents {
                   color: Colors.black,
                   fontSize: 36,
                   decoration: TextDecoration.none,
-                  fontFamily: 'MuliRegular'
+                  fontFamily: Assets.muliRegular
                 ),
               ),
               SizedBox(
@@ -176,11 +178,14 @@ class EarningComponents {
               ),
               GestureDetector(
                 onTap: rightIcon,
+                child: Container(
+                  padding: EdgeInsets.all(10),
                 child: Icon(
                   Icons.arrow_forward_ios,
                   size: 18,
                 ),
               ),
+              )
             ],
           ),
           SizedBox(
@@ -191,7 +196,7 @@ class EarningComponents {
             style: TextStyle(
               color: Colors.grey,
                 fontSize: 16,
-                fontFamily: 'MuliSemiBold'
+                fontFamily: Assets.muliSemiBold
             ),
           ),
         ],

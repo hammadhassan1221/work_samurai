@@ -216,6 +216,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_countdown_timer:
+    dependency: "direct main"
+    description:
+      name: flutter_countdown_timer
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.1"
   flutter_datetime_picker:
     dependency: "direct main"
     description:
@@ -381,7 +388,7 @@ packages:
     source: hosted
     version: "2.2.4"
   intl:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: intl
       url: "https://pub.dartlang.org"
@@ -408,7 +415,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.7.0+1"
-
   matcher:
     dependency: transitive
     description:
@@ -673,13 +679,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.19-nullsafety.2"
-  timer_count_down:
-    dependency: "direct main"
-    description:
-      name: timer_count_down
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.4+1"
   timezone:
     dependency: transitive
     description:

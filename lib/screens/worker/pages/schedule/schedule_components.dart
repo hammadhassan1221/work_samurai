@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/screens/worker/pages/schedule/schedule.dart';
@@ -48,7 +49,7 @@ class ScheduleComponents  with ChangeNotifier{
                 text,
                 style: TextStyle(
                   fontSize: 15,
-                  fontFamily: 'MuliRegular',
+                  fontFamily: Assets.muliSemiBold,
                 ),
               ),
             ],
@@ -97,7 +98,7 @@ class ScheduleComponents  with ChangeNotifier{
                   text,
                   style: TextStyle(
                     fontSize: 15,
-                    fontFamily: 'MuliRegular',
+                    fontFamily: Assets.muliSemiBold,
                   ),
                 ),
               ],
@@ -246,7 +247,7 @@ class ScheduleComponents  with ChangeNotifier{
                   ? time
                   :("${scheduleMap["${day}From"]} - ${scheduleMap["${day}To"]}"),
               style: TextStyle(
-                fontSize: 18,
+                fontSize: 15,
                 color: AppColors.clr_bg_black,
                 fontFamily: 'MuliRegular',
               ),

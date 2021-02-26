@@ -32,60 +32,59 @@ class _AppSettingsState extends State<AppSettings> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
+    return Scaffold(
       body: Container(
-        color: AppColors.clr_bg,
-        height: AppSizes.height,
-        width: AppSizes.width,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            CommonWidgets.getAppBar(text: "App Settings", context: context),
-            SizedBox(height: AppSizes.height*0.04,),
-            CommonWidgets.getRow("Notification Sound", isEnabled, (bool value) {
-              setState(() {
-                isEnabled = !isEnabled;
-              });
-            }),
-            CommonWidgets.getRow("Dark Theme mode", isEnabled1, (bool value) {
-              setState(() {
-                isEnabled1 = !isEnabled1;
-              });
-              // _appSettingsProviders.notificationSettings(context: context, value: value);
-            }),
-            SizedBox(height: AppSizes.height*0.02,),
-            _appSettingsComponents.getSettingText(text: "Terms Of Use"),
+    color: AppColors.clr_bg,
+    height: AppSizes.height,
+    width: AppSizes.width,
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        CommonWidgets.getAppBarAccount(text: "App Settings", context: context),
+        SizedBox(height: AppSizes.height*0.04,),
+        CommonWidgets.getRow("Notification Sound", isEnabled, (bool value) {
+          setState(() {
+            isEnabled = !isEnabled;
+          });
+        }),
+        CommonWidgets.getRow("Dark Theme mode", isEnabled1, (bool value) {
+          setState(() {
+            isEnabled1 = !isEnabled1;
+          });
+          // _appSettingsProviders.notificationSettings(context: context, value: value);
+        }),
+        SizedBox(height: AppSizes.height*0.02,),
+        _appSettingsComponents.getSettingText(text: "Terms Of Use"),
 
-            SizedBox(height: AppSizes.height*0.02,),
+        SizedBox(height: AppSizes.height*0.02,),
 
-            _appSettingsComponents.getSettingText(text: "Help"),
+        _appSettingsComponents.getSettingText(text: "Help"),
 
-            SizedBox(height: AppSizes.height*0.02,),
-            _appSettingsComponents.getSettingText(text: "FeedBack"),
+        SizedBox(height: AppSizes.height*0.02,),
+        _appSettingsComponents.getSettingText(text: "FeedBack"),
 
-            SizedBox(height: AppSizes.height*0.02,),
-            CommonWidgets.getBottomButton(name: "Update", onButtonClick: (){
+        SizedBox(height: AppSizes.height*0.02,),
+        CommonWidgets.getBottomButton(name: "Update", onButtonClick: (){
 
-              // String str = json.encode([
-              //   {
-              //     "Name": "App Settings",
-              //     "Value": "false",
-              //     "SettingList": [
-              //       {"Name": "Dark mode", "Value": "true"},
-              //       {"Name": "Notification Sound", "Value": "true"}
-              //     ],
-              //   }
-              // ]);
+          // String str = json.encode([
+          //   {
+          //     "Name": "App Settings",
+          //     "Value": "false",
+          //     "SettingList": [
+          //       {"Name": "Dark mode", "Value": "true"},
+          //       {"Name": "Notification Sound", "Value": "true"}
+          //     ],
+          //   }
+          // ]);
 
-              _appSettingsProviders.themeSettings(
-                context: context,
+          _appSettingsProviders.themeSettings(
+            context: context,
 
-              );
-            }),
-          ],
-        ),
+          );
+        }),
+      ],
+    ),
       ),
-    ));
+    );
   }
 }

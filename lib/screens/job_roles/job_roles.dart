@@ -43,81 +43,79 @@ class _JobRoleState extends State<JobRole> {
   @override
   Widget build(BuildContext context) {
     Provider.of<JobRolesProviders>(context, listen: true);
-    return SafeArea(
-        child: Scaffold(
-          body: Container(
-            height: AppSizes.height,
-            width: AppSizes.width,
-            color: AppColors.clr_bg,
-            child: jobRolesProviders.isDataFetched == true ? Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CommonWidgets.getAppBar(text: "Job Roles", context: context),
-                // _jobRolesComponents.getHeading(text: "Worker Job Role"),
-                Container(
-                  height: AppSizes.height*0.76
-                  ,
-                  child: ListView.builder(
-                      itemCount: jobRolesProviders.getUserSkilllsResponse.data.userSkills.length,
-                      itemBuilder: (context, index){
-                        return
-                          Column(
-                            children: [
-                              SizedBox(height: 20,),
-                              _jobRolesComponents.getJobRolesContainer(
-                                  backgroundColor: AppColors.clr_white,
-                                  borderColor: AppColors.transparentColor,
-                                  textColor: AppColors.clr_bg_black,
-                                  job:  jobRolesProviders.getUserSkilllsResponse.data.userSkills[index].skill.name,
-                                  verify: "verified"),
-                              SizedBox(height: AppSizes.height * 0.025),
-                            ],
-                          );
+    return Scaffold(
+      body: Container(
+        height: AppSizes.height,
+        width: AppSizes.width,
+        color: AppColors.clr_bg,
+        child: jobRolesProviders.isDataFetched == true ? Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            CommonWidgets.getAppBarAccount(text: "Job Roles", context: context),
+            // _jobRolesComponents.getHeading(text: "Worker Job Role"),
+            Container(
+              height: AppSizes.height*0.76
+              ,
+              child: ListView.builder(
+                  itemCount: jobRolesProviders.getUserSkilllsResponse.data.userSkills.length,
+                  itemBuilder: (context, index){
+                    return
+                      Column(
+                        children: [
+                          SizedBox(height: 20,),
+                          _jobRolesComponents.getJobRolesContainer(
+                              backgroundColor: AppColors.clr_white,
+                              borderColor: AppColors.transparentColor,
+                              textColor: AppColors.clr_bg_black,
+                              job:  jobRolesProviders.getUserSkilllsResponse.data.userSkills[index].skill.name,
+                              verify: "verified"),
+                          SizedBox(height: AppSizes.height * 0.025),
+                        ],
+                      );
 
 
-                      }
-                  ),
-                ),
-
-                //  SizedBox(
-                //    height: AppSizes.height * 0.025,
-                //  ),
-                // _jobRolesComponents.getVerifiedJobRolesContainer(
-                //     backgroundColor: AppColors.clr_white,
-                //     borderColor: AppColors.transparentColor,
-                //     textColor: AppColors.clr_bg_black,
-                //     job: "Waiter",
-                //     verify: "Verified"),
-                // SizedBox(
-                //   height: AppSizes.height * 0.025,
-                // ),
-                // _jobRolesComponents.getVerifiedJobRolesContainer(
-                //     backgroundColor: AppColors.clr_white,
-                //     borderColor: AppColors.transparentColor,
-                //     textColor: AppColors.clr_bg_black,
-                //     job: "Chef",
-                //     verify: "Verified"),
-                // Expanded(
-                //   child: CommonWidgets.getSignUpButton(
-                //       context: context, onPress: () {
-                //     jobRolesProviders.result = null;
-                //     _onButtonPressed();
-                //   }, text: "Add a Role"),
-                // ),
-
-                Container(
-                  height: 60,
-                  margin: EdgeInsets.only(top: 0),
-                  child: CommonWidgets.getBottomButton(name: "Add Job Roles",onButtonClick: _onButtonPressed)
-                ),
-
-              ],
-            ): Container(
-
+                  }
+              ),
             ),
 
-          ),
-        )
+            //  SizedBox(
+            //    height: AppSizes.height * 0.025,
+            //  ),
+            // _jobRolesComponents.getVerifiedJobRolesContainer(
+            //     backgroundColor: AppColors.clr_white,
+            //     borderColor: AppColors.transparentColor,
+            //     textColor: AppColors.clr_bg_black,
+            //     job: "Waiter",
+            //     verify: "Verified"),
+            // SizedBox(
+            //   height: AppSizes.height * 0.025,
+            // ),
+            // _jobRolesComponents.getVerifiedJobRolesContainer(
+            //     backgroundColor: AppColors.clr_white,
+            //     borderColor: AppColors.transparentColor,
+            //     textColor: AppColors.clr_bg_black,
+            //     job: "Chef",
+            //     verify: "Verified"),
+            // Expanded(
+            //   child: CommonWidgets.getSignUpButton(
+            //       context: context, onPress: () {
+            //     jobRolesProviders.result = null;
+            //     _onButtonPressed();
+            //   }, text: "Add a Role"),
+            // ),
+
+            Container(
+              height: 60,
+              margin: EdgeInsets.only(top: 0),
+              child: CommonWidgets.getBottomButton(name: "Add Job Roles",onButtonClick: _onButtonPressed)
+            ),
+
+          ],
+        ): Container(
+
+        ),
+
+      ),
     );
   }
   void _onButtonPressed() {

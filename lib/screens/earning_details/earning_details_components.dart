@@ -108,7 +108,6 @@ class EarningDetailsComponents{
           fontSize: 15,
           decoration: TextDecoration.none,
           fontFamily: "MuliSemiBold",
-          fontWeight: FontWeight.w300,
           color: Colors.black,
         ),
         ),

@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -13,6 +14,7 @@ import 'package:work_samurai/screens/worker/pages/messages/messages.dart';
 import 'package:work_samurai/screens/worker/pages/schedule/schedule.dart';
 import 'package:work_samurai/screens/worker/worker_components.dart';
 import 'package:work_samurai/screens/worker/worker_provider.dart';
+import 'package:work_samurai/widgets/toast.dart';
 
 class Worker extends StatefulWidget {
   @override
@@ -40,6 +42,21 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin {
     currentIndex = 0;
     workerProvider = Provider.of<WorkerProvider>(context, listen: false);
     workerComponents = WorkerComponents();
+    WidgetsBinding.instance.addPostFrameCallback((_) async{
+      String token = await FirebaseMessaging().getToken();
+      print("The token is: :::::: "+ token);
+    });
+    FirebaseMessaging().configure(
+      onMessage: (map) async{
+        ApplicationToast.getSuccessToast(durationTime: 3, heading: null, subHeading: "message received");
+      },
+      onLaunch: (map) async{
+        ApplicationToast.getSuccessToast(durationTime: 3, heading: null, subHeading: "message received");
+      },
+      onResume: (map) async{
+        ApplicationToast.getSuccessToast(durationTime: 3, heading: null, subHeading: "message received");
+      },
+    );
   }
 
   @override
@@ -53,7 +70,7 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
         showUnselectedLabels: false,
-        showSelectedLabels: false,
+        showSelectedLabels: true,
         backgroundColor: AppColors.clr_white,
         type: BottomNavigationBarType.fixed,
         onTap: (index) {
@@ -76,6 +93,9 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin {
             title: Text(
               "Gigs",
               style: TextStyle(
+                fontSize: 10,
+                color: Color.fromRGBO(0, 16, 32, 1),
+                fontFamily: Assets.muliRegular,
               ),
             ),
           ),
@@ -91,6 +111,9 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin {
             title: Text(
               "Schedule",
               style: TextStyle(
+                fontSize: 12,
+                color: Color.fromRGBO(0, 16, 32, 1),
+                fontFamily: Assets.muliRegular,
               ),
             ),
           ),
@@ -106,6 +129,9 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin {
             title: Text(
               "Messages",
               style: TextStyle(
+                fontSize: 12,
+                color: Color.fromRGBO(0, 16, 32, 1),
+                fontFamily: Assets.muliRegular,
               ),
             ),
           ),
@@ -121,6 +147,9 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin {
             title: Text(
               "Profile",
               style: TextStyle(
+                fontSize: 12,
+                color: Color.fromRGBO(0, 16, 32, 1),
+                fontFamily: Assets.muliRegular,
               ),
             ),
           ),
@@ -136,6 +165,9 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin {
             title: Text(
               "Alerts",
               style: TextStyle(
+                fontSize: 12,
+                color: Color.fromRGBO(0, 16, 32, 1),
+                fontFamily: Assets.muliRegular,
 
               ),
             ),

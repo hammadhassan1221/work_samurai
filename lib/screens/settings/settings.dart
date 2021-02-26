@@ -43,87 +43,84 @@ class _SettingsState extends State<Settings> {
   Widget build(BuildContext context) {
     _accountProviders = Provider.of<AccountProviders>(context, listen: true);
 
-    return SafeArea(
-        child: Scaffold(
+    return Scaffold(
       body: _accountProviders.getIsDataFetched()? Container(
-        height: AppSizes.height,
-        width: AppSizes.width,
-        color: AppColors.clr_bg,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+    color: AppColors.clr_bg,
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        CommonWidgets.getAppBarAccount(text: "Account Settings", context: context),
+        Expanded(
+            child: ListView(
           children: [
-            CommonWidgets.getAppBar(text: "Account Settings", context: context),
-            Expanded(
-                child: ListView(
-              children: [
-                _settingsComponents.getProfileThread(
-                  onPress: () {
-                    Navigator.push(
-                      context,
-                      SlideRightRoute(
-                        page: ProfileSettings(),
-                      ),
-                    );
-                  },
-                  imagePath: _accountProviders.getUserWholeData().data.user.document == null ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThsyVVdxkz5zyuE-yRKpdwtre_R234HkS2gQ&usqp=CAU" :_accountProviders.getUserWholeData().data.user.document["URL"],
-                  heading: _accountProviders.getUserWholeData().data.user.firstname + " "+ _accountProviders.getUserWholeData().data.user.lastname,
-                  subHeading: "Edit Profile",
-                  iconData: "",
-                ),
-                _settingsComponents.getHeadings(
-                    imagePath: Assets.basicMail,
-                    text: "Change Password",
-                    onPress: () {
-                      Navigator.push(
-                          context, SlideRightRoute(page: ChangePassword()));
-                    }),
-                _settingsComponents.getHeadings(
-                    imagePath: Assets.flag,
-                    text: "Document Verification",
-                    onPress: () {
-                      Navigator.push(context,
-                          SlideRightRoute(page: DocumentVerification()));
-                    }),
-                _settingsComponents.getHeadings(
-                    imagePath: Assets.userCard,
-                    text: "Earning",
-                    onPress: () {
-                      Navigator.push(
-                          context, SlideRightRoute(page: Earnings()));
-                    }),
-                _settingsComponents.getHeadings(
-                    imagePath: Assets.credit,
-                    text: "Bank Info",
-                    onPress: () {
-                      Navigator.push(
-                          context, SlideRightRoute(page: CardDetails()));
-                    }),
-                _settingsComponents.getHeadings(
-                    imagePath: Assets.userCard,
-                    text: "Job Roles",
-                    onPress: () {
-                      Navigator.push(context, SlideRightRoute(page: JobRole()));
-                    }),
-                _settingsComponents.getHeadings(
-                    imagePath: Assets.slider,
-                    text: "App Settings",
-                    onPress: () {
-                      Navigator.push(
-                          context, SlideRightRoute(page: AppSettings()));
-                    }),
-                _settingsComponents.getHeadings(
-                    imagePath: Assets.logout,
-                    text: "Logout",
-                    onPress: () {
-                      _showDialog();
-                    }),
-              ],
+            _settingsComponents.getProfileThread(
+              onPress: () {
+                Navigator.push(
+                  context,
+                  SlideRightRoute(
+                    page: ProfileSettings(),
+                  ),
+                );
+              },
+              imagePath: _accountProviders.getUserWholeData().data.user.document == null ? "https://toppng.com/uploads/preview/roger-berry-avatar-placeholder-11562991561rbrfzlng6h.png" :_accountProviders.getUserWholeData().data.user.document["URL"],
+              heading: _accountProviders.getUserWholeData().data.user.firstname + " "+ _accountProviders.getUserWholeData().data.user.lastname,
+              subHeading: "Edit Profile",
+              iconData: "",
             ),
-            ),
+            _settingsComponents.getHeadings(
+                imagePath: Assets.basicMail,
+                text: "Change Password",
+                onPress: () {
+                  Navigator.push(
+                      context, SlideRightRoute(page: ChangePassword()));
+                }),
+            _settingsComponents.getHeadings(
+                imagePath: Assets.flag,
+                text: "Document Verification",
+                onPress: () {
+                  Navigator.push(context,
+                      SlideRightRoute(page: DocumentVerification()));
+                }),
+            _settingsComponents.getHeadings(
+                imagePath: Assets.userCard,
+                text: "Earning",
+                onPress: () {
+                  Navigator.push(
+                      context, SlideRightRoute(page: Earnings()));
+                }),
+            _settingsComponents.getHeadings(
+                imagePath: Assets.credit,
+                text: "Bank Info",
+                onPress: () {
+                  Navigator.push(
+                      context, SlideRightRoute(page: CardDetails()));
+                }),
+            _settingsComponents.getHeadings(
+                imagePath: Assets.userCard,
+                text: "Job Roles",
+                onPress: () {
+                  Navigator.push(context, SlideRightRoute(page: JobRole()));
+                }),
+            _settingsComponents.getHeadings(
+                imagePath: Assets.slider,
+                text: "App Settings",
+                onPress: () {
+                  Navigator.push(
+                      context, SlideRightRoute(page: AppSettings()));
+                }),
+            _settingsComponents.getHeadings(
+                imagePath: Assets.logout,
+                text: "Logout",
+                onPress: () {
+                  _showDialog();
+                }),
           ],
         ),
+        ),
+      ],
+    ),
       ) : CircularProgressIndicator(),
-    ));
+    );
   }
 
   _showDialog() {

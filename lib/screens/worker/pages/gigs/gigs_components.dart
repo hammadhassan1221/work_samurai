@@ -475,8 +475,6 @@ class GigsComponents {
                         onPress: (){onStart();},
                         name: "Start",
                       )
-
-
                           :
                       getStartActionButton(
                         context: context,
@@ -510,6 +508,7 @@ class GigsComponents {
           highlightColor: buttonColor.withOpacity(0.1),
           onPressed: () {onPress.call();},
           child: Row(
+
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(
@@ -874,7 +873,7 @@ class GigsComponents {
                             MapView(startLat: lat,
                                 startLong: lat,
                                 apiKey: null,
-                                directionsApiKey: "AIzaSyBxBzba_srvA-PJBBF2JEaqswGUibpzeNQ"),
+                                directionsApiKey: "AIzaSyBTdkccVvUmp02tIqDfXT1eaS6LjqeTWYM"),
                             // Image.asset(
                             //   Assets.google,
                             //   fit: BoxFit.fill,
