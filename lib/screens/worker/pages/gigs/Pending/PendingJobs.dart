@@ -11,6 +11,8 @@ import 'package:work_samurai/res/strings.dart';
 import 'package:work_samurai/widgets/spacer.dart';
 import 'package:work_samurai/screens/worker/pages/gigs/Pending/PendingComponent.dart';
 import 'package:work_samurai/screens/worker/pages/gigs/gigs_components.dart';
+import 'package:work_samurai/screens/login/login.dart';
+import 'package:work_samurai/widgets/toast.dart';
 
 class PendingJobs extends StatefulWidget {
   @override
@@ -126,22 +128,40 @@ class _PendingJobsState extends State<PendingJobs> {
           },
         ),
       );
-      if (_response.statusCode != 200) {}
+      if (_response.statusCode != 200) {
+        ApplicationToast.getErrorToast(durationTime: 3, heading: "ERROR", subHeading: "An error has occurred!");
+      }
       if (_response.statusCode == 200) {
-        if (futureJobsResponse.data.length <= _pageSize) {
-          FutureJobsResponse temp = FutureJobsResponse.empty();
-          temp = FutureJobsResponse.fromJson(_response.data);
-          pageCount = pageCount + temp.data.length;
-          futureJobsResponse.data.addAll(temp.data);
-          _futureJobsList.addAll(futureJobsResponse.data);
-          final isLastPage = temp.data.length < _pageSize;
-          if (isLastPage)
-            _pagingController.appendLastPage(_futureJobsList);
-          else {
-            final nextPage = pageNumber + 1;
-            _pagingController.appendPage(_futureJobsList, nextPage);
+        if(_response.data["ResponseCode"] == 1){
+          if (futureJobsResponse.data.length <= _pageSize) {
+            FutureJobsResponse temp = FutureJobsResponse.empty();
+            temp = FutureJobsResponse.fromJson(_response.data);
+            pageCount = pageCount + temp.data.length;
+            futureJobsResponse.data.addAll(temp.data);
+            _futureJobsList.addAll(futureJobsResponse.data);
+            final isLastPage = temp.data.length < _pageSize;
+            if (isLastPage)
+              _pagingController.appendLastPage(_futureJobsList);
+            else {
+              final nextPage = pageNumber + 1;
+              _pagingController.appendPage(_futureJobsList, nextPage);
+            }
           }
         }
+        else{
+          if(_response.data["ResponseCode"] == 0){
+            ApplicationToast.getErrorToast(durationTime: 3, heading: "ERROR", subHeading: "Your session has expired, please login again");
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => Login()
+                ),
+                ModalRoute.withName("/Login")
+            );
+          }
+          else ApplicationToast.getErrorToast(durationTime: 3, heading: "ERROR", subHeading: "An error has occurred!, please try later");
+        }
+
       }
     } catch (e) {
       print(e.toString());
