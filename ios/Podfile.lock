@@ -87,6 +87,8 @@ PODS:
     - SCLAlertView
   - geocoder (0.0.1):
     - Flutter
+  - geolocator (6.2.0):
+    - Flutter
   - get_version (0.0.1):
     - Flutter
   - google_maps_flutter (0.0.1):
@@ -152,6 +154,7 @@ DEPENDENCIES:
   - Flutter (from `Flutter`)
   - fluttertoastalert (from `.symlinks/plugins/fluttertoastalert/ios`)
   - geocoder (from `.symlinks/plugins/geocoder/ios`)
+  - geolocator (from `.symlinks/plugins/geolocator/ios`)
   - get_version (from `.symlinks/plugins/get_version/ios`)
   - google_maps_flutter (from `.symlinks/plugins/google_maps_flutter/ios`)
   - image_picker (from `.symlinks/plugins/image_picker/ios`)
@@ -201,6 +204,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/fluttertoastalert/ios"
   geocoder:
     :path: ".symlinks/plugins/geocoder/ios"
+  geolocator:
+    :path: ".symlinks/plugins/geolocator/ios"
   get_version:
     :path: ".symlinks/plugins/get_version/ios"
   google_maps_flutter:
@@ -235,6 +240,7 @@ SPEC CHECKSUMS:
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
   fluttertoastalert: d495c35eb40caa4fac869197570c6773282cb6df
   geocoder: 3cfab70531a0b367e917bafe82df4c30f6d4c45a
+  geolocator: f5e3de65e241caba7ce3e8a618803387bda73384
   get_version: 2bc18c4e26a265571662cab5d38f8b50dc8c1c77
   google_maps_flutter: c7f9c73576de1fbe152a227bfd6e6c4ae8088619
   GoogleDataTransport: f56af7caa4ed338dc8e138a5d7c5973e66440833

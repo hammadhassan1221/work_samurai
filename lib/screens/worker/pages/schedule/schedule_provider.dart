@@ -11,7 +11,8 @@ import 'package:work_samurai/res/strings.dart';
 import 'package:work_samurai/widgets/loader.dart';
 import 'package:work_samurai/widgets/toast.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'package:work_samurai/RefreshToken.dart';
+
 
 
 class ScheduleProviders extends ChangeNotifier{
@@ -166,7 +167,8 @@ class ScheduleProviders extends ChangeNotifier{
           }
           else{
             //error loading data
-            return null;
+            RefreshToken().refreshToken(context).then((value) => getCurrentPreferences(context));
+            // return null;
           }
         }
       } catch (e) {

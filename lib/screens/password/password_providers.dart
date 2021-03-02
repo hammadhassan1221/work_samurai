@@ -37,13 +37,14 @@ class PasswordProviders extends ChangeNotifier{
     }
   }
 
-  Future _newPassword({@required BuildContext context,@required String newPassword,})async{
+  Future _newPassword({@required BuildContext context,@required String newPassword,@required String oldPassword})async{
     try{
       var connectivityResult = await (Connectivity().checkConnectivity());
       if (connectivityResult != ConnectivityResult.none) {
         _loader.showLoader(context: context);
         var formData = Map<String, dynamic>();
         formData['NewPassword'] = newPassword;
+        formData['OldPassword'] = oldPassword;
         dio.options.contentType = Headers.formUrlEncodedContentType;
 
         Response _response = await dio.post(
@@ -66,12 +67,21 @@ class PasswordProviders extends ChangeNotifier{
           _loader.hideLoader(context);
 
           GenericResponse _genericResponse = GenericResponse.fromJson(_response.data);
-          ApplicationToast.getSuccessToast(
-              durationTime: 3,
-              heading: "Success",
-              subHeading: "Login Successful");
-          Navigator.pushReplacement(context, SlideRightRoute(page: Worker()));
+          if (_genericResponse.responseCode == 1) {
+            ApplicationToast.getSuccessToast(
+                durationTime: 3,
+                heading: "Success",
+                subHeading: "Successfully changed password");
+            Navigator.pushReplacement(context, SlideRightRoute(page: Worker()));
+          }
+          else if(_genericResponse.responseCode == 35 ){
+            ApplicationToast.getWarningToast(
+                durationTime: 3,
+                heading: "Error",
+                subHeading: "Old Password is incorrect");
+          }
         }
+
       }
     }catch(e){
       _loader.hideLoader(context);
@@ -85,7 +95,7 @@ class PasswordProviders extends ChangeNotifier{
     @required String newPassword,
     @required String currentPassword,
   }) {
-   _newPassword(context: context, newPassword: newPassword);
+   _newPassword(context: context, newPassword: newPassword, oldPassword: currentPassword);
   }
 
 }

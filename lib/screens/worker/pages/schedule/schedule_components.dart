@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/screens/worker/pages/schedule/schedule.dart';
@@ -24,7 +26,9 @@ class ScheduleComponents  with ChangeNotifier{
     @required String text1,
   }) {
     return Container(
-      margin: EdgeInsets.only(
+      height: AppSizes.height*0.07,
+      color: Colors.white,
+      padding: EdgeInsets.only(
         left: AppSizes.width * 0.04,
         right: AppSizes.width * 0.04,
       ),
@@ -47,7 +51,7 @@ class ScheduleComponents  with ChangeNotifier{
                 text,
                 style: TextStyle(
                   fontSize: 15,
-                  fontFamily: 'MuliRegular',
+                  fontFamily: Assets.muliSemiBold,
                 ),
               ),
             ],
@@ -73,7 +77,10 @@ class ScheduleComponents  with ChangeNotifier{
     return GestureDetector(
       onTap: onPress,
       child: Container(
-        margin: EdgeInsets.only(
+        height: AppSizes.height*0.08,
+        color: Colors.white,
+        width: AppSizes.width,
+        padding: EdgeInsets.only(
           left: AppSizes.width * 0.04,
           right: AppSizes.width * 0.04,
         ),
@@ -96,7 +103,7 @@ class ScheduleComponents  with ChangeNotifier{
                   text,
                   style: TextStyle(
                     fontSize: 15,
-                    fontFamily: 'MuliRegular',
+                    fontFamily: Assets.muliSemiBold,
                   ),
                 ),
               ],
@@ -161,6 +168,7 @@ class ScheduleComponents  with ChangeNotifier{
                                       setState(() {
                                         onClick = !onClick;
                                         isAllday = value;
+
                                       });
                                     }),
                               ],
@@ -191,6 +199,7 @@ class ScheduleComponents  with ChangeNotifier{
                           // ApplicationToast.getSuccessToast(durationTime: 3, heading: "null", subHeading: scheduleMap.toString());
                         }),
                         name: "DONE")
+
                   ],
                 ),
               );
@@ -243,7 +252,7 @@ class ScheduleComponents  with ChangeNotifier{
                   ? time
                   :("${scheduleMap["${day}From"]} - ${scheduleMap["${day}To"]}"),
               style: TextStyle(
-                fontSize: 18,
+                fontSize: 15,
                 color: AppColors.clr_bg_black,
                 fontFamily: 'MuliRegular',
               ),
@@ -332,7 +341,6 @@ class ScheduleComponents  with ChangeNotifier{
       ],
     );
   }
-
 // Widget getWedThur({@required String day, @required String time}) {
 //   return GestureDetector(
 //     onTap: () {

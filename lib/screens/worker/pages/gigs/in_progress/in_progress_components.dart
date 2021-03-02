@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:timer_count_down/timer_count_down.dart';
+import 'package:flutter_countdown_timer/current_remaining_time.dart';
+import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
+import 'package:work_samurai/screens/worker/pages/gigs/in_progress/in_progress_provider.dart';
 import 'package:work_samurai/widgets/spacer.dart';
 
 class InProgressComponents {
@@ -175,19 +177,19 @@ class InProgressComponents {
                 verticalSpacer(
                   16.0,
                 ),
-                Countdown(
-                  seconds: startTime,
-                  build: (BuildContext context, startTime) => Center(
-                    child: Text(
-                      "${startTime.round().toInt()}" + "   Minutes Left",
-                      style: TextStyle(
-                        color: AppColors.clr_bg_black,
-                        fontSize: 20.0,
-                      ),
-                    ),
+                Center(
+                  child :CountdownTimer(
+                    endTime: DateTime.now().microsecondsSinceEpoch + 1000 * 30,
+                    widgetBuilder: (_, CurrentRemainingTime time) {
+                      if (time == null) {
+                        return Text('Game over');
+                      }
+                      return Text(
+                          ' ${time.hours} : ${time.min} : ${time.sec} '
+                          ,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 25),
+                      );
+                    },
                   ),
-                  interval: Duration(microseconds: 23,),
-                  onFinished: onTimeFinish,
                 ),
                 verticalSpacer(
                   16.0,

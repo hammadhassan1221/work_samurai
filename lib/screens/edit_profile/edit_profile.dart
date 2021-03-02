@@ -88,7 +88,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                     _editProfileComponents.getUserImage(
                         onPress: () {
                          // ApplicationToast.getSuccessToast(durationTime: 2, heading: "null", subHeading: "Hello");
-                        }, imagePath: _accountProviders.getUserWholeData().data.user.document == null ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThsyVVdxkz5zyuE-yRKpdwtre_R234HkS2gQ&usqp=CAU" :_accountProviders.getUserWholeData().data.user.document["URL"],
+                        }, imagePath: _accountProviders.getUserWholeData().data.user.document == null ? "https://toppng.com/uploads/preview/roger-berry-avatar-placeholder-11562991561rbrfzlng6h.png" :_accountProviders.getUserWholeData().data.user.document["URL"],
                         editProfileObj: _editProfileProviders),
                     SizedBox(
                       height: AppSizes.height * 0.05,

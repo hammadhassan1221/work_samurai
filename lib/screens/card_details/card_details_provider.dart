@@ -67,6 +67,8 @@ class CardDetailsProvider extends ChangeNotifier {
       if (_response.statusCode == 200) {
         _loader.hideLoader(context);
         _bankDetailResponse = BankDetailResponse.fromJson(_response.data);
+        
+        PreferenceUtils.setBankUpdateResponse(_bankDetailResponse);
 
         ApplicationToast.getSuccessToast(
             durationTime: 3, heading: "Successfully Updated", subHeading: "");

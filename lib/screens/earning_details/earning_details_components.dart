@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
+import 'package:work_samurai/widgets/widgets.dart';
 
 class EarningDetailsComponents{
   Widget getPayment({@required BuildContext buildContext,@required String jobDesc,@required String job,@required Function onPress,@required String value}) {
@@ -95,5 +96,22 @@ class EarningDetailsComponents{
           ),
         ),
       );
+  }
+
+  Widget getHeading(){
+    return Align(
+      alignment: Alignment.topLeft,
+      child: Container(
+        margin: EdgeInsets.symmetric(vertical: 20,horizontal: 10),
+
+        child: Text("Earnings",style: TextStyle(
+          fontSize: 15,
+          decoration: TextDecoration.none,
+          fontFamily: "MuliSemiBold",
+          color: Colors.black,
+        ),
+        ),
+      ),
+    );
   }
 }

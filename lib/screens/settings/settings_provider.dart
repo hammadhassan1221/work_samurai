@@ -16,6 +16,7 @@ import 'package:work_samurai/widgets/toast.dart';
 
 class SettingsProviders extends ChangeNotifier{
   BuildContext _context;
+
   init({@required BuildContext context}) {
     this._context = context;
 
@@ -70,4 +71,8 @@ class SettingsProviders extends ChangeNotifier{
     }
 
   }
+
+
+
+
 }

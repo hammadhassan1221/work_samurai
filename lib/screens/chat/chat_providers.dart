@@ -4,6 +4,7 @@ import 'package:work_samurai/commons/utils.dart';
 import 'package:work_samurai/constants/constants.dart';
 import 'package:work_samurai/generic_decode_encode/generic.dart';
 import 'package:work_samurai/models/api_models/chat_screen/get_all_messagesof_user_job_model.dart';
+import 'package:work_samurai/models/api_models/chat_screen/get_all_user_messages_for_job.dart';
 import 'package:work_samurai/models/api_models/chat_screen/send_job_messages_model.dart';
 import 'package:work_samurai/models/api_models/job_messages/get_all_user_messages.dart';
 import 'package:work_samurai/models/api_models/support_screen/get_support_messages.dart';
@@ -16,7 +17,8 @@ import 'package:work_samurai/widgets/loader.dart';
 class ChatProviders extends ChangeNotifier{
   BuildContext context;
   NetworkHelper _networkHelper = NetworkHelperImpl();
-  GetAllMessagesofUserJobModel getAllMessagesofUserJobModel = GetAllMessagesofUserJobModel();
+  //GetAllMessagesofUserJobModel getAllMessagesofUserJobModel = GetAllMessagesofUserJobModel();
+  GetAllUserMessagesForJob getAllUserMessagesForJob = GetAllUserMessagesForJob();
   SendJobMessagesModel sendJobMessagesModel = SendJobMessagesModel();
 
   GenericDecodeEncode _genericDecodeEncode = GenericDecodeEncode();
@@ -64,7 +66,7 @@ class ChatProviders extends ChangeNotifier{
 
       if (_response.statusCode == 200) {
         // _loader.hideLoader(context);
-        getAllMessagesofUserJobModel = GetAllMessagesofUserJobModel.fromJson(_response.data);
+        getAllUserMessagesForJob = GetAllUserMessagesForJob.fromJson(_response.data);
         isDataFetched = true;
         notifyListeners();
       }

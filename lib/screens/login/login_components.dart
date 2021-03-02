@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 
@@ -28,15 +29,17 @@ class LoginComponents {
                   fontSize: 15,
                   color: AppColors.clr_bg_black,
                   fontWeight: FontWeight.bold,
-                  fontFamily: 'MuliRegular',
+                  letterSpacing: 2,
+                  fontFamily: Assets.muliRegular,
                 ),
               ),
               Text(
                 text2,
                 style: TextStyle(
                   fontSize: 14,
+                  letterSpacing: 10,
                   color: AppColors.clr_bg_black,
-                  fontFamily: 'MuliRegular',
+                  fontFamily: Assets.muliRegular,
                 ),
               )
             ],

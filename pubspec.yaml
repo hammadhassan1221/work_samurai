@@ -46,18 +46,21 @@ dependencies:
   lottie: ^0.7.0+1
   material_design_icons_flutter: ^4.0.5755
   infinite_scroll_pagination: ^2.2.4
-  timer_count_down: ^1.0.4+1
+#  timer_count_down: ^1.0.4+1
+  flutter_countdown_timer: ^3.0.1
   device_info: ^0.4.2+9
+  geolocator: ^6.1.4
 
-  address_search_field: ^3.0.8
+
+  address_search_field: ^3.0.10
   geocoder: ^0.2.1
   flutter_google_places: ^0.2.6
   url_launcher: ^5.7.10
-
+  flutter_polyline_points: ^0.2.4
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^0.1.3
+  cupertino_icons: ^1.0.0
 
 dev_dependencies:
   flutter_test:
@@ -78,15 +81,21 @@ flutter:
     - assets/jpg/
     - assets/json/
   fonts:
-    - family: MuliRegular
-      fonts:
-        - asset: fonts/Muli-Regular.ttf
-    - family: MuliBold
-      fonts:
-        - asset: fonts/Muli-Bold.ttf
+#    - family: MuliRegular
+#      fonts:
+#        - asset: fonts/Muli-Regular.ttf
+#    - family: MuliBold
+#      fonts:
+#        - asset: fonts/Muli-Bold.ttf
     - family: MuliSemiBold
       fonts:
-        - asset: fonts/Muli-SemiBold.ttf
+        - asset: fonts/Roboto-Medium.ttf
+    - family: MuliRegular
+      fonts:
+        - asset: fonts/Roboto-Regular.ttf
+    - family: MuliBold
+      fonts:
+        - asset: fonts/Roboto-Bold.ttf
 
   # To add assets to your application, add an assets section, like this:
   # assets:

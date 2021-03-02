@@ -95,39 +95,43 @@ class _WorkerChatRoomState extends State<WorkerChatRoom>with TickerProviderState
           CommonWidgets.getAlertContainer(onPress: (){
             _workerProvider.setCurrentIndex(4);
           }),
-          _messageProviders.isDataFetched == true ? Expanded(
-            child: Column(
+          _messageProviders.isDataFetched == true ? Container(
+            height: AppSizes.height*0.652,
+            color: Colors.grey[300],
+            child: Expanded(
+              child: Column(
 
-              children: [
-                SizedBox(
-                  height: AppSizes.height * 0.02,
-                ),
-                CommonWidgets.getSupportContainer(imagePath: Assets.support, heading: "Work Samurai Support", onPress: (){Navigator.push(context, SlideRightRoute(page:Support()));}),
-                SizedBox(
-                  height: AppSizes.height * 0.025,
-                ),
-                Container(
-                  child: Expanded(
-                    child: TabBarView(
-                      controller: _tabController,
-                      children: <Widget>[
-                        _messageComponents.getMessageThread(
-                            onPress: (){
-                              // Navigator.push(context,SlideRightRoute(page: ChatScreen()));
-                            },
-                            imagePath: Assets.support,
-                            heading: "Crown Hotel New York",
-                            subHeading: "Waiter Wed,Sep 23",
-                            imagePath1: Assets.star,
-                            rating: "4.5",
-                            msgObj: _messageProviders.getAllUserMessages
-                        ),
-                        Container(color:AppColors.clr_red),
-                      ],
-                    ),
+                children: [
+                  SizedBox(
+                    height: AppSizes.height * 0.02,
                   ),
-                )
-              ],
+                  CommonWidgets.getSupportContainer(imagePath: Assets.support, heading: "Work Samurai Support", onPress: (){Navigator.push(context, SlideRightRoute(page:Support()));}),
+                  SizedBox(
+                    height: AppSizes.height * 0.025,
+                  ),
+                  Container(
+                    child: Expanded(
+                      child: TabBarView(
+                        controller: _tabController,
+                        children: <Widget>[
+                          _messageComponents.getMessageThread(
+                              onPress: (){
+                                // Navigator.push(context,SlideRightRoute(page: ChatScreen()));
+                              },
+                              imagePath: Assets.support,
+                              heading: "Crown Hotel New York",
+                              subHeading: "Waiter Wed,Sep 23",
+                              imagePath1: Assets.star,
+                              rating: "4.5",
+                              msgObj: _messageProviders.getAllUserMessages
+                          ),
+                          Container(color:AppColors.clr_red),
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
           ): Expanded(
             child: Column(
