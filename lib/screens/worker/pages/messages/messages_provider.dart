@@ -9,6 +9,7 @@ import 'package:work_samurai/network/network_helper.dart';
 import 'package:work_samurai/network/network_helper_impl.dart';
 import 'package:work_samurai/res/strings.dart';
 import 'package:work_samurai/widgets/loader.dart';
+import 'package:work_samurai/RefreshToken.dart';
 
 class MessageProviders extends ChangeNotifier{
   BuildContext context;
@@ -52,9 +53,14 @@ class MessageProviders extends ChangeNotifier{
 
       if (_response.statusCode == 200) {
         // _loader.hideLoader(context);
-        getAllUserMessages = GetAllUserMessages.fromJson(_response.data);
-        isDataFetched = true;
-        notifyListeners();
+        if(_response.data["ResponseCode"] == 1){
+          getAllUserMessages = GetAllUserMessages.fromJson(_response.data);
+          isDataFetched = true;
+          notifyListeners();
+        }
+        if(_response.data["ResponseCode"] == 0){
+          RefreshToken().refreshToken(context).then((value) => getSupportMessages(context: context,ticketId: ticketId));
+        }
       }
     } catch (e) {
       _loader.hideLoader(context);

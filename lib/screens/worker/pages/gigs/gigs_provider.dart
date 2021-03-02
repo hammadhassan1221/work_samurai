@@ -2,6 +2,7 @@ import 'package:connectivity/connectivity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:work_samurai/RefreshToken.dart';
 import 'package:work_samurai/commons/utils.dart';
 import 'package:work_samurai/constants/constants.dart';
 import 'package:work_samurai/generic_decode_encode/generic.dart';
@@ -73,66 +74,8 @@ class GigsProvider extends ChangeNotifier {
         }
         else{
           if(resultMap["ResponseCode"] == 0){
-            ApplicationToast.getErrorToast(durationTime: 3, heading: "ERROR", subHeading: "Your session has expired, please login again");
-            PreferenceUtils.reset();
-            Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => Login()
-                ),
-                ModalRoute.withName("/Login")
-            );
-          }
-          else ApplicationToast.getErrorToast(durationTime: 3, heading: "ERROR", subHeading: "An error has occurred!, please try later");
-        }
-
-
-      }
-    } catch (e) {
-      print(e.toString());
-    }
-  }
-  Future<void> refreshToken() async{
-    try {
-      Response _response = await _networkHelper.post(
-        getAccessToken,
-        headers: {
-          "Authorization": "Bearer " + _token,
-          "DeviceID": Constants.deviceId,
-        },
-        body: {
-          "AccessToken": "wGR0n69gpKyzuaypMF/A9WdLOQiscnfgCFYhu6sZGi0EBmLVAQubh1n2qKOrJ04qBsIr/ez/fjrTbsF535Eod4XRNPn52hdnkUcpEZMf+zbg84BFrm7S/r34Qo1eClFHUKgB8kWlyKEKFV6egz7lI2GSjFp3JhD/hauvc0b0rWUQOnIWWPJGdXqT8H1B9+p3lsfJ52qiWvB/w8F8NxtIvt8Gkk0F98CyDzV+bxWt6Xv00d3r5CP5UK+95k+L37rFDA63kemWXSwQYwsH6LGExLj4WhzMV3CmYv2f0Gdc4wcSE=",
-          "AccessExpiry": "2020-12-19T23:00:10.6382027",
-          "RefreshToken": "BZUwOnUvlYCj0qwkWEbSS2zlKI8IjYhIg8NCUxC0NDsIIwlrfhGesg4TbGrKfwsGS2s76YVhnZNGdPJmPOM8xczY6DR2otg+xKJDTkaFX0kTNRXgSV7yAkHEpK1izdmxAiBUH9sgmd0stpsZc/dJgRpJZHr2vYzqbVIFqkPyEYio=",
-          "RefreshExpiry": "2021-02-19T23:00:10.6382027",
-          "TokenResponse": 1
-        },
-      );
-
-      if (_response.statusCode != 200) {
-        // throw ("couldn't get the data");
-        ApplicationToast.getErrorToast(durationTime: 3, heading: "ERROR", subHeading: "SERVER NOT RESPONDING");
-      }
-      if (_response.statusCode == 200) {
-        Map<String,dynamic> resultMap = _genericDecodeEncode.decodeJson(Helper.getString(_response));
-        if(resultMap["TokenResponse"] == 1){
-          // Map<String,dynamic> resultMap = _genericDecodeEncode.decodeJson(Helper.getString(_response));
-          PreferenceUtils.setString(Strings.ACCESS_TOKEN, resultMap["AccessToken"] ?? "");
-          PreferenceUtils.setString(Strings.ACCESS_EXPIRY, resultMap["AccessExpiry"] ?? "");
-          PreferenceUtils.setString(Strings.ACCESS_TOKEN, resultMap["RefreshToken"] ?? "");
-          PreferenceUtils.setString(Strings.ACCESS_TOKEN, resultMap["RefreshExpiry"] ?? "");
-        }
-        else{
-          if(resultMap["TokenResponse"] == 0){
-            ApplicationToast.getErrorToast(durationTime: 3, heading: "ERROR", subHeading: "Your session has expired, please login again");
-            PreferenceUtils.reset();
-            Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => Login()
-                ),
-                ModalRoute.withName("/Login")
-            );
+            ApplicationToast.getErrorToast(durationTime: 3, heading: "ERROR", subHeading: "Your session has expired, refreshing");
+            RefreshToken().refreshToken(context).then((value) => _getProfileData(context: null));
           }
           else ApplicationToast.getErrorToast(durationTime: 3, heading: "ERROR", subHeading: "An error has occurred!, please try later");
         }
