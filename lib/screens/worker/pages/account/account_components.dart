@@ -114,15 +114,23 @@ class AccountComponent {
   Widget getUserDetails({@required String text}){
     return Container(
         width: AppSizes.width * 0.85,
-        child: Text(
-            text ?? "addressline not available",
+        child: text == null ? Text(
+             "addressline not available",
             style: TextStyle(
               fontSize: 13,
               color: AppColors.clr_bg_black2,
               fontFamily: Assets.muliRegular,
                 fontStyle: FontStyle.italic
             )
-        )
+        ) : Text(
+            "addressline not available",
+            style: TextStyle(
+                fontSize: 13,
+                color: Colors.black,
+                fontFamily: Assets.muliRegular,
+                fontStyle: FontStyle.normal
+            )
+        ),
     );
   }
 
@@ -350,17 +358,26 @@ class AccountComponent {
                 )
               ],
             ),
-            Container(
+           Container(
               margin: EdgeInsets.only(top: 10),
               width: AppSizes.width * 0.85,
-              child: Text(
+              child: city == null ? Text(
 
-                  city ?? "no city selected",
+                  city ??= "no city selected",
                   style: TextStyle(
                     fontSize: 13,
                     color: AppColors.clr_bg_black2,
                     fontFamily: Assets.muliRegular,
                     fontStyle: FontStyle.italic
+                  )
+              ): Text(
+
+                  city,
+                  style: TextStyle(
+                      fontSize: 13,
+                      color: Colors.black,
+                      fontFamily: Assets.muliRegular,
+                      fontStyle: FontStyle.normal
                   )
               ),
             ),

@@ -115,9 +115,9 @@ class _ChatScreenState extends State<ChatScreen> {
                   _chatProviders.isDataFetched == true ? Expanded(
                     child: ListView.builder(
                       controller: _controller,
-                      itemCount: _chatProviders.getAllMessagesofUserJobModel.data.messages.length,
+                      itemCount: _chatProviders.getAllUserMessagesForJob.data.messages.length,
                        itemBuilder: (context, index){
-                         if(_chatProviders.getAllMessagesofUserJobModel.data.messages.elementAt(index).userID == PreferenceUtils.getInt(Strings.USER_ID)){
+                         if(_chatProviders.getAllUserMessagesForJob.data.messages.elementAt(index).userID == PreferenceUtils.getInt(Strings.USER_ID)){
                            return  Row(
                                mainAxisAlignment: MainAxisAlignment.end,
                                children: [
@@ -138,12 +138,12 @@ class _ChatScreenState extends State<ChatScreen> {
                                        color: AppColors.clr_bg_black2,
                                        borderRadius: BorderRadius.circular(8)),
                                    child: Text(
-                                     _chatProviders.getAllMessagesofUserJobModel.data.messages[index].body,
+                                     _chatProviders.getAllUserMessagesForJob.data.messages[index].body,
                                      style: TextStyle(
                                          color: Colors.white,
                                          letterSpacing: 0.15,
                                          fontSize: 15,
-                                         fontFamily: 'MuliRegular'),
+                                         fontFamily: Assets.muliRegular),
                                    ),
                                  ),
                                ]
@@ -153,11 +153,11 @@ class _ChatScreenState extends State<ChatScreen> {
                            return  Row(
                                mainAxisAlignment: MainAxisAlignment.start,
                                children: [
+
                                  Container(
                                    margin: EdgeInsets.all(12),
                                    padding: EdgeInsets.all(10),
                                    width: AppSizes.width * 0.60,
-
                                    decoration: BoxDecoration(
                                        boxShadow: [
                                          BoxShadow(
@@ -169,125 +169,34 @@ class _ChatScreenState extends State<ChatScreen> {
                                        ],
                                        color: AppColors.clr_bg,
                                        borderRadius: BorderRadius.circular(8)),
-                                   child: Text(
-                                     _chatProviders.getAllMessagesofUserJobModel.data.messages[index].body,
-                                     style: TextStyle(
-                                         letterSpacing: 0.15,
-                                         fontSize: 15,
-                                         fontFamily: 'MuliRegular'),
+                                   child: Column(
+                                     mainAxisAlignment: MainAxisAlignment.start,
+                                     crossAxisAlignment: CrossAxisAlignment.start,
+                                     children: [
+                                       Text(
+                                         _chatProviders.getAllUserMessagesForJob.data.messages[index].systemUser.firstname.toUpperCase() + " " +
+                                             _chatProviders.getAllUserMessagesForJob.data.messages[index].systemUser.lastname.toUpperCase(),
+                                         style: TextStyle(
+                                             letterSpacing: 0.0,
+                                             fontSize: 16,
+                                             fontFamily: Assets.muliBold),
+                                       ),
+                                       SizedBox(height: 10),
+                                       Text(
+                                         _chatProviders.getAllUserMessagesForJob.data.messages[index].body,
+                                         style: TextStyle(
+                                             letterSpacing: 0.15,
+                                             fontSize: 15,
+                                             fontFamily: Assets.muliRegular),
+                                       ),
+                                     ],
                                    ),
                                  ),
                                ]
                            );
                          }
-                        return  Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Container(
-                                margin: EdgeInsets.all(12),
-                                padding: EdgeInsets.all(10),
-                                width: AppSizes.width * 0.60,
-
-                                decoration: BoxDecoration(
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.grey.withOpacity(0.25),
-                                        spreadRadius: 0.5,
-                                        blurRadius: 1,
-                                        offset: Offset(0, 1), // changes position of shadow
-                                      ),
-                                    ],
-                                    color: AppColors.clr_bg,
-                                    borderRadius: BorderRadius.circular(8)),
-                                child: Text(
-                                _chatProviders.getAllMessagesofUserJobModel.data.messages[index].body,
-                                  style: TextStyle(
-                                      letterSpacing: 0.15,
-                                      fontSize: 15,
-                                      fontFamily: 'MuliRegular'),
-                                ),
-                              ),
-                            ]
-                        );
                        }
 
-                        // Row(
-                        //     mainAxisAlignment: MainAxisAlignment.start,
-                        //     children: [
-                        //       Container(
-                        //         margin: EdgeInsets.all(12),
-                        //         padding: EdgeInsets.all(10),
-                        //         width: AppSizes.width * 0.25,
-                        //         decoration: BoxDecoration(
-                        //             boxShadow: [
-                        //               BoxShadow(
-                        //                 color: Colors.grey.withOpacity(0.25),
-                        //                 spreadRadius: 0.5,
-                        //                 blurRadius: 1,
-                        //                 offset: Offset(0, 1), // changes position of shadow
-                        //               ),
-                        //             ],
-                        //             color: AppColors.clr_bg,
-                        //             borderRadius: BorderRadius.circular(8)),
-                        //         child: Text(
-                        //           "Aliquam!",
-                        //           style: TextStyle(
-                        //               fontSize: 15,
-                        //               letterSpacing: 0.25,
-                        //               fontFamily: 'MuliRegular'),
-                        //         ),
-                        //       ),
-                        //     ]),
-                        // Row(
-                        //     mainAxisAlignment: MainAxisAlignment.center,
-                        //     children: [
-                        //       Container(
-                        //         margin: EdgeInsets.only(top: 3),
-                        //         padding: EdgeInsets.all(10),
-                        //         width: AppSizes.width * 0.25,
-                        //         decoration: BoxDecoration(
-                        //
-                        //             color: AppColors.transparentColor,
-                        //             borderRadius: BorderRadius.circular(8)),
-                        //         child: Text(
-                        //           "11:03am",
-                        //           style: TextStyle(
-                        //               letterSpacing: 0.25,
-                        //               fontFamily: 'MuliRegular',
-                        //               fontSize: 14),
-                        //         ),
-                        //       ),
-                        //     ]),
-                        // Row(
-                        //     mainAxisAlignment: MainAxisAlignment.end,
-                        //     children: [
-                        //       Container(
-                        //         margin: EdgeInsets.only(
-                        //             right: AppSizes.width * 0.04),
-                        //         padding: EdgeInsets.all(10),
-                        //         width: AppSizes.width * 0.60,
-                        //         decoration: BoxDecoration(
-                        //             boxShadow: [
-                        //               BoxShadow(
-                        //                 color: Colors.grey.withOpacity(0.25),
-                        //                 spreadRadius: 0.5,
-                        //                 blurRadius: 1,
-                        //                 offset: Offset(0, 1), // changes position of shadow
-                        //               ),
-                        //             ],
-                        //             color: AppColors.clr_bg_black,
-                        //             borderRadius: BorderRadius.circular(8)),
-                        //         child: Text(
-                        //           "Quisque vulputate sollicitudin dui, nec placerat ante laoreet sit amet.",
-                        //           style: TextStyle(
-                        //             color: AppColors.clr_white,
-                        //             letterSpacing: 0.25,
-                        //             fontFamily: 'MuliRegular',
-                        //             fontSize: 14,
-                        //           ),
-                        //         ),
-                        //       ),
-                        //     ]),,
                     ),
                   ) : Expanded(
                     child: Container(

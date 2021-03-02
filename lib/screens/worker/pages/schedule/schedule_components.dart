@@ -26,7 +26,9 @@ class ScheduleComponents  with ChangeNotifier{
     @required String text1,
   }) {
     return Container(
-      margin: EdgeInsets.only(
+      height: AppSizes.height*0.07,
+      color: Colors.white,
+      padding: EdgeInsets.only(
         left: AppSizes.width * 0.04,
         right: AppSizes.width * 0.04,
       ),
@@ -75,7 +77,10 @@ class ScheduleComponents  with ChangeNotifier{
     return GestureDetector(
       onTap: onPress,
       child: Container(
-        margin: EdgeInsets.only(
+        height: AppSizes.height*0.08,
+        color: Colors.white,
+        width: AppSizes.width,
+        padding: EdgeInsets.only(
           left: AppSizes.width * 0.04,
           right: AppSizes.width * 0.04,
         ),

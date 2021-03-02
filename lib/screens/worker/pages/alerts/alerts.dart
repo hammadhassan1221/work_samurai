@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
@@ -30,22 +31,24 @@ class _AlertsState extends State<Alerts> {
     Provider.of<AlertProviders>(context, listen: true);
     return Container(
       width: AppSizes.width,
-      color: AppColors.clr_bg,
+      color: Colors.grey[100],
       child: Column(
         children: [
           CommonWidgets.getAppBarWithout(text: "Alerts"),
           SizedBox(height: AppSizes.height * 0.01),
-          _alertProviders.getIsDataFetched()
+          _alertsComponents.time("February"),
+          _alertProviders.getIsDataFetched() == true
               ? Expanded(
-                  child: _alertProviders.getAlerts().data.length <1
+                  child: _alertProviders.getAlerts().data.length >= 0
                       ? ListView.builder(
+                    padding: EdgeInsets.only(top: 10, left: 10),
                           itemCount: 3/*_alertProviders.getAlerts().data.length3*/,
                           itemBuilder: (context, index) {
                             return _alertsComponents.getNotificationsContainer(
                                 leftIcon: Assets.support,
-                                userName:"rizwan", //_alertProviders.getAlerts().data[index].title,
-                                message:"asdfghjm",//_alertProviders.getAlerts().data[index].body,
-                                time:"12345",); //_alertProviders.getAlerts().data[index].createdDate);
+                                userName:"CrownStar left a 5 star Review", //_alertProviders.getAlerts().data[index].title,
+                                message:"yesterday",//_alertProviders.getAlerts().data[index].body,
+                                time:"",); //_alertProviders.getAlerts().data[index].createdDate);
                           })
                       : CommonWidgets.onNullData(text: "No Alerts"))
               : Container()
