@@ -10,7 +10,6 @@ import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/screens/forget_password/forget_password.dart';
 import 'package:work_samurai/screens/login/login_components.dart';
 import 'package:work_samurai/screens/sign_up/sign_up.dart';
-import 'package:work_samurai/screens/worker/worker.dart';
 import 'package:work_samurai/widgets/spacer.dart';
 import 'package:work_samurai/widgets/widgets.dart';
 
@@ -29,8 +28,8 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
   LoginProvider _loginProvider;
   TextEditingController _email, _password;
   AnimationController _animationController;
-  double _scale;
-  FocusNode _focusNode;
+  // double _scale;
+  // FocusNode _focusNode;
 
   @override
   void initState() {
@@ -56,17 +55,17 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
     super.dispose();
   }
 
-  void _tapDown(TapDownDetails details) {
-    _animationController.forward();
-  }
-
-  void _tapUp(TapUpDetails details) {
-    _animationController.reverse();
-  }
+  // void _tapDown(TapDownDetails details) {
+  //   _animationController.forward();
+  // }
+  //
+  // void _tapUp(TapUpDetails details) {
+  //   _animationController.reverse();
+  // }
 
   @override
   Widget build(BuildContext context) {
-    _scale = 1 - _animationController.value;
+    // _scale = 1 - _animationController.value;
     Provider.of<LoginProvider>(context, listen: true);
 
     return Scaffold(
@@ -176,11 +175,14 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                 BouncingWidget(
                   duration: Duration(milliseconds: 200),
                   scaleFactor: 1,
+                  onPressed: () {
+                    Navigator.push(context, SlideRightRoute(page: SignUp()));
+                  },
                   child: _loginComponents.getRichText(
                     text1: "Don't have an account?",
                     text2: "Sign Up",
                     onPress: () {
-                      Navigator.push(context, SlideRightRoute(page: SignUp()));
+
                     },
                   ),
                 ),

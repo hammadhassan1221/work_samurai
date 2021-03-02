@@ -1,28 +1,28 @@
-import 'package:aes_crypt/aes_crypt.dart';
+import 'dart:io';
+
 import 'package:connectivity/connectivity.dart';
+import 'package:device_info/device_info.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:work_samurai/animations/slide_right.dart';
 import 'package:work_samurai/commons/utils.dart';
-import 'package:work_samurai/constants/constants.dart';
-import 'package:work_samurai/generic_decode_encode/generic.dart';
 import 'package:work_samurai/models/api_models/login_screen/login_response.dart';
 import 'package:work_samurai/network/api_urls.dart';
-import 'package:work_samurai/network/network_helper.dart';
-import 'package:work_samurai/network/network_helper_impl.dart';
 import 'package:work_samurai/res/strings.dart';
 import 'package:work_samurai/screens/worker/worker.dart';
 import 'package:work_samurai/utilities/utilities.dart';
 import 'package:work_samurai/widgets/toast.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 import '../../widgets/loader.dart';
 
 class LoginProvider extends ChangeNotifier {
   BuildContext context;
 
-  NetworkHelper _networkHelper = NetworkHelperImpl();
+  // NetworkHelper _networkHelper = NetworkHelperImpl();
   LoginResponse _loginResponse = LoginResponse();
-  GenericDecodeEncode _genericDecodeEncode = GenericDecodeEncode();
+
+  // GenericDecodeEncode _genericDecodeEncode = GenericDecodeEncode();
   Loader _loader = Loader();
   var connectivityResult;
 
@@ -41,32 +41,39 @@ class LoginProvider extends ChangeNotifier {
       if (connectivityResult != ConnectivityResult.none) {
         _loader.showLoader(context: context);
         var formData = Map<String, dynamic>();
-
-        final token = PreferenceUtils.getString(Strings.FCM_TOKEN);
-        var encryptedPass = AesCrypt(password);
+        DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+        String deviceId;
+        if (Platform.isAndroid) {
+          deviceId = (await deviceInfo.androidInfo).androidId;
+        }
+        if (Platform.isIOS) {
+          deviceId = (await deviceInfo.iosInfo).identifierForVendor;
+        }
+        String token = await FirebaseMessaging().getToken();
         formData['EmailAddress'] = email;
         formData['Password'] = password;
-        formData['DeviceID'] = Constants.deviceId;
+        formData['DeviceID'] = deviceId;
         dio.options.contentType = Headers.formUrlEncodedContentType;
 
         Response _response = await dio.post(
           loginURL,
           data: formData,
-            options: Options(
-              contentType: Headers.formUrlEncodedContentType,
-              headers: {
-                "Authorization": "Bearer " + PreferenceUtils.getString(Strings.ACCESS_TOKEN),
-               // "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
-              },
-            ),
+          options: Options(
+            contentType: Headers.formUrlEncodedContentType,
+            headers: {
+              "Authorization":
+                  "Bearer " + PreferenceUtils.getString(Strings.ACCESS_TOKEN),
+              "FCMtoken": token,
+            },
+          ),
         );
 
         if (_response.statusCode != 200) {
           _loader.hideLoader(context);
           ApplicationToast.getErrorToast(
-              durationTime: 3,
-              heading: "Error",
-              subHeading: "Please try again",
+            durationTime: 3,
+            heading: "Error",
+            subHeading: "Please try again",
           );
           throw "Unauthorized";
         }
@@ -91,9 +98,11 @@ class LoginProvider extends ChangeNotifier {
                 subHeading: "Please enter valid credentials");
           }
         }
-      }
-      else{
-        ApplicationToast.getErrorToast(durationTime: 2, heading: null, subHeading: "Please check your internet connection");
+      } else {
+        ApplicationToast.getErrorToast(
+            durationTime: 2,
+            heading: null,
+            subHeading: "Please check your internet connection");
       }
     } catch (e) {
       _loader.hideLoader(context);
