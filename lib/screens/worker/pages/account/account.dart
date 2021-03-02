@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:work_samurai/animations/slide_right.dart';
 import 'package:work_samurai/res/assets.dart';
@@ -34,12 +35,12 @@ class _AccountState extends State<Account> {
     _accountProviders = Provider.of<AccountProviders>(context, listen: true);
     return SafeArea(
       child: Scaffold(
-        body: _accountProviders.getIsDataFetched()
-            ? Container(
+        body:  Container(
           padding: EdgeInsets.only(right: 25, left: 25,),
                 color: AppColors.clr_bg,
                 //margin: EdgeInsets.all(AppSizes.width * 0.03),
-                child: ListView(
+                child: _accountProviders.getIsDataFetched()
+                    ? ListView(
                   children: [
                     Align(
                       alignment: Alignment.topRight,
@@ -149,9 +150,18 @@ class _AccountState extends State<Account> {
                     :CommonWidgets.onNullData(text: "No Compliments"),
 
                   ],
+                ) : Container(
+                  height: AppSizes.height*0.785,
+                 // color: AppColors.clr_bg_grey.withOpacity(0.4),
+                  child: Center(
+                    child: Container(
+                      height: AppSizes.height * 0.20,
+                      width: AppSizes.width * 0.30,
+                      child: Lottie.asset(Assets.loader),
+                    ),
+                  ),
                 ),
               )
-            : Container(),
       ),
     );
   }

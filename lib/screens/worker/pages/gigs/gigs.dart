@@ -74,6 +74,7 @@ class _GigsState extends State<Gigs> with SingleTickerProviderStateMixin {
           verticalSpacer(16.0,),
           Expanded(
             child: TabBarView(
+
               children: <Widget>[
                 OffersPage(),
                 PendingJobs(),

@@ -80,7 +80,7 @@ class EarningProviders extends ChangeNotifier{
             earning = EarningResponseModel.fromJson(_response.data);
 
             if (earning.responseCode == 1){
-              ApplicationToast.getSuccessToast(durationTime: 3, heading: "Success", subHeading: "Successfully got earnings");
+              //ApplicationToast.getSuccessToast(durationTime: 3, heading: "Success", subHeading: "Successfully got earnings");
               isUpdated = true;
               notifyListeners();
             }

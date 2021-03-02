@@ -91,9 +91,21 @@ class _ScheduleState extends State<Schedule> {
             ScheduleComponents.scheduleMap = snapshot.data;
             return Container(
               width: AppSizes.width,
-              color: AppColors.clr_bg,
+              color: Colors.grey[200],
               child: Column(children: [
-                CommonWidgets.getAppBarWithout(text: "Your Schedule"),
+                Row(
+                  children: [
+                    Column(
+                      children: [
+                        Column(
+                          children: [
+                            CommonWidgets.getAppBarWithout(text: "Your Schedule"),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
 
                 CommonWidgets.getAlertContainer(onPress: (){_workerProvider.setCurrentIndex(4);}),
 
@@ -117,34 +129,37 @@ class _ScheduleState extends State<Schedule> {
                         width: AppSizes.width,
                         color: AppColors.clr_field
                         ,),
-                      SizedBox(height: AppSizes.height*0.02,),
+                      SizedBox(height: AppSizes.height*0.0,),
 
                       _scheduleComponents.getDistance(imagePath: Assets.distance, text: "Max Distance", text1: _value.ceil().toString()+" km"),
 
-                      SliderTheme(
-                        data: SliderTheme.of(context).copyWith(
-                          activeTrackColor: AppColors.clr_bg_black,
-                          inactiveTrackColor: AppColors.clr_field,
-                          trackShape: RectangularSliderTrackShape(),
-                          trackHeight: 2.0,
-                          thumbColor: AppColors.clr_bg_black,
-                          thumbShape: RoundSliderThumbShape(
-                              enabledThumbRadius: 6.0),
-                          overlayShape: RoundSliderOverlayShape(
-                              overlayRadius: 28.0),
-                        ),
+                      Container(
+                        color: Colors.white,
+                        child: SliderTheme(
+                          data: SliderTheme.of(context).copyWith(
+                            activeTrackColor: Colors.black,
+                            inactiveTrackColor: Colors.grey,
+                            trackShape: RectangularSliderTrackShape(),
+                            trackHeight: 3.0,
+                            thumbColor: AppColors.clr_bg_black,
+                            thumbShape: RoundSliderThumbShape(
+                                enabledThumbRadius: 8.0),
+                            overlayShape: RoundSliderOverlayShape(
+                                overlayRadius: 28.0),
+                          ),
 
-                        child: Container(
-                          width: AppSizes.width,
-                          child: Slider(
-                            value: _value,
-                            max: 50.0,
-                            min: 0.0,
-                            onChanged: (value) {
-                              setState(() {
-                                _value = value;
-                              });
-                            },
+                          child: Container(
+                            width: AppSizes.width,
+                            child: Slider(
+                              value: _value,
+                              max: 50.0,
+                              min: 0.0,
+                              onChanged: (value) {
+                                setState(() {
+                                  _value = value;
+                                });
+                              },
+                            ),
                           ),
                         ),
                       ),
@@ -221,16 +236,23 @@ class _ScheduleState extends State<Schedule> {
           }
           else{
             //Not loaded yet
-            return Material(
-              color: AppColors.clr_bg_grey.withOpacity(0.4),
-              child: Center(
-                child: Container(
-                  height: AppSizes.height * 0.20,
-                  width: AppSizes.width * 0.30,
-                  child: Lottie.asset(Assets.loader),
+            return Column(
+
+              children: [
+                CommonWidgets.getAppBarWithout(text: "Your Schedule"),
+                Container(
+                  height: AppSizes.height*0.785,
+                //  color: AppColors.clr_bg_grey.withOpacity(0.4),
+                  child: Center(
+                    child: Container(
+                      height: AppSizes.height * 0.20,
+                      width: AppSizes.width * 0.30,
+                      child: Lottie.asset(Assets.loader),
+                    ),
+                  ),
                 ),
-              ),
-            );;
+              ],
+            );
           }
         }
     );

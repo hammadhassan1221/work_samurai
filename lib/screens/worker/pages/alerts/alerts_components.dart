@@ -6,6 +6,20 @@ import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 
 class AlertsComponents {
+  Widget time(@required text){
+    return  Container(
+      alignment: Alignment.topLeft,
+      margin: EdgeInsets.only(top:20, left: 20),
+      child: Text(
+        text,
+        style:TextStyle(
+          color: Colors.blueGrey,
+          fontFamily: Assets.muliRegular,
+          fontSize: 13
+        ),
+      ),
+    );
+}
 
   Widget getNotificationsContainer({
     @required String leftIcon,
@@ -15,19 +29,16 @@ class AlertsComponents {
   }) {
     return Container(
       margin: EdgeInsets.symmetric(
-          horizontal: AppSizes.width * 0.05, vertical: AppSizes.height * 0.005),
-      padding: EdgeInsets.all(AppSizes.width * 0.02),
+          horizontal: AppSizes.width * 0.00,
+          vertical: AppSizes.height * 0.00),
+      padding: EdgeInsets.only(top: AppSizes.width * 0.03, left: AppSizes.width*0.05, bottom: AppSizes.width*0.03),
       width: AppSizes.width,
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(5),
-          boxShadow: [
-            BoxShadow(
-                color: Colors.grey[500].withOpacity(0.3),
-                spreadRadius: 1,
-                blurRadius: 1,
-                offset: Offset(0, 0))
-          ]),
+          //
+
+     ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -37,12 +48,12 @@ class AlertsComponents {
             children: [
               CircleAvatar(
                 backgroundImage: AssetImage(leftIcon),
-                radius: 25.0,
+                radius: 30.0,
                 // foregroundColor: AppColors.white,
                 // backgroundColor: AppColors.yellow,
               ),
               SizedBox(
-                width: AppSizes.width * 0.03,
+                width: AppSizes.width * 0.05,
               ),
               Padding(
                 padding: EdgeInsets.only(top: AppSizes.height * 0.01),
@@ -53,29 +64,31 @@ class AlertsComponents {
                       // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          width: AppSizes.width * 0.39,
+                          width: AppSizes.width * 0.5,
                           child: Text(
                             userName,
-                            maxLines: 1,
+                            maxLines: 2,
                             style: TextStyle(
-                                fontSize: 12,
+                              fontFamily: Assets.muliSemiBold,
+                                fontSize: 17,
                                 // fontFamily: Assets.poppinsRegular,
                                 // color: AppColors.colorBlack,
-                                fontWeight: FontWeight.bold),
+                                // fontWeight: FontWeight.bold
+    ),
                           ),
                         ),
-                        Container(
-                          width: AppSizes.width * 0.3,
-                          child: Text(
-                            time,
-                            maxLines: 1,
-                            style: TextStyle(
-                              fontSize: 10,
-                              // fontFamily: Assets.poppinsLight,
-                              // color: AppColors.colorBlack,
-                            ),
-                          ),
-                        )
+                        // Container(
+                        //   width: AppSizes.width * 0.3,
+                        //   child: Text(
+                        //     time,
+                        //     maxLines: 1,
+                        //     style: TextStyle(
+                        //       fontSize: 10,
+                        //       // fontFamily: Assets.poppinsLight,
+                        //       // color: AppColors.colorBlack,
+                        //     ),
+                        //   ),
+                        // )
                       ],
                     ),
                     SizedBox(

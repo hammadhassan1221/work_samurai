@@ -48,11 +48,12 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(
+        color: Colors.grey[300],
         child: pages[currentIndex],
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
-        showUnselectedLabels: false,
+        showUnselectedLabels: true,
         showSelectedLabels: true,
         backgroundColor: AppColors.clr_white,
         type: BottomNavigationBarType.fixed,

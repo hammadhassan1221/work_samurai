@@ -11,6 +11,7 @@ class MessageComponents{
 
   Widget getMessageThread({@required GetAllUserMessages msgObj ,@required Function onPress,@required String imagePath,@required String heading,@required String subHeading,@required String imagePath1,@required String rating,}){
     return ListView.builder(
+      padding: EdgeInsets.all(0),
       itemCount: msgObj.data.length,
       itemBuilder: (context, index)
       {

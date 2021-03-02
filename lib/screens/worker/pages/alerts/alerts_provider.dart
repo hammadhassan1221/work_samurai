@@ -30,7 +30,7 @@ class AlertProviders extends ChangeNotifier{
 
   Future _getAlerts({@required BuildContext context}) async {
     try {
-      _loader.showLoader(context: context);
+      //_loader.showLoader(context: context);
       Response _response = await _networkHelper.post(getAlertsURL, headers: {
         "Content-Type": "application/json",
         "Authorization": "Bearer " + _token,
@@ -38,11 +38,11 @@ class AlertProviders extends ChangeNotifier{
       }, body: {});
 
       if (_response.statusCode != 200) {
-        _loader.hideLoader(context);
+      //  _loader.hideLoader(context);
         throw ("couldn't get the data");
       }
       if (_response.statusCode == 200) {
-        _loader.hideLoader(context);
+       // _loader.hideLoader(context);
         _alertsResponse = AlertsResponse.fromJson(
             _genericDecodeEncode.decodeJson(_response.body));
         if(_alertsResponse.responseCode ==1){
@@ -54,7 +54,7 @@ class AlertProviders extends ChangeNotifier{
         }
       }
     } catch (e) {
-      _loader.hideLoader(context);
+      //_loader.hideLoader(context);
       print(e.toString());
     }
   }

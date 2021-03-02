@@ -75,7 +75,7 @@ class AccountProviders extends ChangeNotifier{
 
   Future getProfileData({@required BuildContext context}) async {
     try {
-      _loader.showLoader(context: context);
+      //_loader.showLoader(context: context);
       Response _response = await _networkHelper.post(getData, headers: {
         "Authorization": "Bearer " + _token,
         "DeviceID": Constants.deviceId,
@@ -84,11 +84,11 @@ class AccountProviders extends ChangeNotifier{
       }, body: {});
 
       if (_response.statusCode != 200) {
-        _loader.hideLoader(context);
+       // _loader.hideLoader(context);
         throw ("couldn't get the data");
       }
       if (_response.statusCode == 200) {
-        _loader.hideLoader(context);
+      //  _loader.hideLoader(context);
         _userWholeData = UserWholeData.fromJson(
             _genericDecodeEncode.decodeJson(Helper.getString(_response)));
         SharedPreferences pref = await SharedPreferences.getInstance();
@@ -103,7 +103,7 @@ class AccountProviders extends ChangeNotifier{
         }
       }
     } catch (e) {
-      _loader.hideLoader(context);
+     // _loader.hideLoader(context);
       print(e.toString());
     }
   }
