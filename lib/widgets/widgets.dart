@@ -6,6 +6,7 @@ import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/res/strings.dart';
 
+
 class CommonWidgets {
   static Widget getRow(String text, bool value, Function onPress) {
     return Container(
@@ -467,7 +468,63 @@ class CommonWidgets {
       ),
     );
   }
+  static Widget getAppBarWithout1({
+    @required String text,
+    @required BuildContext context,
+  }) {
+    return Row(
+      children: [
 
+        Container(
+          width: AppSizes.width,
+          decoration: BoxDecoration(
+            color: AppColors.clr_white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.25),
+                spreadRadius: 0.5,
+                blurRadius: 1,
+                offset: Offset(0, 1), // changes position of shadow
+              ),
+            ],
+          ),
+          padding: EdgeInsets.all(AppSizes.width * 0.038),
+          child: Row(
+            children: [
+              Align(
+                  alignment: Alignment.topLeft,
+                  child: Container(
+                      color: AppColors.clr_white,
+                      //height: AppSizes.height * 0.08,
+                      // width: AppSizes.width * 0.25,
+                      margin: EdgeInsets.fromLTRB(0, AppSizes.height*0.04, 10, 0),
+                      child: IconButton(
+                          icon: Icon(Icons.arrow_back_outlined,
+                            size:AppSizes.height*0.05,),
+                          color: Colors.black,
+                          onPressed: (){
+                            Navigator.pop(context);
+                          })
+
+                  )
+              ),
+              Container(
+                padding: EdgeInsets.only(top: 50),
+                child: Text(
+                  text,
+                  textAlign: TextAlign.justify,
+                  style: TextStyle(
+                      decoration: TextDecoration.none,
+                      fontSize: 22,
+                      fontFamily: Assets.muliBold),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
   static Widget getGigsAppBar({
     @required String text,
   }) {

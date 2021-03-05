@@ -173,7 +173,7 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                   77.5,
                 ),
                 BouncingWidget(
-                  duration: Duration(milliseconds: 200),
+                  duration: Duration(milliseconds: 10),
                   scaleFactor: 1,
                   onPressed: () {
                     Navigator.push(context, SlideRightRoute(page: SignUp()));
@@ -182,7 +182,7 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                     text1: "Don't have an account?",
                     text2: "Sign Up",
                     onPress: () {
-
+                      Navigator.push(context, SlideRightRoute(page: SignUp()));
                     },
                   ),
                 ),

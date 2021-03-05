@@ -79,7 +79,12 @@ class _SignUpState extends State<SignUp> {
           color: AppColors.clr_bg,
           child: Column(
             children: [
-              CommonWidgets.getAppBarWithout(text: "Sign Up"),
+             Row(
+               children: [
+
+                 CommonWidgets.getAppBarWithout1(text: "Sign Up", context: context),
+               ],
+             ),
               Expanded(
                   child: ListView(
                 children: [
