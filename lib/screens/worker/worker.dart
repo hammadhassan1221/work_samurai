@@ -69,7 +69,7 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin {
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
-        showUnselectedLabels: false,
+        showUnselectedLabels: true,
         showSelectedLabels: true,
         backgroundColor: AppColors.clr_white,
         type: BottomNavigationBarType.fixed,
@@ -136,7 +136,7 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin {
             ),
           ),
           BottomNavigationBarItem(
-            activeIcon: Image.asset(Assets.profileActive,
+            activeIcon: Image.asset(Assets.profileInactive,
                 height: 20,
               width: 20),
             icon: Image.asset(
