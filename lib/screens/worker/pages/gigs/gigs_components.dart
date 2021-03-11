@@ -873,8 +873,8 @@ class GigsComponents {
                             child:
                             MapView(startLat: lat,
                                 startLong: lat,
-                                apiKey: null,
-                                directionsApiKey: "AIzaSyBTdkccVvUmp02tIqDfXT1eaS6LjqeTWYM"),
+                                apiKey: "AIzaSyAPPPA0rzo6fDh2JDHKybGn6qANd9CRHZs",
+                                directionsApiKey: "AIzaSyAPPPA0rzo6fDh2JDHKybGn6qANd9CRHZs"),
                             // Image.asset(
                             //   Assets.google,
                             //   fit: BoxFit.fill,

@@ -26,13 +26,13 @@ class _ScheduleState extends State<Schedule> {
   ScheduleComponents _scheduleComponents;
   ScheduleProviders _scheduleProviders;
   WorkerProvider _workerProvider;
-  String _apiKey = "AIzaSyCn30TymjA7mf96UR4eNg9LN6NnsY-v92Q";
+  String _apiKey = "AIzaSyCXyHTcR0qwbBt8vFvCL7dhFyxgFF6yprY";
   String locationText = "Select address";
   GoogleMapsPlaces _places = GoogleMapsPlaces();
   double gpsLat, gpsLong;
   String addressLine,city,state,country;
   int postalCode;
-
+  Future _getCurrPrefFuture;
   Future<Null> displayPrediction(Prediction p) async {
     if (p != null) {
       PlacesDetailsResponse detail =
@@ -56,12 +56,14 @@ class _ScheduleState extends State<Schedule> {
   @override
   void initState() {
     super.initState();
+    _getCurrPrefFuture = ScheduleProviders().getCurrentPreferences();
+
     _places = GoogleMapsPlaces(apiKey: _apiKey);
     _scheduleComponents = ScheduleComponents();
     _scheduleProviders = Provider.of<ScheduleProviders>(context, listen:false);
     _workerProvider = Provider.of<WorkerProvider>(context,listen: false);
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async{
-       Map<String,dynamic> map = await _scheduleProviders.getCurrentPreferences(context);
+       Map<String,dynamic> map = await _scheduleProviders.getCurrentPreferences();
        Map<String,dynamic> locationData = await _scheduleProviders.getCurrentAddress(context);
        setState(() {
          _value = getDistanceText(map) < 51 && getDistanceText(map) > 0 ? getDistanceText(map) : 0 ;
@@ -84,7 +86,7 @@ class _ScheduleState extends State<Schedule> {
     Provider.of<WorkerProvider>(context,listen: true);
     _scheduleComponents.addListener((){setState((){});});
     return FutureBuilder(
-        future: ScheduleProviders().getCurrentPreferences(context),
+        future: _getCurrPrefFuture,
         builder: (context, AsyncSnapshot snapshot){
           if(snapshot.hasData){
             ///Preferences loaded
@@ -118,7 +120,7 @@ class _ScheduleState extends State<Schedule> {
                     children: [
                       _scheduleComponents.getLocation(imagePath: Assets.location, text: "Location", text1: locationText,onPress: () async{
                         Prediction p = await PlacesAutocomplete.show(
-                            context: context, apiKey: _apiKey);
+                            context: context, apiKey: _apiKey,mode: Mode.overlay,onError: (e){ApplicationToast.getErrorToast(durationTime: 3, heading: "", subHeading: e.errorMessage);});
                         displayPrediction(p);
                       }),
                       Container(
@@ -172,31 +174,31 @@ class _ScheduleState extends State<Schedule> {
                         color: AppColors.clr_field
                         ,),
                       SizedBox(height: AppSizes.height*0.02,),
-                      _scheduleComponents.getDayTime(day: "Mon", time: getScheduleText(snapshot.data, "Monday"),buildContext: context, scheduleProviders: _scheduleProviders),
+                      _scheduleComponents.getDayTime(day: "Monday", time: getScheduleText(snapshot.data, "Monday"),buildContext: context, scheduleProviders: _scheduleProviders),
                       SizedBox(
                         height: AppSizes.height * 0.02,
                       ),
-                      _scheduleComponents.getDayTime(day: "Tue", time: getScheduleText(snapshot.data, "Tuesday"),buildContext: context, scheduleProviders: _scheduleProviders),
+                      _scheduleComponents.getDayTime(day: "Tuesday", time: getScheduleText(snapshot.data, "Tuesday"),buildContext: context, scheduleProviders: _scheduleProviders),
                       SizedBox(
                         height: AppSizes.height * 0.02,
                       ),
-                      _scheduleComponents.getDayTime(day: "Wed", time: getScheduleText(snapshot.data, "Wednesday"),buildContext: context, scheduleProviders: _scheduleProviders),
+                      _scheduleComponents.getDayTime(day: "Wednesday", time: getScheduleText(snapshot.data, "Wednesday"),buildContext: context, scheduleProviders: _scheduleProviders),
                       SizedBox(
                         height: AppSizes.height * 0.02,
                       ),
-                      _scheduleComponents.getDayTime(day: "Thu", time:getScheduleText(snapshot.data, "Thursday"),buildContext: context, scheduleProviders: _scheduleProviders),
+                      _scheduleComponents.getDayTime(day: "Thursday", time:getScheduleText(snapshot.data, "Thursday"),buildContext: context, scheduleProviders: _scheduleProviders),
                       SizedBox(
                         height: AppSizes.height * 0.02,
                       ),
-                      _scheduleComponents.getDayTime(day: "Fri", time: getScheduleText(snapshot.data, "Friday"),buildContext: context, scheduleProviders: _scheduleProviders),
+                      _scheduleComponents.getDayTime(day: "Friday", time: getScheduleText(snapshot.data, "Friday"),buildContext: context, scheduleProviders: _scheduleProviders),
                       SizedBox(
                         height: AppSizes.height * 0.02,
                       ),
-                      _scheduleComponents.getDayTime(day: "Sat", time: getScheduleText(snapshot.data, "Saturday"),buildContext: context, scheduleProviders: _scheduleProviders),
+                      _scheduleComponents.getDayTime(day: "Saturday", time: getScheduleText(snapshot.data, "Saturday"),buildContext: context, scheduleProviders: _scheduleProviders),
                       SizedBox(
                         height: AppSizes.height * 0.02,
                       ),
-                      _scheduleComponents.getDayTime(day: "Sun", time: getScheduleText(snapshot.data, "Sunday"),buildContext: context, scheduleProviders: _scheduleProviders),
+                      _scheduleComponents.getDayTime(day: "Sunday", time: getScheduleText(snapshot.data, "Sunday"),buildContext: context, scheduleProviders: _scheduleProviders),
                       SizedBox(
                         height: AppSizes.height * 0.02,
                       ),
@@ -259,6 +261,7 @@ class _ScheduleState extends State<Schedule> {
 
   }
 
-  String getScheduleText(Map<String,dynamic> map,String day) => (map["${day}From"] == null && map["${day}To"] == null) ? "Select Time" : map["${day}From"] + " - " + map["${day}To"];
+  String getScheduleText(Map<String,dynamic> map,String day) =>
+      (map["${day}From"] == null && map["${day}To"] == null) ? "Select Time" : map["${day}From"] + " - " + map["${day}To"];
   double getDistanceText(Map<String,dynamic> map) => map["JobRadius"] == null ? 1.0 : double.parse(map["JobRadius"].toString());
 }

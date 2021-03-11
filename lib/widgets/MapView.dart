@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
-// import 'dart:math' show cos, sqrt, asin;
+import 'dart:math' show cos, sqrt, asin;
 
 class MapView extends StatefulWidget {
-  final double startLat,startLong;
-  final String apiKey;
-  final String directionsApiKey;
-  // String _distanceBetweenLocations = "0.0";
-  // String getDistance() => _distanceBetweenLocations;
+  double startLat,startLong;
+  var apiKey;
+  var directionsApiKey;
+  String _distanceBetweenLocations = "0.0";
+  String getDistance() => _distanceBetweenLocations;
 
   MapView({@required this.startLat,@required this.startLong, @required this.apiKey,@required this.directionsApiKey});
 
@@ -40,11 +40,11 @@ class _MapViewState extends State<MapView> {
 // two points
   Map<PolylineId, Polyline> polylines = {};
 
-  // double _placeDistance = 0.0;
+  double _placeDistance = 0.0;
   @override
   void dispose() {
     super.dispose();
-    // polylines = _currentPosition = destinationCoordinates =startCoordinates = markers = widget.startLong = widget.startLat = widget.endLong = widget.endLat = null;
+    polylines = _currentPosition = destinationCoordinates =startCoordinates = markers = widget.startLong = widget.startLat  = null;
   }
 
   @override
@@ -242,8 +242,8 @@ class _MapViewState extends State<MapView> {
   //       polylineCoordinates.add(LatLng(point.latitude, point.longitude));
   //     });
   //   }
-
-    // Defining an ID
+  //
+  //   // Defining an ID
   //   PolylineId id = PolylineId('poly');
   //
   //   // Initializing Polyline
@@ -260,7 +260,7 @@ class _MapViewState extends State<MapView> {
   //   print("PLOYLINE DRAWN :::::::::::" + polyline.points.toString());
   //   // });
   //
-  //   _getDistance();
+  //   // _getDistance();
   // }
   ///////////////////////////////////////////////////////////////////////
   //                    Calculating the distance now
@@ -283,15 +283,15 @@ class _MapViewState extends State<MapView> {
   //       polylineCoordinates[i + 1].longitude,
   //     );
   //   }
-  //
+
   //   widget._distanceBetweenLocations = _placeDistance.toStringAsFixed(2);
   // }
-  // double _coordinateDistance(lat1, lon1, lat2, lon2) {
-  //   var p = 0.017453292519943295;
-  //   var c = cos;
-  //   var a = 0.5 -
-  //       c((lat2 - lat1) * p) / 2 +
-  //       c(lat1 * p) * c(lat2 * p) * (1 - c((lon2 - lon1) * p)) / 2;
-  //   return 12742 * asin(sqrt(a));
-  // }
+  double _coordinateDistance(lat1, lon1, lat2, lon2) {
+    var p = 0.017453292519943295;
+    var c = cos;
+    var a = 0.5 -
+        c((lat2 - lat1) * p) / 2 +
+        c(lat1 * p) * c(lat2 * p) * (1 - c((lon2 - lon1) * p)) / 2;
+    return 12742 * asin(sqrt(a));
+  }
 }
