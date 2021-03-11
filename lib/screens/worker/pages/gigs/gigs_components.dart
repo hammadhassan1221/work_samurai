@@ -804,16 +804,17 @@ class GigsComponents {
                                     ),
                                   ],
                                 ),
-                                Row(
-                                  children: [
-                                    Text(
-                                      contactPerson,
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                        fontFamily: 'MuliRegular',
-                                      ),
-                                    )
-                                  ],
+                                Container(
+                                  width: AppSizes.width * .4,
+                                  alignment: Alignment.centerRight,
+                                  child: Text(
+                                    contactPerson,
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontFamily: 'MuliRegular',
+                                    ),
+                                    overflow: TextOverflow.fade,
+                                  ),
                                 )
                               ],
                             ),

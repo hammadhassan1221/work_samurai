@@ -79,14 +79,14 @@ class _PendingJobsState extends State<PendingJobs> {
                       GigsComponents().newTaskModalBottomSheet(
                           context, jobTitle: item.name,
                           rating: 4.5,
-                          date: item.startDate,
-                          time: item.estimatedDuration.toString() +" minutes",
-                          pay: "${item.rate}\$ /hour",
-                          contactPerson: "anonymous",
+                          date: value["StartDate"],
+                          time: value["EstimatedDuration"].toString() +" minutes",
+                          pay: "${value["Rate"]}\$ /hour",
+                          contactPerson: value["CreatedUser"]["Salutation"] +" "+ value["CreatedUser"]["Firstname"] +" "+ value["CreatedUser"]["Lastname"],
                           place: item.distance.toString() +" meters away",
-                          lat: value.first,
-                          long: value.last,
-                          instructions: item.description);
+                          lat: value["Address"]["GPSLat"],
+                          long: value["Address"]["GPSLong"],
+                          instructions: value["Description"]);
                     });
                   },
                   child: _component.getSingleContainer(
@@ -167,7 +167,7 @@ class _PendingJobsState extends State<PendingJobs> {
       print(e.toString());
     }
   }
-  Future<List<double>> getJob(int jobId) async {
+  Future<Map<String, dynamic>> getJob(int jobId) async {
     try {
       String token =
           "Bearer " + PreferenceUtils.getString(Strings.ACCESS_TOKEN);
@@ -193,10 +193,10 @@ class _PendingJobsState extends State<PendingJobs> {
         Map<String,dynamic> parsedJson = json.decode(_response.toString());
         double lat = ((parsedJson["Data"])["Address"])["GPSLat"];
         double lng = ((parsedJson["Data"])["Address"])["GPSLong"];
-        List<double> latlong = List<double>();
-        latlong.add(lat);
-        latlong.add(lng);
-        return latlong;
+        // List<double> latlong = List<double>();
+        // latlong.add(lat);
+        // latlong.add(lng);
+        return (parsedJson["Data"]);
         // if (futureJobsResponse.data.length <= _pageSize) {
         //   // FutureJobsResponse temp = FutureJobsResponse.empty();
         //   // temp = FutureJobsResponse.fromJson(_response.data);

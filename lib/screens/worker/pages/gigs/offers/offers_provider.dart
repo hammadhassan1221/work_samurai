@@ -76,7 +76,7 @@ class OffersProvider extends ChangeNotifier {
     return this.pageNumber;
   }
 
-  Future acceptJob({BuildContext context,int jobId}) async {
+  Future<bool> acceptJob({BuildContext context,int jobId}) async {
     try {
       _loader.showLoader(context: context);
       String token = "Bearer "+PreferenceUtils.getString(Strings.ACCESS_TOKEN);
@@ -98,29 +98,34 @@ class OffersProvider extends ChangeNotifier {
       );
       if (_response.statusCode != 200) {
         _loader.hideLoader(context);
+        return false;
       }
       if (_response.statusCode == 200) {
         _loader.hideLoader(context);
         if(_response.data["ResponseCode"] == 1){
           ApplicationToast.getSuccessToast(durationTime: 3, heading: null, subHeading: "Success");
+          return true;
         }
         else{
           ApplicationToast.getErrorToast(durationTime: 3, heading: null, subHeading: _response.data["ResponseCode"].toString() + " sever error");
+          return false;
         }
       }
+      return false;
     } catch (e) {
       _loader.hideLoader(context);
       print(e.toString());
+      return false;
     }
   }
 
-  Future rejectJob({BuildContext context,int jobId}) async {
+  Future<bool> rejectJob({BuildContext context,int jobId}) async {
     try {
       _loader.showLoader(context: context);
       String token = "Bearer "+PreferenceUtils.getString(Strings.ACCESS_TOKEN);
       debugPrint('Token: $token');
       var formData = new Map<String, dynamic>();
-      formData['JobID'] = 1014;
+      formData['JobID'] = jobId;
 
       _dio.options.contentType = Headers.formUrlEncodedContentType;
       Response _response = await _dio.post(
@@ -136,6 +141,7 @@ class OffersProvider extends ChangeNotifier {
       );
       if (_response.statusCode != 200) {
         _loader.hideLoader(context);
+        return false;
       }
       if (_response.statusCode == 200) {
         _loader.hideLoader(context);
@@ -143,14 +149,18 @@ class OffersProvider extends ChangeNotifier {
 
         if(_response.data["ResponseCode"] == 1){
           ApplicationToast.getSuccessToast(durationTime: 3, heading: null, subHeading: "Success");
+          return true;
         }
         else{
           ApplicationToast.getErrorToast(durationTime: 3, heading: null, subHeading: _response.data["ResponseCode"].toString() + " sever error");
+          return false;
         }
       }
+      return false;
     } catch (e) {
       _loader.hideLoader(context);
       print(e.toString());
+      return false;
     }
   }
 }
