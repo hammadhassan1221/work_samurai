@@ -26,7 +26,7 @@ dependencies:
   get_it: ^4.0.4
   provider: ^4.3.2+1
   http: ^0.12.2
-  flutter_datetime_picker: ^1.4.0
+  flutter_datetime_picker: ^1.5.0
   get_version: ^0.2.2
   google_fonts: ^1.1.1
   fluttertoastalert: ^1.0.3
@@ -54,7 +54,7 @@ dependencies:
 
   address_search_field: ^3.0.10
   geocoder: ^0.2.1
-  flutter_google_places: ^0.2.6
+  flutter_google_places: ^0.2.8
   url_launcher: ^5.7.10
   flutter_polyline_points: ^0.2.4
 
