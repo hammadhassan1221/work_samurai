@@ -106,7 +106,7 @@ class SplashProvider extends ChangeNotifier {
       var deviceId = (deviceInfo.androidId);
       await PreferenceUtils.setString(Strings.DEVICE_ID, deviceId );
       Constants.deviceId = PreferenceUtils.getString(Strings.DEVICE_ID);
-
+      String aa = "aaa";
 
     }
   }

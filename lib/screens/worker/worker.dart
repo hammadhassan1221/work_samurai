@@ -137,7 +137,7 @@ class _WorkerState extends State<Worker> with TickerProviderStateMixin {
             ),
           ),
           BottomNavigationBarItem(
-            activeIcon: Image.asset(Assets.profileActive,
+            activeIcon: Image.asset(Assets.profileInactive,
                 height: 20,
               width: 20),
             icon: Image.asset(
