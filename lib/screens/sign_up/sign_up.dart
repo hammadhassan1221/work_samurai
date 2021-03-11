@@ -2,12 +2,10 @@ import 'package:bouncing_widget/bouncing_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:work_samurai/models/hitting_model/sign_up_screen/sign_up_model.dart';
 import 'package:work_samurai/res/assets.dart';
 import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/sizes.dart';
 import 'package:work_samurai/screens/sign_up/sign_up_providers.dart';
-import 'package:work_samurai/screens/sign_up/signup_components.dart';
 import 'package:work_samurai/widgets/toast.dart';
 import 'package:work_samurai/widgets/widgets.dart';
 
@@ -16,38 +14,38 @@ class SignUp extends StatefulWidget {
   _SignUpState createState() => _SignUpState();
 }
 
-SignUpComponents _signUpComponents;
+// SignUpComponents _signUpComponents;
 String _selectedSkillId;
 
 class _SignUpState extends State<SignUp> {
   bool onCheck = false;
-  SignUpModel _signUpModel;
+  // SignUpModel _signUpModel;
   TextEditingController _email,
       _password,
       _confirmPassword,
       _phoneNumber,
       _firstName,
-      _skillId,
+      // _skillId,
       _lastName;
   SignUpProvider _signUpProvider;
   String _selectedValue;
 
   String male, female;
-  FocusNode _focusNode;
-
-  DateTime _selectedDate;
-  int _currentYear;
+  // FocusNode _focusNode;
+  //
+  // DateTime _selectedDate;
+  // int _currentYear;
   int _selectedIndex;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    _signUpComponents = SignUpComponents();
-    _signUpModel = SignUpModel();
+    // _signUpComponents = SignUpComponents();
+    // _signUpModel = SignUpModel();
     male = "";
     female = "";
-    _focusNode = FocusNode();
+    // _focusNode = FocusNode();
     _email = TextEditingController();
     _password = TextEditingController();
     _phoneNumber = TextEditingController();
@@ -58,7 +56,7 @@ class _SignUpState extends State<SignUp> {
     _signUpProvider.init(context: context);
     _selectedIndex = 0;
 
-    _skillId = TextEditingController();
+    // _skillId = TextEditingController();
   }
 
   onSelect(value) {
@@ -72,7 +70,7 @@ class _SignUpState extends State<SignUp> {
     _signUpProvider = Provider.of<SignUpProvider>(context, listen: true);
     return SafeArea(
         child: Scaffold(
-      resizeToAvoidBottomPadding: true,
+      // resizeToAvoidBottomPadding: true,
       body: Container(
           height: AppSizes.height,
           width: AppSizes.width,
@@ -372,25 +370,25 @@ class _SignUpState extends State<SignUp> {
     ));
   }
 
-  SignUpModel _makeSignUpModel() {
-    _signUpModel.skillId = _selectedSkillId;
-    _signUpModel.emailAddress = _email.text.toString();
-    _signUpModel.password = _password.text.toString();
-    _signUpModel.firstName = _firstName.text.toString();
-    _signUpModel.lastName = _lastName.text.toString();
-    _signUpModel.salutation = "";
-    _signUpModel.professionalTitle = "";
-    _signUpModel.dob = "";
-    _signUpModel.placeOfBirth = "";
-    _signUpModel.gender = getGenderText();
-    _signUpModel.description = "";
-    _signUpModel.tncAccepted = "";
-    _signUpModel.phone = _phoneNumber.text.toString();
-    _signUpModel.mobile = "";
-    _signUpModel.facebook = "";
-    _signUpModel.twitter = "";
-    _signUpModel.instagram = "";
-  }
+  // SignUpModel _makeSignUpModel() {
+  //   _signUpModel.skillId = _selectedSkillId;
+  //   _signUpModel.emailAddress = _email.text.toString();
+  //   _signUpModel.password = _password.text.toString();
+  //   _signUpModel.firstName = _firstName.text.toString();
+  //   _signUpModel.lastName = _lastName.text.toString();
+  //   _signUpModel.salutation = "";
+  //   _signUpModel.professionalTitle = "";
+  //   _signUpModel.dob = "";
+  //   _signUpModel.placeOfBirth = "";
+  //   _signUpModel.gender = getGenderText();
+  //   _signUpModel.description = "";
+  //   _signUpModel.tncAccepted = "";
+  //   _signUpModel.phone = _phoneNumber.text.toString();
+  //   _signUpModel.mobile = "";
+  //   _signUpModel.facebook = "";
+  //   _signUpModel.twitter = "";
+  //   _signUpModel.instagram = "";
+  // }
 
   String getGenderText() {
     if (_selectedIndex == 0)
