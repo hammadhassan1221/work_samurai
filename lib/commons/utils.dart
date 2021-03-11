@@ -8,6 +8,7 @@ import 'package:work_samurai/res/strings.dart';
 class PreferenceUtils {
   static Future<SharedPreferences> get _instance async =>
       _prefsInstance ??= await SharedPreferences.getInstance();
+
   static SharedPreferences _prefsInstance;
 
   static Future<SharedPreferences> init() async {
