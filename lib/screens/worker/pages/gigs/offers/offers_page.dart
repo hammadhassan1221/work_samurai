@@ -88,16 +88,22 @@ class _OffersPageState extends State<OffersPage> {
               totalAmount: item.rate,
               amountHour: item.rate,
               acceptJob: () async {
-                final response = await _provider.acceptJob(
+                bool response = await _provider.acceptJob(
                     context: this.context, jobId: item.iD);
+                if(response){
+                  _pagingController.refresh();
+                }
 
                 //_component.alertDialogueContainer(context);
               },
               rejectJob: () async {
-                final respons = await _provider.rejectJob(
+                bool respons = await _provider.rejectJob(
                   context: context,
                   jobId: item.iD,
                 );
+                if(respons){
+                  _pagingController.refresh();
+                }
               },
             ),
           ),

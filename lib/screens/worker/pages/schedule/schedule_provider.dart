@@ -142,7 +142,7 @@ class ScheduleProviders extends ChangeNotifier{
       print(e.toString());
     }
   }
-    Future<Map<String,dynamic>> getCurrentPreferences(context) async{
+    Future<Map<String,dynamic>> getCurrentPreferences() async{
       try {
         print("calling api");
         // _loader.showLoader(context: context);
@@ -167,7 +167,7 @@ class ScheduleProviders extends ChangeNotifier{
           }
           else{
             //error loading data
-            RefreshToken().refreshToken(context).then((value) => getCurrentPreferences(context));
+            // RefreshToken().refreshToken(context).then((value) => getCurrentPreferences(context));
             // return null;
           }
         }

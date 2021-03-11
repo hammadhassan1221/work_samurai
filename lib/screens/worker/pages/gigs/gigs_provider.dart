@@ -2,7 +2,6 @@ import 'package:connectivity/connectivity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import 'package:work_samurai/RefreshToken.dart';
 import 'package:work_samurai/commons/utils.dart';
 import 'package:work_samurai/constants/constants.dart';
 import 'package:work_samurai/generic_decode_encode/generic.dart';
@@ -16,7 +15,6 @@ import 'package:work_samurai/network/network_helper_impl.dart';
 import 'package:work_samurai/res/strings.dart';
 import 'package:work_samurai/widgets/loader.dart';
 import 'package:work_samurai/widgets/toast.dart';
-import 'package:work_samurai/screens/login/login.dart';
 class GigsProvider extends ChangeNotifier {
   BuildContext context;
   RangeValues values;
@@ -75,7 +73,7 @@ class GigsProvider extends ChangeNotifier {
         else{
           if(resultMap["ResponseCode"] == 0){
             ApplicationToast.getErrorToast(durationTime: 3, heading: "ERROR", subHeading: "Your session has expired, refreshing");
-            RefreshToken().refreshToken(context).then((value) => _getProfileData(context: null));
+            // RefreshToken().refreshToken(context).then((value) => _getProfileData(context: null));
           }
           else ApplicationToast.getErrorToast(durationTime: 3, heading: "ERROR", subHeading: "An error has occurred!, please try later");
         }

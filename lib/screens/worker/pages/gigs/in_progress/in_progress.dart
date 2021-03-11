@@ -32,7 +32,7 @@ class _InProgressPageState extends State<InProgressPage> {
       children: [
         Expanded(
           child: _provider.inProgressData
-              ? _components.inProgressContainer(
+              ? (_provider.inProgressResponse.data.iD == null)?Center(child: Text("No job in progress"),) :_components.inProgressContainer(
                   context: context,
                   jobTitle: _provider?.inProgressResponse?.data?.name ?? "",
                   dateTime: _provider?.inProgressResponse?.data?.startDate ?? "",

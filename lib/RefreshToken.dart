@@ -51,15 +51,15 @@ class RefreshToken{
         }
         else{
           if(resultMap["TokenResponse"] == 0){
-            ApplicationToast.getErrorToast(durationTime: 3, heading: "ERROR", subHeading: "please login again");
-            PreferenceUtils.reset();
-            Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => Login()
-                ),
-                ModalRoute.withName("/Login")
-            );
+            // ApplicationToast.getErrorToast(durationTime: 3, heading: "ERROR", subHeading: "please login again");
+            // PreferenceUtils.reset();
+            // Navigator.pushAndRemoveUntil(
+            //     context,
+            //     MaterialPageRoute(
+            //         builder: (context) => Login()
+            //     ),
+            //     ModalRoute.withName("/Login")
+            // );
           }
           else ApplicationToast.getErrorToast(durationTime: 3, heading: "ERROR", subHeading: "An error has occurred!, please try later");
         }

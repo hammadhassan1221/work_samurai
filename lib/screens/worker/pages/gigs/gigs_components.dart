@@ -804,16 +804,17 @@ class GigsComponents {
                                     ),
                                   ],
                                 ),
-                                Row(
-                                  children: [
-                                    Text(
-                                      contactPerson,
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                        fontFamily: 'MuliRegular',
-                                      ),
-                                    )
-                                  ],
+                                Container(
+                                  width: AppSizes.width * .4,
+                                  alignment: Alignment.centerRight,
+                                  child: Text(
+                                    contactPerson,
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontFamily: 'MuliRegular',
+                                    ),
+                                    overflow: TextOverflow.fade,
+                                  ),
                                 )
                               ],
                             ),
@@ -872,8 +873,8 @@ class GigsComponents {
                             child:
                             MapView(startLat: lat,
                                 startLong: lat,
-                                apiKey: null,
-                                directionsApiKey: "AIzaSyBTdkccVvUmp02tIqDfXT1eaS6LjqeTWYM"),
+                                apiKey: "AIzaSyAPPPA0rzo6fDh2JDHKybGn6qANd9CRHZs",
+                                directionsApiKey: "AIzaSyAPPPA0rzo6fDh2JDHKybGn6qANd9CRHZs"),
                             // Image.asset(
                             //   Assets.google,
                             //   fit: BoxFit.fill,
