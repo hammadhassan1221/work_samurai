@@ -23,6 +23,8 @@ class AccountProviders extends ChangeNotifier{
   UserWholeData _userWholeData = UserWholeData();
   Loader _loader = Loader();
   String _token;
+  bool isVerifiedEmail = false;
+  bool isVerifiedPhone = false;
   bool _isDataFetched = false;
 
   init({@required BuildContext context}) async{
@@ -57,6 +59,7 @@ class AccountProviders extends ChangeNotifier{
         throw("Couldn't signUp");
       }
       if(_response.statusCode == 200){
+
         _loader.hideLoader(context);
         PreferenceUtils.reset();
 
@@ -94,6 +97,8 @@ class AccountProviders extends ChangeNotifier{
         SharedPreferences pref = await SharedPreferences.getInstance();
         pref.setString(Strings.USER_DATA, Helper.getString(_response));
         if(_userWholeData.responseCode ==1){
+          isVerifiedEmail = _userWholeData.data.user.emailVerified;
+          isVerifiedPhone = _userWholeData.data.user.phoneVerified;
           print('Profile api called');
             _isDataFetched = true;
             notifyListeners();
