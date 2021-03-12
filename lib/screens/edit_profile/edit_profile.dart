@@ -32,7 +32,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
 
   EditProfileProviders _editProfileProviders;
   TextEditingController _aboutController = TextEditingController();
-  //TextEditingController _firstName,_lastName;
+  TextEditingController token;
   TextEditingController firstname, lastname;
   UserWholeData _userWholeData;
   GenericDecodeEncode _genericDecodeEncode = GenericDecodeEncode();
@@ -87,14 +87,14 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                   children: [
                     _editProfileComponents.getUserImage(
                         onPress: () {
-                         // ApplicationToast.getSuccessToast(durationTime: 2, heading: "null", subHeading: "Hello");
+                          // ApplicationToast.getSuccessToast(durationTime: 2, heading: "null", subHeading: "Hello");
                         }, imagePath: _accountProviders.getUserWholeData().data.user.document == null ? "https://toppng.com/uploads/preview/roger-berry-avatar-placeholder-11562991561rbrfzlng6h.png" :_accountProviders.getUserWholeData().data.user.document["URL"],
                         editProfileObj: _editProfileProviders),
                     SizedBox(
                       height: AppSizes.height * 0.05,
                     ),
                     _editProfileComponents.getInputField(
-                      firstname: firstname,
+                        firstname: firstname,
                         backgroundColor: AppColors.clr_bg,
                         borderColor: AppColors.sign_field,
                         textColor: AppColors.clr_bg_black,
@@ -103,75 +103,86 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                         text1:"",
                         isPassword: false),
                     _editProfileComponents.getInputField(
-                      firstname: lastname,
+                        firstname: lastname,
                         backgroundColor: AppColors.clr_bg,
                         borderColor: AppColors.sign_field,
                         textColor: AppColors.clr_bg_black,
                         text: _userWholeData?.data?.user?.lastname,
                         text1:"",
-                      //  controller: _lastName ,
+                        //  controller: _lastName ,
                         isPassword: false),
-                    _verifyEmail
+                    _accountProviders.isVerifiedEmail == true
                         ? _editProfileComponents.getVerificationContainer(
-                            onPress: () {
-                              _emailSheet(context);
-                             /* _editProfileProviders.getVerifiedEmail(
+                        onPress: () {
+                          _emailSheet(context);
+                          /* _editProfileProviders.getVerifiedEmail(
                                   context: context);*/
-                            },
-                            backgroundColor: AppColors.clr_bg,
-                            borderColor: AppColors.sign_field,
-                            textColor: AppColors.clr_bg_black2,
-                            text: "Email",
-                            text1: _accountProviders.getUserWholeData().data.user.emailAddress,
-                            isPassword: false,
-                            iconData: Icons.check_circle,
-                            verify: "Verified",
-                            verifyColor: Colors.green)
+                        },
+                        backgroundColor: AppColors.clr_bg,
+                        borderColor: AppColors.sign_field,
+                        textColor: AppColors.clr_bg_black2,
+                        text: "Email",
+                        text1: _accountProviders.getUserWholeData().data.user.emailAddress,
+                        isPassword: false,
+                        iconData: Icons.check_circle,
+                        verify: "Verified",
+                        verifyColor: Colors.green)
                         : _editProfileComponents.getVerificationContainer(
-                            onPress: () {
-                              _emailSheet(context);
-                            },
-                            backgroundColor: AppColors.clr_bg,
-                            borderColor: AppColors.sign_field,
-                            textColor: AppColors.clr_bg_black2,
-                            text: "Email",
-                            text1: _userWholeData?.data?.user?.emailAddress
-                                .toString(),
-                            isPassword: false,
-                            iconData: Icons.arrow_forward_ios,
-                            verify: "Unverified",
-                            verifyColor: Colors.orangeAccent),
-                    _verifyPhone
+                        onPress: () async {
+                          await _editProfileProviders.getVerifiedEmail(context: context);
+                          if (_editProfileProviders.isVerifiedSent == true){
+                            _emailSheet(context);
+                          }
+                          else{
+                            ApplicationToast.getWarningToast(durationTime: 2, heading: "Network error", subHeading: "Please try again");
+                          }
+                        },
+                        backgroundColor: AppColors.clr_bg,
+                        borderColor: AppColors.sign_field,
+                        textColor: AppColors.clr_bg_black2,
+                        text: "Email",
+                        text1: _userWholeData?.data?.user?.emailAddress
+                            .toString(),
+                        isPassword: false,
+                        iconData: Icons.arrow_forward_ios,
+                        verify: "Unverified",
+                        verifyColor: Colors.orangeAccent),
+                    _accountProviders.isVerifiedPhone == true
                         ? _editProfileComponents.getVerificationContainer(
-                            onPress: () {
-                              _phoneSheet(context);
-                              _editProfileProviders.getVerifiedPhone(
-                                  context: context);
-                            },
-                            backgroundColor: AppColors.clr_bg,
-                            borderColor: AppColors.sign_field,
-                            textColor: AppColors.clr_bg_black2,
-                            text: "Phone",
-                            text1: _accountProviders.getUserWholeData().data.user.mobile,/*_userWholeData.data.user.mobile.toString(),*/
-                            isPassword: false,
-                            iconData: Icons.check_circle,
-                            verify: "Verified",
-                            verifyColor: Colors.green)
+                        onPress: () async{
+                          _phoneSheet(context);
+                          // await  _editProfileProviders.getVerifiedPhone(
+                          //    context: context);
+                        },
+                        backgroundColor: AppColors.clr_bg,
+                        borderColor: AppColors.sign_field,
+                        textColor: AppColors.clr_bg_black2,
+                        text: "Phone",
+                        text1: _accountProviders.getUserWholeData().data.user.mobile,/*_userWholeData.data.user.mobile.toString(),*/
+                        isPassword: false,
+                        iconData: Icons.check_circle,
+                        verify: "Verified",
+                        verifyColor: Colors.green)
                         : _editProfileComponents.getVerificationContainer(
-                            onPress: () {
-                              //_phoneSheet(context);
-                              _editProfileProviders.getVerifiedPhone(
-                                  context: context);
-                            },
-                            backgroundColor: AppColors.clr_bg,
-                            borderColor: AppColors.sign_field,
-                            textColor: AppColors.clr_bg_black2,
-                            text: "Phone",
-                            text1: _userWholeData?.data?.user?.mobile?.toString(),
-                            isPassword: false,
-                            iconData: Icons.arrow_forward_ios,
-                            verify: "Unverified",
-                            verifyColor: Colors.orangeAccent),
+                        onPress: () async {
+                          //_phoneSheet(context);
+                          await _editProfileProviders.getVerifiedPhone(context: context);
+                          if (_editProfileProviders.isVerifiedSentPhone == true){
+                            _phoneSheet(context);
+                          }
+                          else{
+                            ApplicationToast.getWarningToast(durationTime: 2, heading: "Network error", subHeading: "Please try again");
+                          }
+                        },
+                        backgroundColor: AppColors.clr_bg,
+                        borderColor: AppColors.sign_field,
+                        textColor: AppColors.clr_bg_black2,
+                        text: "Phone",
+                        text1: _userWholeData?.data?.user?.mobile?.toString(),
+                        isPassword: false,
+                        iconData: Icons.arrow_forward_ios,
+                        verify: "Unverified",
+                        verifyColor: Colors.orangeAccent),
                     _editProfileComponents.getDescriptionContainer(
                         heading: "About You", desc: "",controllor: _aboutController),
                     SizedBox(
@@ -181,24 +192,24 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                         name: "Update", onButtonClick: () async {
                       String firstName = _userWholeData?.data?.user.firstname;
                       String lastName = _userWholeData?.data?.user.lastname;
-                          if (firstname.text.isNotEmpty ){
-                          firstName   = firstname.text ;
-                          }
+                      if (firstname.text.isNotEmpty ){
+                        firstName   = firstname.text ;
+                      }
                       if (lastname.text.isNotEmpty ){
                         lastName   = lastname.text ;
                       }
 
-                          String salutation =_userWholeData?.data?.user?.salutation ?? "Mr.";
-                          String proTitle = _userWholeData?.data?.user?.professionalTitle ?? "";
-                          String dob = _userWholeData?.data?.user?.dob ?? "";
-                          String placeOfBirth = _userWholeData?.data?.user?.lastname ?? "";
-                          String gender = _userWholeData?.data?.user?.gender?.toString() ?? "";
-                          String description = _aboutController?.text?.toString() ?? "";
-                          String imagePath = _editProfileProviders?.userImage?.path ?? "";
+                      String salutation =_userWholeData?.data?.user?.salutation ?? "Mr.";
+                      String proTitle = _userWholeData?.data?.user?.professionalTitle ?? "";
+                      String dob = _userWholeData?.data?.user?.dob ?? "";
+                      String placeOfBirth = _userWholeData?.data?.user?.lastname ?? "";
+                      String gender = _userWholeData?.data?.user?.gender?.toString() ?? "";
+                      String description = _aboutController?.text?.toString() ?? "";
+                      String imagePath = _editProfileProviders?.userImage?.path ?? "";
 
-                        //  List<String> array = [firstName, lastName,salutation,proTitle,dob,placeOfBirth,gender,description,imagePath];
-                          _editProfileProviders.sendUpdate(firstName, lastName,salutation,proTitle,dob,placeOfBirth,gender,description,imagePath, context);
-                        }
+                      //  List<String> array = [firstName, lastName,salutation,proTitle,dob,placeOfBirth,gender,description,imagePath];
+                      _editProfileProviders.sendUpdate(firstName, lastName,salutation,proTitle,dob,placeOfBirth,gender,description,imagePath, context);
+                    }
                     ),
                     SizedBox(
                       height: AppSizes.height * 0.05,
@@ -291,7 +302,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                 Center(
                   child: Container(
                     padding: EdgeInsets.all(AppSizes.height * 0.02),
-                    height: AppSizes.height * 0.15,
+                    height: AppSizes.height * 0.13,
                     width: AppSizes.width * 0.7,
                     decoration: BoxDecoration(
                       border: Border.all(color: AppColors.sign_field),
@@ -304,14 +315,24 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                           style: TextStyle(color: AppColors.clr_bg_grey),
                         ),
                         SizedBox(
-                          height: AppSizes.height * 0.015,
+                          height: AppSizes.height * 0.01,
                         ),
-                        Text(
-                          "000 - 000",
-                          style: TextStyle(
-                              fontSize: 40,
-                              fontFamily: 'MuliRegular',
-                              color: AppColors.clr_bg_black),
+                        TextField(
+                          textAlign: TextAlign.center,
+                          controller: token,
+                          cursorColor: AppColors.clr_bg_black2,
+                          keyboardType: TextInputType.multiline,
+                          maxLines: null,
+                          //cursorHeight: 12,
+                          // controller: controller,
+                          decoration: InputDecoration(
+                            hintText: "000-000",
+
+                            hintStyle: TextStyle(fontSize: 18,
+                              color: AppColors.clr_bg_black,
+                              fontFamily: 'MuliRegular',),
+                            border: InputBorder.none,
+                          ),
                         ),
                       ],
                     ),

@@ -1052,12 +1052,7 @@ class GigsComponents {
     } else {
         return CommonWidgets.getAlertContainer(
 
-        onPress: () => Navigator.push(
-          context,
-          SlideRightRoute(
-            page: Account(),
-          ),
-        ),
+        onPress: () => ApplicationToast.getWarningToast(durationTime: 3, heading: "Verification Failed", subHeading: "Please go to your profile to verify your email")
       );
     }
 

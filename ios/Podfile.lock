@@ -118,6 +118,9 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (6.7.2):
     - GoogleUtilities/Logger
+  - image_cropper (0.0.3):
+    - Flutter
+    - TOCropViewController (~> 2.5.4)
   - image_picker (0.0.1):
     - Flutter
   - nanopb (1.30906.0):
@@ -141,6 +144,7 @@ PODS:
     - SDWebImage/Core (~> 5.6)
   - shared_preferences (0.0.1):
     - Flutter
+  - TOCropViewController (2.5.5)
   - url_launcher (0.0.1):
     - Flutter
 
@@ -157,6 +161,7 @@ DEPENDENCIES:
   - geolocator (from `.symlinks/plugins/geolocator/ios`)
   - get_version (from `.symlinks/plugins/get_version/ios`)
   - google_maps_flutter (from `.symlinks/plugins/google_maps_flutter/ios`)
+  - image_cropper (from `.symlinks/plugins/image_cropper/ios`)
   - image_picker (from `.symlinks/plugins/image_picker/ios`)
   - package_info (from `.symlinks/plugins/package_info/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
@@ -184,6 +189,7 @@ SPEC REPOS:
     - SCLAlertView
     - SDWebImage
     - SDWebImageFLPlugin
+    - TOCropViewController
 
 EXTERNAL SOURCES:
   address_search_field:
@@ -210,6 +216,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/get_version/ios"
   google_maps_flutter:
     :path: ".symlinks/plugins/google_maps_flutter/ios"
+  image_cropper:
+    :path: ".symlinks/plugins/image_cropper/ios"
   image_picker:
     :path: ".symlinks/plugins/image_picker/ios"
   package_info:
@@ -246,6 +254,7 @@ SPEC CHECKSUMS:
   GoogleDataTransport: f56af7caa4ed338dc8e138a5d7c5973e66440833
   GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
   GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
+  image_cropper: c8f9b4157933c7bb965a66d1c5e6c8fd408c6eb4
   image_picker: 9c3312491f862b28d21ecd8fdf0ee14e601b3f09
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   package_info: 873975fc26034f0b863a300ad47e7f1ac6c7ec62
@@ -257,8 +266,9 @@ SPEC CHECKSUMS:
   SDWebImage: 0b2ba0d56479bf6a45ecddbfd5558bea93150d25
   SDWebImageFLPlugin: 6c2295fb1242d44467c6c87dc5db6b0a13228fd8
   shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
+  TOCropViewController: da59f531f8ac8a94ef6d6c0fc34009350f9e8bfe
   url_launcher: 6fef411d543ceb26efce54b05a0a40bfd74cbbef
 
-PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+PODFILE CHECKSUM: ffd7293eb7d5907b54a367fd400872baeef513a5
 
 COCOAPODS: 1.10.0

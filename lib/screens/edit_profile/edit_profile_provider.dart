@@ -1,6 +1,8 @@
 import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:work_samurai/animations/slide_right.dart';
 import 'package:work_samurai/commons/utils.dart';
@@ -13,6 +15,7 @@ import 'package:work_samurai/network/api_urls.dart';
 import 'package:work_samurai/network/network_helper.dart';
 import 'package:work_samurai/network/network_helper_impl.dart';
 import 'package:work_samurai/res/assets.dart';
+import 'package:work_samurai/res/colors.dart';
 import 'package:work_samurai/res/strings.dart';
 import 'package:work_samurai/routes/routes.dart';
 import 'package:work_samurai/screens/worker/pages/account/account.dart';
@@ -34,21 +37,37 @@ class EditProfileProviders extends ChangeNotifier {
   AccountProviders _accountProviders;
   Dio dio = Dio();
   String _token;
+  File cropped;
+  bool isVerifiedSent;
+  bool isVerifiedSentPhone;
 
   init({@required BuildContext context}) async {
     try {
       this.context = context;
       _token = PreferenceUtils.getString(Strings.ACCESS_TOKEN);
-      await getVerifiedEmail(context: context);
-      await getVerifiedPhone(context: context);
+     // await getVerifiedEmail(context: context);
+     // await getVerifiedPhone(context: context);
     } catch (e) {
       print(e.toString());
     }
   }
   Future getImage({@required BuildContext context}) async {
     var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-    if (image != null) {
-      userImage = image;
+    if (image != null ){
+      cropped = await ImageCropper.cropImage(
+          sourcePath: image.path,
+          aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
+          compressQuality: 70,
+          androidUiSettings: AndroidUiSettings(
+            toolbarColor: AppColors.sign_field,
+            toolbarTitle: "Image resizing",
+            statusBarColor: Colors.black54,
+            backgroundColor: Colors.white,
+          )
+      );
+    }
+    if (cropped  != null) {
+      userImage = cropped;
     } else {
       print('No image selected');
     }
@@ -56,9 +75,10 @@ class EditProfileProviders extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future getVerifiedPhone(
-      {@required BuildContext context, @required String newPassword}) async {
+  Future getVerifiedPhone (
+      {@required BuildContext context}) async {
     try {
+      _loader.showLoader(context: context);
       var connectivityResult = await (Connectivity().checkConnectivity());
       if (connectivityResult != ConnectivityResult.none) {
         dio.options.contentType = Headers.formUrlEncodedContentType;
@@ -69,30 +89,44 @@ class EditProfileProviders extends ChangeNotifier {
             contentType: Headers.formUrlEncodedContentType,
             headers: {
               "Authorization": "Bearer " + _token,
-              "DeviceID": Constants.deviceId,
+              "DeviceID": PreferenceUtils.getString(Strings.DEVICE_ID),
             },
           ),
         );
 
         if (_response.statusCode != 200) {
-          // _loader.hideLoader(context);
+           _loader.hideLoader(context);
           throw ("couldn't get the data");
         }
         if (_response.statusCode == 200) {
-          // _loader.hideLoader(context);
+           _loader.hideLoader(context);
 
           GenericResponse _genericResponse =
-              GenericResponse.fromJson(_response.data);
+          GenericResponse.fromJson(_response.data);
+          if(_genericResponse.responseCode == 1){
+            isVerifiedSentPhone = true;
+            ApplicationToast.getSuccessToast(durationTime: 3, heading: "Code", subHeading: _genericResponse.data);
+          }
+          else if(_response.statusCode == 11 ){
+            ApplicationToast.getErrorToast(durationTime: 2, heading: "Error", subHeading: "Invalid System Token");
+          }
+          else if(_response.statusCode == 12 ){
+            ApplicationToast.getErrorToast(durationTime: 2, heading: "Error", subHeading: "System Token Expired");
+          }
+          else if(_response.statusCode == 30 ){
+            ApplicationToast.getErrorToast(durationTime: 2, heading: "Error", subHeading: "Wait Before Resending SMS");
+          }
         }
       }
     } catch (e) {
-      // _loader.hideLoader(context);
+       _loader.hideLoader(context);
       print(e.toString());
     }
   }
 
   Future getVerifiedEmail({@required BuildContext context}) async {
     try {
+      _loader.showLoader(context: context);
       var connectivityResult = await (Connectivity().checkConnectivity());
       if (connectivityResult != ConnectivityResult.none) {
         dio.options.contentType = Headers.formUrlEncodedContentType;
@@ -103,24 +137,27 @@ class EditProfileProviders extends ChangeNotifier {
             contentType: Headers.formUrlEncodedContentType,
             headers: {
               "Authorization": "Bearer " + _token,
-              "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
+              "DeviceID": PreferenceUtils.getString(Strings.DEVICE_ID),
             },
           ),
         );
 
         if (_response.statusCode != 200) {
-          // _loader.hideLoader(context);
+           _loader.hideLoader(context);
           throw ("couldn't get the data");
         }
         if (_response.statusCode == 200) {
-          // _loader.hideLoader(context);
+           _loader.hideLoader(context);
 
           GenericResponse _genericResponse =
-              GenericResponse.fromJson(_response.data);
+          GenericResponse.fromJson(_response.data);
+          if (_genericResponse.responseCode == 1){
+            isVerifiedSent = true;
+          }
         }
       }
     } catch (e) {
-      // _loader.hideLoader(context);
+       _loader.hideLoader(context);
       print(e.toString());
     }
   }
@@ -129,14 +166,14 @@ class EditProfileProviders extends ChangeNotifier {
       _loader.showLoader(context: context);
       var connectivityResult = await (Connectivity().checkConnectivity());
       if (connectivityResult != ConnectivityResult.none) {
-       // dio.options.contentType = Headers.formUrlEncodedContentType;
+        // dio.options.contentType = Headers.formUrlEncodedContentType;
         String fileName;
         Response _response;
         if(imagePath != ""){
-         fileName = imagePath.toString().split("/").last;
-         if (fileName.length >= 41) {
-           fileName = fileName.substring(fileName.length - 40);
-         }
+          fileName = imagePath.toString().split("/").last;
+          if (fileName.length >= 41) {
+            fileName = fileName.substring(fileName.length - 40);
+          }
         }
 
         FormData formData;
@@ -160,11 +197,11 @@ class EditProfileProviders extends ChangeNotifier {
             "Mobile": "012948371",
             "Description": description,
           });
-           _response = await dio.post(
+          _response = await dio.post(
             updateProfile,
             data: formData,
             options: Options(
-                contentType: Headers.formUrlEncodedContentType,
+              contentType: Headers.formUrlEncodedContentType,
               headers: {
                 "Authorization": "Bearer " + _token,
                 "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
@@ -188,7 +225,7 @@ class EditProfileProviders extends ChangeNotifier {
             updateProfile,
             data: formData,
             options: Options(
-            //  contentType: Headers.formUrlEncodedContentType,
+              //  contentType: Headers.formUrlEncodedContentType,
               headers: {
                 "Authorization": "Bearer " + _token,
                 "DeviceID": "A580E6FE-DA99-4066-AFC7-C939104AED7F",
